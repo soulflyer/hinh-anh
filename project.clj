@@ -6,22 +6,28 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.9.473" :exclusions [org.apache.ant/ant]]
                  [org.clojure/core.async "0.2.395"]
-                 [reagent "0.6.0"]
+                 [reagent "0.7.0"]
+                 [re-com "0.9.0"]
+                 [re-frame "0.10.5"]
                  [ring/ring-core "1.5.1"]
-                 [figwheel "0.5.9"]]
+                 [cljs-ajax "0.7.3"]
+                 [day8.re-frame/http-fx "0.1.5"]]
   :plugins [[lein-cljsbuild "1.1.5"]
             [lein-externs "0.1.6"]
             [lein-shell "0.5.0"]
-            [lein-figwheel "0.5.9" :exclusions [org.clojure/core.cache]]]
+            [lein-figwheel "0.5.11" :exclusions [org.clojure/core.cache]]]
   :source-paths ["src_tools"]
+  :profiles {:dev {:dependencies [[figwheel "0.5.11"]
+                                  [com.cemerick/piggieback "0.2.2"]
+                                  [figwheel-sidecar "0.5.11"]]}}
   :aliases {"descjop-help" ["new" "descjop" "help"]
             "descjop-version" ["new" "descjop" "version"]
             "descjop-init" ["do"
                             ["shell" "npm" "install"]
                             ["shell" "grunt" "download-electron"]]
             "descjop-init-win" ["do"
-                            ["shell" "cmd.exe" "/c" "npm" "install"]
-                            ["shell" "cmd.exe" "/c" "grunt" "download-electron"]]
+                                ["shell" "cmd.exe" "/c" "npm" "install"]
+                                ["shell" "cmd.exe" "/c" "grunt" "download-electron"]]
             "descjop-externs" ["do"
                                ["externs" "dev-main" "app/dev/js/externs.js"]
                                ["externs" "dev-front" "app/dev/js/externs_front.js"]
@@ -151,4 +157,4 @@
                                                :output-wrapper true}}}}
   :figwheel {:http-server-root "public"
              :ring-handler figwheel-middleware/app
-             :server-port 3449})
+             :server-port 3441})
