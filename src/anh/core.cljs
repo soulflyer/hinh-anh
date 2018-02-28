@@ -16,8 +16,8 @@
 (def app (.-app Electron))
 
 (defn -main []
-  (.start crash-reporter (clj->js {:companyName "Your Company Name"
-                                   :submitURL   "http://example.com/"}))
+  (.start crash-reporter (clj->js {:companyName "Soulflyer"
+                                   :submitURL   "https://github.com/soulflyer/hinh-anh"}))
 
   ;; error listener
   (.on nodejs/process "error"
