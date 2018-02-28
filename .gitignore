@@ -13,3 +13,5 @@ node_modules/*
 *.ipr
 *.iws
 electron/*
+figwheel_server.log
+.nrepl-port
