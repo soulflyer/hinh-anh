@@ -1,0 +1,1 @@
+{:output-to "app/dev/js/front.js", :externs ["app/dev/js/externs_front.js"], :warnings true, :elide-asserts true, :optimizations :none, :output-dir "app/dev/js/out_front", :pretty-print true, :output-wrapper true}

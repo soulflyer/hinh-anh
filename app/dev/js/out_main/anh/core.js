@@ -1,4 +1,4 @@
-// Compiled by ClojureScript 1.9.473 {:elide-asserts true, :target :nodejs}
+// Compiled by ClojureScript 1.10.64 {:elide-asserts true, :target :nodejs}
 goog.provide('anh.core');
 goog.require('cljs.core');
 goog.require('cljs.nodejs');
@@ -27,7 +27,7 @@ return null;
 return anh.core.app.on("ready",(function (){
 cljs.core.reset_BANG_.call(null,anh.core._STAR_win_STAR_,(new anh.core.BrowserWindow(cljs.core.clj__GT_js.call(null,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"width","width",-384071477),(800),new cljs.core.Keyword(null,"height","height",1025178622),(600)], null)))));
 
-cljs.core.deref.call(null,anh.core._STAR_win_STAR_).loadURL([cljs.core.str.cljs$core$IFn$_invoke$arity$1("file://"),cljs.core.str.cljs$core$IFn$_invoke$arity$1(anh.core.path.resolve(__dirname,"../index.html"))].join(''));
+cljs.core.deref.call(null,anh.core._STAR_win_STAR_).loadURL(["file://",cljs.core.str.cljs$core$IFn$_invoke$arity$1(anh.core.path.resolve(__dirname,"../index.html"))].join(''));
 
 return cljs.core.deref.call(null,anh.core._STAR_win_STAR_).on("closed",(function (){
 return cljs.core.reset_BANG_.call(null,anh.core._STAR_win_STAR_,null);
@@ -35,5 +35,5 @@ return cljs.core.reset_BANG_.call(null,anh.core._STAR_win_STAR_,null);
 }));
 });
 cljs.nodejs.enable_util_print_BANG_.call(null);
-console.log([cljs.core.str.cljs$core$IFn$_invoke$arity$1("Start descjop application on "),cljs.core.str.cljs$core$IFn$_invoke$arity$1(anh.core.Os.type()),cljs.core.str.cljs$core$IFn$_invoke$arity$1(".")].join(''));
+console.log(["Start descjop application on ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(anh.core.Os.type()),"."].join(''));
 cljs.core._STAR_main_cli_fn_STAR_ = anh.core._main;

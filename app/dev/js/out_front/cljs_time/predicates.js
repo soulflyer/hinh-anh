@@ -1,4 +1,4 @@
-// Compiled by ClojureScript 1.9.473 {:elide-asserts true}
+// Compiled by ClojureScript 1.10.64 {:elide-asserts true}
 goog.provide('cljs_time.predicates');
 goog.require('cljs.core');
 goog.require('cljs_time.core');
@@ -24,9 +24,9 @@ cljs_time.predicates.sunday_QMARK_ = (function cljs_time$predicates$sunday_QMARK
 return cljs.core._EQ_.call(null,cljs_time.core.day_of_week.call(null,date_time),(7));
 });
 cljs_time.predicates.weekend_QMARK_ = (function cljs_time$predicates$weekend_QMARK_(date_time){
-var or__6948__auto__ = cljs_time.predicates.saturday_QMARK_.call(null,date_time);
-if(cljs.core.truth_(or__6948__auto__)){
-return or__6948__auto__;
+var or__46739__auto__ = cljs_time.predicates.saturday_QMARK_.call(null,date_time);
+if(cljs.core.truth_(or__46739__auto__)){
+return or__46739__auto__;
 } else {
 return cljs_time.predicates.sunday_QMARK_.call(null,date_time);
 }

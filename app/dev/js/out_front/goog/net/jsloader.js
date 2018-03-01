@@ -28,6 +28,8 @@ goog.require('goog.async.Deferred');
 goog.require('goog.debug.Error');
 goog.require('goog.dom');
 goog.require('goog.dom.TagName');
+goog.require('goog.dom.safe');
+goog.require('goog.html.TrustedResourceUrl');
 goog.require('goog.object');
 
 
@@ -71,7 +73,7 @@ goog.net.jsloader.Options;
 
 /**
  * Scripts (URIs) waiting to be loaded.
- * @private {!Array<string>}
+ * @private {!Array<!goog.html.TrustedResourceUrl>}
  */
 goog.net.jsloader.scriptsToLoad_ = [];
 
@@ -85,6 +87,7 @@ goog.net.jsloader.scriptsToLoad_ = [];
 goog.net.jsloader.scriptLoadingDeferred_;
 
 
+
 /**
  * Loads and evaluates the JavaScript files at the specified URIs, guaranteeing
  * the order of script loads.
@@ -94,30 +97,30 @@ goog.net.jsloader.scriptLoadingDeferred_;
  * the network fetches in parallel.
  *
  * If you need to load a large number of scripts but dependency order doesn't
- * matter, you should just call goog.net.jsloader.load N times.
+ * matter, you should just call goog.net.jsloader.safeLoad N times.
  *
  * If you need to load a large number of scripts on the same domain,
  * you may want to use goog.module.ModuleLoader.
  *
- * @param {Array<string>} uris The URIs to load.
+ * @param {Array<!goog.html.TrustedResourceUrl>} trustedUris The URIs to load.
  * @param {goog.net.jsloader.Options=} opt_options Optional parameters. See
  *     goog.net.jsloader.options documentation for details.
  * @return {!goog.async.Deferred} The deferred result, that may be used to add
  *     callbacks
  */
-goog.net.jsloader.loadMany = function(uris, opt_options) {
+goog.net.jsloader.safeLoadMany = function(trustedUris, opt_options) {
   // Loading the scripts in serial introduces asynchronosity into the flow.
   // Therefore, there are race conditions where client A can kick off the load
   // sequence for client B, even though client A's scripts haven't all been
   // loaded yet.
   //
   // To work around this issue, all module loads share a queue.
-  if (!uris.length) {
+  if (!trustedUris.length) {
     return goog.async.Deferred.succeed(null);
   }
 
   var isAnotherModuleLoading = goog.net.jsloader.scriptsToLoad_.length;
-  goog.array.extend(goog.net.jsloader.scriptsToLoad_, uris);
+  goog.array.extend(goog.net.jsloader.scriptsToLoad_, trustedUris);
   if (isAnotherModuleLoading) {
     // jsloader is still loading some other scripts.
     // In order to prevent the race condition noted above, we just add
@@ -127,11 +130,11 @@ goog.net.jsloader.loadMany = function(uris, opt_options) {
     return goog.net.jsloader.scriptLoadingDeferred_;
   }
 
-  uris = goog.net.jsloader.scriptsToLoad_;
+  trustedUris = goog.net.jsloader.scriptsToLoad_;
   var popAndLoadNextScript = function() {
-    var uri = uris.shift();
-    var deferred = goog.net.jsloader.load(uri, opt_options);
-    if (uris.length) {
+    var trustedUri = trustedUris.shift();
+    var deferred = goog.net.jsloader.safeLoad(trustedUri, opt_options);
+    if (trustedUris.length) {
       deferred.addBoth(popAndLoadNextScript);
     }
     return deferred;
@@ -146,7 +149,7 @@ goog.net.jsloader.loadMany = function(uris, opt_options) {
  * When the script loads, a user callback is called.
  * It is the client's responsibility to verify that the script ran successfully.
  *
- * @param {string} uri The URI of the JavaScript.
+ * @param {!goog.html.TrustedResourceUrl} trustedUri The URI of the JavaScript.
  * @param {goog.net.jsloader.Options=} opt_options Optional parameters. See
  *     goog.net.jsloader.Options documentation for details.
  * @return {!goog.async.Deferred} The deferred result, that may be used to add
@@ -154,9 +157,10 @@ goog.net.jsloader.loadMany = function(uris, opt_options) {
  *     The error callback will be called with a single goog.net.jsloader.Error
  *     parameter.
  */
-goog.net.jsloader.load = function(uri, opt_options) {
+goog.net.jsloader.safeLoad = function(trustedUri, opt_options) {
   var options = opt_options || {};
   var doc = options.document || document;
+  var uri = goog.html.TrustedResourceUrl.unwrap(trustedUri);
 
   var script = goog.dom.createElement(goog.dom.TagName.SCRIPT);
   var request = {script_: script, timeout_: undefined};
@@ -202,14 +206,12 @@ goog.net.jsloader.load = function(uri, opt_options) {
   };
 
   var properties = options.attributes || {};
-  goog.object.extend(properties, {
-    'type': 'text/javascript',
-    'charset': 'UTF-8',
-    // NOTE(user): Safari never loads the script if we don't set
-    // the src attribute before appending.
-    'src': uri
-  });
+  goog.object.extend(
+      properties, {'type': 'text/javascript', 'charset': 'UTF-8'});
   goog.dom.setProperties(script, properties);
+  // NOTE(user): Safari never loads the script if we don't set the src
+  // attribute before appending.
+  goog.dom.safe.setScriptSrc(script, trustedUri);
   var scriptParent = goog.net.jsloader.getScriptParentElement_(doc);
   scriptParent.appendChild(script);
 
@@ -225,7 +227,7 @@ goog.net.jsloader.load = function(uri, opt_options) {
  * We verify this object was set and return its value in the success callback.
  * If the object is not defined we trigger an error callback.
  *
- * @param {string} uri The URI of the JavaScript.
+ * @param {!goog.html.TrustedResourceUrl} trustedUri The URI of the JavaScript.
  * @param {string} verificationObjName The name of the verification object that
  *     the loaded script should set.
  * @param {goog.net.jsloader.Options} options Optional parameters. See
@@ -237,12 +239,14 @@ goog.net.jsloader.load = function(uri, opt_options) {
  *     The error callback will be called with a single goog.net.jsloader.Error
  *     parameter.
  */
-goog.net.jsloader.loadAndVerify = function(uri, verificationObjName, options) {
+goog.net.jsloader.safeLoadAndVerify = function(
+    trustedUri, verificationObjName, options) {
   // Define the global objects variable.
   if (!goog.global[goog.net.jsloader.GLOBAL_VERIFY_OBJS_]) {
     goog.global[goog.net.jsloader.GLOBAL_VERIFY_OBJS_] = {};
   }
   var verifyObjs = goog.global[goog.net.jsloader.GLOBAL_VERIFY_OBJS_];
+  var uri = goog.html.TrustedResourceUrl.unwrap(trustedUri);
 
   // Verify that the expected object does not exist yet.
   if (goog.isDef(verifyObjs[verificationObjName])) {
@@ -255,7 +259,7 @@ goog.net.jsloader.loadAndVerify = function(uri, verificationObjName, options) {
   }
 
   // Send request to load the JavaScript.
-  var sendDeferred = goog.net.jsloader.load(uri, options);
+  var sendDeferred = goog.net.jsloader.safeLoad(trustedUri, options);
 
   // Create a deferred object wrapping the send result.
   var deferred =
@@ -299,7 +303,7 @@ goog.net.jsloader.loadAndVerify = function(uri, verificationObjName, options) {
  * @private
  */
 goog.net.jsloader.getScriptParentElement_ = function(doc) {
-  var headElements = doc.getElementsByTagName(goog.dom.TagName.HEAD);
+  var headElements = goog.dom.getElementsByTagName(goog.dom.TagName.HEAD, doc);
   if (!headElements || goog.array.isEmpty(headElements)) {
     return doc.documentElement;
   } else {

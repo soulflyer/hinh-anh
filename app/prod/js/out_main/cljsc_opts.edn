@@ -1,0 +1,1 @@
+{:output-dir "app/prod/js/out_main", :externs ["app/prod/js/externs.js" "node_modules/closurecompiler-externs/path.js" "node_modules/closurecompiler-externs/process.js" "closure-js/externs"], :elide-asserts true, :optimizations :simple, :warnings true, :output-to "app/prod/js/cljsbuild-main.js", :output-wrapper true, :libs ["closure-js/libs"], :target :nodejs, :pretty-print true}

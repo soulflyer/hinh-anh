@@ -1,4 +1,4 @@
-// Compiled by ClojureScript 1.9.473 {:elide-asserts true}
+// Compiled by ClojureScript 1.10.64 {:elide-asserts true}
 goog.provide('re_com.tour');
 goog.require('cljs.core');
 goog.require('reagent.core');
@@ -20,8 +20,8 @@ goog.require('re_com.buttons');
 re_com.tour.make_tour = (function re_com$tour$make_tour(tour_spec){
 var tour_map = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"current-step","current-step",-2023410137),cljs.core.atom.call(null,(0)),new cljs.core.Keyword(null,"steps","steps",-128433302),tour_spec], null);
 return cljs.core.reduce.call(null,((function (tour_map){
-return (function (p1__15756_SHARP_,p2__15757_SHARP_){
-return cljs.core.assoc.call(null,p1__15756_SHARP_,p2__15757_SHARP_,reagent.core.atom.call(null,false));
+return (function (p1__53582_SHARP_,p2__53583_SHARP_){
+return cljs.core.assoc.call(null,p1__53582_SHARP_,p2__53583_SHARP_,reagent.core.atom.call(null,false));
 });})(tour_map))
 ,tour_map,tour_spec);
 });
@@ -29,25 +29,25 @@ return cljs.core.assoc.call(null,p1__15756_SHARP_,p2__15757_SHARP_,reagent.core.
  * Resets all poover atoms to false
  */
 re_com.tour.initialise_tour = (function re_com$tour$initialise_tour(tour){
-return cljs.core.doall.call(null,(function (){var iter__7736__auto__ = (function re_com$tour$initialise_tour_$_iter__15762(s__15763){
+return cljs.core.doall.call(null,(function (){var iter__47547__auto__ = (function re_com$tour$initialise_tour_$_iter__53584(s__53585){
 return (new cljs.core.LazySeq(null,(function (){
-var s__15763__$1 = s__15763;
+var s__53585__$1 = s__53585;
 while(true){
-var temp__4657__auto__ = cljs.core.seq.call(null,s__15763__$1);
+var temp__4657__auto__ = cljs.core.seq.call(null,s__53585__$1);
 if(temp__4657__auto__){
-var s__15763__$2 = temp__4657__auto__;
-if(cljs.core.chunked_seq_QMARK_.call(null,s__15763__$2)){
-var c__7734__auto__ = cljs.core.chunk_first.call(null,s__15763__$2);
-var size__7735__auto__ = cljs.core.count.call(null,c__7734__auto__);
-var b__15765 = cljs.core.chunk_buffer.call(null,size__7735__auto__);
-if((function (){var i__15764 = (0);
+var s__53585__$2 = temp__4657__auto__;
+if(cljs.core.chunked_seq_QMARK_.call(null,s__53585__$2)){
+var c__47545__auto__ = cljs.core.chunk_first.call(null,s__53585__$2);
+var size__47546__auto__ = cljs.core.count.call(null,c__47545__auto__);
+var b__53587 = cljs.core.chunk_buffer.call(null,size__47546__auto__);
+if((function (){var i__53586 = (0);
 while(true){
-if((i__15764 < size__7735__auto__)){
-var step = cljs.core._nth.call(null,c__7734__auto__,i__15764);
-cljs.core.chunk_append.call(null,b__15765,cljs.core.reset_BANG_.call(null,step.call(null,tour),false));
+if((i__53586 < size__47546__auto__)){
+var step = cljs.core._nth.call(null,c__47545__auto__,i__53586);
+cljs.core.chunk_append.call(null,b__53587,cljs.core.reset_BANG_.call(null,step.call(null,tour),false));
 
-var G__15766 = (i__15764 + (1));
-i__15764 = G__15766;
+var G__53588 = (i__53586 + (1));
+i__53586 = G__53588;
 continue;
 } else {
 return true;
@@ -55,13 +55,13 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons.call(null,cljs.core.chunk.call(null,b__15765),re_com$tour$initialise_tour_$_iter__15762.call(null,cljs.core.chunk_rest.call(null,s__15763__$2)));
+return cljs.core.chunk_cons.call(null,cljs.core.chunk.call(null,b__53587),re_com$tour$initialise_tour_$_iter__53584.call(null,cljs.core.chunk_rest.call(null,s__53585__$2)));
 } else {
-return cljs.core.chunk_cons.call(null,cljs.core.chunk.call(null,b__15765),null);
+return cljs.core.chunk_cons.call(null,cljs.core.chunk.call(null,b__53587),null);
 }
 } else {
-var step = cljs.core.first.call(null,s__15763__$2);
-return cljs.core.cons.call(null,cljs.core.reset_BANG_.call(null,step.call(null,tour),false),re_com$tour$initialise_tour_$_iter__15762.call(null,cljs.core.rest.call(null,s__15763__$2)));
+var step = cljs.core.first.call(null,s__53585__$2);
+return cljs.core.cons.call(null,cljs.core.reset_BANG_.call(null,step.call(null,tour),false),re_com$tour$initialise_tour_$_iter__53584.call(null,cljs.core.rest.call(null,s__53585__$2)));
 }
 } else {
 return null;
@@ -70,7 +70,7 @@ break;
 }
 }),null,null));
 });
-return iter__7736__auto__.call(null,new cljs.core.Keyword(null,"steps","steps",-128433302).cljs$core$IFn$_invoke$arity$1(tour));
+return iter__47547__auto__.call(null,new cljs.core.Keyword(null,"steps","steps",-128433302).cljs$core$IFn$_invoke$arity$1(tour));
 })());
 });
 /**

@@ -1,1 +1,1 @@
-{"version":3,"file":"\/Users\/iain\/Code\/Clojure\/Descjop\/anh\/app\/dev\/js\/out_front\/anh_front\/config.js","sources":["config.cljs"],"lineCount":6,"mappings":";AAAA;;AAEA,4BAAA,5BAAKA","names":["anh-front.config\/api-root"]}
+{"version":3,"file":"\/Users\/iain\/Code\/Clojure\/Descjop\/anh\/app\/dev\/js\/out_front\/anh_front\/config.js","sources":["config.cljs"],"lineCount":7,"mappings":";AAAA;;AAEA,4BAAA,5BAAKA;AAEL,AAAKC,gCACMC","names":["anh-front.config\/api-root","anh-front.config\/debug?","goog\/DEBUG"]}

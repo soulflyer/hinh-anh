@@ -1,4 +1,4 @@
-// Compiled by ClojureScript 1.9.473 {:elide-asserts true}
+// Compiled by ClojureScript 1.10.64 {:elide-asserts true}
 goog.provide('re_frame.cofx');
 goog.require('cljs.core');
 goog.require('re_frame.db');
@@ -73,23 +73,8 @@ return re_frame.registrar.register_handler.call(null,re_frame.cofx.kind,id,handl
  * to the event handler at call time.
  */
 re_frame.cofx.inject_cofx = (function re_frame$cofx$inject_cofx(var_args){
-var args16644 = [];
-var len__8057__auto___16647 = arguments.length;
-var i__8058__auto___16648 = (0);
-while(true){
-if((i__8058__auto___16648 < len__8057__auto___16647)){
-args16644.push((arguments[i__8058__auto___16648]));
-
-var G__16649 = (i__8058__auto___16648 + (1));
-i__8058__auto___16648 = G__16649;
-continue;
-} else {
-}
-break;
-}
-
-var G__16646 = args16644.length;
-switch (G__16646) {
+var G__54104 = arguments.length;
+switch (G__54104) {
 case 1:
 return re_frame.cofx.inject_cofx.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -99,7 +84,7 @@ return re_frame.cofx.inject_cofx.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),
 
 break;
 default:
-throw (new Error([cljs.core.str.cljs$core$IFn$_invoke$arity$1("Invalid arity: "),cljs.core.str.cljs$core$IFn$_invoke$arity$1(args16644.length)].join('')));
+throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(arguments.length)].join('')));
 
 }
 });

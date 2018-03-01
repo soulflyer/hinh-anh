@@ -1,4 +1,4 @@
-// Compiled by ClojureScript 1.9.473 {:elide-asserts true}
+// Compiled by ClojureScript 1.10.64 {:elide-asserts true}
 goog.provide('clojure.walk');
 goog.require('cljs.core');
 /**
@@ -10,6 +10,9 @@ goog.require('cljs.core');
 clojure.walk.walk = (function clojure$walk$walk(inner,outer,form){
 if(cljs.core.list_QMARK_.call(null,form)){
 return outer.call(null,cljs.core.apply.call(null,cljs.core.list,cljs.core.map.call(null,inner,form)));
+} else {
+if(cljs.core.map_entry_QMARK_.call(null,form)){
+return outer.call(null,cljs.core.vec.call(null,cljs.core.map.call(null,inner,form)));
 } else {
 if(cljs.core.seq_QMARK_.call(null,form)){
 return outer.call(null,cljs.core.doall.call(null,cljs.core.map.call(null,inner,form)));
@@ -24,6 +27,7 @@ return outer.call(null,cljs.core.into.call(null,cljs.core.empty.call(null,form),
 } else {
 return outer.call(null,form);
 
+}
 }
 }
 }
@@ -47,10 +51,10 @@ return clojure.walk.walk.call(null,cljs.core.partial.call(null,clojure.walk.prew
  * Recursively transforms all map keys from strings to keywords.
  */
 clojure.walk.keywordize_keys = (function clojure$walk$keywordize_keys(m){
-var f = (function (p__9814){
-var vec__9815 = p__9814;
-var k = cljs.core.nth.call(null,vec__9815,(0),null);
-var v = cljs.core.nth.call(null,vec__9815,(1),null);
+var f = (function (p__59453){
+var vec__59454 = p__59453;
+var k = cljs.core.nth.call(null,vec__59454,(0),null);
+var v = cljs.core.nth.call(null,vec__59454,(1),null);
 if(typeof k === 'string'){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.keyword.call(null,k),v], null);
 } else {
@@ -71,10 +75,10 @@ return x;
  * Recursively transforms all map keys from keywords to strings.
  */
 clojure.walk.stringify_keys = (function clojure$walk$stringify_keys(m){
-var f = (function (p__9822){
-var vec__9823 = p__9822;
-var k = cljs.core.nth.call(null,vec__9823,(0),null);
-var v = cljs.core.nth.call(null,vec__9823,(1),null);
+var f = (function (p__59457){
+var vec__59458 = p__59457;
+var k = cljs.core.nth.call(null,vec__59458,(0),null);
+var v = cljs.core.nth.call(null,vec__59458,(1),null);
 if((k instanceof cljs.core.Keyword)){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.name.call(null,k),v], null);
 } else {

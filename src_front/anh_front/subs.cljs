@@ -10,3 +10,8 @@
   ::project-string
   (fn [db _]
     (:project-string db)))
+
+(rf/reg-sub
+  ::projects
+  (fn [db _]
+    (:projects db)))

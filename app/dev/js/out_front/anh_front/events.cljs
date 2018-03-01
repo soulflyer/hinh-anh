@@ -5,7 +5,8 @@
             [day8.re-frame.http-fx]
             [re-frame.core :refer [reg-event-fx]]
             [anh-front.db :as db]
-            [anh-front.config :as config]))
+            [anh-front.config :as config]
+            [cognitect.transit :as transit]))
 
 (rf/reg-event-db
  ::initialize-db
@@ -16,9 +17,10 @@
   :process-response
   (fn
     [db [_ response]]           ;; destructure the response from the event vector
-    (-> db
-        (assoc :loading? false) ;; take away that "Loading ..." UI
-        (assoc :project-string (js->clj response)))))  ;; fairly lame processing
+    (let [reader (transit/reader :json)]
+      (-> db
+                (assoc :loading? false) ;; take away that "Loading ..." UI
+                (assoc :projects (transit/read reader response)))))) ;; fairly lame processing
 
 (rf/reg-event-db
   :bad-response

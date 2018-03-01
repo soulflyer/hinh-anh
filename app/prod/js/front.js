@@ -43574,15 +43574,18 @@ re_frame.core.register_sub.cljs$lang$applyTo = function(a) {
   return re_frame.core.register_sub.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq.call(null, a));
 };
 var anh_front = {subs:{}};
-re_frame.core.reg_sub.call(null, new cljs.core.Keyword(null, "name", "name", 1843675177), function(a) {
+re_frame.core.reg_sub.call(null, new cljs.core.Keyword("anh-front.subs", "name", "anh-front.subs/name", -1632243129), function(a) {
   return (new cljs.core.Keyword(null, "name", "name", 1843675177)).cljs$core$IFn$_invoke$arity$1(a);
 });
-re_frame.core.reg_sub.call(null, new cljs.core.Keyword(null, "project-string", "project-string", -617556642), function(a, b) {
+re_frame.core.reg_sub.call(null, new cljs.core.Keyword("anh-front.subs", "project-string", "anh-front.subs/project-string", -1832470680), function(a, b) {
   return (new cljs.core.Keyword(null, "project-string", "project-string", -617556642)).cljs$core$IFn$_invoke$arity$1(a);
+});
+re_frame.core.reg_sub.call(null, new cljs.core.Keyword("anh-front.subs", "projects", "anh-front.subs/projects", -1567603105), function(a, b) {
+  return (new cljs.core.Keyword(null, "projects", "projects", -364845983)).cljs$core$IFn$_invoke$arity$1(a);
 });
 anh_front.views = {};
 anh_front.views.title = function() {
-  var a = re_frame.core.subscribe.call(null, new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("subs", "name", "subs/name", 1848789598)], null));
+  var a = re_frame.core.subscribe.call(null, new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("anh-front.subs", "name", "anh-front.subs/name", -1632243129)], null));
   return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "h1", "h1", -1896887462), [cljs.core.str.cljs$core$IFn$_invoke$arity$1("Hello from "), cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null, a))].join("")], null);
 };
 anh_front.views.request_it_button = function() {
@@ -43591,7 +43594,7 @@ anh_front.views.request_it_button = function() {
   }], null);
 };
 anh_front.views.projects = function() {
-  return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "div.projects", "div.projects", -1774184642), cljs.core.deref.call(null, re_frame.core.subscribe.call(null, new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "project-string", "project-string", -617556642)], null)))], null);
+  return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "div.projects", "div.projects", -1774184642), cljs.core.first.call(null, cljs.core.deref.call(null, re_frame.core.subscribe.call(null, new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("anh-front.subs", "projects", "anh-front.subs/projects", -1567603105)], null))))], null);
 };
 anh_front.views.ui = function() {
   return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "div", "div", 1057191632), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [anh_front.views.request_it_button], null), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [anh_front.views.projects], null)], null);
@@ -43602,8 +43605,9 @@ anh_front.views.main_panel = function() {
 };
 anh_front.config = {};
 anh_front.config.api_root = "http://localhost:31000/api";
+anh_front.config.debug_QMARK_ = goog.DEBUG;
 anh_front.db = {};
-anh_front.db.default_db = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null, "name", "name", 1843675177), "re-frame", new cljs.core.Keyword(null, "project-string", "project-string", -617556642), "projects go here."], null);
+anh_front.db.default_db = new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null, "name", "name", 1843675177), "re-frame", new cljs.core.Keyword(null, "project-string", "project-string", -617556642), "projects go here.", new cljs.core.Keyword(null, "projects", "projects", -364845983), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["Projects go here"], null)], null);
 var ajax = {protocols:{}};
 ajax.protocols.AjaxImpl = function() {
 };
@@ -52982,13 +52986,13 @@ day8.re_frame.http_fx.http_effect = function(a) {
 };
 re_frame.core.reg_fx.call(null, new cljs.core.Keyword(null, "http-xhrio", "http-xhrio", 1846166714), day8.re_frame.http_fx.http_effect);
 anh_front.events = {};
-re_frame.core.reg_event_db.call(null, new cljs.core.Keyword(null, "initialize-db", "initialize-db", 230998432), function(a, b) {
+re_frame.core.reg_event_db.call(null, new cljs.core.Keyword("anh-front.events", "initialize-db", "anh-front.events/initialize-db", -1211764080), function(a, b) {
   return anh_front.db.default_db;
 });
 re_frame.core.reg_event_db.call(null, new cljs.core.Keyword(null, "process-response", "process-response", -26308683), function(a, b) {
   cljs.core.nth.call(null, b, 0, null);
-  var c = cljs.core.nth.call(null, b, 1, null);
-  return cljs.core.assoc.call(null, cljs.core.assoc.call(null, a, new cljs.core.Keyword(null, "loading?", "loading?", 1905707049), !1), new cljs.core.Keyword(null, "project-string", "project-string", -617556642), cljs.core.js__GT_clj.call(null, c));
+  var c = cljs.core.nth.call(null, b, 1, null), d = cognitect.transit.reader.call(null, new cljs.core.Keyword(null, "json", "json", 1279968570));
+  return cljs.core.assoc.call(null, cljs.core.assoc.call(null, a, new cljs.core.Keyword(null, "loading?", "loading?", 1905707049), !1), new cljs.core.Keyword(null, "projects", "projects", -364845983), cognitect.transit.read.call(null, d, c));
 });
 re_frame.core.reg_event_db.call(null, new cljs.core.Keyword(null, "bad-response", "bad-response", 1911422950), function(a, b) {
   cljs.core.nth.call(null, b, 0, null);
@@ -53007,7 +53011,7 @@ anh_front.core.mount_root = function(a) {
   return reagent.core.render.call(null, new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [anh_front.views.main_panel], null), document.getElementById("app"));
 };
 anh_front.core.init_BANG_ = function(a) {
-  re_frame.core.dispatch_sync.call(null, new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("events", "initialize-db", "events/initialize-db", 1354555575)], null));
+  re_frame.core.dispatch_sync.call(null, new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("anh-front.events", "initialize-db", "anh-front.events/initialize-db", -1211764080)], null));
   return anh_front.core.mount_root.call(null, a);
 };
 anh_front.conf = {};

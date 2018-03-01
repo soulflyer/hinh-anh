@@ -1,0 +1,47 @@
+* Building from git repo
+
+After downloading need to re-run the setup to download electron etc.
+
+lein descjop-init
+lein descjop-externs
+
+The second on of these will fail when there are any events or subscriptions that have names starting with a double colon. At the moment, these are the ones:
+
+| anh-front.core  | ::events/initialize-db  |
+| anh-front.views | ::subs/name             |
+|                 | ::subs/projects         |
+
+Removing one of the colons, running lein descjop-externs and then replacing the colons works.
+
+* Debugging assistants
+** re-frisk
+This seems to work. Added [lein-re-frisk "0.5.5"] to ~/.lein/profiles.clj in the :user :plugins section.
+Added [re-frisk-remote.core] to the requires in anh-front.core, and called (enable-re-frisk-remote!) in init! as below:
+#+BEGIN_SRC clojure
+(ns anh-front.core
+  (:require  [reagent.core :as reagent :refer [atom]]
+             [re-frame.core :as re-frame]
+             [anh-front.events :as events]
+             [anh-front.views :as views]
+             [anh-front.config :as config]
+             [re-frisk-remote.core :refer [enable-re-frisk-remote!]]))
+
+(defn mount-root [setting]
+  (re-frame/clear-subscription-cache!)
+  (reagent/render [views/main-panel]
+                  (.getElementById js/document "app")))
+
+(defn init! [setting]
+  (re-frame/dispatch-sync [::events/initialize-db])
+  (enable-re-frisk-remote!)
+  (mount-root setting))
+#+END_SRC
+Then run the re-frisk server with lein re-frisk and the electron executable and go to localhost:4567 to see the re-frisk data. The server doesn't seem to like being run in the background which is a pain in the arse, but workable.
+
+** js console
+Nice and easy access to the re-frame database using this command:
+#+BEGIN_SRC javascript
+window.re_frame.db.app_db.state
+#+END_SRC
+** in repl
+re-frame.db/app-db shows the contents of db, but also gives an error message.?!? Plus emacs doesn't like the volume of data, and the error means it can't be dereferenced and filtered to limit the amount of data returned. re-frame-demo project doesn't suffer from this. Reverting re-frame to version "0.10.4" fixes this.

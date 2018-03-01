@@ -1,4 +1,4 @@
-// Compiled by ClojureScript 1.9.473 {:elide-asserts true}
+// Compiled by ClojureScript 1.10.64 {:elide-asserts true}
 goog.provide('anh_front.subs');
 goog.require('cljs.core');
 goog.require('re_frame.core');
@@ -7,6 +7,9 @@ return new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invok
 }));
 re_frame.core.reg_sub.call(null,new cljs.core.Keyword("anh-front.subs","project-string","anh-front.subs/project-string",-1832470680),(function (db,_){
 return new cljs.core.Keyword(null,"project-string","project-string",-617556642).cljs$core$IFn$_invoke$arity$1(db);
+}));
+re_frame.core.reg_sub.call(null,new cljs.core.Keyword("anh-front.subs","projects","anh-front.subs/projects",-1567603105),(function (db,_){
+return new cljs.core.Keyword(null,"projects","projects",-364845983).cljs$core$IFn$_invoke$arity$1(db);
 }));
 
 //# sourceMappingURL=subs.js.map

@@ -5,7 +5,7 @@ goog.require('re_frame.core');
 goog.require('re_com.core');
 goog.require('anh_front.subs');
 anh_front.views.title = (function anh_front$views$title(){
-var name = re_frame.core.subscribe.call(null,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("subs","name","subs/name",1848789598)], null));
+var name = re_frame.core.subscribe.call(null,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("anh-front.subs","name","anh-front.subs/name",-1632243129)], null));
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h1","h1",-1896887462),[cljs.core.str.cljs$core$IFn$_invoke$arity$1("Hello from "),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,name))].join('')], null);
 });
 anh_front.views.request_it_button = (function anh_front$views$request_it_button(){
@@ -14,7 +14,7 @@ return re_frame.core.dispatch.call(null,new cljs.core.PersistentVector(null, 1, 
 })], null);
 });
 anh_front.views.projects = (function anh_front$views$projects(){
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.projects","div.projects",-1774184642),cljs.core.deref.call(null,re_frame.core.subscribe.call(null,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"project-string","project-string",-617556642)], null)))], null);
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.projects","div.projects",-1774184642),cljs.core.first.call(null,cljs.core.deref.call(null,re_frame.core.subscribe.call(null,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("anh-front.subs","projects","anh-front.subs/projects",-1567603105)], null))))], null);
 });
 anh_front.views.ui = (function anh_front$views$ui(){
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [anh_front.views.request_it_button], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [anh_front.views.projects], null)], null);

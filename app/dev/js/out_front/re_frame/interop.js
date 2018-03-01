@@ -1,4 +1,4 @@
-// Compiled by ClojureScript 1.9.473 {:elide-asserts true}
+// Compiled by ClojureScript 1.10.64 {:elide-asserts true}
 goog.provide('re_frame.interop');
 goog.require('cljs.core');
 goog.require('goog.async.nextTick');
@@ -69,18 +69,18 @@ return Date.now();
  */
 re_frame.interop.reagent_id = (function re_frame$interop$reagent_id(reactive_val){
 if(((!((reactive_val == null)))?(((false) || ((cljs.core.PROTOCOL_SENTINEL === reactive_val.reagent$ratom$IReactiveAtom$)))?true:false):false)){
-return [cljs.core.str.cljs$core$IFn$_invoke$arity$1((function (){var pred__10192 = cljs.core.instance_QMARK_;
-var expr__10193 = reactive_val;
-if(cljs.core.truth_(pred__10192.call(null,reagent.ratom.RAtom,expr__10193))){
+return [cljs.core.str.cljs$core$IFn$_invoke$arity$1((function (){var pred__61675 = cljs.core.instance_QMARK_;
+var expr__61676 = reactive_val;
+if(cljs.core.truth_(pred__61675.call(null,reagent.ratom.RAtom,expr__61676))){
 return "ra";
 } else {
-if(cljs.core.truth_(pred__10192.call(null,reagent.ratom.RCursor,expr__10193))){
+if(cljs.core.truth_(pred__61675.call(null,reagent.ratom.RCursor,expr__61676))){
 return "rc";
 } else {
-if(cljs.core.truth_(pred__10192.call(null,reagent.ratom.Reaction,expr__10193))){
+if(cljs.core.truth_(pred__61675.call(null,reagent.ratom.Reaction,expr__61676))){
 return "rx";
 } else {
-if(cljs.core.truth_(pred__10192.call(null,reagent.ratom.Track,expr__10193))){
+if(cljs.core.truth_(pred__61675.call(null,reagent.ratom.Track,expr__61676))){
 return "tr";
 } else {
 return "other";
