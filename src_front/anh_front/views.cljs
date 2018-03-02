@@ -16,7 +16,7 @@
 (defn projects
   []
   [:div.projects
-   @(rf/subscribe [::subs/project-string])])
+   (first @(rf/subscribe [::subs/projects]))])
 
 (defn ui
   []

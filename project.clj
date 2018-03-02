@@ -4,14 +4,16 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.9.473" :exclusions [org.apache.ant/ant]]
+                 [org.clojure/clojurescript "1.10.64" :exclusions [org.apache.ant/ant]]
                  [org.clojure/core.async "0.2.395"]
                  [reagent "0.7.0"]
                  [re-com "0.9.0"]
-                 [re-frame "0.10.5"]
+                 [re-frame "0.10.4"]
                  [ring/ring-core "1.5.1"]
                  [cljs-ajax "0.7.3"]
-                 [day8.re-frame/http-fx "0.1.5"]]
+                 [day8.re-frame/http-fx "0.1.5"]
+                 [com.cognitect/transit-cljs "0.8.243"]
+                 [org.clojure/spec.alpha "0.1.143"]]
   :plugins [[lein-cljsbuild "1.1.5"]
             [lein-externs "0.1.6"]
             [lein-shell "0.5.0"]
@@ -19,7 +21,9 @@
   :source-paths ["src_tools"]
   :profiles {:dev {:dependencies [[figwheel "0.5.11"]
                                   [com.cemerick/piggieback "0.2.2"]
-                                  [figwheel-sidecar "0.5.11"]]}}
+                                  [figwheel-sidecar "0.5.11"]
+                                  [day8.re-frame/re-frame-10x "0.2.0"]
+                                  [re-frisk-remote "0.5.3"]]}}
   :aliases
   {"descjop-help" ["new" "descjop" "help"]
    "descjop-version" ["new" "descjop" "version"]
@@ -78,20 +82,14 @@
                           :warnings true
                           :elide-asserts true
                           :target :nodejs
-
-                          ;; no optimize compile (dev)
-                          ;; :optimizations :none
                           :output-dir "app/dev/js/out_main"
-
-                          ;; simple compile (dev)
                           :optimizations :simple
-
-                          ;; advanced compile (prod)
-                          ;;:optimizations :advanced
-
-                          ;;:source-map "app/dev/js/test.js.map"
                           :pretty-print true
-                          :output-wrapper true}}
+                          :output-wrapper true
+                          :closure-defines      {"re_frame.trace.trace_enabled_QMARK_" true}
+                          :preloads             [day8.re-frame-10x.preload]
+                          :main "anh.core" }}
+
     :dev-front {:source-paths ["src_front" "src_front_profile/anh_front/dev"]
                 :incremental true
                 :jar true
@@ -100,21 +98,13 @@
                            :externs ["app/dev/js/externs_front.js"]
                            :warnings true
                            :elide-asserts true
-                           ;; :target :nodejs
 
-                           ;; no optimize compile (dev)
                            :optimizations :none
                            :output-dir "app/dev/js/out_front"
 
-                           ;; simple compile (dev)
-                           ;;:optimizations :simple
-
-                           ;; advanced compile (prod)
-                           ;;:optimizations :advanced
-
-                           ;;:source-map "app/dev/js/test.js.map"
                            :pretty-print true
-                           :output-wrapper true}}
+                           :output-wrapper true }}
+
     :prod-main {:source-paths ["src"]
                 :incremental true
                 :jar true
@@ -126,20 +116,11 @@
                            :warnings true
                            :elide-asserts true
                            :target :nodejs
-
-                           ;; no optimize compile (dev)
-                           ;;:optimizations :none
                            :output-dir "app/prod/js/out_main"
-
-                           ;; simple compile (dev)
                            :optimizations :simple
-
-                           ;; advanced compile (prod)
-                           ;;:optimizations :advanced
-
-                           ;;:source-map "app/prod/js/test.js.map"
                            :pretty-print true
                            :output-wrapper true}}
+
     :prod-front {:source-paths ["src_front" "src_front_profile/anh_front/prod"]
                  :incremental true
                  :jar true
@@ -148,21 +129,11 @@
                             :externs ["app/prod/js/externs_front.js"]
                             :warnings true
                             :elide-asserts true
-                            ;; :target :nodejs
-
-                            ;; no optimize compile (dev)
-                            ;;:optimizations :none
                             :output-dir "app/prod/js/out_front"
-
-                            ;; simple compile (dev)
                             :optimizations :simple
-
-                            ;; advanced compile (prod)
-                            ;;:optimizations :advanced
-
-                            ;;:source-map "app/prod/js/test.js.map"
                             :pretty-print true
                             :output-wrapper true}}}}
+
   :figwheel {:http-server-root "public"
              :ring-handler figwheel-middleware/app
              :server-port 3441})

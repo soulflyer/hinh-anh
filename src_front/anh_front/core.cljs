@@ -3,7 +3,8 @@
              [re-frame.core :as re-frame]
              [anh-front.events :as events]
              [anh-front.views :as views]
-             [anh-front.config :as config]))
+             [anh-front.config :as config]
+             [re-frisk-remote.core :refer [enable-re-frisk-remote!]]))
 
 (defn mount-root [setting]
   (re-frame/clear-subscription-cache!)
@@ -12,4 +13,5 @@
 
 (defn init! [setting]
   (re-frame/dispatch-sync [::events/initialize-db])
+  (enable-re-frisk-remote!)
   (mount-root setting))
