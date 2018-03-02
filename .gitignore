@@ -15,3 +15,5 @@ node_modules/*
 electron/*
 figwheel_server.log
 .nrepl-port
+/app/dev/js/
+/app/prod/js/
