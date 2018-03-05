@@ -12,6 +12,6 @@
                   (.getElementById js/document "app")))
 
 (defn init! [setting]
-  (re-frame/dispatch-sync [::events/initialize-db])
+  (re-frame/dispatch-sync [:events/initialize-db])
   (enable-re-frisk-remote!)
   (mount-root setting))
