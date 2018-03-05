@@ -1,0 +1,5 @@
+:compiler {:main clojurescript_tdd_application.core   ; your main namespace
+           :asset-path "cljs/out"                     ; Where the load-dependent files will go, mind you this one is relative
+           :output-to "resources/public/cljs/main.js" ; Where the main file will be built
+           :output-dir "resources/public/cljs/out"    ; Directory for temporary files
+           :source-map-timestamp true}                ; Sourcemaps hurray!
