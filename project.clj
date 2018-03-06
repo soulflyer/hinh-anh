@@ -69,13 +69,14 @@
                             "--platform=win32" "--arch=ia32" "--electron-version=1.6.6"]
    }
   :hooks [leiningen.cljsbuild]
+
   :cljsbuild
   {:builds
    {:dev-main {:source-paths ["src"]
                :incremental true
                :jar true
                :assert true
-               :compiler {:output-to "app/dev/js/cljsbuild-main.js"
+               :compiler {:output-to "app/dev/js/main.js"
                           :externs ["app/dev/js/externs.js"
                                     "node_modules/closurecompiler-externs/path.js"
                                     "node_modules/closurecompiler-externs/process.js"]
@@ -83,7 +84,7 @@
                           :elide-asserts true
                           :target :nodejs
                           :output-dir "app/dev/js/out_main"
-                          :optimizations :simple
+                          :optimizations :none
                           :pretty-print true
                           :output-wrapper true
                           :closure-defines      {"re_frame.trace.trace_enabled_QMARK_" true}
@@ -136,4 +137,5 @@
 
   :figwheel {:http-server-root "public"
              :ring-handler figwheel-middleware/app
-             :server-port 3441})
+             :server-port 3441
+             :auto-clean false})
