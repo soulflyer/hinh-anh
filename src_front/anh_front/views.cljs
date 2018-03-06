@@ -10,7 +10,7 @@
 (defn request-it-button
   []
   [re-com/button
-   :label "Fetch Projects"
+   :label "Get Projects"
    :on-click #(rf/dispatch [:request-it])])
 
 (defn projects

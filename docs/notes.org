@@ -47,3 +47,37 @@ window.re_frame.db.app_db.state
 #+END_SRC
 ** in repl
 re-frame.db/app-db shows the contents of db, but also gives an error message.?!? Plus emacs doesn't like the volume of data, and the error means it can't be dereferenced and filtered to limit the amount of data returned. re-frame-demo project doesn't suffer from this. Reverting re-frame to version "0.10.4" fixed this. But only temporarily. What seems to work is changing the version, re-running lein descjop-externs and restarting the repls.
+** re-frame-10x
+Works fine when included from the re-frame template but not so easy to add by hand.
+
+Using master branch from commit a52a0d1e83b278fd2129948c7334d9b8b3e33581 I get these warnings when running the cljsbuild:
+#+BEGIN_SRC shell
+(master) working: lein rebuild
+Compiling ClojureScript...
+Compiling "app/dev/js/main.js" from ["src"]...
+WARNING: Use of undeclared Var devtools.formatters.core/header-api-call at line 112 app/dev/js/out_main/day8/re_frame_10x/view/components.cljs
+WARNING: Use of undeclared Var devtools.formatters.core/body-api-call at line 115 app/dev/js/out_main/day8/re_frame_10x/view/components.cljs
+WARNING: Use of undeclared Var devtools.formatters.core/has-body-api-call at line 118 app/dev/js/out_main/day8/re_frame_10x/view/components.cljs
+WARNING: Use of undeclared Var re-frame.subs/kind at line 26 app/dev/js/out_main/day8/re_frame_10x/view/parts.cljs
+WARNING: Use of undeclared Var re-frame.fx/kind at line 28 app/dev/js/out_main/day8/re_frame_10x/view/parts.cljs
+WARNING: Use of undeclared Var re-frame.cofx/kind at line 30 app/dev/js/out_main/day8/re_frame_10x/view/parts.cljs
+Successfully compiled "app/dev/js/main.js" in 28.472 seconds.
+#+END_SRC
+Get this error message when trying to start electron:
+#+BEGIN_SRC shell
+(master) working: ./electron/Electron.app/Contents/MacOS/Electron app/dev
+App threw an error during load
+ReferenceError: document is not defined
+    at day8$re_frame_10x$inject_devtools_BANG_ (/Users/iain/Code/Clojure/Descjop/working/app/dev/js/out_main/day8/re_frame_10x.js:435:56)
+    at Object.<anonymous> (/Users/iain/Code/Clojure/Descjop/working/app/dev/js/out_main/day8/re_frame_10x/preload.js:12:41)
+    at Object.<anonymous> (/Users/iain/Code/Clojure/Descjop/working/app/dev/js/out_main/day8/re_frame_10x/preload.js:16:3)
+    at Module._compile (module.js:569:30)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:503:32)
+    at tryModuleLoad (module.js:466:12)
+    at Function.Module._load (module.js:458:3)
+    at Module.require (module.js:513:17)
+    at require (internal/module.js:11:18)
+
+#+END_SRC
+Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.

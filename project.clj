@@ -22,8 +22,9 @@
   :profiles {:dev {:dependencies [[figwheel "0.5.11"]
                                   [com.cemerick/piggieback "0.2.2"]
                                   [figwheel-sidecar "0.5.11"]
-                                  [day8.re-frame/re-frame-10x "0.2.0"]
-                                  [re-frisk-remote "0.5.3"]]}}
+                                  [day8.re-frame/re-frame-10x "0.2.1-SNAPSHOT"]
+;;                                  [re-frisk-remote "0.5.3"]
+                                  ]}}
   :aliases
   {"rebuild"       ["do"
                     ["clean"]
@@ -76,8 +77,8 @@
                           :optimizations :none
                           :pretty-print true
                           :output-wrapper true
-;;                          :closure-defines      {"re_frame.trace.trace_enabled_QMARK_" true}
-  ;;                        :preloads             [day8.re-frame-10x.preload]
+                          :closure-defines      {"re_frame.trace.trace_enabled_QMARK_" true}
+;;                          :preloads             [day8.re-frame-10x.preload]
                           :main "anh.core" }}
 
     :dev-front {:source-paths ["src_front" "src_front_profile/anh_front/dev"]
