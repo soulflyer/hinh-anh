@@ -4,7 +4,7 @@
             [anh-front.subs :as subs]))
 
 (defn title []
-  (let [name (rf/subscribe [:subs/name])]
+  (let [name (rf/subscribe [::subs/name])]
     [:h1 (str "Hello from " @name)]))
 
 (defn request-it-button
@@ -16,7 +16,7 @@
 (defn projects
   []
   [:div.projects
-   (first @(rf/subscribe [:subs/projects]))])
+   (first @(rf/subscribe [::subs/projects]))])
 
 (defn ui
   []

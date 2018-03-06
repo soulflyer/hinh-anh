@@ -2,17 +2,11 @@
     (:require [cljs.nodejs :as nodejs]))
 
 (def path (nodejs/require "path"))
-
 (def Electron (nodejs/require "electron"))
-
 (def BrowserWindow (.-BrowserWindow Electron))
-
 (def crash-reporter (.-crashReporter Electron))
-
 (def Os (nodejs/require "os"))
-
 (def *win* (atom nil))
-
 (def app (.-app Electron))
 
 (defn -main []

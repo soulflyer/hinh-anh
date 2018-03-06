@@ -25,50 +25,39 @@
                                   [day8.re-frame/re-frame-10x "0.2.0"]
                                   [re-frisk-remote "0.5.3"]]}}
   :aliases
-  {"descjop-help" ["new" "descjop" "help"]
-   "descjop-version" ["new" "descjop" "version"]
-   "descjop-init" ["do"
-                   ["shell" "npm" "install"]
-                   ["shell" "grunt" "download-electron"]]
-   "descjop-init-win" ["do"
-                       ["shell" "cmd.exe" "/c" "npm" "install"]
-                       ["shell" "cmd.exe" "/c" "grunt" "download-electron"]]
-   "descjop-externs" ["do"
-                      ["externs" "dev-main" "app/dev/js/externs.js"]
-                      ["externs" "dev-front" "app/dev/js/externs_front.js"]
-                      ["externs" "prod-main" "app/prod/js/externs.js"]
-                      ["externs" "prod-front" "app/prod/js/externs_front.js"]]
-   "descjop-externs-dev" ["do"
-                          ["externs" "dev-main" "app/dev/js/externs.js"]
-                          ["externs" "dev-front" "app/dev/js/externs_front.js"]]
-   "descjop-externs-prod" ["do"
-                           ["externs" "prod-main" "app/prod/js/externs.js"]
-                           ["externs" "prod-front" "app/prod/js/externs_front.js"]]
-   "descjop-figwheel" ["trampoline" "figwheel" "dev-front"]
-   "descjop-once" ["do"
-                   ["cljsbuild" "once" "dev-main"]
-                   ["cljsbuild" "once" "dev-front"]
-                   ["cljsbuild" "once" "prod-main"]
-                   ["cljsbuild" "once" "prod-front"]]
-   "descjop-once-dev" ["do"
-                       ["cljsbuild" "once" "dev-main"]
-                       ["cljsbuild" "once" "dev-front"]]
-   "descjop-once-prod" ["do"
-                        ["cljsbuild" "once" "prod-main"]
-                        ["cljsbuild" "once" "prod-front"]]
+  {"rebuild"       ["do"
+                    ["clean"]
+                    ["shell" "touch" "./src/anh/core.cljs"]
+                    ["shell" "touch" "./src_front/anh_front/core.cljs"]
+                    ["cljsbuild" "once" "dev-main"]
+                    ["cljsbuild" "once" "dev-front"]
+                    ["cljsbuild" "once" "prod-main"]
+                    ["cljsbuild" "once" "prod-front"]]
+   "rebuild-dev"   ["do"
+                    ["clean"]
+                    ["shell" "touch" "./src/anh/core.cljs"]
+                    ["shell" "touch" "./src_front/anh_front/core.cljs"]
+                    ["cljsbuild" "once" "dev-main"]
+                    ["cljsbuild" "once" "dev-front"]]
+   "get-electron"  ["do"
+                    ["shell" "npm" "install"]
+                    ["shell" "grunt" "download-electron"]]
+   "build-externs" ["do"
+                    ["externs" "dev-main" "app/dev/js/externs.js"]
+                    ["externs" "dev-front" "app/dev/js/externs_front.js"]
+                    ["externs" "prod-main" "app/prod/js/externs.js"]
+                    ["externs" "prod-front" "app/prod/js/externs_front.js"]]
+   "run-figwheel"  ["trampoline" "figwheel" "dev-front"]
    ;; electron packager for production
-   "descjop-uberapp-osx" ["shell" "electron-packager" "./app/prod" "anh"
+   "uberapp-osx"   ["shell" "electron-packager" "./app/prod" "anh"
                           "--platform=darwin" "--arch=x64" "--electron-version=1.6.6"]
-   "descjop-uberapp-app-store" ["shell" "electron-packager" "./app/prod" "anh"
-                                "--platform=mas" "--arch=x64" "--electron-version=1.6.6"]
-   "descjop-uberapp-linux" ["shell" "electron-packager" "./app/prod" "anh"
+   "uberapp-linux" ["shell" "electron-packager" "./app/prod" "anh"
                             "--platform=linux" "--arch=x64" "--electron-version=1.6.6"]
-   "descjop-uberapp-win64" ["shell" "cmd.exe" "/c" "electron-packager" "./app/prod" "anh"
-                            "--platform=win32" "--arch=x64" "--electron-version=1.6.6"]
-   "descjop-uberapp-win32" ["shell" "cmd.exe" "/c" "electron-packager" "./app/prod" "anh"
-                            "--platform=win32" "--arch=ia32" "--electron-version=1.6.6"]
    }
   :hooks [leiningen.cljsbuild]
+  :clean-targets [:target-path "tmp"
+                  "app/dev/js/out_main" "app/dev/js/out_front"
+                  "app/prod/js/out_main" "app/prod/js/out_front"]
 
   :cljsbuild
   {:builds
@@ -87,8 +76,8 @@
                           :optimizations :none
                           :pretty-print true
                           :output-wrapper true
-                          :closure-defines      {"re_frame.trace.trace_enabled_QMARK_" true}
-                          :preloads             [day8.re-frame-10x.preload]
+;;                          :closure-defines      {"re_frame.trace.trace_enabled_QMARK_" true}
+  ;;                        :preloads             [day8.re-frame-10x.preload]
                           :main "anh.core" }}
 
     :dev-front {:source-paths ["src_front" "src_front_profile/anh_front/dev"]
@@ -99,10 +88,8 @@
                            :externs ["app/dev/js/externs_front.js"]
                            :warnings true
                            :elide-asserts true
-
                            :optimizations :none
                            :output-dir "app/dev/js/out_front"
-
                            :pretty-print true
                            :output-wrapper true }}
 
