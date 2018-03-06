@@ -5,7 +5,7 @@ After downloading need to re-run the setup to download electron etc.
 lein descjop-init
 lein descjop-externs
 
-The second on of these will fail when there are any events or subscriptions that have names starting with a double colon. At the moment, these are the ones:
+The second one of these will fail when there are any events or subscriptions that have names starting with a double colon. At the moment, these are the ones:
 
 | anh-front.core  | ::events/initialize-db  |
 | anh-front.views | ::subs/name             |
@@ -15,6 +15,8 @@ Removing one of the colons, running lein descjop-externs and then replacing the 
 
 * Debugging assistants
 ** re-frisk
+NOTE Using this stops the re-frame template from running, ie lein new re-frame throws an error.
+
 This seems to work. Added [lein-re-frisk "0.5.5"] to ~/.lein/profiles.clj in the :user :plugins section.
 Added [re-frisk-remote.core] to the requires in anh-front.core, and called (enable-re-frisk-remote!) in init! as below:
 #+BEGIN_SRC clojure
@@ -44,4 +46,4 @@ Nice and easy access to the re-frame database using this command:
 window.re_frame.db.app_db.state
 #+END_SRC
 ** in repl
-re-frame.db/app-db shows the contents of db, but also gives an error message.?!? Plus emacs doesn't like the volume of data, and the error means it can't be dereferenced and filtered to limit the amount of data returned. re-frame-demo project doesn't suffer from this. Reverting re-frame to version "0.10.4" fixes this.
+re-frame.db/app-db shows the contents of db, but also gives an error message.?!? Plus emacs doesn't like the volume of data, and the error means it can't be dereferenced and filtered to limit the amount of data returned. re-frame-demo project doesn't suffer from this. Reverting re-frame to version "0.10.4" fixed this. But only temporarily. What seems to work is changing the version, re-running lein descjop-externs and restarting the repls.
