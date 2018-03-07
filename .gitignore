@@ -15,5 +15,9 @@ node_modules/*
 electron/*
 figwheel_server.log
 .nrepl-port
-/app/dev/js/
-/app/prod/js/
+/app/dev/js/out_front
+/app/dev/js/out_main
+/app/dev/js/cljsbuild-main.js
+/app/prod/js/out_front
+/app/prod/js/out_main
+/app/prod/js/cljsbuild-main.js

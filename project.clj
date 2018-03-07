@@ -9,24 +9,36 @@
                  [reagent "0.7.0"]
                  [re-com "0.9.0"]
                  [re-frame "0.10.4"]
-                 [ring/ring-core "1.5.1"]
-                 [cljs-ajax "0.7.3"]
-                 [day8.re-frame/http-fx "0.1.5"]
-                 [com.cognitect/transit-cljs "0.8.243"]
-                 [org.clojure/spec.alpha "0.1.143"]]
-  :plugins [[lein-cljsbuild "1.1.5"]
-            [lein-externs "0.1.6"]
-            [lein-shell "0.5.0"]
-            [lein-figwheel "0.5.11" :exclusions [org.clojure/core.cache]]]
+                 ;; [ring/ring-core "1.5.1"]
+                 ;; [cljs-ajax "0.7.3"]
+                 ;; [day8.re-frame/http-fx "0.1.5"]
+                 ;; [com.cognitect/transit-cljs "0.8.243"]
+                 ;;[org.clojure/spec.alpha "0.1.143"]
+                 ]
+  :plugins      [[lein-cljsbuild "1.1.5"]
+                 [lein-externs "0.1.6"]
+                 [lein-shell "0.5.0"]
+                 [lein-figwheel "0.5.11" :exclusions [org.clojure/core.cache]]]
+  :profiles
+  {:dev
+   {:dependencies [[figwheel "0.5.11"]
+                   [com.cemerick/piggieback "0.2.2"]
+                   [figwheel-sidecar "0.5.11"]
+                   [day8.re-frame/re-frame-10x "0.2.1-SNAPSHOT"]
+                   ;;                                  [re-frisk-remote "0.5.3"]
+                   ]}}
+  :clean-targets [:target-path "tmp"
+                  "app/dev/js/out_main" "app/dev/js/out_front"
+                  "app/prod/js/out_main" "app/prod/js/out_front"]
+
   :source-paths ["src_tools"]
-  :profiles {:dev {:dependencies [[figwheel "0.5.11"]
-                                  [com.cemerick/piggieback "0.2.2"]
-                                  [figwheel-sidecar "0.5.11"]
-                                  [day8.re-frame/re-frame-10x "0.2.1-SNAPSHOT"]
-;;                                  [re-frisk-remote "0.5.3"]
-                                  ]}}
+  :hooks [leiningen.cljsbuild]
   :aliases
-  {"rebuild"       ["do"
+  {"nuke"          ["do"
+                    ["clean"]
+                    ["shell" "touch" "./src/anh/core.cljs"]
+                    ["shell" "touch" "./src_front/anh_front/core.cljs"]]
+   "rebuild"       ["do"
                     ["clean"]
                     ["shell" "touch" "./src/anh/core.cljs"]
                     ["shell" "touch" "./src_front/anh_front/core.cljs"]
@@ -51,14 +63,10 @@
    "run-figwheel"  ["trampoline" "figwheel" "dev-front"]
    ;; electron packager for production
    "uberapp-osx"   ["shell" "electron-packager" "./app/prod" "anh"
-                          "--platform=darwin" "--arch=x64" "--electron-version=1.6.6"]
+                    "--platform=darwin" "--arch=x64" "--electron-version=1.6.6"]
    "uberapp-linux" ["shell" "electron-packager" "./app/prod" "anh"
-                            "--platform=linux" "--arch=x64" "--electron-version=1.6.6"]
+                    "--platform=linux" "--arch=x64" "--electron-version=1.6.6"]
    }
-  :hooks [leiningen.cljsbuild]
-  :clean-targets [:target-path "tmp"
-                  "app/dev/js/out_main" "app/dev/js/out_front"
-                  "app/prod/js/out_main" "app/prod/js/out_front"]
 
   :cljsbuild
   {:builds
@@ -66,20 +74,20 @@
                :incremental true
                :jar true
                :assert true
-               :compiler {:output-to "app/dev/js/main.js"
+               :compiler {:output-to "app/dev/js/cljsbuild-main.js"
                           :externs ["app/dev/js/externs.js"
                                     "node_modules/closurecompiler-externs/path.js"
                                     "node_modules/closurecompiler-externs/process.js"]
                           :warnings true
                           :elide-asserts true
                           :target :nodejs
-                          :output-dir "app/dev/js/out_main"
                           :optimizations :none
+                          :output-dir "app/dev/js/out_main"
                           :pretty-print true
                           :output-wrapper true
-                          :closure-defines      {"re_frame.trace.trace_enabled_QMARK_" true}
-;;                          :preloads             [day8.re-frame-10x.preload]
-                          :main "anh.core" }}
+                          ;; :closure-defines      {"re_frame.trace.trace_enabled_QMARK_" true}
+                          ;;                          :preloads             [day8.re-frame-10x.preload]
+                          }}
 
     :dev-front {:source-paths ["src_front" "src_front_profile/anh_front/dev"]
                 :incremental true
