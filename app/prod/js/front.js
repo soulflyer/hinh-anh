@@ -46052,7 +46052,7 @@ anh_front.views.title = function() {
   return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "h1", "h1", -1896887462), ["Hello from ", cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null, a))].join("")], null);
 };
 anh_front.views.request_it_button = function() {
-  return new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [re_com.core.button, new cljs.core.Keyword(null, "label", "label", 1718410804), "GetProjects", new cljs.core.Keyword(null, "on-click", "on-click", 1632826543), function() {
+  return new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [re_com.core.button, new cljs.core.Keyword(null, "label", "label", 1718410804), "Get Projects", new cljs.core.Keyword(null, "on-click", "on-click", 1632826543), function() {
     return re_frame.core.dispatch.call(null, new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "request-it", "request-it", -900096096)], null));
   }], null);
 };
@@ -53455,12 +53455,17 @@ re_frame.core.reg_event_fx.call(null, new cljs.core.Keyword(null, "request-it", 
   "process-response", "process-response", -26308683)], null), new cljs.core.Keyword(null, "on-failure", "on-failure", 842888245), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "bad-response", "bad-response", 1911422950)], null)], null), new cljs.core.Keyword(null, "db", "db", 993250759), cljs.core.assoc.call(null, a, new cljs.core.Keyword(null, "loading?", "loading?", 1905707049), !0)], null);
 });
 anh_front.core = {};
+"undefined" === typeof anh_front.core.app_state && (anh_front.core.app_state = reagent.core.atom.call(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "message", "message", -406056002), "Hello Min app world!"], null)));
+anh_front.core.dev_setup = function() {
+  return anh_front.config.debug_QMARK_ ? (cljs.core.enable_console_print_BANG_.call(null), cljs.core.println.call(null, "dev mode")) : null;
+};
 anh_front.core.mount_root = function(a) {
   re_frame.core.clear_subscription_cache_BANG_.call(null);
   return reagent.core.render.call(null, new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [anh_front.views.main_panel], null), document.getElementById("app"));
 };
 anh_front.core.init_BANG_ = function(a) {
   re_frame.core.dispatch_sync.call(null, new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword("anh-front.events", "initialize-db", "anh-front.events/initialize-db", -1211764080)], null));
+  anh_front.core.dev_setup.call(null);
   return anh_front.core.mount_root.call(null, a);
 };
 anh_front.conf = {};

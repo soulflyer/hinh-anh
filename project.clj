@@ -9,11 +9,9 @@
                  [reagent "0.7.0"]
                  [re-com "0.9.0"]
                  [re-frame "0.10.4"]
-                 ;; [ring/ring-core "1.5.1"]
-                 ;; [cljs-ajax "0.7.3"]
-                 ;; [day8.re-frame/http-fx "0.1.5"]
-                 ;; [com.cognitect/transit-cljs "0.8.243"]
-                 ;;[org.clojure/spec.alpha "0.1.143"]
+                 [org.clojure/spec.alpha "0.1.143"]
+                 [cljs-ajax "0.7.3"]
+                 [day8.re-frame/http-fx "0.1.5"]
                  ]
   :plugins      [[lein-cljsbuild "1.1.5"]
                  [lein-externs "0.1.6"]
@@ -24,9 +22,7 @@
    {:dependencies [[figwheel "0.5.11"]
                    [com.cemerick/piggieback "0.2.2"]
                    [figwheel-sidecar "0.5.11"]
-                   [day8.re-frame/re-frame-10x "0.2.1-SNAPSHOT"]
-                   ;;                                  [re-frisk-remote "0.5.3"]
-                   ]}}
+                   [day8.re-frame/re-frame-10x "0.2.1-SNAPSHOT"]]}}
   :clean-targets [:target-path "tmp"
                   "app/dev/js/out_main" "app/dev/js/out_front"
                   "app/prod/js/out_main" "app/prod/js/out_front"]
@@ -81,7 +77,7 @@
                           :warnings true
                           :elide-asserts true
                           :target :nodejs
-                          :optimizations :none
+                          :optimizations :simple
                           :output-dir "app/dev/js/out_main"
                           :pretty-print true
                           :output-wrapper true
@@ -100,7 +96,11 @@
                            :optimizations :none
                            :output-dir "app/dev/js/out_front"
                            :pretty-print true
-                           :output-wrapper true }}
+                           :output-wrapper true
+                           :closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}
+                           :preloads [day8.re-frame-10x.preload]
+                           :main "anh-front.init"
+                           :asset-path "js/out_front"}}
 
     :prod-main {:source-paths ["src"]
                 :incremental true
