@@ -18,6 +18,8 @@ figwheel_server.log
 /app/dev/js/out_front
 /app/dev/js/out_main
 /app/dev/js/cljsbuild-main.js
+/app/dev/js/front.js
 /app/prod/js/out_front
 /app/prod/js/out_main
 /app/prod/js/cljsbuild-main.js
+/app/prod/js/front.js
