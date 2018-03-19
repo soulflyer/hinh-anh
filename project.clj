@@ -16,14 +16,16 @@
   :plugins      [[lein-cljsbuild "1.1.5"]
                  [lein-externs "0.1.6"]
                  [lein-shell "0.5.0"]
-                 [lein-figwheel "0.5.11" :exclusions [org.clojure/core.cache]]]
+                 [lein-figwheel "0.5.13" :exclusions [org.clojure/core.cache]]]
   :profiles
   {:dev
-   {:dependencies [[figwheel "0.5.11"]
+   {:dependencies [[figwheel "0.5.13"]
                    [com.cemerick/piggieback "0.2.2"]
-                   [figwheel-sidecar "0.5.11"]
+                   [figwheel-sidecar "0.5.13"]
                    [day8.re-frame/re-frame-10x "0.2.1-SNAPSHOT"]]}}
   :clean-targets [:target-path "tmp"
+                  "app/dev/js/cljsbuild-main.js" "app/dev/js/front.js"
+                  "app/prod/js/cljsbuild-main.js" "app/prod/js/front.js"
                   "app/dev/js/out_main" "app/dev/js/out_front"
                   "app/prod/js/out_main" "app/prod/js/out_front"]
 

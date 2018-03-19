@@ -1,11 +1,12 @@
 (ns anh-front.views
   (:require [re-frame.core :as rf]
             [re-com.core :as re-com]
-            [anh-front.subs :as subs]))
+            [anh-front.subs :as subs]
+            [anh-front.tree :as tree]))
 
 (defn title []
-  (let [name (rf/subscribe [::subs/name])]
-    [:h1 (str "Hello from " @name)]))
+  (let [name (rf/subscribe [:name])]
+    [:h1 (str "Hello from: " @name)]))
 
 (defn request-it-button
   []
@@ -15,8 +16,15 @@
 
 (defn projects
   []
-  [:div.projects
-   (first @(rf/subscribe [::subs/projects]))])
+  (let [years (rf/subscribe [:years])]
+    [:div.projects
+     [:ul.year-list
+      (for [year @years]
+        [:li
+         [re-com/button
+          :label (str year)
+          :class "tree-button"
+          :on-click #(tree/expand year)]])]]))
 
 (defn ui
   []

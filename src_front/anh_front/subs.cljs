@@ -2,7 +2,7 @@
   (:require [re-frame.core :as rf]))
 
 (rf/reg-sub
-  ::name
+  :name
   (fn [db]
     (:name db)))
 
@@ -12,6 +12,20 @@
     (:project-string db)))
 
 (rf/reg-sub
-  ::projects
+  :projects
   (fn [db _]
     (:projects db)))
+
+(rf/reg-sub
+  :years
+  (fn [_ _]
+    (rf/subscribe [:projects]))
+  (fn [proj _]
+    (sort (keys proj))))
+
+(rf/reg-sub
+  :tree
+  (fn [_ _]
+    (rf/subscribe [:projects]))
+  (fn [proj _]
+    "tree"))

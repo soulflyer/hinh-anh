@@ -39,7 +39,7 @@
     ;; we return a map of (side) effects
     {:http-xhrio {:method          :get
                   :cross-origin    true
-                  :uri             (str config/api-root "/projects")
+                  :uri             (str config/api-root "/project/maps")
                   :format          (ajax/json-request-format)
                   :response-format (ajax/json-response-format {:keywords? true})
                   :on-success      [:process-response]
