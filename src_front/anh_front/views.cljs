@@ -12,19 +12,15 @@
   []
   [re-com/button
    :label "Get Projects"
-   :on-click #(rf/dispatch [:request-it])])
+   :on-click #(rf/dispatch [:request-projects])])
 
 (defn projects
   []
   (let [years (rf/subscribe [:years])]
     [:div.projects
-     [:ul.year-list
-      (for [year @years]
-        [:li
-         [re-com/button
-          :label (str year)
-          :class "tree-button"
-          :on-click #(tree/expand year)]])]]))
+     (tree/root
+       (for [year @years]
+        (tree/node year)))]))
 
 (defn ui
   []

@@ -136,4 +136,5 @@
   :figwheel {:http-server-root "public"
              :ring-handler figwheel-middleware/app
              :server-port 3441
-             :auto-clean false})
+             :auto-clean false
+             :css-dirs "app/dev/css"})

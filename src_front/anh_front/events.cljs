@@ -14,7 +14,7 @@
    db/default-db))
 
 (rf/reg-event-db
-  :process-response
+  :project-response
   (fn
     [db [_ response]]           ;; destructure the response from the event vector
     (let [reader (transit/reader :json)]
@@ -23,7 +23,7 @@
                 (assoc :projects (transit/read reader response)))))) ;; fairly lame processing
 
 (rf/reg-event-db
-  :bad-response
+  :project-fail
   (fn
     [db [_ response]]
     (-> db
@@ -32,7 +32,7 @@
         )))
 
 (rf/reg-event-fx        ;; <-- note the `-fx` extension
-  :request-it        ;; <-- the event id
+  :request-projects        ;; <-- the event id
   (fn                ;; <-- the handler function
     [{db :db} _]     ;; <-- 1st argument is coeffect, from which we extract db
 
@@ -42,6 +42,6 @@
                   :uri             (str config/api-root "/project/maps")
                   :format          (ajax/json-request-format)
                   :response-format (ajax/json-response-format {:keywords? true})
-                  :on-success      [:process-response]
-                  :on-failure      [:bad-response]}
+                  :on-success      [:project-response]
+                  :on-failure      [:project-fail]}
      :db  (assoc db :loading? true)}))

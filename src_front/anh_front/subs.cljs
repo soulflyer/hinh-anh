@@ -21,7 +21,8 @@
   (fn [_ _]
     (rf/subscribe [:projects]))
   (fn [proj _]
-    (sort (keys proj))))
+    (for [year-record (proj "years")]
+      (year-record "year"))))
 
 (rf/reg-sub
   :tree
