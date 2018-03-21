@@ -19,7 +19,7 @@
   (let [years (rf/subscribe [:years])]
     [:div.projects
      (tree/root
-       (for [year @years]
+       (for [year (sort @years)]
         (tree/node year)))]))
 
 (defn ui
