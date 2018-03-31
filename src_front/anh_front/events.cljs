@@ -25,7 +25,7 @@
           year-data (for [year year-list]
                       (tree/node-data year))]
       (-> db
-          (assoc-in [:project-tree :root :children] year-data)
+          (assoc :project-tree year-data)
           (assoc :loading? false)
           (assoc :projects resp)))))
 

@@ -1,7 +1,7 @@
 (ns anh-front.db)
 
 (def default-db
-  {:name "re-frame"
+  {:name "projects"
    :project-tree {:root {:label "years"
                          :expanded true
                          :children []}}

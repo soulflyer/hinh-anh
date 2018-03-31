@@ -1,6 +1,8 @@
 (ns anh-front.project-tree
   "Extracts the various bits of information from a map representing the
-  projects in the year month project form")
+  projects in the year month project form. This is the data as received
+  from photo-api not the internal representation of the projects tree
+  which can be found in another namespace: anh-front.tree")
 
 (comment (def yrstr
            {"years" [{"year" "1998"

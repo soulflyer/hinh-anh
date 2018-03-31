@@ -6,7 +6,7 @@
 
 (defn title []
   (let [name (rf/subscribe [:name])]
-    [:h1 (str "Hello from: " @name)]))
+    [:h1 @name]))
 
 (defn request-it-button
   []
@@ -31,5 +31,4 @@
 (defn main-panel []
   [re-com/v-box
    :height "100%"
-   :children [[title]
-              [ui]]])
+   :children [[ui]]])
