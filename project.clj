@@ -22,7 +22,7 @@
    {:dependencies [[figwheel "0.5.13"]
                    [com.cemerick/piggieback "0.2.2"]
                    [figwheel-sidecar "0.5.13"]
-                   [day8.re-frame/re-frame-10x "0.2.1-SNAPSHOT"]]}}
+                   [day8.re-frame/re-frame-10x "0.3.0"]]}}
   :clean-targets [:target-path "tmp"
                   "app/dev/js/cljsbuild-main.js" "app/dev/js/front.js"
                   "app/prod/js/cljsbuild-main.js" "app/prod/js/front.js"
@@ -137,4 +137,4 @@
              :ring-handler figwheel-middleware/app
              :server-port 3441
              :auto-clean false
-             :css-dirs "app/dev/css"})
+             :css-dirs ["app/dev/css"]})

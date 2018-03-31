@@ -20,7 +20,7 @@
     [:div.projects
      (tree/root
        (for [year (sort @years)]
-        (tree/node year)))]))
+         (tree/node [year])))]))
 
 (defn ui
   []

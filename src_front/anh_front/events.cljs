@@ -1,12 +1,14 @@
 (ns anh-front.events
-    (:require [re-frame.core :as rf]
+  (:require [re-frame.core :as rf]
 
             [ajax.core :as ajax]
             [day8.re-frame.http-fx]
-            [re-frame.core :refer [reg-event-fx]]
-            [anh-front.db :as db]
-            [anh-front.config :as config]
-            [cognitect.transit :as transit]))
+            [re-frame.core       :refer [reg-event-fx]]
+            [anh-front.db           :as db]
+            [anh-front.config       :as config]
+            [anh-front.tree         :as tree]
+            [anh-front.project-tree :as project-tree]
+            [cognitect.transit      :as transit]))
 
 (rf/reg-event-db
  ::initialize-db
@@ -17,10 +19,15 @@
   :project-response
   (fn
     [db [_ response]]           ;; destructure the response from the event vector
-    (let [reader (transit/reader :json)]
+    (let [reader    (transit/reader :json)
+          resp      (transit/read reader response)
+          year-list (project-tree/year-list resp)
+          year-data (for [year year-list]
+                      (tree/node-data year))]
       (-> db
-                (assoc :loading? false) ;; take away that "Loading ..." UI
-                (assoc :projects (transit/read reader response)))))) ;; fairly lame processing
+          (assoc-in [:project-tree :root :children] year-data)
+          (assoc :loading? false)
+          (assoc :projects resp)))))
 
 (rf/reg-event-db
   :project-fail
