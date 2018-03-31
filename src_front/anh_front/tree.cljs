@@ -49,7 +49,7 @@
 ;; (children tree level1 level2 etc)
 
 (defn node-data
-  [label]
+  [label children]
   {:label label
    :expanded false
-   :children []})
+   :children children})

@@ -18,13 +18,17 @@
 
 (defn year-list [tree]
   (vec (for [yr (years tree)]
-     (yr "year"))))
+         (yr "year"))))
 
 (defn year [tree year]
   (some #(when (= year (% "year")) %) (years tree)))
 
 (defn months [tree yr]
   (get (year tree yr) "months"))
+
+(defn month-list [tree year]
+  (vec (for [mn (months tree year)]
+         (mn "month"))))
 
 (defn month [tree yr mon]
   (some #(when (= mon (% "month")) %) (months tree yr)))

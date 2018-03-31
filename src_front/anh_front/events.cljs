@@ -18,12 +18,17 @@
 (rf/reg-event-db
   :project-response
   (fn
-    [db [_ response]]           ;; destructure the response from the event vector
+    [db [_ response]]
     (let [reader    (transit/reader :json)
           resp      (transit/read reader response)
           year-list (project-tree/year-list resp)
           year-data (for [year year-list]
-                      (tree/node-data year))]
+                      (tree/node-data
+                        year
+                        (for [month (project-tree/month-list resp year)]
+                          (tree/node-data
+                            month
+                            (project-tree/projects resp year month)))))]
       (-> db
           (assoc :project-tree year-data)
           (assoc :loading? false)
