@@ -22,5 +22,6 @@
 (defn init! [setting]
   (re-frame/dispatch-sync [::events/initialize-db])
   (dev-setup)
-;;  (enable-re-frisk-remote!)
+  (re-frame/dispatch-sync [:request-projects])
+  ;;  (enable-re-frisk-remote!)
   (mount-root setting))

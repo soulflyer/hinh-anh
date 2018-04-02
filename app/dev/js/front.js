@@ -1,4 +1,4 @@
-var CLOSURE_UNCOMPILED_DEFINES = {"re_frame.trace.trace_enabled_QMARK_":true};
+var CLOSURE_UNCOMPILED_DEFINES = {"re_frame.trace.trace_enabled_QMARK_":true,"day8.re_frame.tracing.trace_enabled_QMARK_":true};
 var CLOSURE_NO_DEPS = true;
 if(typeof goog == "undefined") document.write('<script src="js/out_front/goog/base.js"></script>');
 document.write('<script src="js/out_front/goog/deps.js"></script>');

@@ -22,7 +22,8 @@
    {:dependencies [[figwheel "0.5.13"]
                    [com.cemerick/piggieback "0.2.2"]
                    [figwheel-sidecar "0.5.13"]
-                   [day8.re-frame/re-frame-10x "0.3.0"]]}}
+                   [day8.re-frame/re-frame-10x "0.3.0"]
+                   [day8.re-frame/tracing "0.5.0"]]}}
   :clean-targets [:target-path "tmp"
                   "app/dev/js/cljsbuild-main.js" "app/dev/js/front.js"
                   "app/prod/js/cljsbuild-main.js" "app/prod/js/front.js"
@@ -99,7 +100,8 @@
                            :output-dir "app/dev/js/out_front"
                            :pretty-print true
                            :output-wrapper true
-                           :closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}
+                           :closure-defines {"re_frame.trace.trace_enabled_QMARK_" true
+                                             "day8.re_frame.tracing.trace_enabled_QMARK_" true}
                            :preloads [day8.re-frame-10x.preload]
                            :main "anh-front.init"
                            :asset-path "js/out_front"}}

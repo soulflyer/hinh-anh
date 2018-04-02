@@ -28,11 +28,18 @@
                         (for [month (project-tree/month-list resp year)]
                           (tree/node-data
                             month
-                            (project-tree/projects resp year month)))))]
+                            (for [project (project-tree/projects resp year month)]
+                              (tree/node-data project []))))))
+          year-map (zipmap
+                     (map keyword year-list)
+                     (map
+                       #(tree/map-data (project-tree/month-list resp %))
+                       year-list))]
       (-> db
           (assoc :project-tree year-data)
           (assoc :loading? false)
-          (assoc :projects resp)))))
+          (assoc :projects resp)
+          (assoc :project-map year-map)))))
 
 (rf/reg-event-db
   :project-fail
