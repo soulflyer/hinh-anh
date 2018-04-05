@@ -1,6 +1,6 @@
 (ns anh-front.tree
   (:require [re-com.core :as re-com]
-            ;;[day8.re-frame.tracing :refer-macros [fn-traced]]
+            ;;[day8.re-frame.tracing :refer [fn-traced]]
             ))
 
 (def test-tree

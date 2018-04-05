@@ -1,7 +1,7 @@
 (ns anh-front.db)
 
 (def default-db
-  {:name "projects"
+  {:name "Projects"
    :project-tree {:root {:label "years"
                          :expanded false
                          :children []}}

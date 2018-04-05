@@ -4,10 +4,7 @@
              [anh-front.events :as events]
              [anh-front.views :as views]
              [anh-front.config :as config]
-;;             [re-frisk-remote.core :refer [enable-re-frisk-remote!]]
              ))
-
-(defonce app-state (atom {:message "Hello Min app world!"}))
 
 (defn dev-setup []
   (when config/debug?

@@ -1,23 +1,23 @@
 (ns anh-front.events
   (:require [re-frame.core :as rf]
-
             [ajax.core :as ajax]
             [day8.re-frame.http-fx]
-            [re-frame.core       :refer [reg-event-fx]]
             [anh-front.db           :as db]
             [anh-front.config       :as config]
             [anh-front.tree         :as tree]
             [anh-front.project-tree :as project-tree]
-            [cognitect.transit      :as transit]))
+            [cognitect.transit      :as transit]
+            [day8.re-frame.tracing  :refer-macros [fn-traced]]
+            ))
 
 (rf/reg-event-db
- ::initialize-db
- (fn  [_ _]
-   db/default-db))
+  ::initialize-db
+  (fn-traced  [_ _]
+              db/default-db))
 
 (rf/reg-event-db
   :project-response
-  (fn
+  (fn-traced
     [db [_ response]]
     (let [reader    (transit/reader :json)
           resp      (transit/read reader response)
