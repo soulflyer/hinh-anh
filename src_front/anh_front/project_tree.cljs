@@ -4,14 +4,14 @@
   from photo-api not the internal representation of the projects tree
   which can be found in another namespace: anh-front.tree")
 
-(comment (def yrstr
-           {"years" [{"year" "1998"
-                      "months" [{"month" "01"
-                                 "projects" ["10-hello"
-                                             "17-abc"]}]}
-                     {"year" "1999"
-                      "months" [{"month" "01"}
-                                {"month" "02"}]}]}))
+(def yrstr
+  {"years" [{"year" "1998"
+             "months" [{"month" "01"
+                        "projects" ["10-hello"
+                                    "17-abc"]}]}
+            {"year" "1999"
+             "months" [{"month" "01"}
+                       {"month" "02"}]}]})
 
 (defn years [tree]
   (get tree "years"))

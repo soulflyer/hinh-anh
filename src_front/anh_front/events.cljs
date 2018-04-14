@@ -43,7 +43,7 @@
 
 (rf/reg-event-db
   :project-fail
-  (fn
+  (fn-traced
     [db [_ response]]
     (-> db
         (assoc :loading? false)

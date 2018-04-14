@@ -1,8 +1,8 @@
 (ns anh-front.tree
   (:require [re-com.core :as re-com]
-            ;;[day8.re-frame.tracing :refer [fn-traced]]
+            [day8.re-frame.tracing :refer [fn-traced]]
             ))
-
+(def test-string "hi there")
 (def test-tree
   [{:label "2001"
     :expanded false
@@ -19,17 +19,37 @@
     :expanded false
     :children []}])
 
+;; Incoming data needs to be rearranged to look something like this:
+;; TODO make this work for stings not cljs keywords or it will be no good
+;; for the exif keywords tree.
+(def test-tree2
+  {:2001 {:expanded false
+          :children {:01
+                     {:expanded false
+                      :children ["proj1"]}
+                     :02
+                     {:expanded false
+                      :children ["proj3" "proj4"]}}}
+   :2002 {:expanded false
+          :children []}
+   :2000 {:expanded false
+          :children []}})
+
+;; Need access function that takes any number of params and uses them to
+;; travel the tree. ie:
+;; (children test-tree :2001 :01) => ["proj1"]
+;; (children test-tree :2001) => [:01 :02]
+(defn child-with-key
+  [tree ch]
+  (ch tree))
+
 (defn expand [path]
   (fn []
     (js/alert (str "hello " (last path)))))
 
-(defn child-with-label
-  [tree ch]
-  (some #(when (= ch (:label %)) %) tree))
-
 (defn children
   [tree ch]
-  (reduce #(:children (child-with-label %1 %2)) tree ch))
+  (reduce #(:children (child-with-key %1 %2)) tree ch))
 
 (defn child
   [tree path]
