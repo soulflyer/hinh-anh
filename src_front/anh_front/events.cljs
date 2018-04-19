@@ -38,12 +38,10 @@
         (assoc :error "Project load failed")
         )))
 
-(rf/reg-event-fx        ;; <-- note the `-fx` extension
-  :request-projects        ;; <-- the event id
-  (fn                ;; <-- the handler function
-    [{db :db} _]     ;; <-- 1st argument is coeffect, from which we extract db
-
-    ;; we return a map of (side) effects
+(rf/reg-event-fx
+  :request-projects
+  (fn
+    [{db :db} _]
     {:http-xhrio {:method          :get
                   :cross-origin    true
                   :uri             (str config/api-root "/project/maps")

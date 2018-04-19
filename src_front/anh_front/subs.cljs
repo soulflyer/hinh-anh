@@ -9,16 +9,6 @@
     (:name db)))
 
 (rf/reg-sub
-  ::project-string
-  (fn [db _]
-    (:project-string db)))
-
-(rf/reg-sub
-  :projects
-  (fn [db _]
-    (:projects db)))
-
-(rf/reg-sub
   :project-tree
   (fn [db _]
     (:project-tree db)))
@@ -28,4 +18,4 @@
   (fn [_ _]
     (rf/subscribe [:project-tree]))
   (fn [proj _]
-    (tree/labels proj)))
+    (keys proj)))
