@@ -10,7 +10,7 @@
                  [re-com "2.1.0"]
                  [re-frame "0.10.5"]
                  ;;[org.clojure/spec.alpha "0.1.143"]
-                 [cljs-ajax "0.7.3"]
+                 [cljs-ajax "0.7.3" :exclusions [[com.fasterxml.jackson.core/jackson-core]]]
                  [day8.re-frame/http-fx "0.1.6"]
                  [com.cognitect/transit-cljs "0.8.256"]]
   :plugins      [[lein-cljsbuild "1.1.5"]
@@ -21,9 +21,13 @@
   {:dev
    {:dependencies [[figwheel "0.5.15"]
                    [com.cemerick/piggieback "0.2.2"]
+                   [org.clojure/tools.nrepl "0.2.13"]
                    [figwheel-sidecar "0.5.15"]
-                   [day8.re-frame/re-frame-10x "0.3.1"]
-                   [day8.re-frame/tracing "0.5.1"]]}}
+                   [day8.re-frame/re-frame-10x "0.3.2"]
+                   [day8.re-frame/tracing "0.5.1"]]
+    :repl-options
+    {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
+    }}
   :clean-targets [:target-path "tmp"
                   "app/dev/js/cljsbuild-main.js" "app/dev/js/front.js"
                   "app/prod/js/cljsbuild-main.js" "app/prod/js/front.js"

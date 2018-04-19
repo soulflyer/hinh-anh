@@ -8,7 +8,9 @@
   {"years" [{"year" "1998"
              "months" [{"month" "01"
                         "projects" ["10-hello"
-                                    "17-abc"]}]}
+                                    "17-abc"]}
+                       {"month" "02"
+                        "projects" ["03-eeee"]}]}
             {"year" "1999"
              "months" [{"month" "01"}
                        {"month" "02"}]}]})
@@ -35,3 +37,28 @@
 
 (defn projects [yrs yr mon]
   (get (month yrs yr mon) "projects"))
+
+;; TODO this may need to be converted to use strings instead of keywords as keywords
+;; dont allow spaces.
+(defn map-data
+  "Turn the incoming data into the right for for use in anh-front.tree ie:
+  {:2001 {:expanded false
+          :children {:01
+                     {:expanded false
+                      :children [\"proj1\"]}
+                     :02
+                     {:expanded false
+                      :children [\"proj3\" \"proj4\"]}}}
+   :2002 {:expanded false
+          :children []}
+   :2000 {:expanded false
+          :children []}}"
+  [tree]
+  (into
+    {}
+    (for [year (year-list tree)]
+      [(keyword year)
+       (into
+         {:expanded false}
+         (for [month (month-list tree year) ]
+           [(keyword month) (projects tree year month)]))])))

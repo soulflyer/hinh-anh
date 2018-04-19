@@ -19,7 +19,6 @@
   (let [years (rf/subscribe [:years])
         tree  (rf/subscribe [:project-tree])]
     [:div.projects
-     ;; TODO fix this to use a single node?
      (tree/root
        (for [year (sort @years)]
          (tree/node @tree [year])))]))
@@ -27,6 +26,7 @@
 (defn ui
   []
   [:div
+   [:h1 @(rf/subscribe [:name])]
    [projects]])
 
 (defn main-panel []

@@ -2,27 +2,12 @@
   (:require [re-com.core :as re-com]
             [day8.re-frame.tracing :refer [fn-traced]]
             ))
-(def test-string "hi there")
-(def test-tree
-  [{:label "2001"
-    :expanded false
-    :children [{:label "01"
-                :expanded false
-                :children ["proj1"]}
-               {:label "02"
-                :expanded false
-                :children ["proj3" "proj4"]}]}
-   {:label "2002"
-    :expanded false
-    :children []}
-   {:label "2000"
-    :expanded false
-    :children []}])
+(def test-string "hello there")
 
 ;; Incoming data needs to be rearranged to look something like this:
 ;; TODO make this work for stings not cljs keywords or it will be no good
 ;; for the exif keywords tree.
-(def test-tree2
+(def test-tree
   {:2001 {:expanded false
           :children {:01
                      {:expanded false
@@ -43,13 +28,31 @@
   [tree ch]
   (ch tree))
 
+(defn child-with-label
+  [tree ch]
+  (some #(when (= ch (:label %)) %) tree))
+
 (defn expand [path]
   (fn []
     (js/alert (str "hello " (last path)))))
 
 (defn children
-  [tree ch]
-  (reduce #(:children (child-with-key %1 %2)) tree ch))
+  ([tree ch]
+   (reduce #(:children (child-with-key %1 %2)) tree ch))
+  ([tree]
+   (children tree [])))
+
+;;TODO make this work with a vector ie the projects
+;; and use it in node-data
+(defn child-list
+  "Return the children of a given tree node as a list of names.
+  Works if children of tree is a map or a vector of strings."
+  ([tree path]
+   (child-list (children tree path)))
+  ([tree]
+   (if (instance? cljs.core/PersistentVector tree)
+     tree
+     (keys (children tree)))))
 
 (defn child
   [tree path]
@@ -89,7 +92,9 @@
    :expanded false
    :children children})
 
+;; {:expanded false}
+
 (defn map-data
-  [children]
+  [tree-node]
   (into {:expanded false}
-        (for [child children] [(keyword child) child])))
+        (for [child (child-list tree-node)] [(keyword child) child])))

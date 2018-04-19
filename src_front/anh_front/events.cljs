@@ -21,25 +21,13 @@
     [db [_ response]]
     (let [reader    (transit/reader :json)
           resp      (transit/read reader response)
-          year-list (project-tree/year-list resp)
-          year-data (for [year year-list]
-                      (tree/node-data
-                        year
-                        (for [month (project-tree/month-list resp year)]
-                          (tree/node-data
-                            month
-                            (for [project (project-tree/projects resp year month)]
-                              (tree/node-data project []))))))
-          year-map (zipmap
-                     (map keyword year-list)
-                     (map
-                       #(tree/map-data (project-tree/month-list resp %))
-                       year-list))]
+          ;;year-list (project-tree/year-list resp)
+          tree-data (project-tree/map-data resp)]
       (-> db
-          (assoc :project-tree year-data)
+          ;; (assoc :project-tree year-data)
           (assoc :loading? false)
-          (assoc :projects resp)
-          (assoc :project-map year-map)))))
+          (assoc :raw-data resp)
+          (assoc :project-tree tree-data)))))
 
 (rf/reg-event-db
   :project-fail
