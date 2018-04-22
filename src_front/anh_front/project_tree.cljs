@@ -59,6 +59,9 @@
     (for [year (year-list tree)]
       [(keyword year)
        (into
-         {:expanded false}
-         (for [month (month-list tree year) ]
-           [(keyword month) (projects tree year month)]))])))
+         {:expanded true}
+         [[:children
+           (into {}
+                 (for [month (sort (month-list tree year)) ]
+                   [(keyword month)
+                    (into {:expanded false} [[:children (projects tree year month)]])]))]])])))

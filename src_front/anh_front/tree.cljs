@@ -12,7 +12,7 @@
    :2000 {:expanded false
           :children []}}"
   (:require [re-com.core :as re-com]
-            [day8.re-frame.tracing :refer [fn-traced]]
+            [day8.re-frame.tracing :refer [defn-traced]]
             ))
 
 ;; TODO make this work for stings not cljs keywords or it will be no good
@@ -48,8 +48,6 @@
   ([tree]
    (children tree [])))
 
-;;TODO make this work with a vector ie the projects
-;; and use it in node-data
 (defn child-list
   "Return the children of a given tree node as a list of names.
   Works if children of tree is a map or a vector of strings."
@@ -74,29 +72,24 @@
 (defn node
   "A tree node built using a :li. Takes a vector representing the path from the root of the tree"
   [tree path]
-  (let [tr (child tree path)
-        label (str (last path))
-        ;; Get this from app_db!
+  (let [label (str (last path))
         expanded true]
     [:li
-     [re-com/button
-      ;; fill this with a call to (child tree path)
-      :label label
-      :class "tree-button"
-      :on-click (expand path)
-      ;; :expanded expanded
-      ]
-     (let [ch (children tree path)]
-       (if (and expanded (< 0 (count ch)))
-         [:ul
-          (if (= cljs.core/PersistentArrayMap (type ch))
-            (for [child ch]
-              (node tree (conj path (key child))))
-            (for [child ch]
-              [:li child] )
-            )]
-         ))]))
+     [re-com/v-box
+      :children
+      [[re-com/button
+        :label label
+        :class "tree-button"
+        :on-click (expand path)]
+       (let [ch (children tree path)]
+         (if (and expanded (< 0 (count ch)))
+           (into [:ul]
+                 (if (map? ch)
+                   (for [child ch]
+                     (node tree (conj path (key child))) )
+                   (for [child ch]
+                     [:li (str child)])))))]]]))
 
-(defn labels
-  [tree]
-  (vec (for [entry tree] (:label entry))))
+;; (defn labels
+;;   [tree]
+;;   (vec (for [entry tree] (:label entry))))

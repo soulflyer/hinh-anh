@@ -12,31 +12,28 @@
 
 (rf/reg-event-db
   ::initialize-db
-  (fn-traced  [_ _]
+  (fn  [_ _]
               db/default-db))
 
 (rf/reg-event-db
   :project-response
-  (fn-traced
+  (fn
     [db [_ response]]
     (let [reader    (transit/reader :json)
           resp      (transit/read reader response)
-          ;;year-list (project-tree/year-list resp)
           tree-data (project-tree/map-data resp)]
       (-> db
-          ;; (assoc :project-tree year-data)
           (assoc :loading? false)
           (assoc :raw-data resp)
           (assoc :project-tree tree-data)))))
 
 (rf/reg-event-db
   :project-fail
-  (fn-traced
+  (fn
     [db [_ response]]
     (-> db
         (assoc :loading? false)
-        (assoc :error "Project load failed")
-        )))
+        (assoc :error "Project load failed"))))
 
 (rf/reg-event-fx
   :request-projects
