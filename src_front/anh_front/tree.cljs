@@ -66,22 +66,26 @@
   [&leaves]
   [:ul.tree-root &leaves])
 
+
+(defn next-node [tree path]
+  path)
+
+(defn expanded? [tree path]
+  (get-in tree (conj (vec (interpose :children path)) :expanded)))
+
 (defn toggle-expand [tree path]
   (fn []
-    (rf/dispatch [:toggle-expand tree path])
-    ;;(sp/transform  (expanded-nav path) invert  tree)
-    ;;(js/alert (str "hello " (flatten path)))
-    ))
+    (rf/dispatch [:toggle-expand tree path])))
 
 (defn node
   "A tree node built using a :li. Takes a vector representing the path from the root of the tree"
   [tree path]
   (let [label (str (last path))
-        expanded true]
+        expanded (expanded? tree path)]
     [:li
      [re-com/v-box
       :children
-      [[re-com/button
+      [[re-com/label
         :label label
         :class "tree-button"
         :on-click (toggle-expand tree path)]
@@ -93,7 +97,3 @@
                      (node tree (conj path (key child))) )
                    (for [child ch]
                      [:li (str child)])))))]]]))
-
-;; (defn labels
-;;   [tree]
-;;   (vec (for [entry tree] (:label entry))))
