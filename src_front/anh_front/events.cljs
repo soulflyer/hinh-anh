@@ -8,12 +8,21 @@
             [anh-front.project-tree :as project-tree]
             [cognitect.transit      :as transit]
             [day8.re-frame.tracing  :refer-macros [fn-traced]]
+            [com.rpl.specter :as sp]
             ))
 
 (rf/reg-event-db
   ::initialize-db
   (fn  [_ _]
-              db/default-db))
+    db/default-db))
+
+(rf/reg-event-db
+  :toggle-expand
+  (fn [db [_ tree path]]
+    (assoc db :project-tree (sp/transform
+                              (conj (vec (interpose :children path)) :expanded)
+                              #(if % false true)
+                              tree))))
 
 (rf/reg-event-db
   :project-response

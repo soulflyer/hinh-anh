@@ -12,8 +12,9 @@
    :2000 {:expanded false
           :children []}}"
   (:require [re-com.core :as re-com]
+            [re-frame.core :as rf]
             [day8.re-frame.tracing :refer [defn-traced]]
-            ))
+            [com.rpl.specter :as sp]))
 
 ;; TODO make this work for stings not cljs keywords or it will be no good
 ;; for the exif keywords tree.
@@ -23,11 +24,11 @@
                      {:expanded false
                       :children ["proj1"]}
                      :02
-                     {:expanded false
+                     {:expanded true
                       :children ["proj3" "proj4"]}}}
    :2002 {:expanded false
           :children []}
-   :2000 {:expanded false
+   :2000 {:expanded true
           :children []}})
 
 (defn child-with-key
@@ -37,10 +38,6 @@
 (defn child-with-label
   [tree ch]
   (some #(when (= ch (:label %)) %) tree))
-
-(defn expand [path]
-  (fn []
-    (js/alert (str "hello " (last path)))))
 
 (defn children
   ([tree ch]
@@ -69,6 +66,13 @@
   [&leaves]
   [:ul.tree-root &leaves])
 
+(defn toggle-expand [tree path]
+  (fn []
+    (rf/dispatch [:toggle-expand tree path])
+    ;;(sp/transform  (expanded-nav path) invert  tree)
+    ;;(js/alert (str "hello " (flatten path)))
+    ))
+
 (defn node
   "A tree node built using a :li. Takes a vector representing the path from the root of the tree"
   [tree path]
@@ -80,7 +84,7 @@
       [[re-com/button
         :label label
         :class "tree-button"
-        :on-click (expand path)]
+        :on-click (toggle-expand tree path)]
        (let [ch (children tree path)]
          (if (and expanded (< 0 (count ch)))
            (into [:ul]
