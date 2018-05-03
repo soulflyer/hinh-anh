@@ -8,20 +8,13 @@
   (let [name (rf/subscribe [:name])]
     [:h1 @name]))
 
-(defn request-it-button
-  []
-  [re-com/button
-   :label "Get Projects"
-   :on-click #(rf/dispatch [:request-projects])])
-
 (defn projects
   []
-  (let [years (rf/subscribe [:years])
-        tree  (rf/subscribe [:project-tree])]
+  (let [tree (rf/subscribe [:project-tree])]
     [:div.projects
      (tree/root
-       (for [year (sort @years)]
-         (tree/node @tree [year])))]))
+       (for [year (:children @tree)]
+         (tree/node @tree [(:name year)])))]))
 
 (defn ui
   []

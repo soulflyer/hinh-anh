@@ -8,8 +8,7 @@
             [anh-front.project-tree :as project-tree]
             [cognitect.transit      :as transit]
             [day8.re-frame.tracing  :refer-macros [fn-traced]]
-            [com.rpl.specter :as sp]
-            ))
+            [com.rpl.specter :as sp]))
 
 (rf/reg-event-db
   ::initialize-db
@@ -30,10 +29,9 @@
     [db [_ response]]
     (let [reader    (transit/reader :json)
           resp      (transit/read reader response)
-          tree-data (project-tree/map-data resp)]
+          tree-data  (project-tree/tree-data resp)]
       (-> db
           (assoc :loading? false)
-          (assoc :raw-data resp)
           (assoc :project-tree tree-data)))))
 
 (rf/reg-event-db

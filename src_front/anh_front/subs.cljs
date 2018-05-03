@@ -12,10 +12,3 @@
   :project-tree
   (fn [db _]
     (:project-tree db)))
-
-(rf/reg-sub
-  :years
-  (fn [_ _]
-    (rf/subscribe [:project-tree]))
-  (fn [proj _]
-    (keys proj)))

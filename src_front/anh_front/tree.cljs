@@ -1,71 +1,66 @@
 (ns anh-front.tree
-  "Incoming data needs to be rearranged to look something like this:
-  {:2001 {:expanded false
-          :children {:01
-                     {:expanded false
-                      :children [\"proj1\"]}
-                     :02
-                     {:expanded false
-                      :children [\"proj3\" \"proj4\"]}}}
-   :2002 {:expanded false
-          :children []}
-   :2000 {:expanded false
-          :children []}}"
+  "Incoming data needs to be rearranged to look something like the data defined
+  in test-tree"
   (:require [re-com.core :as re-com]
             [re-frame.core :as rf]
             [day8.re-frame.tracing :refer [defn-traced]]
+            [clojure.zip :as zip]
             [com.rpl.specter :as sp]))
 
-;; TODO make this work for stings not cljs keywords or it will be no good
-;; for the exif keywords tree.
 (def test-tree
-  {:2001 {:expanded false
-          :children {:01
-                     {:expanded false
-                      :children ["proj1"]}
-                     :02
-                     {:expanded true
-                      :children ["proj3" "proj4"]}}}
-   :2002 {:expanded false
-          :children []}
-   :2000 {:expanded true
-          :children []}})
+  {:name "root"
+   :expanded true
+   :children [{:name "2000"
+               :expanded true
+               :children [{:name "01"
+                           :expanded false
+                           :children [{:name "project-1"}
+                                      {:name "project-2"}
+                                      {:name "project-3"}
+                                      {:name "project-4"}]}
+                          {:name "02"
+                           :expanded true
+                           :children [{:name "project-5"}
+                                      {:name "project-6"}]}]}
+              {:name "2001"
+               :expanded false
+               :children [{:name "01"
+                           :expanded false
+                           :children []}]}
+              {:name "2002"
+               :expanded false
+               :children [{:name "01"
+                           :expanded false
+                           :children []}]}]})
+(defn tree-zip
+  "Returns a zipper for tree elements given a root element"
+  [root]
+  (zip/zipper (complement string?)
+              (fn [node] (if (:expanded node)
+                           (seq (:children node))))
+              (fn [node children]
+                (assoc node :children (and children (apply vector children))))
+              root))
 
-(defn child-with-key
+(defn child-with-name
   [tree ch]
-  (ch tree))
-
-(defn child-with-label
-  [tree ch]
-  (some #(when (= ch (:label %)) %) tree))
+  (some #(when (= ch (:name %)) %) (:children tree)))
 
 (defn children
-  ([tree ch]
-   (reduce #(:children (child-with-key %1 %2)) tree ch))
+  ([tree path]
+   (:children (reduce #(child-with-name %1 %2)  tree path)))
   ([tree]
    (children tree [])))
 
 (defn child-list
-  "Return the children of a given tree node as a list of names.
-  Works if children of tree is a map or a vector of strings."
   ([tree path]
-   (child-list (children tree path)))
+   (map :name (children tree path)))
   ([tree]
-   (if (instance? cljs.core/PersistentVector tree)
-     tree
-     (keys (children tree)))))
-
-(defn child
-  [tree path]
-  (let [leaf (last path)
-        len  (count path)
-        trunk (take (dec len) path)]
-    (child-with-label (children tree trunk) leaf)))
+   (child-list tree [])))
 
 (defn root
   [&leaves]
   [:ul.tree-root &leaves])
-
 
 (defn next-node [tree path]
   path)
@@ -92,8 +87,6 @@
        (let [ch (children tree path)]
          (if (and expanded (< 0 (count ch)))
            (into [:ul]
-                 (if (map? ch)
-                   (for [child ch]
-                     (node tree (conj path (key child))) )
-                   (for [child ch]
-                     [:li (str child)])))))]]]))
+                 (for [child ch]
+                   (node tree (conj path (:name child))) )
+                 )))]]]))

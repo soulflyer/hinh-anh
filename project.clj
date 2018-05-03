@@ -25,7 +25,8 @@
                    [org.clojure/tools.nrepl "0.2.13"]
                    [figwheel-sidecar "0.5.15"]
                    [day8.re-frame/re-frame-10x "0.3.2"]
-                   [day8.re-frame/tracing "0.5.1"]]
+                   [day8.re-frame/tracing "0.5.1"]
+                   [org.clojure/data.xml "0.2.0-alpha5"]]
     :repl-options
     {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
     }}

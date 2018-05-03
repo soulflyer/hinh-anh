@@ -38,31 +38,40 @@
 (defn projects [yrs yr mon]
   (get (month yrs yr mon) "projects"))
 
-;; TODO this may need to be converted to use strings instead of keywords as keywords
-;; dont allow spaces.
-(defn map-data
-  "Turn the incoming data into the right for for use in anh-front.tree ie:
-  {:2001 {:expanded false
-          :children {:01
-                     {:expanded false
-                      :children [\"proj1\"]}
-                     :02
-                     {:expanded false
-                      :children [\"proj3\" \"proj4\"]}}}
-   :2002 {:expanded false
-          :children []}
-   :2000 {:expanded false
-          :children []}}"
+(defn tree-data
+  "Turn the incoming data into the right form for use in anh-front.tree ie:
+  {:name \"root\"
+   :expanded true
+   :children [{:name \"2000\"
+               :expanded true
+               :children [{:name \"01\"
+                           :expanded false
+                           :children [{:name \"project-1\"}
+                                      {:name \"project-3\"}
+                                      {:name \"project-4\"}]}
+                          {:name \"02\"
+                           :expanded true
+                           :children [{:name \"project-5\"}
+                                      {:name \"project-6\"}]}]}
+              {:name \"2002\"
+               :expanded false
+               :children [{:name \"01\"
+                           :expanded false
+                           :children []}]}]}"
   [tree]
-  (into
-    {}
-    (for [year (year-list tree)]
-      [(keyword year)
-       (into
-         (sorted-map :expanded false)
-         [[:children
-           (into (sorted-map)
-                 (for [month (month-list tree year) ]
-                   [(keyword month)
-                    (into (sorted-map :expanded false)
-                          [[:children (projects tree year month)]])]))]])])))
+  {:name "root"
+   :expanded true
+   :children
+   (into []
+         (for [year (sort (year-list tree))]
+           {:name year
+            :expanded false
+            :children
+            (into []
+                  (for [month (sort (month-list tree year))]
+                    {:name month
+                     :expanded false
+                     :children
+                     (into []
+                           (for [project (sort (projects tree year month))]
+                             {:name project}))}))}))})
