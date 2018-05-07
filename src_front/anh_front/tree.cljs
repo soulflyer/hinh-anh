@@ -5,6 +5,7 @@
             [re-frame.core :as rf]
             [day8.re-frame.tracing :refer [defn-traced]]
             [clojure.zip :as zip]
+            [com.rpl.specter.zipper :as sz]
             [com.rpl.specter :as sp]))
 
 (def test-tree
@@ -13,7 +14,7 @@
    :children [{:name "2000"
                :expanded true
                :children [{:name "01"
-                           :expanded false
+                           :expanded true
                            :children [{:name "project-1"}
                                       {:name "project-2"}
                                       {:name "project-3"}
@@ -42,6 +43,50 @@
                 (assoc node :children (and children (apply vector children))))
               root))
 
+(def specter-tree-zip (sz/zipper tree-zip))
+
+(defn find-index-route [v data]
+	(let [walker (sp/recursive-path
+                 [] p
+                 (sp/if-path sequential?
+                             [sp/INDEXED-VALS
+                              (sp/if-path [sp/LAST (sp/pred= v)]
+                                          sp/FIRST
+                                          [(sp/collect-one sp/FIRST) sp/LAST p])]))
+        ret (sp/select-first walker data)]
+	  (if (or (vector? ret) (nil? ret)) ret [ret])))
+
+(defn find-name
+  [name]
+  (sz/find-first #(= (:name %) name)))
+
+(defn follow-path [path]
+  (for [p path]
+    (find-name p)))
+
+(defn next-node
+  "Takes a tree and a path and returns a path to the next node in the tree"
+  [tree current-path]
+  (let [next-node (or (sp/select-one
+                        [specter-tree-zip (follow-path current-path) sz/NEXT] tree)
+                      (sp/select-one
+                        [specter-tree-zip (follow-path current-path)] tree))
+        node-name (:name (first next-node))
+        node-path (zip/path next-node)]
+    (conj (vec (for [a node-path] (:name a)))
+          node-name)))
+
+(defn prev-node
+  [tree current-path]
+  (let [prev-node (or (sp/select-one
+                        [specter-tree-zip (follow-path current-path) sz/PREV] tree)
+                      (sp/select-one
+                        [specter-tree-zip (follow-path current-path)] tree))
+        node-name (:name (first prev-node))
+        node-path (zip/path prev-node)]
+    (conj (vec (for [a node-path] (:name a)))
+          node-name)))
+
 (defn child-with-name
   [tree ch]
   (some #(when (= ch (:name %)) %) (:children tree)))
@@ -61,9 +106,6 @@
 (defn root
   [&leaves]
   [:ul.tree-root &leaves])
-
-(defn next-node [tree path]
-  path)
 
 (defn expanded? [tree path]
   (get-in tree (conj (vec (interpose :children path)) :expanded)))
