@@ -1,4 +1,5 @@
 (ns anh-front.db)
 
 (def default-db
-  {:name "Projects"})
+  {:name "Projects"
+   :selected-project ["root"]})

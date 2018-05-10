@@ -60,6 +60,7 @@
                            :children []}]}]}"
   [tree]
   {:name "root"
+   :focus ["root"]
    :expanded true
    :children
    (into []

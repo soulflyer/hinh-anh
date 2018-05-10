@@ -19,9 +19,16 @@
   :toggle-expand
   (fn [db [_ tree path]]
     (assoc db :project-tree (sp/transform
-                              (conj (vec (interpose :children path)) :expanded)
+                              ;;(conj (vec (interpose :children path)) :expanded)
+                              [(tree/path-nav path) :expanded]
                               #(if % false true)
                               tree))))
+
+;; (rf/reg-event-db
+;;   :next-project
+;;   (fn [db [_ tree path]]
+;;     (assoc db :project-tree (sp/transform
+;;                               ()))))
 
 (rf/reg-event-db
   :project-response
@@ -54,3 +61,10 @@
                   :on-success      [:project-response]
                   :on-failure      [:project-fail]}
      :db  (assoc db :loading? true)}))
+
+(rf/reg-event-db
+  :say-hello
+  (fn
+    [db _]
+    (js/alert (str "hello"))
+    db))

@@ -10,6 +10,7 @@
 
 (def test-tree
   {:name "root"
+   :focus ["root"]
    :expanded true
    :children [{:name "2000"
                :expanded true
@@ -33,6 +34,15 @@
                :children [{:name "01"
                            :expanded false
                            :children []}]}]})
+
+(defn path-nav [path]
+  (sp/path
+    (mapcat (fn [s] [:children sp/ALL #(= (:name %) s)])
+            path)))
+
+(def path1 ["2002" "01"])
+(def path1-nav (conj (vec (interpose :children (for [p path1] (conj (seq [p]) 'node-named )))) :expanded))
+
 (defn tree-zip
   "Returns a zipper for tree elements given a root element"
   [root]
@@ -44,17 +54,6 @@
               root))
 
 (def specter-tree-zip (sz/zipper tree-zip))
-
-(defn find-index-route [v data]
-	(let [walker (sp/recursive-path
-                 [] p
-                 (sp/if-path sequential?
-                             [sp/INDEXED-VALS
-                              (sp/if-path [sp/LAST (sp/pred= v)]
-                                          sp/FIRST
-                                          [(sp/collect-one sp/FIRST) sp/LAST p])]))
-        ret (sp/select-first walker data)]
-	  (if (or (vector? ret) (nil? ret)) ret [ret])))
 
 (defn find-name
   [name]
@@ -77,6 +76,7 @@
           node-name)))
 
 (defn prev-node
+  "Given a tree and a node, returns the path to the previous node."
   [tree current-path]
   (let [prev-node (or (sp/select-one
                         [specter-tree-zip (follow-path current-path) sz/PREV] tree)
@@ -107,6 +107,7 @@
   [&leaves]
   [:ul.tree-root &leaves])
 
+;; Here is the problem. expanded? is looking in the wrong place.
 (defn expanded? [tree path]
   (get-in tree (conj (vec (interpose :children path)) :expanded)))
 
@@ -130,5 +131,4 @@
          (if (and expanded (< 0 (count ch)))
            (into [:ul]
                  (for [child ch]
-                   (node tree (conj path (:name child))) )
-                 )))]]]))
+                   (node tree (conj path (:name child)))))))]]]))
