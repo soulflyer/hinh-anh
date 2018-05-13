@@ -40,9 +40,6 @@
     (mapcat (fn [s] [:children sp/ALL #(= (:name %) s)])
             path)))
 
-(def path1 ["2002" "01"])
-(def path1-nav (conj (vec (interpose :children (for [p path1] (conj (seq [p]) 'node-named )))) :expanded))
-
 (defn tree-zip
   "Returns a zipper for tree elements given a root element"
   [root]
@@ -107,17 +104,17 @@
   [&leaves]
   [:ul.tree-root &leaves])
 
-;; Here is the problem. expanded? is looking in the wrong place.
 (defn expanded? [tree path]
-  (get-in tree (conj (vec (interpose :children path)) :expanded)))
+  (sp/select-one [(path-nav path) :expanded] tree))
 
-(defn toggle-expand [tree path]
+(defn toggle-expand [tree-name path]
   (fn []
-    (rf/dispatch [:toggle-expand tree path])))
+    (rf/dispatch [:toggle-expand tree-name path])
+    (rf/dispatch [:save-selected tree-name path])))
 
 (defn node
   "A tree node built using a :li. Takes a vector representing the path from the root of the tree"
-  [tree path]
+  [tree tree-name path]
   (let [label (str (last path))
         expanded (expanded? tree path)]
     [:li
@@ -126,9 +123,9 @@
       [[re-com/label
         :label label
         :class "tree-button"
-        :on-click (toggle-expand tree path)]
+        :on-click (toggle-expand tree-name path)]
        (let [ch (children tree path)]
          (if (and expanded (< 0 (count ch)))
            (into [:ul]
                  (for [child ch]
-                   (node tree (conj path (:name child)))))))]]]))
+                   (node tree tree-name (conj path (:name child)))))))]]]))

@@ -10,11 +10,12 @@
 
 (defn projects
   []
-  (let [tree (rf/subscribe [:project-tree])]
+  (let [tree-name :project-tree
+        tree (rf/subscribe [tree-name])]
     [:div.projects
      (tree/root
        (for [year (:children @tree)]
-         (tree/node @tree [(:name year)])))]))
+         (tree/node @tree tree-name [(:name year)])))]))
 
 (defn ui
   []
