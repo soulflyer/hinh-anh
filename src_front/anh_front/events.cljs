@@ -16,32 +16,6 @@
     db/default-db))
 
 (rf/reg-event-db
-  :toggle-expand
-  (fn [db [_ tree-name path]]
-
-    (-> db
-        (assoc tree-name (sp/transform
-                           [(tree/path-nav path) :expanded]
-                           not
-                           (tree-name db))))))
-
-(rf/reg-event-db
-  :save-selected
-  (fn [db [_ tree-name path]]
-    ;;(js/alert (str "hello:" tree-name))
-    (-> db
-        (assoc tree-name (sp/setval
-                           [:focus]
-                           path
-                           (tree-name db)))
-        )))
-;; (rf/reg-event-db
-;;   :next-project
-;;   (fn [db [_ tree path]]
-;;     (assoc db :project-tree (sp/transform
-;;                               ()))))
-
-(rf/reg-event-db
   :project-response
   (fn
     [db [_ response]]
