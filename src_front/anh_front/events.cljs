@@ -1,15 +1,45 @@
 (ns anh-front.events
-  (:require [ajax.core :as ajax]
-            [anh-front.config :as config]
-            [anh-front.db :as db]
+  (:require [re-frame.core :as rf]
+            [ajax.core :as ajax]
+            [day8.re-frame.http-fx]
+            [anh-front.db           :as db]
+            [anh-front.config       :as config]
+            [anh-front.tree         :as tree]
             [anh-front.project-tree :as project-tree]
-            [cognitect.transit :as transit]
-            [re-frame.core :as rf]))
+            [cognitect.transit      :as transit]
+            [day8.re-frame.tracing  :refer-macros [fn-traced]]
+            [com.rpl.specter :as sp]))
 
 (rf/reg-event-db
   ::initialize-db
   (fn  [_ _]
     db/default-db))
+
+(rf/reg-event-db
+  :toggle-expand
+  (fn [db [_ tree-name path]]
+
+    (-> db
+        (assoc tree-name (sp/transform
+                           [(tree/path-nav path) :expanded]
+                           not
+                           (tree-name db))))))
+
+(rf/reg-event-db
+  :save-selected
+  (fn [db [_ tree-name path]]
+    ;;(js/alert (str "hello:" tree-name))
+    (-> db
+        (assoc tree-name (sp/setval
+                           [:focus]
+                           path
+                           (tree-name db)))
+        )))
+;; (rf/reg-event-db
+;;   :next-project
+;;   (fn [db [_ tree path]]
+;;     (assoc db :project-tree (sp/transform
+;;                               ()))))
 
 (rf/reg-event-db
   :project-response
