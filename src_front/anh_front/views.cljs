@@ -8,6 +8,14 @@
   (let [name (rf/subscribe [:name])]
     [:h1 @name]))
 
+(defn selected-project []
+  (let [sp (rf/subscribe [:selected-project])]
+    [:p (str @sp)]))
+
+(defn next-project []
+  (let [np (rf/subscribe [:next-project])]
+    [:p (str @np)]))
+
 (defn projects
   []
   (let [tree-name :project-tree
@@ -20,7 +28,10 @@
 (defn ui
   []
   [:div
-   [:h1 @(rf/subscribe [:name])]
+   ;;[:h1 @(rf/subscribe [:name])]
+   [title]
+   [selected-project]
+   [next-project]
    [projects]])
 
 (defn main-panel []

@@ -21,9 +21,3 @@
                            [:focus]
                            path
                            (tree-name db))))))
-
-;; (rf/reg-event-db
-;;   :next-project
-;;   (fn [db [_ tree path]]
-;;     (assoc db :project-tree (sp/transform
-;;                               ()))))
