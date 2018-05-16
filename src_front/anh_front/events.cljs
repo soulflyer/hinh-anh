@@ -50,6 +50,16 @@
 (rf/reg-event-db
   :say-hello
   (fn
-    [db _]
-    (js/alert (str "hello"))
+    [db [_ who]]
+    (js/alert (str "hello " who))
     db))
+
+(rf/reg-event-db
+  :next-project
+  (fn
+    [db _]
+    (-> db
+        (assoc :project-tree (sp/transform
+                               [:focus]
+                               #(tree/next-node (:project-tree db) %)
+                               (:project-tree db))))))

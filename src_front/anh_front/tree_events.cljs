@@ -21,3 +21,23 @@
                            [:focus]
                            path
                            (tree-name db))))))
+
+(rf/reg-event-db
+  :next-node
+  (fn
+    [db [_ tree-name]]
+    (-> db
+        (assoc tree-name (sp/transform
+                           [:focus]
+                           #(tree/next-node (tree-name db) %)
+                           (tree-name db))))))
+
+(rf/reg-event-db
+  :prev-node
+  (fn
+    [db [_ tree-name]]
+    (-> db
+        (assoc tree-name (sp/transform
+                           [:focus]
+                           #(tree/prev-node (tree-name db) %)
+                           (tree-name db))))))
