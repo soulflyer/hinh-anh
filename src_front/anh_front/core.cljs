@@ -13,7 +13,7 @@
     (enable-console-print!)
     (println "dev mode")))
 
-(defn mount-root [setting]
+(defn mount-root []
   (re-frame/clear-subscription-cache!)
   (keys/setup-keys)
   (reagent/render [views/main-panel]
@@ -24,4 +24,4 @@
   (re-frame/dispatch-sync [::rp/add-keyboard-event-listener "keydown"])
   (dev-setup)
   (re-frame/dispatch-sync [:request-projects])
-  (mount-root setting))
+  (mount-root))

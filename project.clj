@@ -108,7 +108,8 @@
                             "day8.re_frame.tracing.trace_enabled_QMARK_" true}
                            :preloads [day8.re-frame-10x.preload]
                            :main "anh-front.init"
-                           :asset-path "js/out_front"}}
+                           :asset-path "js/out_front"}
+                :figwheel {:on-jsload "anh-front.core/mount-root"}}
 
     :prod-main {:source-paths ["src"]
                 :incremental true

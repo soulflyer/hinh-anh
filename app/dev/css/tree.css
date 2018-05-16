@@ -1,4 +1,9 @@
 .tree-root {
     padding: 0px;
+}
+.tree-root li {
     list-style: none;
+}
+.selected-tree-entry {
+    background: lightblue;
 }

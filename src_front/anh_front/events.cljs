@@ -7,7 +7,7 @@
             [anh-front.tree         :as tree]
             [anh-front.project-tree :as project-tree]
             [cognitect.transit      :as transit]
-            [day8.re-frame.tracing  :refer-macros [fn-traced]]
+            [day8.re-frame.tracing  :refer [fn-traced]]
             [com.rpl.specter :as sp]))
 
 (rf/reg-event-db
@@ -49,17 +49,7 @@
 
 (rf/reg-event-db
   :say-hello
-  (fn
+  (fn-traced
     [db [_ who]]
     (js/alert (str "hello " who))
     db))
-
-(rf/reg-event-db
-  :next-project
-  (fn
-    [db _]
-    (-> db
-        (assoc :project-tree (sp/transform
-                               [:focus]
-                               #(tree/next-node (:project-tree db) %)
-                               (:project-tree db))))))

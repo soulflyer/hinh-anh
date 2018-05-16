@@ -112,6 +112,13 @@
     (rf/dispatch [:toggle-expand tree-name path])
     (rf/dispatch [:save-selected tree-name path])))
 
+(defn drop-root
+  "get rid of the leading root entry from a path"
+  [path]
+  (if (= (first path) "root")
+    (vec (rest path))
+    path))
+
 (defn node
   "A tree node built using a :li. Takes a vector representing the path from the root of the tree"
   [tree tree-name path]
@@ -122,7 +129,9 @@
       :children
       [[re-com/label
         :label label
-        :class "tree-button"
+        :class (if (= path (drop-root (:focus tree)))
+                 "selected-tree-entry"
+                 "tree-entry")
         :on-click (toggle-expand tree-name path)]
        (let [ch (children tree path)]
          (if (and expanded (< 0 (count ch)))

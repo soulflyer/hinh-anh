@@ -10,15 +10,7 @@
 
 (defn selected-project []
   (let [sp (rf/subscribe [:selected-project])]
-    [:p (str @sp)]))
-
-;; (defn next-project []
-;;   (let [np (rf/subscribe [:next-project])]
-;;     [:p (str @np)]))
-
-;; (defn prev-project []
-;;   (let [np (rf/subscribe [:prev-project])]
-;;     [:p (str @np)]))
+    [:p (str "selected: " @sp)]))
 
 (defn projects
   []
@@ -33,9 +25,7 @@
   []
   [:div
    [title]
-   ;; [prev-project]
    [selected-project]
-   ;; [next-project]
    [projects]])
 
 (defn main-panel []

@@ -20,19 +20,3 @@
     (rf/subscribe [:project-tree]))
   (fn [pt _]
     (:focus pt)))
-
-;; (rf/reg-sub
-;;   :next-project
-;;   (fn [_ _]
-;;     [(rf/subscribe [:project-tree])
-;;      (rf/subscribe [:selected-project])])
-;;   (fn-traced [[pt sp] _]
-;;              (tree/next-node pt sp)))
-
-;; (rf/reg-sub
-;;   :prev-project
-;;   (fn [_ _]
-;;     [(rf/subscribe [:project-tree])
-;;      (rf/subscribe [:selected-project])])
-;;   (fn [[pt sp] _]
-;;     (tree/prev-node pt sp)))

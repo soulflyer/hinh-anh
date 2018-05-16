@@ -6,8 +6,9 @@
 (enable-console-print!)
 
 (fw/watch-and-reload
- :websocket-url   "ws://localhost:3441/figwheel-ws"
- :jsload-callback 'start-descjop!)
+  :websocket-url   "ws://localhost:3441/figwheel-ws"
+  ;;:jsload-callback "core/mount-root"
+  )
 
 (defn start-descjop! []
   (core/init! conf/setting))

@@ -8,7 +8,9 @@
                 [[:next-node :project-tree]
                  [{:which 40}]]
                 [[:prev-node :project-tree]
-                 [{:which 38}]]]
+                 [{:which 38}]]
+                [[:open-selected :project-tree]
+                 [{:which 13}]]]
    ;; :prevent-default-keys [{:which 38}
    ;;                        {:which 40}]
    })
