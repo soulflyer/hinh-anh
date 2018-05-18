@@ -19,9 +19,13 @@
   (reagent/render [views/main-panel]
                   (.getElementById js/document "app")))
 
-(defn init! [setting]
+(defn ^:export init []
   (re-frame/dispatch-sync [::events/initialize-db])
   (re-frame/dispatch-sync [::rp/add-keyboard-event-listener "keydown"])
   (dev-setup)
+  (println "hello from init!")
   (re-frame/dispatch-sync [:request-projects])
   (mount-root))
+
+(defn ^:export speak []
+  (println "hello from clojurescript"))

@@ -7,6 +7,6 @@ document.write('<script>if (typeof goog == "undefined") console.warn("ClojureScr
 document.write('<script>goog.require("day8.re_frame_10x.preload");</script>');
 document.write('<script>goog.require("figwheel.connect");</script>');
 document.write('<script>goog.require("process.env");</script>');
-document.write('<script>goog.require("anh_front.init");</script>');
+document.write('<script>goog.require("anh_front.core");</script>');
 
 document.write("<script>figwheel.connect.start();</script>");

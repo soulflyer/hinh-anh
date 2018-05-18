@@ -91,7 +91,7 @@
                           :pretty-print true
                           :output-wrapper true}}
 
-    :dev-front {:source-paths ["src_front" "src_front_profile/anh_front/dev"]
+    :dev-front {:source-paths ["src_front"]
                 :incremental true
                 :jar true
                 :assert true
@@ -107,7 +107,7 @@
                            {"re_frame.trace.trace_enabled_QMARK_" true
                             "day8.re_frame.tracing.trace_enabled_QMARK_" true}
                            :preloads [day8.re-frame-10x.preload]
-                           :main "anh-front.init"
+                           :main "anh-front.core"
                            :asset-path "js/out_front"}
                 :figwheel {:on-jsload "anh-front.core/mount-root"}}
 
@@ -127,7 +127,7 @@
                            :pretty-print true
                            :output-wrapper true}}
 
-    :prod-front {:source-paths ["src_front" "src_front_profile/anh_front/prod"]
+    :prod-front {:source-paths ["src_front"]
                  :incremental true
                  :jar true
                  :assert true
