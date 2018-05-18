@@ -60,6 +60,13 @@
   (for [p path]
     (find-name p)))
 
+(defn drop-root
+  "get rid of the leading root entry from a path"
+  [path]
+  (if (= (first path) "root")
+    (vec (rest path))
+    path))
+
 (defn next-node
   "Takes a tree and a path and returns a path to the next node in the tree"
   [tree current-path]
@@ -69,8 +76,8 @@
                         [specter-tree-zip (follow-path current-path)] tree))
         node-name (:name (first next-node))
         node-path (zip/path next-node)]
-    (conj (vec (for [a node-path] (:name a)))
-          node-name)))
+    (drop-root (conj (vec (for [a node-path] (:name a)))
+                     node-name))))
 
 (defn prev-node
   "Given a tree and a node, returns the path to the previous node."
@@ -81,8 +88,8 @@
                         [specter-tree-zip (follow-path current-path)] tree))
         node-name (:name (first prev-node))
         node-path (zip/path prev-node)]
-    (conj (vec (for [a node-path] (:name a)))
-          node-name)))
+    (drop-root (conj (vec (for [a node-path] (:name a)))
+                     node-name))))
 
 (defn child-with-name
   [tree ch]
@@ -111,13 +118,6 @@
   (fn []
     (rf/dispatch [:toggle-expand tree-name path])
     (rf/dispatch [:save-selected tree-name path])))
-
-(defn drop-root
-  "get rid of the leading root entry from a path"
-  [path]
-  (if (= (first path) "root")
-    (vec (rest path))
-    path))
 
 (defn node
   "A tree node built using a :li. Takes a vector representing the path from the root of the tree"

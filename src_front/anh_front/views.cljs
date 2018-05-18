@@ -10,7 +10,7 @@
 
 (defn selected-project []
   (let [sp (rf/subscribe [:selected-project])]
-    [:p (str "selected--: " @sp)]))
+    [:p (str "selected: " @sp)]))
 
 (defn projects
   []

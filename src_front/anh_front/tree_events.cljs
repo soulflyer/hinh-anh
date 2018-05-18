@@ -14,17 +14,6 @@
                            (tree-name db))))))
 
 (rf/reg-event-db
-  :open-selected
-  (fn
-    [db [_ tree-name]]
-    (let [path (:focus db)]
-      (-> db
-          (assoc tree-name (sp/transform
-                             [(tree/path-nav path) :expanded]
-                             not
-                             (tree-name db)))))))
-
-(rf/reg-event-db
   :save-selected
   (fn [db [_ tree-name path]]
     (-> db
@@ -32,6 +21,18 @@
                            [:focus]
                            path
                            (tree-name db))))))
+
+(rf/reg-event-db
+  :open-selected
+  (fn
+    [db [_ tree-name]]
+    (let [path (:focus (get db tree-name))]
+      (println path)
+      (-> db
+          (assoc tree-name (sp/transform
+                             [(tree/path-nav path) :expanded]
+                             not
+                             (tree-name db)))))))
 
 (rf/reg-event-db
   :next-node
