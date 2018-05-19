@@ -1,33 +1,35 @@
 (ns anh-front.views
-  (:require [re-frame.core :as rf]
-            [re-com.core :as rc]
+  (:require [anh-front.projects :as projects]
             [anh-front.subs :as subs]
-            [anh-front.tree :as tree]))
+            [anh-front.tree :as tree]
+            [re-com.core :as rc]
+            [re-frame.core :as rf]))
 
 (defn title []
   (let [name (rf/subscribe [:name])]
     [:h1 @name]))
 
-(defn selected-project []
-  (let [sp (rf/subscribe [:selected-project])]
-    [:p (str "selected: " @sp)]))
+(defn footer []
+  [:h1 "footer"])
 
-(defn projects
-  []
-  (let [tree-name :project-tree
-        tree (rf/subscribe [tree-name])]
-    [:div.projects
-     (tree/root
-       (for [year (:children @tree)]
-         (tree/node @tree tree-name [(:name year)])))]))
+(defn header []
+  [:h1 "header"])
 
 (defn main-panel []
   [rc/v-box
-   :height "100%"
+   :height "100vh"
    :children [[rc/box
-               :child [title]]
-              [rc/scroller
-               :max-height "300px"
-               ;;:size "auto"
-               ;;:max-height "80%"
-               :child [projects]]]])
+               :child [header]
+               :size "none"]
+              [rc/h-split
+               :size "auto"
+               :panel-1 [rc/v-box
+                         :children [[rc/box
+                                     :child [title]]
+                                    [rc/scroller
+                                     :v-scroll :on
+                                     :h-scroll :off
+                                     :child [projects/panel]]]]]
+              [rc/box
+               :size "none"
+               :child [footer]]]])

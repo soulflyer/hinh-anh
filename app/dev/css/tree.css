@@ -7,3 +7,13 @@
 .selected-tree-entry {
     background: lightblue;
 }
+
+html,
+body,
+.full-screen {
+	  height: 100%;
+}
+
+body {
+	  margin: 0;
+}

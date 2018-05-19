@@ -6,14 +6,14 @@
   {:event-keys [[[:say-hello "iain"]
                  [{:which 8}]]
                 [[:next-node :project-tree]
-                 [{:which 40}]]
+                 [{:which 83}]]
                 [[:prev-node :project-tree]
-                 [{:which 38}]]
+                 [{:which 87}]]
                 [[:open-selected :project-tree]
-                 [{:which 39}]
+                 [{:which 68}]
                  [{:which 13}]]
                 [[:up-and-close :project-tree]
-                 [{:which 37}]]]
+                 [{:which 65}]]]
    ;; :prevent-default-keys [{:which 38}
    ;;                        {:which 40}]
    })
