@@ -26,21 +26,15 @@
   :up-and-close
   (fn [{:keys [db]} [_ tree-name]]
     (let [path (tree/up-node (:focus (get db tree-name)))]
-      {:db db
-       :dispatch-n [[:save-selected tree-name path]
+      {:dispatch-n [[:save-selected tree-name path]
                     [:toggle-expand tree-name path]]})))
 
-(rf/reg-event-db
+
+(rf/reg-event-fx
   :open-selected
-  (fn
-    [db [_ tree-name]]
+  (fn [{:keys [db]} [_ tree-name]]
     (let [path (:focus (get db tree-name))]
-      (println path)
-      (-> db
-          (assoc tree-name (sp/transform
-                             [(tree/path-nav path) :expanded]
-                             not
-                             (tree-name db)))))))
+      {:dispatch [:toggle-expand tree-name path]})))
 
 (rf/reg-event-db
   :next-node
