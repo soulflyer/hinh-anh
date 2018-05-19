@@ -91,6 +91,12 @@
     (drop-root (conj (vec (for [a node-path] (:name a)))
                      node-name))))
 
+(defn up-node
+  [path]
+  (if (< 1 (count path))
+    (vec (drop-last path))
+    path))
+
 (defn child-with-name
   [tree ch]
   (some #(when (= ch (:name %)) %) (:children tree)))

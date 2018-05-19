@@ -22,6 +22,14 @@
                            path
                            (tree-name db))))))
 
+(rf/reg-event-fx
+  :up-and-close
+  (fn [{:keys [db]} [_ tree-name]]
+    (let [path (tree/up-node (:focus (get db tree-name)))]
+      {:db db
+       :dispatch-n [[:save-selected tree-name path]
+                    [:toggle-expand tree-name path]]})))
+
 (rf/reg-event-db
   :open-selected
   (fn

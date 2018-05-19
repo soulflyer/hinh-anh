@@ -1,6 +1,6 @@
 (ns anh-front.views
   (:require [re-frame.core :as rf]
-            [re-com.core :as re-com]
+            [re-com.core :as rc]
             [anh-front.subs :as subs]
             [anh-front.tree :as tree]))
 
@@ -21,14 +21,13 @@
        (for [year (:children @tree)]
          (tree/node @tree tree-name [(:name year)])))]))
 
-(defn ui
-  []
-  [:div
-   [title]
-   [selected-project]
-   [projects]])
-
 (defn main-panel []
-  [re-com/v-box
+  [rc/v-box
    :height "100%"
-   :children [[ui]]])
+   :children [[rc/box
+               :child [title]]
+              [rc/scroller
+               :max-height "300px"
+               ;;:size "auto"
+               ;;:max-height "80%"
+               :child [projects]]]])
