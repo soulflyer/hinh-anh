@@ -1,7 +1,7 @@
 (ns anh-front.views
   (:require [anh-front.projects :as projects]
-            [anh-front.subs :as subs]
             [anh-front.tree :as tree]
+            [anh-front.pictures :as pictures]
             [re-com.core :as rc]
             [re-frame.core :as rf]))
 
@@ -27,9 +27,12 @@
                          :children [[rc/box
                                      :child [title]]
                                     [rc/scroller
-                                     :v-scroll :on
+                                     :v-scroll :auto
                                      :h-scroll :off
-                                     :child [projects/panel]]]]]
+                                     :child [projects/panel]]]]
+               :panel-2 [rc/box
+                         :child [pictures/panel]]
+               :initial-split "20%"]
               [rc/box
                :size "none"
                :child [footer]]]])
