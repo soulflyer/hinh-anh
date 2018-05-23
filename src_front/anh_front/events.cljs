@@ -7,6 +7,12 @@
   (fn  [_ _]
     db/default-db))
 
+(rf/reg-event-fx
+  :fetch-pictures
+  (fn [{:keys [db]} _]
+    (let [path (:focus (:project-tree db))]
+      {:dispatch [:request-pictures path]})))
+
 (rf/reg-event-db
   :say-hello
   (fn

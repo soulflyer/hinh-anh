@@ -12,6 +12,8 @@
                 [[:open-selected :project-tree]
                  [{:which 68}]
                  [{:which 13}]]
+                [[:fetch-pictures]
+                 [{:which 32}]]
                 [[:up-and-close :project-tree]
                  [{:which 65}]]]
    ;; :prevent-default-keys [{:which 38}

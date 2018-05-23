@@ -20,3 +20,14 @@
     (rf/subscribe [:project-tree]))
   (fn [pt _]
     (:focus pt)))
+
+(rf/reg-sub
+  :picture-list
+  (fn [db _]
+    (:picture-list db)))
+(rf/reg-sub
+  :pictures
+  (fn [_ _]
+    (rf/subscribe [:picture-list]))
+  (fn [pics _]
+    (get-in  pics :pictures)))

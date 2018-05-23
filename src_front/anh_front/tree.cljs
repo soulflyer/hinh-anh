@@ -130,6 +130,7 @@
   [tree tree-name path]
   (let [label (str (last path))
         expanded (expanded? tree path)]
+    ^{:key (reduce str (interpose "-" path))}
     [:li
      [re-com/v-box
       :children
