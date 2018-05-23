@@ -23,6 +23,6 @@ figwheel_server.log
 /app/prod/js/out_main
 /app/prod/js/cljsbuild-main.js
 /app/prod/js/front.js
-.#.*
+.#*
 .lein-failures
 .cljs_rhino_repl/*

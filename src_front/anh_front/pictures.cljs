@@ -1,18 +1,19 @@
 (ns anh-front.pictures
   (:require [re-com.core :as rc]
-            [re-frame.core :as rf]))
+            [re-frame.core :as rf]
+            [anh-front.picture :as picture]))
 
 (defn panel []
-  [rc/scroller
-   :child
-   [rc/v-box
-    :height "100vh"
-    :children
-    [[:h1 "Pictures go here"]
-     (let [pic-list (rf/subscribe [:picture-list])
-           pics (:pictures @pic-list)]
-       (for [pic pics]
-         [rc/box
-          :child
-          [:p (get pic "Version")]]))
-     ]]])
+  [rc/v-box
+   :height "100vh"
+   :width "100vh"
+   :justify :between
+   :children
+   [(let [pic-list (rf/subscribe [:picture-list])
+          pics     (:pictures @pic-list)
+          columns  (rf/subscribe [:picture-columns])
+          rows     (partition 3 3 [] pics)]
+      (for [row rows]
+        [rc/h-box
+         :children (for [pic row]
+                     [picture/panel pic])]))]])

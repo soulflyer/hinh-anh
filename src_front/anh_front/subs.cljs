@@ -25,6 +25,12 @@
   :picture-list
   (fn [db _]
     (:picture-list db)))
+
+(rf/reg-sub
+  :picture-columns
+  (fn [db _]
+    (:picture-columns db)))
+
 (rf/reg-sub
   :pictures
   (fn [_ _]
