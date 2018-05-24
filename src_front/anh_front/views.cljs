@@ -1,31 +1,23 @@
 (ns anh-front.views
-  (:require [anh-front.projects :as projects]
-            [anh-front.tree :as tree]
+  (:require [anh-front.footer :as footer]
+            [anh-front.header :as header]
             [anh-front.pictures :as pictures]
-            [re-com.core :as rc]
-            [re-frame.core :as rf]))
-
-(defn title []
-  (let [name (rf/subscribe [:name])]
-    [:h1 @name]))
-
-(defn footer []
-  [:h1 "footer"])
-
-(defn header []
-  [:h1 "header"])
+            [anh-front.pictures-header :as pictures-header]
+            [anh-front.sidebar-header :as sidebar-header]
+            [anh-front.projects :as projects]
+            [re-com.core :as rc]))
 
 (defn main-panel []
   [rc/v-box
    :height "100vh"
    :children [[rc/box
-               :child [header]
+               :child [header/panel]
                :size "none"]
               [rc/h-split
                :size "auto"
                :panel-1 [rc/v-box
                          :children [[rc/box
-                                     :child [title]]
+                                     :child [sidebar-header/panel]]
                                     [rc/scroller
                                      :v-scroll :auto
                                      :h-scroll :off
@@ -33,7 +25,7 @@
                :panel-2 [rc/v-box
                          :size "auto"
                          :children [[rc/box
-                                     :child [:h1 "pictures go here"]]
+                                     :child [pictures-header/panel]]
                                     [rc/scroller
                                      :v-scroll :auto
                                      :h-scroll :off
@@ -41,4 +33,4 @@
                :initial-split "20%"]
               [rc/box
                :size "none"
-               :child [footer]]]])
+               :child [footer/panel]]]])
