@@ -31,11 +31,12 @@
                                      :h-scroll :off
                                      :child [projects/panel]]]]
                :panel-2 [rc/v-box
+                         :size "auto"
                          :children [[rc/box
                                      :child [:h1 "pictures go here"]]
                                     [rc/scroller
-                                     :h-scroll :off
                                      :v-scroll :auto
+                                     :h-scroll :off
                                      :child [pictures/panel]]]]
                :initial-split "20%"]
               [rc/box

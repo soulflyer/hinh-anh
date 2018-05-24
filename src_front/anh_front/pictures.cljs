@@ -5,8 +5,6 @@
 
 (defn panel []
   [rc/v-box
-   :height "100vh"
-   :width "100vh"
    :justify :between
    :children
    [(let [pic-list (rf/subscribe [:picture-list])
@@ -14,6 +12,7 @@
           columns  (rf/subscribe [:picture-columns])
           rows     (partition 3 3 [] pics)]
       (for [row rows]
+        ^{:key (str "row-" (get (first row) "_id"))}
         [rc/h-box
          :children (for [pic row]
                      [picture/panel pic])]))]])
