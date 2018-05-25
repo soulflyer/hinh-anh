@@ -16,8 +16,8 @@
                :style (styles/main)
                :size "auto"
                :panel-1 [rc/v-box
-                         :children [[rc/box
-                                     :child [sidebar-header/panel]]
+                         :children [;; [rc/box
+                                    ;;  :child [sidebar-header/panel]]
                                     [rc/scroller
                                      :v-scroll :auto
                                      :h-scroll :off
@@ -33,5 +33,4 @@
                                      :child [pictures/panel]]]]
                :initial-split "20%"]
               [rc/box
-               :size "none"
                :child [footer/panel]]]])

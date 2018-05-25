@@ -1,12 +1,13 @@
 (ns anh-front.tree
   "Incoming data needs to be rearranged to look something like the data defined
   in test-tree"
-  (:require [re-com.core :as re-com]
-            [re-frame.core :as rf]
-            [day8.re-frame.tracing :refer [defn-traced]]
-            [clojure.zip :as zip]
+  (:require [clojure.string         :as string]
+            [clojure.zip            :as zip]
+            [com.rpl.specter        :as sp]
             [com.rpl.specter.zipper :as sz]
-            [com.rpl.specter :as sp]))
+            [day8.re-frame.tracing  :refer [defn-traced]]
+            [re-frame.core          :as rf]
+            [re-com.core            :as re-com]))
 
 (def test-tree
   {:name "root"
@@ -128,20 +129,24 @@
 (defn node
   "A tree node built using a :li. Takes a vector representing the path from the root of the tree"
   [tree tree-name path]
-  (let [label (str (last path))
-        expanded (expanded? tree path)]
+  (let [expanded (expanded? tree path)
+        ;; Indent the tree using spaces so the whole row can be highlighted
+        level (dec (count path))
+        pad (string/join (take level (repeat "   ")))
+        label (str pad (last path))]
     ^{:key (reduce str (interpose "-" path))}
     [:li
      [re-com/v-box
+      :class (if (= path (drop-root (:focus tree)))
+               "selected-tree-entry"
+               "tree-entry")
+      :on-click (toggle-expand tree-name path)
+      :style {:width "100vh"} ;; Ensures tree entries spread to the full width.
       :children
-      [[re-com/label
-        :label label
-        :class (if (= path (drop-root (:focus tree)))
-                 "selected-tree-entry"
-                 "tree-entry")
-        :on-click (toggle-expand tree-name path)]
+      [[re-com/label :label label]
        (let [ch (children tree path)]
          (if (and expanded (< 0 (count ch)))
-           (into [:ul]
+           (into [:ul {:style {:padding-left "0em", :white-space "pre"}}]
+                 ;; don't let html optimes away the extra spaces, set white-space pre
                  (for [child ch]
                    (node tree tree-name (conj path (:name child)))))))]]]))

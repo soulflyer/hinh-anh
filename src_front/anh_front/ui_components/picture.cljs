@@ -18,12 +18,13 @@
         pic-width (if (< height width)
                     "100%"
                     (str (int (* 100 (/ width height))) "%"))]
+    ;;^{:key (get pic "_id")}
     [rc/box
      :size "auto"
      :width "100vh"
      :child [rc/v-box
              :class "image-container"
-             :style (styles/picture)
+             :style (if version (styles/picture))
              :size "auto"
              :children
              (if version

@@ -21,8 +21,8 @@
                 [[:expand-selected :project-tree]
                  [{:which 39}]
                  [{:which 68}]]]
-   ;; :prevent-default-keys [{:which 38}
-   ;;                        {:which 40}]
+   :prevent-default-keys [{:which 38}
+                          {:which 40}]
    })
 
 (def project-keys
