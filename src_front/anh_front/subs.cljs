@@ -32,6 +32,16 @@
     (:picture-columns db)))
 
 (rf/reg-sub
+  :picture-grid-gap
+  (fn [db _]
+    (:picture-grid-gap db)))
+
+(rf/reg-sub
+  :medium-directory
+  (fn [db _]
+    (:medium-directory db)))
+
+(rf/reg-sub
   :pictures
   (fn [_ _]
     (rf/subscribe [:picture-list]))

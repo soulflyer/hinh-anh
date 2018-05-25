@@ -4,4 +4,4 @@
 (defn panel []
   [rc/box
    :class "sidebar-header-box"
-   :child [:p "Sidebar Header"]])
+   :child [:p "Projects"]])

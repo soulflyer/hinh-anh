@@ -1,4 +1,12 @@
 .image-container {
-    border: solid black;
-    /* margin: 5px; */
+    /* border: solid black; */
+    background: #121212
+}
+
+.image-container p {
+    margin: 0px;
+}
+
+.pictures-scroller {
+    background: #262626
 }

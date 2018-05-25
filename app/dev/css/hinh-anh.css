@@ -1,6 +1,13 @@
+body {
+    background: darkgray;
+}
+
 .header-box, .footer-box{
-    background: lightgray
+    background: lightblue
 }
 .sidebar-header-box, .pictures-header-box {
-    background: gray;
+    background: lightgreen;
+}
+::-webkit-scrollbar {
+    width:0px;
 }

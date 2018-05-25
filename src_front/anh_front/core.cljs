@@ -5,7 +5,7 @@
              [anh-front.tree-events :as tree-events]
              [anh-front.api-events  :as api-events]
              [anh-front.subs        :as reframe-subs]
-             [anh-front.views       :as views]
+             [anh-front.main        :as main]
              [anh-front.config      :as config]
              [anh-front.keys        :as keys]
              [re-pressed.core       :as rp]))
@@ -18,7 +18,7 @@
 (defn mount-root []
   (re-frame/clear-subscription-cache!)
   (keys/setup-keys)
-  (reagent/render [views/main-panel]
+  (reagent/render [main/panel]
                   (.getElementById js/document "app")))
 
 (defn ^:export init []

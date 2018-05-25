@@ -5,4 +5,6 @@
    :project-list {}
    :picture-list {:pictures [{"Version" "empty"}]}
    :picture-columns 3
-   :error "All is well."})
+   :picture-grid-gap "14px"
+   :error "All is well."
+   :medium-directory "/Users/iain/Pictures/Published/medium"})

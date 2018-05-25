@@ -5,20 +5,19 @@
 
 (defn panel []
   [rc/v-box
-   ;;:justify :between
-   ;;:gap "10px"
    :children
    [(let [pic-list (rf/subscribe [:picture-list])
           pics     (:pictures @pic-list)
           columns  (rf/subscribe [:picture-columns])
+          gap      (rf/subscribe [:picture-grid-gap])
           ;; The first line may return a short last row
           ;; rows     (partition 3 3 [] pics)
           rows     (partition 3 3 (repeat []) pics)]
       (interpose
-        [rc/gap :size "5px"]
+        [rc/gap :size @gap]
         (for [row rows]
           ^{:key (str "row-" (get (first row) "_id"))}
           [rc/h-box
-           :gap "5px"
+           :gap @gap
            :children (for [pic row]
                        [picture/panel pic])])))]])
