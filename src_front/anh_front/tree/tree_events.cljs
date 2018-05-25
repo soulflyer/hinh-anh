@@ -12,6 +12,23 @@
                            [(tree/path-nav path) :expanded]
                            not
                            (tree-name db))))))
+(rf/reg-event-db
+  :expand
+  (fn [db [_ tree-name path]]
+    (-> db
+        (assoc tree-name (sp/setval
+                           [(tree/path-nav path) :expanded]
+                           true
+                           (tree-name db))))))
+
+(rf/reg-event-db
+  :collapse
+  (fn [db [_ tree-name path]]
+    (-> db
+        (assoc tree-name (sp/setval
+                           [(tree/path-nav path) :expanded]
+                           false
+                           (tree-name db))))))
 
 (rf/reg-event-db
   :save-selected
@@ -27,14 +44,25 @@
   (fn [{:keys [db]} [_ tree-name]]
     (let [path (tree/up-node (:focus (get db tree-name)))]
       {:dispatch-n [[:save-selected tree-name path]
-                    [:toggle-expand tree-name path]]})))
-
+                    [:collapse tree-name path]]})))
 
 (rf/reg-event-fx
-  :open-selected
+  :toggle-selected
   (fn [{:keys [db]} [_ tree-name]]
     (let [path (:focus (get db tree-name))]
       {:dispatch [:toggle-expand tree-name path]})))
+
+(rf/reg-event-fx
+  :expand-selected
+  (fn [{:keys [db]} [_ tree-name]]
+    (let [path (:focus (get db tree-name))]
+      {:dispatch [:expand tree-name path]})))
+
+(rf/reg-event-fx
+  :collapse-selected
+  (fn [{:keys [db]} [_ tree-name]]
+    (let [path (:focus (get db tree-name))]
+      {:dispatch [:collapse tree-name path]})))
 
 (rf/reg-event-db
   :next-node
