@@ -5,10 +5,10 @@
 (def default-keys
   {:event-keys [[[:say-hello "iain"]
                  [{:which 8}]]
-                [[:next-node :project-tree]
+                [[:next-project-open :project-tree]
                  [{:which 83}]
                  [{:which 40}]]
-                [[:prev-node :project-tree]
+                [[:prev-project-open :project-tree]
                  [{:which 87}]
                  [{:which 38}]]
                 [[:toggle-selected :project-tree]
