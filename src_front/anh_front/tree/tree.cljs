@@ -121,14 +121,15 @@
 (defn expanded? [tree path]
   (sp/select-one [(path-nav path) :expanded] tree))
 
-(defn toggle-expand [tree-name path]
+(defn toggle-expand [tree-name path hook]
   (fn []
     (rf/dispatch [:toggle-expand tree-name path])
-    (rf/dispatch [:save-selected tree-name path])))
+    (rf/dispatch [:save-selected tree-name path])
+    (rf/dispatch [hook])))
 
 (defn node
   "A tree node built using a :li. Takes a vector representing the path from the root of the tree"
-  [tree tree-name path]
+  [tree tree-name path hook]
   (let [expanded (expanded? tree path)
         ;; Indent the tree using spaces so the whole row can be highlighted
         level (dec (count path))
@@ -144,10 +145,10 @@
       :children
       [[re-com/label
         :label label
-        :on-click (toggle-expand tree-name path)]
+        :on-click (toggle-expand tree-name path hook)]
        (let [ch (children tree path)]
          (if (and expanded (< 0 (count ch)))
            (into [:ul {:style {:padding-left "0em", :white-space "pre"}}]
                  ;; don't let html optimes away the extra spaces, set white-space pre
                  (for [child ch]
-                   (node tree tree-name (conj path (:name child)))))))]]]))
+                   (node tree tree-name (conj path (:name child)) hook)))))]]]))

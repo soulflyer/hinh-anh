@@ -9,7 +9,7 @@
     [:div.projects
      (tree/root
        (for [year (:children @tree)]
-         (tree/node @tree tree-name [(:name year)])))]))
+         (tree/node @tree tree-name [(:name year)] :fetch-pictures)))]))
 
 (defn selected-project []
   (let [sp (rf/subscribe [:selected-project])]
