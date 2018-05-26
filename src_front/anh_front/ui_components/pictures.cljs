@@ -6,11 +6,10 @@
 (defn panel []
   [rc/v-box
    :children
-   [(let [pic-list (rf/subscribe [:picture-list])
-          pics     (:pictures @pic-list)
+   [(let [pics     (rf/subscribe [:pictures])
           columns  (rf/subscribe [:picture-columns])
           gap      (rf/subscribe [:picture-grid-gap])
-          rows     (partition 3 3 (repeat []) pics)]
+          rows     (partition @columns @columns (repeat []) @pics)]
       (for [row rows]
         ^{:key (str "row-" (get (first row) "_id"))}
         [rc/h-box

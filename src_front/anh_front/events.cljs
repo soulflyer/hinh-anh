@@ -20,7 +20,8 @@
     (let [tr (:project-tree db)
           path (:focus tr)
           newpath (tree/next-node tr path)]
-      {:dispatch-n [[:request-pictures newpath]
+      {:dispatch-n [(if (= 3 (count newpath))
+                      [:request-pictures newpath])
                     [:next-node :project-tree path]]})))
 
 (rf/reg-event-fx
@@ -29,7 +30,8 @@
     (let [tr (:project-tree db)
           path (:focus tr)
           newpath (tree/prev-node tr path)]
-      {:dispatch-n [[:request-pictures newpath]
+      {:dispatch-n [(if (= 3 (count newpath))
+                      [:request-pictures newpath])
                     [:prev-node :project-tree path]]})))
 
 ;; TODO write expand-or-open, only if automatically opening years is slow

@@ -46,4 +46,11 @@
   (fn [_ _]
     (rf/subscribe [:picture-list]))
   (fn [pics _]
-    (get-in  pics :pictures)))
+    (:pictures pics)))
+
+(rf/reg-sub
+  :focused-pic
+  (fn [_ _]
+    (rf/subscribe [:picture-list]))
+  (fn [pics _]
+    (:focus pics)))

@@ -62,4 +62,4 @@
           resp     (transit/read reader response)]
       (-> db
           (assoc :loading? false)
-          (assoc :picture-list {:focus nil :pictures resp})))))
+          (assoc :picture-list {:focus "199111fire_and_ice59470016" :pictures resp})))))

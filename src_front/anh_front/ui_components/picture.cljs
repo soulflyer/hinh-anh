@@ -8,10 +8,12 @@
 
 (defn panel [pic]
   (let [medium-path (rf/subscribe [:medium-directory])
+        focused-pic (rf/subscribe [:focused-pic])
         version (get pic "Version")
-        year (get pic "Year")
-        month (get pic "Month")
+        year    (get pic "Year")
+        month   (get pic "Month")
         project (get pic "Project")
+        id      (get pic "_id")
         pic-path (str @medium-path "/" year "/" month "/" project "/" version ".jpg")
         width (reader/read-string (get pic "Image-Width"))
         height (reader/read-string (get pic "Image-Height"))
@@ -22,6 +24,9 @@
     [rc/box
      :size "auto"
      :width "100vh"
+     :style (if (= @focused-pic id)
+              {:border "1px solid lightblue"}
+              {:border "1px solid black"})
      :child [rc/v-box
              :class "image-container"
              :style (if version (styles/picture))
