@@ -11,3 +11,6 @@ body {
 ::-webkit-scrollbar {
     width:0px;
 }
+.selected-tree-entry {
+    background: gray;
+}

@@ -116,7 +116,7 @@
 
 (defn root
   [&leaves]
-  [:ul.tree-root &leaves])
+  [:ul.tree-root {:style {:padding "0px 0px 0px 4px"}} &leaves])
 
 (defn expanded? [tree path]
   (sp/select-one [(path-nav path) :expanded] tree))
@@ -135,15 +135,16 @@
         pad (string/join (take level (repeat "   ")))
         label (str pad (last path))]
     ^{:key (reduce str (interpose "-" path))}
-    [:li
+    [:li {:style {:list-style "none"}}
      [re-com/v-box
       :class (if (= path (drop-root (:focus tree)))
                "selected-tree-entry"
                "tree-entry")
-      :on-click (toggle-expand tree-name path)
       :style {:width "100vh"} ;; Ensures tree entries spread to the full width.
       :children
-      [[re-com/label :label label]
+      [[re-com/label
+        :label label
+        :on-click (toggle-expand tree-name path)]
        (let [ch (children tree path)]
          (if (and expanded (< 0 (count ch)))
            (into [:ul {:style {:padding-left "0em", :white-space "pre"}}]
