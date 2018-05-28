@@ -59,7 +59,9 @@
   (fn
     [db [_ response]]
     (let [reader   (transit/reader :json)
-          resp     (transit/read reader response)]
+          resp     (transit/read reader response)
+          first-pic (get (first resp) "_id")
+          ]
       (-> db
           (assoc :loading? false)
-          (assoc :picture-list {:focus "199111fire_and_ice59470016" :pictures resp})))))
+          (assoc :picture-list {:focus first-pic :pictures resp})))))
