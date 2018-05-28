@@ -2,7 +2,8 @@
   (:require [anh-front.api-events     :as api-events]
             [anh-front.config         :as config]
             [anh-front.events         :as events]
-            [anh-front.keys           :as keys]
+            [anh-front.keys           :as ks]
+            [anh-front.key-events     :as key-events]
             [anh-front.main           :as main]
             [anh-front.picture-events :as picture-events]
             [anh-front.subs           :as reframe-subs]
@@ -18,7 +19,7 @@
 
 (defn mount-root []
   (rf/clear-subscription-cache!)
-  (keys/setup-keys)
+  (ks/setup-keys)
   (reagent/render [main/panel]
                   (.getElementById js/document "app")))
 
