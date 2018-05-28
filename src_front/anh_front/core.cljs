@@ -1,14 +1,15 @@
 (ns anh-front.core
-  (:require  [reagent.core          :as reagent :refer [atom]]
-             [re-frame.core         :as re-frame]
-             [anh-front.events      :as events]
-             [anh-front.tree-events :as tree-events]
-             [anh-front.api-events  :as api-events]
-             [anh-front.subs        :as reframe-subs]
-             [anh-front.main        :as main]
-             [anh-front.config      :as config]
-             [anh-front.keys        :as keys]
-             [re-pressed.core       :as rp]))
+  (:require [anh-front.api-events     :as api-events]
+            [anh-front.config         :as config]
+            [anh-front.events         :as events]
+            [anh-front.keys           :as keys]
+            [anh-front.main           :as main]
+            [anh-front.picture-events :as picture-events]
+            [anh-front.subs           :as reframe-subs]
+            [anh-front.tree-events    :as tree-events]
+            [re-frame.core            :as rf]
+            [re-pressed.core          :as rp]
+            [reagent.core             :as reagent :refer [atom]]))
 
 (defn dev-setup []
   (when config/debug?
@@ -16,17 +17,17 @@
     (println "dev mode")))
 
 (defn mount-root []
-  (re-frame/clear-subscription-cache!)
+  (rf/clear-subscription-cache!)
   (keys/setup-keys)
   (reagent/render [main/panel]
                   (.getElementById js/document "app")))
 
 (defn ^:export init []
-  (re-frame/dispatch-sync [::events/initialize-db])
-  (re-frame/dispatch-sync [::rp/add-keyboard-event-listener "keydown"])
+  (rf/dispatch-sync [::events/initialize-db])
+  (rf/dispatch-sync [::rp/add-keyboard-event-listener "keydown"])
   (dev-setup)
   (println "hello from init!")
-  (re-frame/dispatch-sync [:request-projects])
+  (rf/dispatch-sync [:request-projects])
   (mount-root))
 
 (defn ^:export speak []

@@ -49,6 +49,13 @@
     (:pictures pics)))
 
 (rf/reg-sub
+  :picture-ids
+  (fn [_ _]
+    (rf/subscribe [:pictures]))
+  (fn [root _]
+    (zipmap (iterate inc 0) (map #(get % "_id") root))))
+
+(rf/reg-sub
   :focused-pic
   (fn [_ _]
     (rf/subscribe [:picture-list]))

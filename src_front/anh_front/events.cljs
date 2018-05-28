@@ -3,6 +3,8 @@
             [re-frame.core :as rf]
             [anh-front.tree :as tree]))
 
+(def bogus "gotta define something or re-frame-jump-to-reg doesn't find the ns")
+
 (rf/reg-event-db
   ::initialize-db
   (fn  [_ _]
@@ -33,8 +35,6 @@
       {:dispatch-n [(if (= 3 (count newpath))
                       [:request-pictures newpath])
                     [:prev-node :project-tree path]]})))
-
-;; TODO write expand-or-open, only if automatically opening years is slow
 
 (rf/reg-event-db
   :say-hello

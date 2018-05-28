@@ -20,7 +20,15 @@
                  [{:which 37}]]
                 [[:expand-selected :project-tree]
                  [{:which 39}]
-                 [{:which 68}]]]
+                 [{:which 68}]]
+                [[:next-picture]
+                 [{:which 76}]]
+                [[:prev-picture]
+                 [{:which 74}]]
+                [[:down-picture]
+                 [{:which 75}]]
+                [[:up-picture]
+                 [{:which 73}]]]
    :prevent-default-keys [{:which 38}
                           {:which 40}]
    })
