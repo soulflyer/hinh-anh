@@ -15,6 +15,11 @@
     (:project-tree db)))
 
 (rf/reg-sub
+  :displayed-project
+  (fn [db _]
+    (:displayed-project db)))
+
+(rf/reg-sub
   :selected-project
   (fn [_ _]
     (rf/subscribe [:project-tree]))

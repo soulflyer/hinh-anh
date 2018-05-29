@@ -4,7 +4,7 @@
             [clojure.string :as string]))
 
 (defn panel []
-  (let [current (rf/subscribe [:selected-project])
+  (let [current (rf/subscribe [:displayed-project])
         path (string/join "/" @current)
         pics (rf/subscribe [:pictures])
         num        (count @pics)]

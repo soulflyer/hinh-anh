@@ -64,4 +64,5 @@
           ]
       (-> db
           (assoc :loading? false)
-          (assoc :picture-list {:focus first-pic :pictures resp})))))
+          (assoc :picture-list {:focus first-pic :pictures resp})
+          (assoc :displayed-project (get-in db [:project-tree :focus]))))))
