@@ -8,7 +8,7 @@
   :scroll
   (fn [element]
     (if (< 0 (count element))
-      (.scrollIntoViewIfNeeded (.getElementById js/document element) true))))
+      (.scrollIntoViewIfNeeded (.getElementById js/document element) false))))
 
 (rf/reg-event-db
   :toggle-expand
@@ -78,8 +78,14 @@
                                [:focus]
                                #(tree/next-node (tree-name db) %)
                                (tree-name db)))
-     ;; TODO This is not nice, should scroll to the new version of :focus
-     :scroll (reduce str (interpose "-" (get (tree-name db) :focus)))}))
+     ;; TODO This works but there is no guarantee that :focus won't already have changed.
+     :scroll (reduce
+               str
+               (interpose
+                 "-"
+                 (tree/next-node
+                   (tree-name db)
+                   (get (tree-name db) :focus))))}))
 
 (rf/reg-event-fx
   :prev-node
@@ -89,5 +95,10 @@
                                [:focus]
                                #(tree/prev-node (tree-name db) %)
                                (tree-name db)))
-     :scroll (reduce str (interpose "-" (get (tree-name db) :focus)))
-     }))
+     :scroll (reduce
+               str
+               (interpose
+                 "-"
+                 (tree/prev-node
+                   (tree-name db)
+                   (get (tree-name db) :focus))))}))
