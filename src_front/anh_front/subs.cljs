@@ -31,20 +31,10 @@
   (fn [db _]
     (:picture-list db)))
 
-(rf/reg-sub
-  :picture-columns
-  (fn [db _]
-    (:picture-columns db)))
-
-(rf/reg-sub
-  :picture-grid-gap
-  (fn [db _]
-    (:picture-grid-gap db)))
-
-(rf/reg-sub
-  :medium-directory
-  (fn [db _]
-    (:medium-directory db)))
+;; (rf/reg-sub
+;;   :medium-directory
+;;   (fn [db _]
+;;     (:medium-directory db)))
 
 (rf/reg-sub
   :pictures

@@ -40,12 +40,12 @@
                  [[rc/box
                    :child [:p version]]
                   [rc/box
-                   :child [:p (helpers/stars (get pic "Rating"))]]]]
+                   :child [:p {:style {:color "#807020"}}
+                           (helpers/stars (get pic "Rating"))]]]]
                 [rc/box
                  :child
                  [:img
-                  {;;:id id
-                   :src pic-path
+                  {:src pic-path
                    :style {:margin "auto"}
                    :width pic-width}]]
                 [rc/scroller

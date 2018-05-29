@@ -10,4 +10,4 @@
        (image-map "Version") ".jpg"))
 
 (defn stars [num]
-  (str/join (take (js/parseInt num) (repeat "*"))))
+  (str/join (take (js/parseInt num) (repeat "★"))))

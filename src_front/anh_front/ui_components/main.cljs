@@ -1,12 +1,12 @@
 (ns anh-front.main
-  (:require [anh-front.footer :as footer]
-            [anh-front.header :as header]
-            [anh-front.pictures :as pictures]
+  (:require [anh-front.header          :as header]
+            [anh-front.pictures        :as pictures]
             [anh-front.pictures-header :as pictures-header]
-            [anh-front.sidebar-header :as sidebar-header]
-            [anh-front.projects :as projects]
-            [anh-front.styles :as styles]
-            [re-com.core :as rc]))
+            [anh-front.projects        :as projects]
+            [anh-front.sidebar-header  :as sidebar-header]
+            [anh-front.styles          :as styles]
+            [re-com.core               :as rc]
+            [anh-front.footer          :as footer]))
 
 (defn panel []
   [rc/v-box
@@ -16,8 +16,7 @@
                :style (styles/main)
                :size "auto"
                :panel-1 [rc/v-box
-                         :children [;; [rc/box
-                                    ;;  :child [sidebar-header/panel]]
+                         :children [;; [rc/box :child [sidebar-header/panel]]
                                     [rc/scroller
                                      :v-scroll :auto
                                      :h-scroll :off

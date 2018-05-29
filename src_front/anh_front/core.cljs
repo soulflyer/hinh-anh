@@ -1,16 +1,17 @@
 (ns anh-front.core
-  (:require [anh-front.api-events     :as api-events]
-            [anh-front.config         :as config]
-            [anh-front.events         :as events]
-            [anh-front.keys           :as ks]
-            [anh-front.key-events     :as key-events]
-            [anh-front.main           :as main]
-            [anh-front.picture-events :as picture-events]
-            [anh-front.subs           :as reframe-subs]
-            [anh-front.tree-events    :as tree-events]
-            [re-frame.core            :as rf]
-            [re-pressed.core          :as rp]
-            [reagent.core             :as reagent :refer [atom]]))
+  (:require [anh-front.api-events       :as api-events]
+            [anh-front.config           :as config]
+            [anh-front.events           :as events]
+            [anh-front.keys             :as ks]
+            [anh-front.key-events       :as key-events]
+            [anh-front.main             :as main]
+            [anh-front.picture-events   :as picture-events]
+            [anh-front.preferences-subs :as preference-subs]
+            [anh-front.subs             :as reframe-subs]
+            [anh-front.tree-events      :as tree-events]
+            [re-frame.core              :as rf]
+            [re-pressed.core            :as rp]
+            [reagent.core               :as reagent :refer [atom]]))
 
 (defn dev-setup []
   (when config/debug?
