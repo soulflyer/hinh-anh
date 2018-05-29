@@ -5,6 +5,11 @@
 
 (def bogus "gotta define something or re-frame-jump-to-reg doesn't find the ns")
 
+(rf/reg-fx
+  :scroll-into-view
+  (fn [element]
+    (.scrollIntoViewIfNeeded (.getElementById js/document element) false)))
+
 (rf/reg-event-db
   ::initialize-db
   (fn  [_ _]

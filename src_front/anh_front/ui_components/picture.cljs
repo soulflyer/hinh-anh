@@ -22,6 +22,7 @@
                     (str (int (* 100 (/ width height))) "%"))]
     ;;^{:key (get pic "_id")}
     [rc/box
+     :attr {:id id}
      :size "auto"
      :width "100vh"
      :style (if (= @focused-pic id)
@@ -43,7 +44,8 @@
                 [rc/box
                  :child
                  [:img
-                  {:src pic-path
+                  {;;:id id
+                   :src pic-path
                    :style {:margin "auto"}
                    :width pic-width}]]
                 [rc/scroller

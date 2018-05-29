@@ -2,52 +2,50 @@
   (:require [re-frame.core :as rf]
             [clojure.set :as set]))
 
-(rf/reg-event-db
+(rf/reg-event-fx
   :next-picture
-  (fn [db _]
+  (fn [{:keys [db]} _]
     (let [pic-ids    (rf/subscribe [:picture-ids])
           pic-focus  (rf/subscribe [:focused-pic])
           invert-ids (set/map-invert @pic-ids)
-          focus-num  (invert-ids @pic-focus)]
-      (assoc-in db [:picture-list :focus]
-                (get @pic-ids (min
-                                (dec (count @pic-ids))
-                                (inc focus-num)))))))
+          focus-num  (invert-ids @pic-focus)
+          new-id     (get @pic-ids (min (dec (count @pic-ids))
+                                        (inc focus-num)))]
+      {:db (assoc-in db [:picture-list :focus] new-id)
+       :scroll-into-view new-id})))
 
-(rf/reg-event-db
+(rf/reg-event-fx
   :prev-picture
-  (fn [db _]
+  (fn [{:keys [db]} _]
     (let [pic-ids    (rf/subscribe [:picture-ids])
           pic-focus  (rf/subscribe [:focused-pic])
           invert-ids (set/map-invert @pic-ids)
-          focus-num  (invert-ids @pic-focus)]
-      (assoc-in db [:picture-list :focus]
-                (get @pic-ids (max
-                                0
-                                (dec focus-num)))))))
+          focus-num  (invert-ids @pic-focus)
+          new-id     (get @pic-ids (max 0 (dec focus-num)))]
+      {:db (assoc-in db [:picture-list :focus] new-id)
+       :scroll-into-view new-id})))
 
-(rf/reg-event-db
+(rf/reg-event-fx
   :down-picture
-  (fn [db _]
+  (fn [{:keys [db]} _]
     (let [pic-ids    (rf/subscribe [:picture-ids])
           pic-focus  (rf/subscribe [:focused-pic])
           columns    (rf/subscribe [:picture-columns])
           invert-ids (set/map-invert @pic-ids)
-          focus-num  (invert-ids @pic-focus)]
-      (assoc-in db [:picture-list :focus]
-                (get @pic-ids (min
-                                (dec (count @pic-ids))
-                                (+ focus-num @columns)))))))
+          focus-num  (invert-ids @pic-focus)
+          new-id     (get @pic-ids (min (dec (count @pic-ids))
+                                        (+ focus-num @columns)))]
+      {:db (assoc-in db [:picture-list :focus] new-id)
+       :scroll-into-view new-id})))
 
-(rf/reg-event-db
+(rf/reg-event-fx
   :up-picture
-  (fn [db _]
+  (fn [{:keys [db]} _]
     (let [pic-ids    (rf/subscribe [:picture-ids])
           pic-focus  (rf/subscribe [:focused-pic])
           columns    (rf/subscribe [:picture-columns])
           invert-ids (set/map-invert @pic-ids)
-          focus-num  (invert-ids @pic-focus)]
-      (assoc-in db [:picture-list :focus]
-                (get @pic-ids (max
-                                0
-                                (- focus-num @columns)))))))
+          focus-num  (invert-ids @pic-focus)
+          new-id     (get @pic-ids (max 0 (- focus-num @columns)))]
+      {:db (assoc-in db [:picture-list :focus] new-id)
+       :scroll-into-view new-id})))
