@@ -14,28 +14,6 @@
    [[:set-picture-keys]
     [{:which 190}]] ;; .
    ])
-(def default-keys
-  {:event-keys (into
-                 []
-                 (concat
-                   common-keys
-                   [[[:next-project-open :project-tree]
-                     [{:which 83}]]
-                    [[:prev-project-open :project-tree]
-                     [{:which 87}]]
-                    [[:up-and-close :project-tree]
-                     [{:which 65}]]
-                    [[:expand-selected :project-tree]
-                     [{:which 68}]]
-                    [[:next-picture]
-                     [{:which 39}]]
-                    [[:prev-picture]
-                     [{:which 37}]]
-                    [[:down-picture]
-                     [{:which 40}]]
-                    [[:up-picture]
-                     [{:which 38}]]]))
-   :prevent-default-keys prevent-keys})
 
 (def project-keys
   {:event-keys (into
@@ -86,4 +64,4 @@
    (re-frame/dispatch
      [::re-pressed/set-keydown-rules key-map]))
   ([]
-   (setup-keys default-keys)))
+   (setup-keys project-keys)))

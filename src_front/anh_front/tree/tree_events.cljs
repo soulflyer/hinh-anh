@@ -4,6 +4,12 @@
             [re-frame.core :as rf]
             [day8.re-frame.tracing :refer [fn-traced]]))
 
+(rf/reg-fx
+  :scroll
+  (fn [element]
+    (if (< 0 (count element))
+      (.scrollIntoViewIfNeeded (.getElementById js/document element) true))))
+
 (rf/reg-event-db
   :toggle-expand
   (fn [db [_ tree-name path]]
@@ -64,22 +70,24 @@
     (let [path (:focus (get db tree-name))]
       {:dispatch [:collapse tree-name path]})))
 
-(rf/reg-event-db
+(rf/reg-event-fx
   :next-node
   (fn
-    [db [_ tree-name]]
-    (-> db
-        (assoc tree-name (sp/transform
-                           [:focus]
-                           #(tree/next-node (tree-name db) %)
-                           (tree-name db))))))
+    [{:keys [db]} [_ tree-name]]
+    {:db (assoc db tree-name (sp/transform
+                               [:focus]
+                               #(tree/next-node (tree-name db) %)
+                               (tree-name db)))
+     ;; TODO This is not nice, should scroll to the new version of :focus
+     :scroll (reduce str (interpose "-" (get (tree-name db) :focus)))}))
 
-(rf/reg-event-db
+(rf/reg-event-fx
   :prev-node
   (fn
-    [db [_ tree-name]]
-    (-> db
-        (assoc tree-name (sp/transform
-                           [:focus]
-                           #(tree/prev-node (tree-name db) %)
-                           (tree-name db))))))
+    [{:keys [db]} [_ tree-name]]
+    {:db (assoc db tree-name (sp/transform
+                               [:focus]
+                               #(tree/prev-node (tree-name db) %)
+                               (tree-name db)))
+     :scroll (reduce str (interpose "-" (get (tree-name db) :focus)))
+     }))

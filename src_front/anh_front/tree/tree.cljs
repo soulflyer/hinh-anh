@@ -134,9 +134,10 @@
         ;; Indent the tree using spaces so the whole row can be highlighted
         level (dec (count path))
         pad (string/join (take level (repeat "   ")))
-        label (str pad (last path))]
-    ^{:key (reduce str (interpose "-" path))}
-    [:li {:style {:list-style "none"}}
+        label (str pad (last path))
+        path-str (reduce str (interpose "-" path))]
+    ^{:key path-str}
+    [:li {:style {:list-style "none"}  :id path-str}
      [re-com/v-box
       :class (if (= path (drop-root (:focus tree)))
                "selected-tree-entry"
