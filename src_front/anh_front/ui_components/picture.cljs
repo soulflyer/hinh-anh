@@ -7,29 +7,35 @@
             [re-com.core       :as rc]))
 
 (defn panel [pic]
-  (let [medium-path (rf/subscribe [:medium-directory])
-        focused-pic (rf/subscribe [:focused-pic])
-        version (get pic "Version")
-        year    (get pic "Year")
-        month   (get pic "Month")
-        project (get pic "Project")
-        id      (get pic "_id")
-        pic-path (str @medium-path "/" year "/" month "/" project "/" version ".jpg")
-        width (reader/read-string (get pic "Image-Width"))
-        height (reader/read-string (get pic "Image-Height"))
-        pic-width (if (< height width)
-                    "100%"
-                    (str (int (* 100 (/ width height))) "%"))]
+  (let [medium-path  (rf/subscribe [:medium-directory])
+        focused-pic  (rf/subscribe [:focused-pic])
+        border       (rf/subscribe [:picture-border])
+        border-sel   (rf/subscribe [:picture-border-selected])
+        border-width (rf/subscribe [:picture-border-width])
+        version      (get pic "Version")
+        year         (get pic "Year")
+        month        (get pic "Month")
+        project      (get pic "Project")
+        id           (get pic "_id")
+        path         (str  year "/" month "/" project "/" version)
+        pic-path     (str @medium-path "/" path ".jpg")
+        width        (reader/read-string (get pic "Image-Width"))
+        height       (reader/read-string (get pic "Image-Height"))
+        pic-width    (if (< height width)
+                       "100%"
+                       (str (int (* 100 (/ width height))) "%"))]
     ;;^{:key (get pic "_id")}
     [rc/box
-     :attr {:id id}
+     :attr {:id id
+            :on-click #(rf/dispatch [:toggle-select-picture path])}
      :size "auto"
      :width "100vh"
      :style (if (= @focused-pic id)
-              {:border "1px solid lightblue"}
-              {:border "1px solid black"})
+              {:border (str @border-width" solid " @border-sel)}
+              {:border (str @border-width" solid " @border)})
      :child [rc/v-box
              :class "image-container"
+             ;;TODO check if pic is in selected and change background style here
              :style (if version (styles/picture))
              :size "auto"
              :children

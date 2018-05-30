@@ -1,6 +1,7 @@
 (ns anh-front.picture-events
-  (:require [re-frame.core :as rf]
-            [clojure.set :as set]))
+  (:require [clojure.set     :as set]
+            [com.rpl.specter :as sp]
+            [re-frame.core   :as rf]))
 
 (rf/reg-event-fx
   :next-picture
@@ -49,3 +50,12 @@
           new-id     (get @pic-ids (max 0 (- focus-num @columns)))]
       {:db (assoc-in db [:picture-list :focus] new-id)
        :scroll-into-view new-id})))
+
+(rf/reg-event-db
+  :toggle-select-picture
+  (fn  [db [_ pic]]
+    (-> db
+        (assoc :picture-list (sp/transform
+                               [:selected]
+                               #(if (some #{pic} %) (vec (remove #{pic} %)) (into % [pic]))
+                               (:picture-list db))))))

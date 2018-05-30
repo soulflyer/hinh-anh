@@ -1,12 +1,16 @@
-(ns anh-front.styles)
+(ns anh-front.styles
+  (:require [re-frame.core :as rf]))
 ;; TODO Pull the colours from preference subscrptions
 (defn pictures []
-  {:color "#9e9e9e"
-   :background "#262626"
-   :padding "0px 10px"})
+  (let [text-colour (rf/subscribe [:picture-text-colour])
+        background  (rf/subscribe [:pictures-background])]
+    {:color @text-colour
+     :background @background
+     :padding "0px 10px"}))
 
 (defn picture []
-  {:background "#121212"})
+  (let [background (rf/subscribe [:picture-background])]
+    {:background @background}))
 
 (defn main []
   {:margin "0px"})
