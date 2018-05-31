@@ -15,6 +15,11 @@
   (fn  [_ _]
     db/default-db))
 
+(rf/reg-event-db
+  :set-error-message
+  (fn  [db [_ message]]
+    (assoc db :error message)))
+
 (rf/reg-event-fx
   :fetch-pictures
   (fn [{:keys [db]} _]
@@ -40,6 +45,13 @@
       {:dispatch-n [(if (= 3 (count newpath))
                       [:request-pictures newpath])
                     [:prev-node :project-tree path]]})))
+
+(rf/reg-event-fx
+  :open-project-external
+  (fn [{:keys [db]} _]
+    (let [proj (rf/subscribe [:selected-project])
+          path (reduce str (interpose "/" @proj))]
+      {:dispatch [:open-project path]})))
 
 (rf/reg-event-db
   :say-hello

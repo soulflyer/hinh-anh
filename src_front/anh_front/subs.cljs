@@ -11,6 +11,11 @@
     (:name db)))
 
 (rf/reg-sub
+  :error
+  (fn [db _]
+    (:error db)))
+
+(rf/reg-sub
   :project-tree
   (fn [db _]
     (:project-tree db)))

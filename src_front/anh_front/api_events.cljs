@@ -68,3 +68,14 @@
           (assoc :loading? false)
           (assoc :picture-list {:focus first-pic :selected [] :pictures resp})
           (assoc :displayed-project (get-in db [:project-tree :focus]))))))
+
+(rf/reg-event-fx
+  :open-project
+  (fn [{:keys [db]} [_ path]]
+    {:http-xhrio {:method :get
+                  :cross-origin true
+                  :uri             (str config/api-root "/open/project/" path)
+                  :format          (ajax/json-request-format)
+                  :response-format (ajax/json-response-format {:keywords? true})
+                  :on-success      [:set-error-message (str "Opened " path)]
+                  :on-failure      [:load-fail (str "Open " path)]}}))
