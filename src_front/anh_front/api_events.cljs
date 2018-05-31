@@ -1,10 +1,12 @@
 (ns anh-front.api-events
-  (:require [ajax.core :as ajax]
-            [anh-front.config :as config]
-            [anh-front.project-tree :as project-tree]
-            [cognitect.transit :as transit]
-            [re-frame.core :as rf]
-            [day8.re-frame.http-fx :as dont-delete-me-or-http-xhrio-will-go-away]))
+  (:require
+   [anh-front.config       :as config]
+   [anh-front.helpers      :as helpers]
+   [anh-front.project-tree :as project-tree]
+   [cognitect.transit      :as transit]
+   [day8.re-frame.http-fx  :as dont-delete-me-or-http-xhrio-will-go-away]
+   [re-frame.core          :as rf]
+   [ajax.core              :as ajax]))
 
 (rf/reg-event-db
   :load-fail
@@ -60,7 +62,7 @@
     [db [_ response]]
     (let [reader   (transit/reader :json)
           resp     (transit/read reader response)
-          first-pic (get (first resp) "_id")
+          first-pic (helpers/image-path (first resp))
           ]
       (-> db
           (assoc :loading? false)

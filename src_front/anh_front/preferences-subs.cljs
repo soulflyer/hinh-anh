@@ -56,11 +56,11 @@
     (:picture-border prefs)))
 
 (rf/reg-sub
-  :picture-border-selected
+  :picture-border-focused
   (fn [_ _]
     (rf/subscribe [:preferences]))
   (fn [prefs _]
-    (:picture-border-selected prefs)))
+    (:picture-border-focused prefs)))
 
 (rf/reg-sub
   :picture-border-width
@@ -70,8 +70,8 @@
     (:picture-border-width prefs)))
 
 (rf/reg-sub
-  :picture-selected-color
+  :picture-selected-colour
   (fn [_ _]
     (rf/subscribe [:preferences]))
   (fn [preferences _]
-    (:picture-selected-color preferences)))
+    (:picture-selected-colour preferences)))

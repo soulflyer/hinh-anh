@@ -10,14 +10,14 @@
   (let [medium-path  (rf/subscribe [:medium-directory])
         focused-pic  (rf/subscribe [:focused-pic])
         border       (rf/subscribe [:picture-border])
-        border-sel   (rf/subscribe [:picture-border-selected])
+        border-sel   (rf/subscribe [:picture-border-focused])
         border-width (rf/subscribe [:picture-border-width])
+        pic-bg       (rf/subscribe [:picture-background])
+        selected     (rf/subscribe [:selected-pics])
+        pic-sel-col  (rf/subscribe [:picture-selected-colour])
         version      (get pic "Version")
-        year         (get pic "Year")
-        month        (get pic "Month")
-        project      (get pic "Project")
         id           (get pic "_id")
-        path         (str  year "/" month "/" project "/" version)
+        path         (when pic (helpers/image-path pic))
         pic-path     (str @medium-path "/" path ".jpg")
         width        (reader/read-string (get pic "Image-Width"))
         height       (reader/read-string (get pic "Image-Height"))
@@ -26,20 +26,22 @@
                        (str (int (* 100 (/ width height))) "%"))]
     ;;^{:key (get pic "_id")}
     [rc/box
-     :attr {:id id
+     :attr {:id path
             :on-click #(rf/dispatch [:toggle-select-picture path])}
      :size "auto"
      :width "100vh"
-     :style (if (= @focused-pic id)
+     :style (if (= @focused-pic path)
               {:border (str @border-width" solid " @border-sel)}
               {:border (str @border-width" solid " @border)})
      :child [rc/v-box
              :class "image-container"
-             ;;TODO check if pic is in selected and change background style here
-             :style (if version (styles/picture))
+             :style (when version
+                      (if (some #(= % path) @selected)
+                        {:background @pic-sel-col}
+                        {:background @pic-bg}))
              :size "auto"
              :children
-             (if version
+             (when version
                [[rc/h-box
                  :justify :between
                  :children

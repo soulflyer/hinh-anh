@@ -1,8 +1,9 @@
 (ns anh-front.subs
-  (:require [re-frame.core :as rf]
+  (:require [anh-front.helpers :as helpers]
             [anh-front.project-tree :as project-tree]
             [anh-front.tree :as tree]
-            [day8.re-frame.tracing  :refer-macros [fn-traced]]))
+            [day8.re-frame.tracing  :refer-macros [fn-traced]]
+            [re-frame.core :as rf]))
 
 (rf/reg-sub
   :name
@@ -31,11 +32,6 @@
   (fn [db _]
     (:picture-list db)))
 
-;; (rf/reg-sub
-;;   :medium-directory
-;;   (fn [db _]
-;;     (:medium-directory db)))
-
 (rf/reg-sub
   :pictures
   (fn [_ _]
@@ -48,7 +44,7 @@
   (fn [_ _]
     (rf/subscribe [:pictures]))
   (fn [root _]
-    (zipmap (iterate inc 0) (map #(get % "_id") root))))
+    (zipmap (iterate inc 0) (map helpers/image-path root))))
 
 (rf/reg-sub
   :focused-pic
@@ -56,3 +52,10 @@
     (rf/subscribe [:picture-list]))
   (fn [pics _]
     (:focus pics)))
+
+(rf/reg-sub
+  :selected-pics
+  (fn [_ _]
+    (rf/subscribe [:picture-list]))
+  (fn [picture-list _]
+    (:selected picture-list)))

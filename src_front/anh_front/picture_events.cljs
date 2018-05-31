@@ -51,11 +51,24 @@
       {:db (assoc-in db [:picture-list :focus] new-id)
        :scroll-into-view new-id})))
 
-(rf/reg-event-db
+(rf/reg-event-fx
   :toggle-select-picture
-  (fn  [db [_ pic]]
-    (-> db
-        (assoc :picture-list (sp/transform
-                               [:selected]
-                               #(if (some #{pic} %) (vec (remove #{pic} %)) (into % [pic]))
-                               (:picture-list db))))))
+  (fn  [{:keys [db]} [_ pic]]
+    {:db (assoc db :picture-list (sp/transform
+                                   [:selected]
+                                   #(if (some #{pic} %)
+                                      (vec (remove #{pic} %))
+                                      (into % [pic]))
+                                   (:picture-list db)))
+     :dispatch [:set-picture-keys]}))
+
+(rf/reg-event-fx
+  :toggle-select-focused-pic
+  (fn [{:keys [db]} _]
+    (let [path (rf/subscribe [:focused-pic])]
+      {:dispatch [:toggle-select-picture @path]})))
+
+(rf/reg-event-fx
+  :clear-all
+  (fn [{:keys [db]} _]
+    {:db (assoc-in db [:picture-list :selected] [])}))

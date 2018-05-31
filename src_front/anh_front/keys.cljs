@@ -7,12 +7,14 @@
    ])
 
 (def common-keys
-  [[[:say-hello "iain"]
-    [{:which 8}]] ;; del
-   [[:set-project-keys]
+  [[[:set-project-keys]
     [{:which 188}]] ;; ,
    [[:set-picture-keys]
     [{:which 190}]] ;; .
+   [[:toggle-select-focused-pic]
+    [{:which 13}]] ;;ret
+   [[:clear-all]
+    [{:which 8}]] ;; del
    ])
 
 (def project-keys
@@ -37,6 +39,9 @@
                     [[:expand-selected :project-tree]
                      [{:which 39}] ;; right
                      [{:which 68}] ;;d
+                     ]
+                    [[:set-picture-keys]
+                     [{:which 191}] ;; /
                      ]]))
    :prevent-default-keys prevent-keys})
 
@@ -46,17 +51,24 @@
                  (concat
                    common-keys
                    [[[:next-picture]
-                     [{:which 68}]
-                     [{:which 39}]]
+                     [{:which 68}] ;; d
+                     [{:which 39}] ;; right
+                     ]
                     [[:prev-picture]
-                     [{:which 65}]
-                     [{:which 37}]]
+                     [{:which 65}] ;; a
+                     [{:which 37}] ;; left
+                     ]
                     [[:down-picture]
-                     [{:which 83}]
-                     [{:which 40}]]
+                     [{:which 83}] ;; s
+                     [{:which 40}] ;; down
+                     ]
                     [[:up-picture]
-                     [{:which 87}]
-                     [{:which 38}]]]))
+                     [{:which 87}] ;; w
+                     [{:which 38}] ;; up
+                     ]
+                    [[:set-project-keys]
+                     [{:which 191}] ;; /
+                     ]]))
    :prevent-default-keys prevent-keys})
 
 (defn setup-keys
