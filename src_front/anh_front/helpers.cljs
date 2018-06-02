@@ -13,3 +13,14 @@
 
 (defn stars [num]
   (str/join (take (js/parseInt num) (repeat "★"))))
+
+(defn path->id
+  "convert a path to the corresponding _id, ie. remove all the / characters."
+  [path]
+  (str/join (str/split path #"/")))
+
+(defn get-pic
+  "given a vector of picture maps and a path return the map representing that picture"
+  [pictures path]
+  (let [id (path->id path)]
+    (first (filter #(= id (get % "_id")) pictures))))

@@ -25,6 +25,29 @@
   (fn [db _]
     (:displayed-project db)))
 
+;; (rf/reg-sub
+;;   :picture-display
+;;   (fn [db _]
+;;     (:picture-display db)))
+
+(rf/reg-sub
+  :picture-display-list
+  (fn [db _]
+    (:picture-display-list db)))
+
+(rf/reg-sub
+  :picture-display-index
+  (fn [db _]
+    (:picture-display-index db)))
+
+(rf/reg-sub
+  :picture-display
+  (fn [_ _]
+    [(rf/subscribe [:picture-display-list])
+     (rf/subscribe [:picture-display-index])])
+  (fn [[picture-display-list picture-display-index] _]
+    (nth picture-display-list picture-display-index)))
+
 (rf/reg-sub
   :selected-project
   (fn [_ _]

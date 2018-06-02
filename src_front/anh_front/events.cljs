@@ -20,6 +20,21 @@
   (fn  [db [_ message]]
     (assoc db :error message)))
 
+(rf/reg-event-db
+  :set-display
+  (fn [db [_ display-type]]
+    (assoc db :picture-display-index display-type)))
+
+(rf/reg-event-fx
+  :rotate-display
+  (fn [{:keys [db]} _]
+    (let [list  (rf/subscribe [:picture-display-list])
+          index (rf/subscribe [:picture-display-index])
+          len   (count @list)
+          new-index (mod (inc @index) len)]
+      {:dispatch-n [[:set-display new-index]
+                    [:set-picture-keys]]})))
+
 (rf/reg-event-fx
   :fetch-pictures
   (fn [{:keys [db]} _]

@@ -12,14 +12,14 @@
    [[:set-picture-keys]
     [{:which 190}]] ;; .
    [[:toggle-select-focused-pic]
-    [{:which 32}]  ;; space
-    [{:which 13}]] ;; ret
+    [{:which 32}]] ;; space
    [[:clear-all]
     [{:which 8}]] ;; del
    [[:open-project-external]
     [{:which 80
-      :metaKey true}] ;; meta p
-    ]
+      :metaKey true}]] ;; meta p
+   [[:rotate-display]
+    [{:which 13}]] ;; ret
    ])
 
 (def project-keys

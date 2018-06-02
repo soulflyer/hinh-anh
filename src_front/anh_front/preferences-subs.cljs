@@ -14,6 +14,13 @@
     (:medium-directory root)))
 
 (rf/reg-sub
+  :large-directory
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:large-directory preferences)))
+
+(rf/reg-sub
   :picture-columns
   (fn [_ _]
     (rf/subscribe [:preferences]))
