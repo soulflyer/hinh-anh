@@ -24,12 +24,14 @@
                :panel-2 [rc/v-box
                          :size "auto"
                          :children [;; [rc/box :child [pictures-header/panel]]
-                                    [rc/scroller
-                                     :class "pictures-scroller"
-                                     :style (styles/pictures)
-                                     :v-scroll :auto
-                                     :h-scroll :off
-                                     :child [pictures/panel]]]]
+                                    [pictures/panel]
+                                    ;; [rc/scroller
+                                    ;;  :class "pictures-scroller"
+                                    ;;  :style (styles/pictures)
+                                    ;;  :v-scroll :auto
+                                    ;;  :h-scroll :off
+                                    ;;  :child [pictures/panel]]
+                                    ]]
                :initial-split "20%"]
               [rc/box
                :child [footer/panel]]]])
