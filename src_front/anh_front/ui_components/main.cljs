@@ -10,7 +10,8 @@
             [re-frame.core :as rf]))
 
 (defn panel []
-  (let [focus (rf/subscribe [:panel-focus])]
+  (let [focus (rf/subscribe [:panel-focus])
+        hide-footer (rf/subscribe [:hide-footer])]
     [rc/v-box
      :height "100vh"
      :children [ ;;[rc/box :child [header/panel] :size "none"]
@@ -30,14 +31,8 @@
                  :panel-2 [rc/v-box
                            :size "auto"
                            :children [ ;; [rc/box :child [pictures-header/panel]]
-                                      [pictures/panel]
-                                      ;; [rc/scroller
-                                      ;;  :class "pictures-scroller"
-                                      ;;  :style (styles/pictures)
-                                      ;;  :v-scroll :auto
-                                      ;;  :h-scroll :off
-                                      ;;  :child [pictures/panel]]
-                                      ]]
+                                      [pictures/panel]]]
                  :initial-split "20%"]
-                [rc/box
-                 :child [footer/panel]]]]))
+                (if (not @hide-footer)
+                  [rc/box
+                   :child [footer/panel]])]]))

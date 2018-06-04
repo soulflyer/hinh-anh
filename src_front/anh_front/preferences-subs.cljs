@@ -82,3 +82,17 @@
     (rf/subscribe [:preferences]))
   (fn [preferences _]
     (:picture-selected-colour preferences)))
+
+(rf/reg-sub
+  :footer-colour
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:footer-colour preferences)))
+
+(rf/reg-sub
+  :footer-background
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:footer-background preferences)))

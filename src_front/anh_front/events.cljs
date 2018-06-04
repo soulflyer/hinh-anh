@@ -9,7 +9,9 @@
 (rf/reg-fx
   :scroll-into-view
   (fn [element]
-    (.scrollIntoViewIfNeeded (.getElementById js/document element) false)))
+    (let [dom-element (.getElementById js/document element)]
+      (when dom-element
+        (.scrollIntoViewIfNeeded dom-element false)))))
 
 (rf/reg-event-db
   ::initialize-db
@@ -20,6 +22,17 @@
   :set-error-message
   (fn  [db [_ message]]
     (assoc db :error message)))
+
+(rf/reg-event-db
+  :hide-footer
+  (fn  [db _]
+    (assoc-in db [:preferences :hide-footer] true)))
+
+(rf/reg-event-fx
+  :toggle-footer
+  (fn [{:keys [db]} _]
+    (let [hf (rf/subscribe [:hide-footer])]
+      {:db (assoc-in db [:preferences :hide-footer] (not @hf))})))
 
 (rf/reg-event-fx
   :next-panel

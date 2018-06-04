@@ -26,4 +26,7 @@
     :picture-border-focused "lightblue"
     :picture-selected-colour "#1c4563"
     :picture-border-width "1px"
+    :hide-footer false
+    :footer-colour "#808080"
+    :footer-background "#f1f1f1"
     }})

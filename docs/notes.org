@@ -99,3 +99,4 @@ already displayed in the pictures panel
 ** Filters
 *** TODO [#F] Filter by stars
 *** TODO [#F] Filter by colour label.
+** TODO [#G] Remove dependacyon css to colour the selected tree item. One possible solution is to have calls to subscriptions that are defined outside of tree.cljs. Idealy these would be conditional so that it would still work independantly of ant external code.

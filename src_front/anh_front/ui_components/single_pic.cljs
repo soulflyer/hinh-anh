@@ -16,6 +16,7 @@
         width        (reader/read-string (get pic "Image-Width"))
         height       (reader/read-string (get pic "Image-Height"))]
     [rc/box
+     :attr {:id path}
      :style {:background-image (str "url(" pic-path ")")
              :background-size "contain"
              :background-repeat "no-repeat"

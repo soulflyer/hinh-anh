@@ -16,6 +16,13 @@
     (:error db)))
 
 (rf/reg-sub
+  :hide-footer
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:hide-footer preferences)))
+
+(rf/reg-sub
   :panel-focus
   (fn [db _]
     (:panel-focus db)))
@@ -41,11 +48,6 @@
   :displayed-project
   (fn [db _]
     (:displayed-project db)))
-
-;; (rf/reg-sub
-;;   :picture-display
-;;   (fn [db _]
-;;     (:picture-display db)))
 
 (rf/reg-sub
   :picture-display-list

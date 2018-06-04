@@ -28,3 +28,6 @@ li {
 .selected-tree-entry {
     background: gray;
 }
+p {
+    margin:0px;
+}

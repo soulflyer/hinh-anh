@@ -12,15 +12,11 @@
     [{:which 188}]] ;; ,
    [[:set-keys :pictures]
     [{:which 190}]] ;; .
-   [[:toggle-select-focused-pic]
-    [{:which 32}]] ;; space
    [[:clear-all]
     [{:which 8}]] ;; del
    [[:open-project-external]
     [{:which 80
       :metaKey true}]] ;; meta p
-   [[:rotate-display]
-    [{:which 13}]] ;; ret
    [[:next-panel]
     [{:which 9}]]  ;; tab
    ])
@@ -73,6 +69,12 @@
                     [[:up-picture]
                      [{:which 87}] ;; w
                      [{:which 38}] ;; up
+                     ]
+                    [[:toggle-select-focused-pic]
+                     [{:which 32}] ;; space
+                     ]
+                    [[:rotate-display]
+                     [{:which 13}] ;; ret
                      ]
                     [[:set-keys :projects]
                      [{:which 191}] ;; /

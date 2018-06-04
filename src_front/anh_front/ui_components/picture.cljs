@@ -15,6 +15,8 @@
         pic-bg       (rf/subscribe [:picture-background])
         selected     (rf/subscribe [:selected-pics])
         pic-sel-col  (rf/subscribe [:picture-selected-colour])
+        panel-focus  (rf/subscribe [:panel-focus])
+        focused      (= :pictures @panel-focus)
         version      (get pic "Version")
         id           (get pic "_id")
         path         (when pic (helpers/image-path pic))
@@ -30,7 +32,7 @@
             :on-click #(rf/dispatch [:toggle-select-picture path])}
      :size "auto"
      :width "100vh"
-     :style (if (= @focused-pic path)
+     :style (if (and (= @focused-pic path) (= :pictures @panel-focus))
               {:border (str @border-width" solid " @border-sel)}
               {:border (str @border-width" solid " @border)})
      :child [rc/v-box

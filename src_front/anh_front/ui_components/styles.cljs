@@ -14,3 +14,9 @@
 
 (defn main []
   {:margin "0px"})
+
+(defn footer []
+  (let [bg (rf/subscribe [:footer-background])
+        fg (rf/subscribe [:footer-colour])]
+    {:background @bg
+     :color @fg}))
