@@ -142,7 +142,7 @@
       :class (if (= path (drop-root (:focus tree)))
                "selected-tree-entry"
                "tree-entry")
-      :style {:width "100vh"} ;; Ensures tree entries spread to the full width.
+      ;;:style {:width "100vh"} ;; Ensures tree entries spread to the full width.
       :children
       [[re-com/label
         :label label

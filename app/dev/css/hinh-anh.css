@@ -12,6 +12,19 @@ body {
 ::-webkit-scrollbar {
     width:0px;
 }
+
+li {
+    border: solid 1px darkgray;
+}
+
+.focused-panel .selected-tree-entry {
+    border: solid 1px lightblue;
+}
+
+.unfocused-panel .selected-tree-entry {
+    border: solid 1px gray
+}
+
 .selected-tree-entry {
     background: gray;
 }
