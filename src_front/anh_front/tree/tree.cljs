@@ -150,6 +150,6 @@
        (let [ch (children tree path)]
          (if (and expanded (< 0 (count ch)))
            (into [:ul {:style {:padding-left "0em", :white-space "pre"}}]
-                 ;; don't let html optimes away the extra spaces, set white-space pre
+                 ;; don't let html optimise away the extra spaces, set white-space pre
                  (for [child ch]
                    (node tree tree-name (conj path (:name child)) hook)))))]]]))

@@ -3,14 +3,19 @@
             [re-frame.core :as rf]
             [re-pressed.core :as rp]))
 
-(rf/reg-event-fx
-  :set-project-keys
-  (fn [{:keys [db]} _]
-    (let [a 1]
-      {:dispatch [::rp/set-keydown-rules ks/project-keys]})))
+;; (rf/reg-event-fx
+;;   :set-project-keys
+;;   (fn [{:keys [db]} _]
+;;     {:dispatch-n [[::rp/set-keydown-rules (ks/key-rules :project)]
+;;                   [:set-display 0]]}))
+
+;; (rf/reg-event-fx
+;;   :set-picture-keys
+;;   (fn [{:keys [db]} _]
+;;     {:dispatch [::rp/set-keydown-rules (ks/key-rules :pictures)]}))
 
 (rf/reg-event-fx
-  :set-picture-keys
-  (fn [{:keys [db]} _]
-    (let [a 1]
-      {:dispatch [::rp/set-keydown-rules ks/picture-keys]})))
+  :set-keys
+  (fn [{:keys [db]} [_ panel]]
+    (let [key-rules ks/picture-keys]
+      {:dispatch [::rp/set-keydown-rules (ks/key-rules panel)]})))

@@ -1,7 +1,8 @@
 (ns anh-front.events
   (:require [anh-front.db :as db]
             [re-frame.core :as rf]
-            [anh-front.tree :as tree]))
+            [anh-front.tree :as tree]
+            [clojure.set :as set]))
 
 (def bogus "gotta define something or re-frame-jump-to-reg doesn't find the ns")
 
@@ -20,6 +21,19 @@
   (fn  [db [_ message]]
     (assoc db :error message)))
 
+(rf/reg-event-fx
+  :next-panel
+  (fn [{:keys [db]} _]
+    (let [focus-map  (rf/subscribe [:panel-focus-map])
+          focus      (rf/subscribe [:panel-focus])
+          invert-map (set/map-invert @focus-map)
+          focus-num  (invert-map @focus)
+          new-panel  (get @focus-map
+                          (mod (inc focus-num)
+                               (count @focus-map)))]
+      {:db (assoc db :panel-focus new-panel)
+       :dispatch [:set-keys new-panel]})))
+
 (rf/reg-event-db
   :set-display
   (fn [db [_ display-type]]
@@ -33,7 +47,7 @@
           len   (count @list)
           new-index (mod (inc @index) len)]
       {:dispatch-n [[:set-display new-index]
-                    [:set-picture-keys]]})))
+                    [:set-keys :pictures]]})))
 
 (rf/reg-event-fx
   :fetch-pictures

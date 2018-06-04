@@ -87,8 +87,9 @@ ReferenceError: document is not defined
 Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.
 * Things TODO
 ** TODO [#C] Open a list of pictures.
-** TODO [#A] Show image in right panel
-Image is now showing, but needs reworking to ensure it always fits without scrolling.
+** DONE [#A] Show image in right panel
+   CLOSED: [2018-06-02 Sat 18:33]
+Not perfect, a border round the pic would be nice.
 ** TODO [#C] Display pic details in left panel
 ** Keywords
 already displayed in the pictures panel

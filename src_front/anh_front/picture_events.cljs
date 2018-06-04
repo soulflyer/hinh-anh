@@ -60,7 +60,7 @@
                                       (vec (remove #{pic} %))
                                       (into % [pic]))
                                    (:picture-list db)))
-     :dispatch [:set-picture-keys]}))
+     :dispatch [:set-keys :pictures]}))
 
 (rf/reg-event-fx
   :toggle-select-focused-pic

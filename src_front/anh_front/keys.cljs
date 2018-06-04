@@ -4,12 +4,13 @@
 (def prevent-keys
   [{:which 38} ;; up
    {:which 40} ;; down
+   {:which 9}  ;; tab
    ])
 
 (def common-keys
-  [[[:set-project-keys]
+  [[[:set-keys :projects]
     [{:which 188}]] ;; ,
-   [[:set-picture-keys]
+   [[:set-keys :pictures]
     [{:which 190}]] ;; .
    [[:toggle-select-focused-pic]
     [{:which 32}]] ;; space
@@ -20,6 +21,8 @@
       :metaKey true}]] ;; meta p
    [[:rotate-display]
     [{:which 13}]] ;; ret
+   [[:next-panel]
+    [{:which 9}]]  ;; tab
    ])
 
 (def project-keys
@@ -45,7 +48,7 @@
                      [{:which 39}] ;; right
                      [{:which 68}] ;;d
                      ]
-                    [[:set-picture-keys]
+                    [[:set-keys :pictures]
                      [{:which 191}] ;; /
                      ]]))
    :prevent-default-keys prevent-keys})
@@ -71,10 +74,16 @@
                      [{:which 87}] ;; w
                      [{:which 38}] ;; up
                      ]
-                    [[:set-project-keys]
+                    [[:set-keys :projects]
                      [{:which 191}] ;; /
                      ]]))
    :prevent-default-keys prevent-keys})
+(defn key-rules
+  [panel]
+  (case panel
+    :projects project-keys
+    :pictures picture-keys
+    project-keys))
 
 (defn setup-keys
   ([key-map]

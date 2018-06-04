@@ -16,6 +16,23 @@
     (:error db)))
 
 (rf/reg-sub
+  :panel-focus
+  (fn [db _]
+    (:panel-focus db)))
+
+(rf/reg-sub
+  :panel-focus-list
+  (fn [db _]
+    (:panel-focus-list db)))
+
+(rf/reg-sub
+  :panel-focus-map
+  (fn [_ _]
+    (rf/subscribe [:panel-focus-list]))
+  (fn [panel-focus-list _]
+    (zipmap (iterate inc 0) panel-focus-list)))
+
+(rf/reg-sub
   :project-tree
   (fn [db _]
     (:project-tree db)))

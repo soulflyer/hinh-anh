@@ -2,9 +2,10 @@ body {
     background: darkgray;
 }
 
-.header-box, .footer-box{
-    background: lightblue
-}
+/* .header-box, .footer-box{ */
+/*     background: lightblue */
+/* } */
+
 .sidebar-header-box, .pictures-header-box {
     background: lightgreen;
 }
