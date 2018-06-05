@@ -69,6 +69,14 @@
       {:dispatch [:toggle-select-picture @path]})))
 
 (rf/reg-event-fx
+  :toggle-select-and-focus
+  (fn [{:keys [db]} [_ pic]]
+    (let [a 1]
+      ;;TODO get the pic id to save to
+      {:db (assoc-in db [:picture-list :focus] pic)
+       :dispatch [:toggle-select-picture pic]})))
+
+(rf/reg-event-fx
   :clear-all
   (fn [{:keys [db]} _]
     {:db (assoc-in db [:picture-list :selected] [])}))

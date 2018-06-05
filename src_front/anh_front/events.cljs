@@ -47,6 +47,11 @@
       {:db (assoc db :panel-focus new-panel)
        :dispatch [:set-keys new-panel]})))
 
+(rf/reg-event-fx
+  :set-left-panel
+  (fn [{:keys [db]} [_ new-panel]]
+    {:db (assoc-in db [:panel-focus-list 0] new-panel )}))
+
 (rf/reg-event-db
   :set-display
   (fn [db [_ display-type]]

@@ -19,6 +19,9 @@
       :metaKey true}]] ;; meta p
    [[:next-panel]
     [{:which 9}]]  ;; tab
+   [[:toggle-footer]
+    [{:which 70
+      :metaKey true}]] ;;meta f
    ])
 
 (def project-keys

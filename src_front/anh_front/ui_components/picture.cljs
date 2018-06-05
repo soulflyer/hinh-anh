@@ -29,7 +29,7 @@
     ;;^{:key (get pic "_id")}
     [rc/box
      :attr {:id path
-            :on-click #(rf/dispatch [:toggle-select-picture path])}
+            :on-click #(rf/dispatch [:toggle-select-and-focus path])}
      :size "auto"
      :width "100vh"
      :style (if (and (= @focused-pic path) (= :pictures @panel-focus))

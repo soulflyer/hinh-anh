@@ -10,8 +10,9 @@
             [re-frame.core :as rf]))
 
 (defn panel []
-  (let [focus (rf/subscribe [:panel-focus])
-        hide-footer (rf/subscribe [:hide-footer])]
+  (let [focus       (rf/subscribe [:panel-focus])
+        hide-footer (rf/subscribe [:hide-footer])
+        first-panel (rf/subscribe [:first-panel])]
     [rc/v-box
      :height "100vh"
      :children [ ;;[rc/box :child [header/panel] :size "none"]
@@ -24,10 +25,14 @@
                                       [rc/scroller
                                        :v-scroll :auto
                                        :h-scroll :off
+                                       ;; TODO this sets class so css can colour the focused
+                                       ;; item. Should call an event instead
                                        :class (if (= :projects @focus)
                                                 "focused-panel"
                                                 "unfocused-panel")
-                                       :child [projects/panel]]]]
+                                       :child (case @first-panel
+                                                :projects [projects/panel]
+                                                [:p "Default panel" ])]]]
                  :panel-2 [rc/v-box
                            :size "auto"
                            :children [ ;; [rc/box :child [pictures-header/panel]]

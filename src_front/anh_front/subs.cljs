@@ -33,6 +33,13 @@
     (:panel-focus-list db)))
 
 (rf/reg-sub
+  :first-panel
+  (fn [_ _]
+    (rf/subscribe [:panel-focus-list]))
+  (fn [panel-focus-list _]
+    (first panel-focus-list)))
+
+(rf/reg-sub
   :panel-focus-map
   (fn [_ _]
     (rf/subscribe [:panel-focus-list]))
