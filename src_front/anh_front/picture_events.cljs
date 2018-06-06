@@ -7,7 +7,7 @@
   :next-picture
   (fn [{:keys [db]} _]
     (let [pic-ids    (rf/subscribe [:picture-ids])
-          pic-focus  (rf/subscribe [:focused-pic])
+          pic-focus  (rf/subscribe [:focused-pic-path])
           invert-ids (set/map-invert @pic-ids)
           focus-num  (invert-ids @pic-focus)
           new-id     (get @pic-ids (min (dec (count @pic-ids))
@@ -19,7 +19,7 @@
   :prev-picture
   (fn [{:keys [db]} _]
     (let [pic-ids    (rf/subscribe [:picture-ids])
-          pic-focus  (rf/subscribe [:focused-pic])
+          pic-focus  (rf/subscribe [:focused-pic-path])
           invert-ids (set/map-invert @pic-ids)
           focus-num  (invert-ids @pic-focus)
           new-id     (get @pic-ids (max 0 (dec focus-num)))]
@@ -30,7 +30,7 @@
   :down-picture
   (fn [{:keys [db]} _]
     (let [pic-ids    (rf/subscribe [:picture-ids])
-          pic-focus  (rf/subscribe [:focused-pic])
+          pic-focus  (rf/subscribe [:focused-pic-path])
           columns    (rf/subscribe [:picture-columns])
           invert-ids (set/map-invert @pic-ids)
           focus-num  (invert-ids @pic-focus)
@@ -43,7 +43,7 @@
   :up-picture
   (fn [{:keys [db]} _]
     (let [pic-ids    (rf/subscribe [:picture-ids])
-          pic-focus  (rf/subscribe [:focused-pic])
+          pic-focus  (rf/subscribe [:focused-pic-path])
           columns    (rf/subscribe [:picture-columns])
           invert-ids (set/map-invert @pic-ids)
           focus-num  (invert-ids @pic-focus)
@@ -65,14 +65,13 @@
 (rf/reg-event-fx
   :toggle-select-focused-pic
   (fn [{:keys [db]} _]
-    (let [path (rf/subscribe [:focused-pic])]
+    (let [path (rf/subscribe [:focused-pic-path])]
       {:dispatch [:toggle-select-picture @path]})))
 
 (rf/reg-event-fx
   :toggle-select-and-focus
   (fn [{:keys [db]} [_ pic]]
     (let [a 1]
-      ;;TODO get the pic id to save to
       {:db (assoc-in db [:picture-list :focus] pic)
        :dispatch [:toggle-select-picture pic]})))
 

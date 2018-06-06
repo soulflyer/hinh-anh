@@ -87,7 +87,7 @@ ReferenceError: document is not defined
 Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.
 * Things TODO
 ** TODO [#C] Open a list of pictures.
-** DONE [#A] Show image in right panel
+** DONE Show image in right panel
    CLOSED: [2018-06-02 Sat 18:33]
 Not perfect, a border round the pic would be nice.
 ** TODO [#C] Display pic details in left panel
@@ -99,4 +99,7 @@ already displayed in the pictures panel
 ** Filters
 *** TODO [#F] Filter by stars
 *** TODO [#F] Filter by colour label.
-** TODO [#G] Remove dependacyon css to colour the selected tree item. One possible solution is to have calls to subscriptions that are defined outside of tree.cljs. Idealy these would be conditional so that it would still work independantly of ant external code.
+** TODO [#G] Remove dependancy on css to colour the selected tree item. One possible solution is to have calls to subscriptions that are defined outside of tree.cljs. Idealy these would be conditional so that it would still work independantly of ant external code.
+** Bugs
+*** TODO [#F] Switching back to grid view doesn't call scrollIntoview
+*** TODO [#C] Wrong keybindings when details panel is active

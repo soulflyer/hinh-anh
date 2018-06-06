@@ -1,5 +1,6 @@
 (ns anh-front.main
-  (:require [anh-front.header          :as header]
+  (:require [anh-front.details         :as details]
+            [anh-front.header          :as header]
             [anh-front.pictures        :as pictures]
             [anh-front.pictures-header :as pictures-header]
             [anh-front.projects        :as projects]
@@ -12,7 +13,7 @@
 (defn panel []
   (let [focus       (rf/subscribe [:panel-focus])
         hide-footer (rf/subscribe [:hide-footer])
-        first-panel (rf/subscribe [:first-panel])]
+        left-panel  (rf/subscribe [:left-panel-display])]
     [rc/v-box
      :height "100vh"
      :children [ ;;[rc/box :child [header/panel] :size "none"]
@@ -21,18 +22,16 @@
                  :size "auto"
                  :panel-1 [rc/v-box
                            :width "100%"
+                           ;; TODO this sets class so css can colour the focused
+                           ;; item. Should call an event instead
+                           :class (if (= :left @focus)
+                                    "focused-panel"
+                                    "unfocused-panel")
                            :children [ ;; [rc/box :child [sidebar-header/panel]]
-                                      [rc/scroller
-                                       :v-scroll :auto
-                                       :h-scroll :off
-                                       ;; TODO this sets class so css can colour the focused
-                                       ;; item. Should call an event instead
-                                       :class (if (= :projects @focus)
-                                                "focused-panel"
-                                                "unfocused-panel")
-                                       :child (case @first-panel
-                                                :projects [projects/panel]
-                                                [:p "Default panel" ])]]]
+                                      (case @left-panel
+                                        :projects [projects/panel]
+                                        :details  [details/panel]
+                                        [:p "Default panel" ])]]
                  :panel-2 [rc/v-box
                            :size "auto"
                            :children [ ;; [rc/box :child [pictures-header/panel]]

@@ -22,6 +22,8 @@
    [[:toggle-footer]
     [{:which 70
       :metaKey true}]] ;;meta f
+   [[:rotate-left-panel]
+    [{:which 87}]] ;; w
    ])
 
 (def project-keys
@@ -30,22 +32,18 @@
                  (concat
                    common-keys
                    [[[:next-project-open :project-tree]
-                     [{:which 83}] ;; s
                      [{:which 40}] ;; down
                      ]
                     [[:prev-project-open :project-tree]
-                     [{:which 87}] ;; w
                      [{:which 38}] ;; up
                      ]
                     [[:fetch-pictures]
                      [{:which 32}]] ;; spc
                     [[:up-and-close :project-tree]
-                     [{:which 65}] ;; a
                      [{:which 37}] ;; left
                      ]
                     [[:expand-selected :project-tree]
                      [{:which 39}] ;; right
-                     [{:which 68}] ;;d
                      ]
                     [[:set-keys :pictures]
                      [{:which 191}] ;; /
@@ -58,19 +56,15 @@
                  (concat
                    common-keys
                    [[[:next-picture]
-                     [{:which 68}] ;; d
                      [{:which 39}] ;; right
                      ]
                     [[:prev-picture]
-                     [{:which 65}] ;; a
                      [{:which 37}] ;; left
                      ]
                     [[:down-picture]
-                     [{:which 83}] ;; s
                      [{:which 40}] ;; down
                      ]
                     [[:up-picture]
-                     [{:which 87}] ;; w
                      [{:which 38}] ;; up
                      ]
                     [[:toggle-select-focused-pic]

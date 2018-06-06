@@ -14,7 +14,7 @@
           columns    (rf/subscribe [:picture-columns])
           gap        (rf/subscribe [:picture-grid-gap])
           display    (rf/subscribe [:picture-display])
-          focused    (rf/subscribe [:focused-pic])
+          focused    (rf/subscribe [:focused-pic-path])
           rows       (partition @columns @columns (repeat []) @pics)]
       (case @display
         :grid [rc/scroller

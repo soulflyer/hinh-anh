@@ -6,6 +6,7 @@
             [anh-front.key-events       :as key-events]
             [anh-front.main             :as main]
             [anh-front.picture-events   :as picture-events]
+            [anh-front.picture-subs     :as picture-subs]
             [anh-front.preferences-subs :as preference-subs]
             [anh-front.subs             :as reframe-subs]
             [anh-front.tree-events      :as tree-events]

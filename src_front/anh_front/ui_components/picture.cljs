@@ -8,7 +8,7 @@
 
 (defn panel [pic]
   (let [medium-path  (rf/subscribe [:medium-directory])
-        focused-pic  (rf/subscribe [:focused-pic])
+        focused-pic  (rf/subscribe [:focused-pic-path])
         border       (rf/subscribe [:picture-border])
         border-sel   (rf/subscribe [:picture-border-focused])
         border-width (rf/subscribe [:picture-border-width])

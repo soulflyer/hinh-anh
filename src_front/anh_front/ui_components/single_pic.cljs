@@ -7,7 +7,7 @@
 (defn panel [pic]
   (let [medium-path  (rf/subscribe [:medium-directory])
         large-path   (rf/subscribe [:large-directory])
-        focused-pic  (rf/subscribe [:focused-pic])
+        focused-pic  (rf/subscribe [:focused-pic-path])
         background   (rf/subscribe [:pictures-background])
         border       (rf/subscribe [:picture-border])
         border-width (rf/subscribe [:picture-border-width])

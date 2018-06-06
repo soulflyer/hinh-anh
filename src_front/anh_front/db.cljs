@@ -7,8 +7,10 @@
                   :focus ""
                   :selected []}
    :error "All is well."
-   :panel-focus :projects
-   :panel-focus-list [:projects :pictures]
+   :panel-focus :left
+   :panel-focus-list [:left :pictures]
+   :left-panel-list [:projects :details]
+   :left-panel-display :projects
    ;; picture-display-index refers to picture-display-list.
    ;; First entry must be :grid or odd things will happen.
    ;; TODO change this to use the same technique as panel-focus.
