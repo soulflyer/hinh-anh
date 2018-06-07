@@ -19,3 +19,12 @@
   (fn [{:keys [db]} [_ panel]]
     (let [key-rules ks/picture-keys]
       {:dispatch [::rp/set-keydown-rules (ks/key-rules panel)]})))
+
+(rf/reg-event-fx
+  :set-keys-for
+  (fn [{:keys [db]} [_ panel]]
+    (let [left-panel-display (rf/subscribe [:left-panel-display])
+          keys               (case panel
+                               :left @left-panel-display
+                               :pictures :pictures)]
+      {:dispatch [:set-keys keys]})))

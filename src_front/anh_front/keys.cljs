@@ -26,6 +26,15 @@
     [{:which 87}]] ;; w
    ])
 
+(def details-keys
+  {:event-keys (into
+                 []
+                 (concat
+                   common-keys
+                   [[[:say-hello "Details"]
+                     [{:which 40} ]]]))
+   :prevent-default-keys prevent-keys})
+
 (def project-keys
   {:event-keys (into
                  []
@@ -77,11 +86,13 @@
                      [{:which 191}] ;; /
                      ]]))
    :prevent-default-keys prevent-keys})
+
 (defn key-rules
   [panel]
   (case panel
     :projects project-keys
     :pictures picture-keys
+    :details  details-keys
     project-keys))
 
 (defn setup-keys

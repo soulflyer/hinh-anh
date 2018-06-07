@@ -7,8 +7,10 @@
 (rf/reg-fx
   :scroll
   (fn [element]
-    (if (< 0 (count element))
-      (.scrollIntoViewIfNeeded (.getElementById js/document element) false))))
+    (println "Hello from :scroll in tree_events")
+    (let [dom-element (.getElementById js/document element)]
+      (when dom-element
+        (.scrollIntoViewIfNeeded dom-element false)))))
 
 (rf/reg-event-db
   :toggle-expand

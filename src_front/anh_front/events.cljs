@@ -10,6 +10,7 @@
   :scroll-into-view
   (fn [element]
     (let [dom-element (.getElementById js/document element)]
+      (println "Hello from scroll-into-view")
       (when dom-element
         (.scrollIntoViewIfNeeded dom-element false)))))
 
@@ -37,15 +38,21 @@
 (rf/reg-event-fx
   :next-panel
   (fn [{:keys [db]} _]
-    (let [focus-map  (rf/subscribe [:panel-focus-map])
+    (let [left-panel-display (rf/subscribe [:left-panel-display])
+          focus-map  (rf/subscribe [:panel-focus-map])
           focus      (rf/subscribe [:panel-focus])
           invert-map (set/map-invert @focus-map)
           focus-num  (invert-map @focus)
           new-panel  (get @focus-map
                           (mod (inc focus-num)
-                               (count @focus-map)))]
+                               (count @focus-map)))
+          keys       (case new-panel
+                       :left @left-panel-display
+                       :pictures :pictures)]
+      (println (str "new-panel " new-panel))
+      (println (str "keys " keys))
       {:db (assoc db :panel-focus new-panel)
-       :dispatch [:set-keys new-panel]})))
+       :dispatch [:set-keys-for new-panel]})))
 
 (rf/reg-event-fx
   :set-left-panel
@@ -57,12 +64,15 @@
   (fn [{:keys [db]} _]
     (let [left-panel-map (rf/subscribe [:left-panel-map])
           left-display   (rf/subscribe [:left-panel-display])
+          panel-focus    (rf/subscribe [:panel-focus])
           invert-map     (set/map-invert @left-panel-map)
           focus-num      (invert-map @left-display)
           new-panel      (get @left-panel-map
                               (mod (inc focus-num)
                                    (count @left-panel-map)))]
-      {:dispatch [:set-left-panel new-panel]})))
+      {:dispatch-n [[:set-left-panel new-panel]
+                    (if (= :left @panel-focus)
+                      [:set-keys new-panel])]})))
 
 (rf/reg-event-db
   :set-display

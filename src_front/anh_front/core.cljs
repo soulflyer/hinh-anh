@@ -29,7 +29,6 @@
   (rf/dispatch-sync [::events/initialize-db])
   (rf/dispatch-sync [::rp/add-keyboard-event-listener "keydown"])
   (dev-setup)
-  (println "hello from init!")
   (rf/dispatch-sync [:request-projects])
   (mount-root))
 
