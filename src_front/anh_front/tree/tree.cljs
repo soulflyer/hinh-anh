@@ -9,32 +9,32 @@
             [re-frame.core          :as rf]
             [re-com.core            :as re-com]))
 
-(def test-tree
-  {:name "root"
-   :focus ["root"]
-   :expanded true
-   :children [{:name "2000"
-               :expanded true
-               :children [{:name "01"
-                           :expanded true
-                           :children [{:name "project-1"}
-                                      {:name "project-2"}
-                                      {:name "project-3"}
-                                      {:name "project-4"}]}
-                          {:name "02"
-                           :expanded true
-                           :children [{:name "project-5"}
-                                      {:name "project-6"}]}]}
-              {:name "2001"
-               :expanded false
-               :children [{:name "01"
-                           :expanded false
-                           :children []}]}
-              {:name "2002"
-               :expanded false
-               :children [{:name "01"
-                           :expanded false
-                           :children []}]}]})
+(comment (def test-tree
+           {:name "root"
+            :focus ["root"]
+            :expanded true
+            :children [{:name "2000"
+                        :expanded true
+                        :children [{:name "01"
+                                    :expanded true
+                                    :children [{:name "project-1"}
+                                               {:name "project-2"}
+                                               {:name "project-3"}
+                                               {:name "project-4"}]}
+                                   {:name "02"
+                                    :expanded true
+                                    :children [{:name "project-5"}
+                                               {:name "project-6"}]}]}
+                       {:name "2001"
+                        :expanded false
+                        :children [{:name "01"
+                                    :expanded false
+                                    :children []}]}
+                       {:name "2002"
+                        :expanded false
+                        :children [{:name "01"
+                                    :expanded false
+                                    :children []}]}]}))
 
 (defn path-nav [path]
   (sp/path
@@ -139,6 +139,7 @@
     ^{:key path-str}
     [:li {:style {:list-style "none"}  :id path-str}
      [re-com/v-box
+      ;; TODO change this to check for a user defined sub and use that to set the highlight
       :class (if (= path (drop-root (:focus tree)))
                "selected-tree-entry"
                "tree-entry")

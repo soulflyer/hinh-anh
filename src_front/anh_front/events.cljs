@@ -10,7 +10,6 @@
   :scroll-into-view
   (fn [element]
     (let [dom-element (.getElementById js/document element)]
-      (println "Hello from scroll-into-view")
       (when dom-element
         (.scrollIntoViewIfNeeded dom-element false)))))
 

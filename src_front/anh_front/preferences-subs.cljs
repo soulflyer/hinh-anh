@@ -7,6 +7,13 @@
     (:preferences db)))
 
 (rf/reg-sub
+  :show-empty-exif
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:show-empty-exif preferences)))
+
+(rf/reg-sub
   :medium-directory
   (fn [_ _]
     (rf/subscribe [:preferences]))

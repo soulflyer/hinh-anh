@@ -17,7 +17,8 @@
    :picture-display-index 0
    :picture-display-list [:grid :single]
    :preferences
-   {:medium-directory "/Users/iain/Pictures/Published/medium"
+   {:show-empty-exif true
+    :medium-directory "/Users/iain/Pictures/Published/medium"
     :large-directory "/Users/iain/Pictures/Published/large"
     :picture-columns 5
     :picture-grid-gap "14px"

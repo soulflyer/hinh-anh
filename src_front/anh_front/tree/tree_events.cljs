@@ -7,7 +7,6 @@
 (rf/reg-fx
   :scroll
   (fn [element]
-    (println "Hello from :scroll in tree_events")
     (let [dom-element (.getElementById js/document element)]
       (when dom-element
         (.scrollIntoViewIfNeeded dom-element false)))))

@@ -18,6 +18,7 @@
   :set-keys
   (fn [{:keys [db]} [_ panel]]
     (let [key-rules ks/picture-keys]
+      (println (str "Using key-set: " panel))
       {:dispatch [::rp/set-keydown-rules (ks/key-rules panel)]})))
 
 (rf/reg-event-fx
@@ -27,4 +28,5 @@
           keys               (case panel
                                :left @left-panel-display
                                :pictures :pictures)]
+      (println (str "Setting keys for: " panel))
       {:dispatch [:set-keys keys]})))

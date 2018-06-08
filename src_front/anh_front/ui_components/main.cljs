@@ -22,7 +22,7 @@
                  :size "auto"
                  :panel-1 [rc/v-box
                            :width "100%"
-                           :style {:margin-left "5px"}
+                           :style {:padding-left "5px"}
                            ;; TODO this sets class so css can colour the focused
                            ;; item. Should call an event instead
                            :class (if (= :left @focus)
