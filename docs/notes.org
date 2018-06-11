@@ -108,7 +108,8 @@ already displayed in the pictures panel
     CLOSED: [2018-06-10 Sun 23:42]
 
 
-*** TODO [#B] Tab not sending textfield contents.
+*** DONE Tab not sending textfield contents.
+    CLOSED: [2018-06-11 Mon 23:28]
 Click on textfield then hit tab. Correctly moves focus back to the picture but doesn't send the contents of the textfield so keys are not released. Maybe a blur is required. Will probably need to implement a list to track which textfield is focused first.
 
 ** Improvements

@@ -19,7 +19,7 @@
    :picture-display-index 0
    :picture-display-list [:grid :single]
    :preferences
-   {:show-empty-exif true
+   {:show-empty-exif false
     :medium-directory "/Users/iain/Pictures/Published/medium"
     :large-directory "/Users/iain/Pictures/Published/large"
     :picture-columns 5

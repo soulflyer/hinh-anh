@@ -63,7 +63,8 @@
   :expand-selected
   (fn [{:keys [db]} [_ tree-name]]
     (let [path (:focus (get db tree-name))]
-      {:dispatch [:expand tree-name path]})))
+      {:dispatch [:expand tree-name path]
+       :scroll (reduce str (interpose "-" path))})))
 
 (rf/reg-event-fx
   :collapse-selected
