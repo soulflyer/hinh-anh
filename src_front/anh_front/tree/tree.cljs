@@ -139,11 +139,11 @@
     ^{:key path-str}
     [:li {:style {:list-style "none"}  :id path-str}
      [re-com/v-box
-      ;; TODO change this to check for a user defined sub and use that to set the highlight
+      ;; TODO change this to check for a user defined sub and use that to set the highlight.
       :class (if (= path (drop-root (:focus tree)))
                "selected-tree-entry"
                "tree-entry")
-      ;;:style {:width "100vh"} ;; Ensures tree entries spread to the full width.
+      :style {:overflow "hidden"}
       :children
       [[re-com/label
         :label label

@@ -34,6 +34,17 @@
     (let [hf (rf/subscribe [:hide-footer])]
       {:db (assoc-in db [:preferences :hide-footer] (not @hf))})))
 
+;;TODO write a set-panel event :next-panel can use it.
+
+(rf/reg-event-fx
+  :set-panel-focus
+  (fn [{:keys [db]} [_ new-panel]]
+    (let [a 1]
+      (println (str "setting focus " new-panel))
+      {:db (assoc db :panel-focus new-panel)
+       :dispatch [:set-keys-for new-panel]}
+      )))
+
 (rf/reg-event-fx
   :next-panel
   (fn [{:keys [db]} _]
@@ -125,5 +136,6 @@
   :say-hello
   (fn
     [db [_ who]]
-    (js/alert (str "hello " who))
+    ;;(js/alert (str "hello " who))
+    (println (str "hello " who))
     db))

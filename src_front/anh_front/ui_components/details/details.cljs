@@ -23,32 +23,36 @@
         white-balance        (get @pic "White-Balance-Mode")
         version              (get @pic "Version")]
     (rc/v-box
+      :attr {:on-click #(rf/dispatch [:set-panel-focus :left])}
       :height "100%"
       :children
-      [[rc/h-box
-        :justify :between
-        :children [[:p date] [:p time]]]
-       [rc/line]
-       [:h3 {:style {:margin "5px 0px 3px"}} camera]
-       (if lens [:p lens])
-       (if iso [rc/h-box
-                :justify :between
-                :children [[:p (str "iso-" iso)] [:p f-stop] [:p shutter]]])
-       [rc/gap :size "9px"]
-       [rc/line]
-
+      [[rc/gap :size "3px"]
        [rc/v-box
-        :style {:font-size "0.65em"}
         :children
-        [[rc/h-box
-          :justify :between
-          :children [[:p "Copyright"] [:p copyright]]]
+        [[rc/line]
          [rc/h-box
+          :style {:font-size "0.6em"}
           :justify :between
-          :children [[:p "Special instr"] [:p special-instructions] ]]]]
-       [rc/gap :size "4px"]
-       [components/box 1 title "Title"]
-       [components/box 5 caption "Caption"]
-       [components/box false 2 keyword-string "Keywords"]
+          :children [[:p date] [:p time]]]
+         [rc/line]
+         [:h3 {:style {:margin "5px 0px 3px"}} camera]
+         (if lens [:p lens])
+         (if iso [rc/h-box
+                  :justify :between
+                  :children [[:p (str "iso-" iso)] [:p f-stop] [:p shutter]]])
+         [rc/line]
+         [rc/v-box
+          :style {:font-size "0.60em"}
+          :children
+          [[rc/h-box
+            :justify :between
+            :children [[:p "Copyright"] [:p copyright]]]]]
+         [rc/line]]]
+       ;;[rc/gap :size "9px"]
+
+       [rc/gap :size "12px"]
+       [components/box 1 title "Title" #(rf/dispatch [:say-hello %])]
+       [components/box 5 caption "Caption" #(rf/dispatch [:say-hello %])]
+       [components/box 2 keyword-string "Keywords" #(rf/dispatch [:say-hello %])]
        [rc/line]
        [components/all-exif helper/exif-fields @pic]])))

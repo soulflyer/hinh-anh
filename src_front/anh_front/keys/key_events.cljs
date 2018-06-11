@@ -28,5 +28,5 @@
           keys               (case panel
                                :left @left-panel-display
                                :pictures :pictures)]
-      (println (str "Setting keys for: " panel))
+      (println (str "set-keys-for: " panel))
       {:dispatch [:set-keys keys]})))

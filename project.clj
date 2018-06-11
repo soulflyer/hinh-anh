@@ -106,7 +106,7 @@
                            :closure-defines
                            {"re_frame.trace.trace_enabled_QMARK_" true
                             "day8.re_frame.tracing.trace_enabled_QMARK_" true}
-                           :preloads [day8.re-frame-10x.preload]
+                           :preloads [day8.re-frame-10x.preload devtools.preload]
                            :main "anh-front.core"
                            :asset-path "js/out_front"}
                 :figwheel {:on-jsload "anh-front.core/mount-root"}}

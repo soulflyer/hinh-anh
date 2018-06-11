@@ -4,7 +4,10 @@
 (def prevent-keys
   [{:which 38} ;; up
    {:which 40} ;; down
-   {:which 9}  ;; tab
+   ;;{:which 9}  ;; tab
+   {:which 13} ;; ret
+   {:which 37} ;; left
+   {:which 39} ;; right
    ])
 
 (def common-keys
@@ -33,6 +36,8 @@
                    common-keys
                    [[[:say-hello "Details"]
                      [{:which 40} ]]]))
+   :always-listen-keys [{:which 13}
+                        {:which 9}]
    :prevent-default-keys prevent-keys})
 
 (def project-keys

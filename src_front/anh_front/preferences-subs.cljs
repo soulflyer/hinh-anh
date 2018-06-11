@@ -103,3 +103,31 @@
     (rf/subscribe [:preferences]))
   (fn [preferences _]
     (:footer-background preferences)))
+
+(rf/reg-sub
+  :project-background
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:project-background preferences)))
+
+(rf/reg-sub
+  :details-background
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:details-background preferences)))
+
+(rf/reg-sub
+  :details-textbox-background
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:details-textbox-background preferences)))
+
+(rf/reg-sub
+  :details-header-background
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:details-header-background preferences)))

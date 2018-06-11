@@ -17,6 +17,7 @@
     [rc/v-box
      :height "100vh"
      :children [ ;;[rc/box :child [header/panel] :size "none"]
+                ;;TODO make the splitter optional for a photo only display
                 [rc/h-split
                  :style (styles/main)
                  :size "auto"

@@ -11,6 +11,8 @@
    :panel-focus-list [:left :pictures]
    :left-panel-list [:projects :details]
    :left-panel-display :projects
+   :details-textfields []
+   :details-focused-textbox ""
    ;; picture-display-index refers to picture-display-list.
    ;; First entry must be :grid or odd things will happen.
    ;; TODO change this to use the same technique as panel-focus.
@@ -32,4 +34,8 @@
     :hide-footer false
     :footer-colour "#808080"
     :footer-background "#f1f1f1"
+    :project-background "red"
+    :details-background "red"
+    :details-textbox-background "#cccccc"
+    :details-header-background "gray"
     }})
