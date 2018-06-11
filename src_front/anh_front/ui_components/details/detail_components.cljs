@@ -27,7 +27,6 @@
    (let [textbox-background (rf/subscribe [:details-textbox-background])
          header-background  (rf/subscribe [:details-header-background])]
      [rc/v-box
-      :attr {:id label}
       :style {:width "100%"
               :background @header-background
               :border-radius "4px"
@@ -40,7 +39,8 @@
        [rc/input-textarea
         :width "100%"
         :rows rows
-        :attr {:tabIndex "-1"}
+        :attr {:id label
+               :tabIndex "1"}
         :disabled? (not writeable)
         :style {:padding "0px 0px 0px 3px"
                 :border-radius "0px 0px 4px 4px"

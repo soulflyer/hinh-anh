@@ -13,6 +13,19 @@
       (when dom-element
         (.scrollIntoViewIfNeeded dom-element false)))))
 
+(rf/reg-fx
+  :set-html-focus
+  (fn [element]
+    (let [dom-element (.getElementById js/document element)]
+      (when dom-element
+        (.focus dom-element)))))
+
+(rf/reg-event-fx
+  :set-html-focus
+  (fn [{:keys [db]} [_ panel]]
+    {:set-html-focus panel}))
+
+
 (rf/reg-event-db
   ::initialize-db
   (fn  [_ _]
@@ -35,7 +48,6 @@
       {:db (assoc-in db [:preferences :hide-footer] (not @hf))})))
 
 ;;TODO write a set-panel event :next-panel can use it.
-
 (rf/reg-event-fx
   :set-panel-focus
   (fn [{:keys [db]} [_ new-panel]]
@@ -58,11 +70,18 @@
                                (count @focus-map)))
           keys       (case new-panel
                        :left @left-panel-display
-                       :pictures :pictures)]
+                       :pictures :pictures)
+          ;;TODO Clean this up
+          html-focus (case keys
+                       :pictures "panel-2"
+                       :details  "panel-1"
+                       :projects "panel-1")]
       (println (str "new-panel " new-panel))
       (println (str "keys " keys))
+      (println (str "Focus " html-focus))
       {:db (assoc db :panel-focus new-panel)
-       :dispatch [:set-keys-for new-panel]})))
+       :dispatch [:set-keys-for new-panel]
+       :set-html-focus html-focus})))
 
 (rf/reg-event-fx
   :set-left-panel

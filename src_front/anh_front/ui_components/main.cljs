@@ -22,6 +22,8 @@
                  :style (styles/main)
                  :size "auto"
                  :panel-1 [rc/v-box
+                           :attr {:id "panel-1"
+                                  :tabIndex "1"}
                            :width "100%"
                            :style {:padding-left "5px"}
                            ;; TODO this sets class so css can colour the focused
@@ -35,6 +37,8 @@
                                         :details  [details/panel]
                                         [:p "Default panel" ])]]
                  :panel-2 [rc/v-box
+                           :attr {:id "panel-2"
+                                  :tabIndex "1"}
                            :size "auto"
                            :children [ ;; [rc/box :child [pictures-header/panel]]
                                       [pictures/panel]]]

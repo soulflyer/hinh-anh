@@ -2,12 +2,12 @@
   (:require [re-pressed.core :as re-pressed]
             [re-frame.core :as re-frame]))
 (def prevent-keys
-  [{:which 38} ;; up
-   {:which 40} ;; down
-   ;;{:which 9}  ;; tab
+  [;;{:which 38} ;; up
+   ;;{:which 40} ;; down
+   ;;{:which 191}  ;; /
    {:which 13} ;; ret
-   {:which 37} ;; left
-   {:which 39} ;; right
+   ;;{:which 37} ;; left
+   ;;{:which 39} ;; right
    ])
 
 (def common-keys
@@ -21,7 +21,7 @@
     [{:which 80
       :metaKey true}]] ;; meta p
    [[:next-panel]
-    [{:which 9}]]  ;; tab
+    [{:which 191}]]  ;; /
    [[:toggle-footer]
     [{:which 70
       :metaKey true}]] ;;meta f
@@ -36,8 +36,7 @@
                    common-keys
                    [[[:say-hello "Details"]
                      [{:which 40} ]]]))
-   :always-listen-keys [{:which 13}
-                        {:which 9}]
+   :always-listen-keys [{:which 13}]
    :prevent-default-keys prevent-keys})
 
 (def project-keys
@@ -59,9 +58,10 @@
                     [[:expand-selected :project-tree]
                      [{:which 39}] ;; right
                      ]
-                    [[:set-keys :pictures]
-                     [{:which 191}] ;; /
-                     ]]))
+                    ;; [[:set-keys :pictures]
+                    ;;  [{:which 191}] ;; /
+                    ;;  ]
+                    ]))
    :prevent-default-keys prevent-keys})
 
 (def picture-keys
