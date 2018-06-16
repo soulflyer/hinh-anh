@@ -19,6 +19,29 @@
          :label (if (vector? contents)
                   (interpose ", " contents)
                   contents)]]])))
+(defn keyword-box
+  "re-com component to display the keywords"
+  [keywords]
+  (let [keyword-string    (reduce str (interpose ", " keywords))
+        header-background (rf/subscribe [:details-header-background])
+        background        (rf/subscribe [:details-background])]
+    [rc/v-box
+     :style {:font-size "0.75em"
+             :width "100%"
+             :background @header-background
+             :border-radius "4px"
+             :border (str "solid 1px " @header-background)
+             :margin-bottom "5px"}
+     :children
+     [[rc/label
+       :style {:padding-left "3px"}
+       :label "Keywords"]
+      [rc/label
+       :style {:width "100%"
+               :background @background
+               :padding-left "3px"
+               :border-radius "0px 0px 4px 4px"}
+       :label keyword-string]]]))
 
 (defn box
   ([rows content label on-change]

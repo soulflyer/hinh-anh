@@ -5,7 +5,8 @@
             [re-frame.core :as rf]))
 
 (defn panel []
-  (let [pic                  (rf/subscribe [:focused-pic])
+  (let [pic-path             (rf/subscribe [:focused-pic-path])
+        pic                  (rf/subscribe [:focused-pic])
         camera               (helper/camera (get @pic "Model"))
         caption              (get @pic "Caption-Abstract")
         title                (get @pic "Object-Name")
@@ -51,8 +52,11 @@
        ;;[rc/gap :size "9px"]
 
        [rc/gap :size "12px"]
-       [components/box 1 title "Title" #(rf/dispatch [:say-hello %])]
-       [components/box 5 caption "Caption" #(rf/dispatch [:say-hello %])]
-       [components/box 2 keyword-string "Keywords" #(rf/dispatch [:say-hello %])]
+       [components/box 1 title "Title"
+        #(rf/dispatch [:write-iptc [@pic-path :title %]])]
+       [components/box 5 caption "Caption"
+        #(rf/dispatch [:write-iptc [@pic-path :caption %]])]
+       ;;[components/box 2 keyword-string "Keywords" #(rf/dispatch [:say-hello %])]
+       [components/keyword-box keywords]
        [rc/line]
        [components/all-exif helper/exif-fields @pic]])))

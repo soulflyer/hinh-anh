@@ -35,7 +35,7 @@
     :footer-colour "#808080"
     :footer-background "#f1f1f1"
     :project-background "red"
-    :details-background "red"
+    :details-background "darkgray"
     :details-textbox-background "#cccccc"
     :details-header-background "gray"
     }})

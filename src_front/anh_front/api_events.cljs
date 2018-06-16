@@ -1,20 +1,21 @@
 (ns anh-front.api-events
-  (:require
-   [anh-front.config       :as config]
-   [anh-front.helpers      :as helpers]
-   [anh-front.project-tree :as project-tree]
-   [cognitect.transit      :as transit]
-   [day8.re-frame.http-fx  :as dont-delete-me-or-http-xhrio-will-go-away]
-   [re-frame.core          :as rf]
-   [ajax.core              :as ajax]))
+  (:require [ajax.core                :as ajax]
+            [anh-front.details-helper :as helper]
+            [anh-front.helpers        :as helpers]
+            [anh-front.project-tree   :as project-tree]
+            [cognitect.transit        :as transit]
+            [com.rpl.specter          :as sp]
+            [day8.re-frame.http-fx    :as dont-delete-me-or-http-xhrio-will-go-away]
+            [re-frame.core            :as rf]
+            [anh-front.config         :as config]))
 
 (rf/reg-event-db
   :load-fail
   (fn
-    [db [_ error _]]
-    (let [error-message (str error " load failed")]
+    [db [_ error]]
+    (let [error-message (str error " api call failed")]
+      (println error-message)
       (-> db
-          (println error-message)
           (assoc :loading? false)
           (assoc :error error-message)))))
 
@@ -42,6 +43,37 @@
           (assoc :loading? false)
           (assoc :project-tree tree-data)))))
 
+(rf/reg-event-fx
+  :write-iptc-local
+  (fn  [{:keys [db]} [_ [pic field text]]]
+    (let [id (helpers/path->id pic)]
+      (println (str "_id: " id " Field: " field " Title: " text))
+      {:db (-> (sp/setval
+                 [:picture-list
+                  :pictures
+                  (sp/walker #(= id (get % "_id")))
+                  (sp/submap [field])]
+                 {field text} db)
+               (assoc :loading? false))})))
+
+(rf/reg-event-fx
+  :write-iptc
+  (fn [{:keys [db]} [_ [pic field text]]]
+    (let [field-name (case field
+                       :title "Object-Name"
+                       :caption "Caption-Abstract")]
+      ;; TODO turn this case into a function and move it into :write-iptc-local
+      (println (str "Path " pic))
+      {:http-xhrio
+       {:method          :get
+        :cross-origin    true
+        :uri             (str config/api-root "/photos/write/" (name field) "/" pic "/" text)
+        :format          (ajax/json-request-format)
+        :response-format (ajax/json-response-format {:keywords? true})
+        :on-success      [:write-iptc-local [pic field-name text]]
+        :on-failure      [:load-fail (str text " to " pic)]}
+       :db               (assoc db :loading? true)})))
+
 ;;(rf/dispatch-sync [:request-pictures ["2002" "01" "01-Teesdale"]])
 (rf/reg-event-fx
   :request-pictures
@@ -54,7 +86,8 @@
                     :format          (ajax/json-request-format)
                     :response-format (ajax/json-response-format {:keywords? true})
                     :on-success      [:pictures-response]
-                    :on-failure      [:load-fail (str "Project " project-path)]}})))
+                    :on-failure      [:load-fail (str "Project " project-path)]}
+       :db          (assoc db :loading? true)})))
 
 (rf/reg-event-db
   :pictures-response

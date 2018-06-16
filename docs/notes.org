@@ -85,7 +85,29 @@ ReferenceError: document is not defined
 
 #+END_SRC
 Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.
-* Things TODO
+
+* Bugs
+** TODO [#A] Why don't year month project and version appear in the details?
+** TODO [#F] Switching back to grid view doesn't call scrollIntoview
+** DONE Wrong keybindings when details panel is active
+    CLOSED: [2018-06-08 Fri 09:46]
+** DONE on-click to select a picture and then the pics don't highlight
+ although keys are correctly changed. Maybe panel-focus is not set?
+    CLOSED: [2018-06-10 Sun 23:42]
+
+** DONE Tab not sending textfield contents.
+    CLOSED: [2018-06-11 Mon 23:28]
+Click on textfield then hit tab. Correctly moves focus back to the picture but doesn't send the contents of the textfield so keys are not released. Maybe a blur is required. Will probably need to implement a list to track which textfield is focused first.
+
+** TODO [#E] Pictures are not always in the correct order.
+Check 1991/11/fire_and_ice for an example.
+
+** TODO [#C] updating IPTC doesn't refresh db contents
+Changes are written to the database, but the local db doesn't see them until after a refresh. Could sort this by writting the change to the db as well as calling the api, or perhaps have one trigger the other. Or most likely just fetch the pictures again.
+* Improvements
+** Filters
+*** TODO [#F] Filter by stars
+*** TODO [#F] Filter by colour label.
 
 ** Keywords
 already displayed in the pictures panel
@@ -93,35 +115,15 @@ already displayed in the pictures panel
 *** TODO [#E] Display all pictures containing a given keyword
 *** TODO [#C] Add and remove keywords from pictures
 
-
-** Filters
-*** TODO [#F] Filter by stars
-*** TODO [#F] Filter by colour label.
-
-
-** Bugs
-*** TODO [#F] Switching back to grid view doesn't call scrollIntoview
-*** DONE Wrong keybindings when details panel is active
-    CLOSED: [2018-06-08 Fri 09:46]
-*** DONE on-click to select a picture and then the pics don't highlight
- although keys are correctly changed. Maybe panel-focus is not set?
-    CLOSED: [2018-06-10 Sun 23:42]
-
-
-*** DONE Tab not sending textfield contents.
-    CLOSED: [2018-06-11 Mon 23:28]
-Click on textfield then hit tab. Correctly moves focus back to the picture but doesn't send the contents of the textfield so keys are not released. Maybe a blur is required. Will probably need to implement a list to track which textfield is focused first.
-
-** Improvements
-*** TODO [#F] Clean up the way panels are selected and keysets changed.
+** TODO [#F] Clean up the way panels are selected and keysets changed.
  There may be some redundancy in that I probably shouldn't have to change panel-focus and key-set independantly.
-*** TODO [#D] Change tree nav controls
+** TODO [#D] Change tree nav controls
 so left goes up on 1st press then closes on 2nd press. Also make right switch to the right panel if the highlighted tree entry is a leaf.
-*** TODO [#G] Remove dependancy on css to colour the selected tree item.
+** TODO [#G] Remove dependancy on css to colour the selected tree item.
 One possible solution is to have calls to subscriptions that are defined outside of tree.cljs. Idealy these would be conditional so that it would still work independantly of any external code.
-*** TODO [#C] Open a list of pictures.
-*** DONE Show image in right panel
+** TODO [#C] Open a list of pictures.
+** DONE Show image in right panel
    CLOSED: [2018-06-02 Sat 18:33]
 Not perfect, a border round the pic would be nice.
-*** DONE Display pic details in left panel
+** DONE Display pic details in left panel
    CLOSED: [2018-06-08 Fri 09:48]
