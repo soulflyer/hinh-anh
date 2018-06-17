@@ -7,6 +7,7 @@
 (defn panel []
   (let [pic-path             (rf/subscribe [:focused-pic-path])
         pic                  (rf/subscribe [:focused-pic])
+        iptc-fields          (rf/subscribe [:iptc-fields])
         camera               (helper/camera (get @pic "Model"))
         caption              (get @pic "Caption-Abstract")
         title                (get @pic "Object-Name")
@@ -49,14 +50,15 @@
             :justify :between
             :children [[:p "Copyright"] [:p copyright]]]]]
          [rc/line]]]
-       ;;[rc/gap :size "9px"]
-
        [rc/gap :size "12px"]
-       [components/box 1 title "Title"
-        #(rf/dispatch [:write-iptc [@pic-path :title %]])]
-       [components/box 5 caption "Caption"
-        #(rf/dispatch [:write-iptc [@pic-path :caption %]])]
-       ;;[components/box 2 keyword-string "Keywords" #(rf/dispatch [:say-hello %])]
-       [components/keyword-box keywords]
+       [rc/v-box
+        :children
+        (for [iptc-field @iptc-fields]
+          ;;(println (str "******** " iptc-field " *********"))
+          (let [rows      (last iptc-field)
+                title     (second iptc-field)
+                iptc-name (name (first iptc-field))]
+            [components/box rows (get @pic iptc-name) title
+             #(rf/dispatch [:write-iptc [@pic-path iptc-name %]])]))]
        [rc/line]
        [components/all-exif helper/exif-fields @pic]])))

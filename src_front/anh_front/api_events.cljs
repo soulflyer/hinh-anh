@@ -59,20 +59,16 @@
 (rf/reg-event-fx
   :write-iptc
   (fn [{:keys [db]} [_ [pic field text]]]
-    (let [field-name (case field
-                       :title "Object-Name"
-                       :caption "Caption-Abstract")]
-      ;; TODO turn this case into a function and move it into :write-iptc-local
-      (println (str "Path " pic))
-      {:http-xhrio
-       {:method          :get
-        :cross-origin    true
-        :uri             (str config/api-root "/photos/write/" (name field) "/" pic "/" text)
-        :format          (ajax/json-request-format)
-        :response-format (ajax/json-response-format {:keywords? true})
-        :on-success      [:write-iptc-local [pic field-name text]]
-        :on-failure      [:load-fail (str text " to " pic)]}
-       :db               (assoc db :loading? true)})))
+    (println (str "Path " pic))
+    {:http-xhrio
+     {:method          :get
+      :cross-origin    true
+      :uri             (str config/api-root "/photos/write/" (name field) "/" pic "/" text)
+      :format          (ajax/json-request-format)
+      :response-format (ajax/json-response-format {:keywords? true})
+      :on-success      [:write-iptc-local [pic field text]]
+      :on-failure      [:load-fail (str text " to " pic)]}
+     :db               (assoc db :loading? true)}))
 
 ;;(rf/dispatch-sync [:request-pictures ["2002" "01" "01-Teesdale"]])
 (rf/reg-event-fx

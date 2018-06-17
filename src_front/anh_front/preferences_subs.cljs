@@ -7,6 +7,13 @@
     (:preferences db)))
 
 (rf/reg-sub
+  :iptc-fields
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:iptc-fields preferences)))
+
+(rf/reg-sub
   :show-empty-exif
   (fn [_ _]
     (rf/subscribe [:preferences]))

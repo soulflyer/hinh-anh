@@ -45,6 +45,7 @@
 
 (defn box
   ([rows content label on-change]
+   (println (reduce str (interpose " - " [rows content label])))
    (box true rows content label on-change))
   ([writeable rows contents label on-change]
    (let [textbox-background (rf/subscribe [:details-textbox-background])

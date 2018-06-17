@@ -50,7 +50,7 @@ Nice and easy access to the re-frame database using this command:
 window.re_frame.db.app_db.state
 #+END_SRC
 ** in repl
-re-frame.db/app-db shows the contents of db, but also gives an error message.?!? Plus emacs doesn't like the volume of data, and the error means it can't be dereferenced and filtered to limit the amount of data returned. re-frame-demo project doesn't suffer from this. Reverting re-frame to version "0.10.4" fixed this. But only temporarily. What seems to work is changing the version, re-running lein descjop-externs and restarting the repls.
+re-frame.db/app-db shows the contents of db, but also gives an error message.?!? Plus emacs doesn't like the volume of data, and the error means it can't be dereferenced and filtered to limit the amount of data returned. re-frame-demo project doesn't suffer from this. Reverting re-frame to version "0.10.4" fixed this. But only temporarily. What seems to work is changing the version, re-running lein descjop-externs and restarting the repls. Haha. That was because the repl and the browser are seeing different things. Edit a file and save it and the error goes away.
 ** re-frame-10x
 Works fine when included from the re-frame template but not so easy to add by hand.
 
@@ -102,7 +102,8 @@ Click on textfield then hit tab. Correctly moves focus back to the picture but d
 ** TODO [#E] Pictures are not always in the correct order.
 Check 1991/11/fire_and_ice for an example.
 
-** TODO [#C] updating IPTC doesn't refresh db contents
+** DONE updating IPTC doesn't refresh db contents
+   CLOSED: [2018-06-16 Sat 23:36]
 Changes are written to the database, but the local db doesn't see them until after a refresh. Could sort this by writting the change to the db as well as calling the api, or perhaps have one trigger the other. Or most likely just fetch the pictures again.
 * Improvements
 ** Filters
@@ -115,6 +116,8 @@ already displayed in the pictures panel
 *** TODO [#E] Display all pictures containing a given keyword
 *** TODO [#C] Add and remove keywords from pictures
 
+** TODO [#D] Make sure that helpers/path->id is getting used.
+Pretty sure it's defined inline in several places.
 ** TODO [#F] Clean up the way panels are selected and keysets changed.
  There may be some redundancy in that I probably shouldn't have to change panel-focus and key-set independantly.
 ** TODO [#D] Change tree nav controls

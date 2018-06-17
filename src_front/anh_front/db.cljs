@@ -22,6 +22,10 @@
    {:show-empty-exif false
     :medium-directory "/Users/iain/Pictures/Published/medium"
     :large-directory "/Users/iain/Pictures/Published/large"
+    ;; These fields specify the writeable fields in the detail panel
+    :iptc-fields [[:Object-Name "Title" 1]
+                  [:Caption-Abstract "Caption" 5]
+                  [:Special-Instructions "Watermark" 1]]
     :picture-columns 5
     :picture-grid-gap "14px"
     :picture-text-colour "#9e9e9e"
