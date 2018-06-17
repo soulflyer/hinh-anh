@@ -43,6 +43,55 @@
                :border-radius "0px 0px 4px 4px"}
        :label keyword-string]]]))
 
+(defn keyword-editor
+  "re-com component to display, add and edit keywords"
+  [keywords]
+  (let [textbox-background (rf/subscribe [:details-textbox-background])
+        header-background  (rf/subscribe [:details-header-background])
+        background         (rf/subscribe [:details-background])]
+    (rc/v-box
+      :style {;;:width "100%"
+              :background @header-background
+              :border-radius "4px"
+              :border (str "solid 1px " @header-background)
+              :margin-bottom "5px"}
+      :children
+      [[rc/label
+        :style {:font-size "0.75em"
+                :padding-left "3px"}
+        :label "Keywords"]
+       [rc/v-box
+        :style {:background @background
+                :padding-left "3px"
+                :border-radius "0px 0px 4px 4px"}
+        :children
+        [(for [keyword keywords]
+           [rc/h-box
+            :justify :between
+            :style {:font-size "0.85em"
+                    :border-bottom (str "solid 1px " @header-background)}
+            :children
+            [[rc/md-icon-button
+              :md-icon-name "zmdi-delete"
+              :size :smaller]
+             [rc/label
+              :style {:margin "2px 3px 0px 0px"}
+              :label keyword]]])
+         [rc/h-box
+          :children
+          [[rc/md-icon-button
+            :md-icon-name "zmdi-plus"
+            :size :smaller]
+           [rc/box
+            :size "1 0 auto"
+            :child
+            [rc/input-text
+             :width "100%"
+             :height "1.5em"
+             :style {:background @textbox-background
+                     :border-radius "0px 0px 4px 4px"
+                     :padding "1px 3px 1px 3px"} ]]]]]]])))
+
 (defn box
   ([rows content label on-change]
    (println (reduce str (interpose " - " [rows content label])))

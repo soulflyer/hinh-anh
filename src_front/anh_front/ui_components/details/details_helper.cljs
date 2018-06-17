@@ -1,6 +1,12 @@
 (ns anh-front.details-helper
   (:require [clojure.string :as str]))
 
+(def file-fields
+  ["Year"
+   "Month"
+   "Version"
+   "_id"])
+
 (def exif-fields
   ["Aperture Value"
    "Artist"
