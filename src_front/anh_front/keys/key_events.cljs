@@ -3,22 +3,11 @@
             [re-frame.core :as rf]
             [re-pressed.core :as rp]))
 
-;; (rf/reg-event-fx
-;;   :set-project-keys
-;;   (fn [{:keys [db]} _]
-;;     {:dispatch-n [[::rp/set-keydown-rules (ks/key-rules :project)]
-;;                   [:set-display 0]]}))
-
-;; (rf/reg-event-fx
-;;   :set-picture-keys
-;;   (fn [{:keys [db]} _]
-;;     {:dispatch [::rp/set-keydown-rules (ks/key-rules :pictures)]}))
-
 (rf/reg-event-fx
   :set-keys
   (fn [{:keys [db]} [_ panel]]
     (let [key-rules ks/picture-keys]
-      (println (str "Using key-set: " panel))
+      ;;(println (str "Using key-set: " panel))
       {:dispatch [::rp/set-keydown-rules (ks/key-rules panel)]})))
 
 (rf/reg-event-fx
@@ -28,5 +17,5 @@
           keys               (case panel
                                :left @left-panel-display
                                :pictures :pictures)]
-      (println (str "set-keys-for: " panel))
+      ;;(println (str "set-keys-for: " panel))
       {:dispatch [:set-keys keys]})))

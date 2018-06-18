@@ -72,10 +72,35 @@
        :db (assoc db :loading? true)})))
 
 (rf/reg-event-fx
+  :delete-keyword
+  (fn [{:keys [db]} [_ [pic kw]]]
+    (let [a 1]
+      {:http-xhrio {:method :get
+                    :uri (str config/api-root "/photos/delete/keyword/" kw "/" pic)
+                    :format (ajax/json-request-format)
+                    :response-format (ajax/json-response-format)
+                    :on-success [:delete-keyword-local [pic kw]]
+                    :on-failure [:load-fail "delete keyword"]}})))
+
+(rf/reg-event-fx
+  :delete-keyword-local
+  (fn [{:keys [db]} [_ [pic kw]]]
+    (let [id (helpers/path->id pic)]
+      {:db (-> (sp/transform
+                 [:picture-list
+                  :pictures
+                  (sp/walker #(= id (get % "_id")))
+                  (sp/submap ["Keywords"])
+                  "Keywords"]
+                 #(remove #{kw} %)
+                 db)
+               (assoc :loading? false))})))
+
+(rf/reg-event-fx
   :write-iptc-local
   (fn  [{:keys [db]} [_ [pic field text]]]
     (let [id (helpers/path->id pic)]
-      (println (str "_id: " id " Field: " field " Title: " text))
+      ;;(println (str "_id: " id " Field: " field " Title: " text))
       {:db (-> (sp/setval
                  [:picture-list
                   :pictures
@@ -87,7 +112,7 @@
 (rf/reg-event-fx
   :write-iptc
   (fn [{:keys [db]} [_ [pic field text]]]
-    (println (str "Path " pic))
+    ;;(println (str "Path " pic))
     {:http-xhrio
      {:method          :get
       :cross-origin    true

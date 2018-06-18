@@ -76,7 +76,8 @@
             :children
             [[rc/md-icon-button
               :md-icon-name "zmdi-delete"
-              :size :smaller]
+              :size :smaller
+              :on-click #(rf/dispatch [:delete-keyword [pic-path keyword %]])]
              [rc/label
               :style {:margin "2px 3px 0px 0px"}
               :label keyword]]])
@@ -98,7 +99,6 @@
 
 (defn box
   ([rows content label on-change]
-   (println (reduce str (interpose " - " [rows content label])))
    (box true rows content label on-change))
   ([writeable rows contents label on-change]
    (let [textbox-background (rf/subscribe [:details-textbox-background])

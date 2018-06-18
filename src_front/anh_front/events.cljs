@@ -52,10 +52,8 @@
   :set-panel-focus
   (fn [{:keys [db]} [_ new-panel]]
     (let [a 1]
-      (println (str "setting focus " new-panel))
       {:db (assoc db :panel-focus new-panel)
-       :dispatch [:set-keys-for new-panel]}
-      )))
+       :dispatch [:set-keys-for new-panel]})))
 
 (rf/reg-event-fx
   :next-panel
