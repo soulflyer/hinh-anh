@@ -80,3 +80,9 @@
   :clear-all
   (fn [{:keys [db]} _]
     {:db (assoc-in db [:picture-list :selected] [])}))
+
+(rf/reg-event-fx
+  :fill-keyword-set
+  (fn [{:keys [db]} _]
+    (let [current-keywords (rf/subscribe [:current-keywords])]
+      {:db (assoc db :keyword-set @current-keywords)})))

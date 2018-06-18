@@ -1,5 +1,6 @@
 (ns anh-front.helpers
-  (:require [clojure.string :as str]))
+  (:require [clojure.string  :as str]
+            [com.rpl.specter :as sp]))
 
 (defn image-path
   "return a string containing the year/month/project/version path of an image"
@@ -24,3 +25,12 @@
   [pictures path]
   (let [id (path->id path)]
     (first (filter #(= id (get % "_id")) pictures))))
+
+(defn all-keywords
+  "Given a vector of maps representing pictures returns a list of all the keywords used"
+  [pics]
+  (vec
+    (sort
+      (set
+        (flatten
+          (sp/select [sp/ALL (sp/submap ["Keywords"]) "Keywords"] pics))))))

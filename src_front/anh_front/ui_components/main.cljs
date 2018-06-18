@@ -1,6 +1,7 @@
 (ns anh-front.main
   (:require [anh-front.details         :as details]
             [anh-front.header          :as header]
+            [anh-front.keywording      :as keywording]
             [anh-front.pictures        :as pictures]
             [anh-front.pictures-header :as pictures-header]
             [anh-front.projects        :as projects]
@@ -16,8 +17,7 @@
         left-panel  (rf/subscribe [:left-panel-display])]
     [rc/v-box
      :height "100vh"
-     :children [ ;;[rc/box :child [header/panel] :size "none"]
-                ;;TODO make the splitter optional for a photo only display
+     :children [ ;;TODO make the splitter optional for a photo only display
                 [rc/h-split
                  :style (styles/main)
                  :size "auto"
@@ -31,17 +31,16 @@
                            :class (if (= :left @focus)
                                     "focused-panel"
                                     "unfocused-panel")
-                           :children [ ;; [rc/box :child [sidebar-header/panel]]
-                                      (case @left-panel
-                                        :projects [projects/panel]
-                                        :details  [details/panel]
+                           :children [(case @left-panel
+                                        :projects   [projects/panel]
+                                        :details    [details/panel]
+                                        :keywording [keywording/panel]
                                         [:p "Default panel" ])]]
                  :panel-2 [rc/v-box
                            :attr {:id "panel-2"
                                   :tabIndex "1"}
                            :size "auto"
-                           :children [ ;; [rc/box :child [pictures-header/panel]]
-                                      [pictures/panel]]]
+                           :children [[pictures/panel]]]
                  :initial-split "20%"]
                 (if (not @hide-footer)
                   [rc/box

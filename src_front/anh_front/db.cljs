@@ -9,7 +9,7 @@
    :error "All is well."
    :panel-focus :left
    :panel-focus-list [:left :pictures]
-   :left-panel-list [:projects :details]
+   :left-panel-list [:projects :details :keywording]
    :left-panel-display :projects
    :details-textfields []
    :details-focused-textbox ""
@@ -18,11 +18,13 @@
    ;; TODO change this to use the same technique as panel-focus.
    :picture-display-index 0
    :picture-display-list [:grid :single]
+   :keyword-set []
+
    :preferences
    {:show-empty-exif false
     :medium-directory "/Users/iain/Pictures/Published/medium"
     :large-directory "/Users/iain/Pictures/Published/large"
-    ;; These fields specify the writeable fields in the detail panel
+    ;; This vector specifies the writeable fields in the details panel
     :iptc-fields [[:Object-Name "Title" 1]
                   [:Caption-Abstract "Caption" 5]
                   ;; [:Special-Instructions "Watermark" 1]

@@ -74,13 +74,12 @@
 (rf/reg-event-fx
   :delete-keyword
   (fn [{:keys [db]} [_ [pic kw]]]
-    (let [a 1]
-      {:http-xhrio {:method :get
-                    :uri (str config/api-root "/photos/delete/keyword/" kw "/" pic)
-                    :format (ajax/json-request-format)
-                    :response-format (ajax/json-response-format)
-                    :on-success [:delete-keyword-local [pic kw]]
-                    :on-failure [:load-fail "delete keyword"]}})))
+    {:http-xhrio {:method :get
+                  :uri (str config/api-root "/photos/delete/keyword/" kw "/" pic)
+                  :format (ajax/json-request-format)
+                  :response-format (ajax/json-response-format)
+                  :on-success [:delete-keyword-local [pic kw]]
+                  :on-failure [:load-fail "delete keyword"]}}))
 
 (rf/reg-event-fx
   :delete-keyword-local
