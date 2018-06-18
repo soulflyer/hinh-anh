@@ -44,6 +44,34 @@
           (assoc :project-tree tree-data)))))
 
 (rf/reg-event-fx
+  :add-keyword-local
+  (fn  [{:keys [db]} [_ [pic kw]]]
+    (let [id (helpers/path->id pic)]
+      (println (str "pic: " pic " _id: " id  " Keyword: " kw))
+      {:db (-> (sp/transform
+                 [:picture-list
+                  :pictures
+                  (sp/walker #(= id (get % "_id")))
+                  (sp/submap ["Keywords"])
+                  "Keywords"]
+                 ;; TODO This is a bit hacky. Would be nice if the new ones stayed at the end.
+                 #(sort (vec (set (conj % kw)))) db)
+               (assoc :loading? false))})))
+
+(rf/reg-event-fx
+  :add-keyword-to-photo
+  (fn [{:keys [db]} [_ [pic kw]]]
+    (let [a 1]
+      (println (str "Keyword " kw))
+      {:http-xhrio {:method          :get
+                    :uri             (str config/api-root "/photos/add/keyword/" kw "/" pic)
+                    :format          (ajax/json-request-format)
+                    :response-format (ajax/json-response-format {:keywords? true})
+                    :on-success      [:add-keyword-local [pic kw]]
+                    :on-failure      [:load-fail "add keyword"]}
+       :db (assoc db :loading? true)})))
+
+(rf/reg-event-fx
   :write-iptc-local
   (fn  [{:keys [db]} [_ [pic field text]]]
     (let [id (helpers/path->id pic)]

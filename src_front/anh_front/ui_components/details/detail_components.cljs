@@ -1,7 +1,9 @@
 (ns anh-front.detail-components
   (:require [clojure.string :as str]
             [re-com.core :as rc]
-            [re-frame.core :as rf]))
+            [re-frame.core :as rf]
+            [reagent.core :as reagent]
+            [anh-front.helpers :as helpers]))
 
 (defn line
   [contents label]
@@ -45,13 +47,15 @@
 
 (defn keyword-editor
   "re-com component to display, add and edit keywords"
-  [keywords]
+  [pic]
   (let [textbox-background (rf/subscribe [:details-textbox-background])
         header-background  (rf/subscribe [:details-header-background])
-        background         (rf/subscribe [:details-background])]
+        background         (rf/subscribe [:details-background])
+        new-keyword        (reagent/atom nil)
+        keywords           (get pic "Keywords")
+        pic-path           (helpers/image-path pic)]
     (rc/v-box
-      :style {;;:width "100%"
-              :background @header-background
+      :style {:background @header-background
               :border-radius "4px"
               :border (str "solid 1px " @header-background)
               :margin-bottom "5px"}
@@ -62,7 +66,6 @@
         :label "Keywords"]
        [rc/v-box
         :style {:background @background
-                :padding-left "3px"
                 :border-radius "0px 0px 4px 4px"}
         :children
         [(for [keyword keywords]
@@ -79,18 +82,19 @@
               :label keyword]]])
          [rc/h-box
           :children
-          [[rc/md-icon-button
-            :md-icon-name "zmdi-plus"
-            :size :smaller]
-           [rc/box
+          [[rc/box
             :size "1 0 auto"
             :child
             [rc/input-text
              :width "100%"
              :height "1.5em"
+             :model @new-keyword
+             :placeholder "Add Keyword"
+             ;; TODO save the new keyword
+             :on-change #(rf/dispatch [:add-keyword-to-photo [pic-path %]])
              :style {:background @textbox-background
                      :border-radius "0px 0px 4px 4px"
-                     :padding "1px 3px 1px 3px"} ]]]]]]])))
+                     :padding "1px 3px 1px 3px"}]]]]]]])))
 
 (defn box
   ([rows content label on-change]

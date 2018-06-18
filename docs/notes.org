@@ -116,6 +116,8 @@ already displayed in the pictures panel
 *** TODO [#E] Display all pictures containing a given keyword
 *** TODO [#C] Add and remove keywords from pictures
 
+** TODO [#G] Make api consistent
+Parameter ordering is different when adding keywords and iptc data
 ** TODO [#D] Make sure that helpers/path->id is getting used.
 Pretty sure it's defined inline in several places.
 ** TODO [#F] Clean up the way panels are selected and keysets changed.

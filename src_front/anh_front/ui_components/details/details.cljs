@@ -27,10 +27,6 @@
         :children
         [[rc/h-box
           :children [[:p @pic-path]]]
-         ;; [rc/h-box
-         ;;  :style {:font-size "0.6em"}
-         ;;  :justify :between
-         ;;  :children [[:p date] [:p time]]]
          [rc/line]
          [:h3 {:style {:margin "5px 0px 3px"}} camera]
          (if lens [:p lens])
@@ -55,6 +51,6 @@
             [components/box rows (get @pic iptc-name) title
              #(rf/dispatch [:write-iptc [@pic-path iptc-name %]])]))]
        ;;[components/keyword-box keywords]
-       [components/keyword-editor keywords]
+       [components/keyword-editor @pic]
        [rc/line]
        [components/all-exif helper/exif-fields @pic]])))
