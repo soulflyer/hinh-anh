@@ -86,3 +86,9 @@
   (fn [{:keys [db]} _]
     (let [current-keywords (rf/subscribe [:current-keywords])]
       {:db (assoc db :keyword-set @current-keywords)})))
+
+(rf/reg-event-fx
+  :add-to-keyword-set
+  (fn [{:keys [db]} [_ new-keyword]]
+    (let [current-set (rf/subscribe [:keyword-set])]
+      {:db (assoc db :keyword-set (conj @current-set new-keyword))})))
