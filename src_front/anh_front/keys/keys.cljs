@@ -1,6 +1,7 @@
 (ns anh-front.keys
-  (:require [re-pressed.core :as re-pressed]
-            [re-frame.core :as re-frame]))
+  (:require [re-frame.core :as re-frame]
+            [re-pressed.core :as re-pressed]))
+
 (def prevent-keys
   [{:which 13}])
 
@@ -69,23 +70,27 @@
    :prevent-default-keys prevent-keys
    :always-listen-keys [{:which 13}]})
 
-(def keywording-keys
+(def keywording-key-set
   {:event-keys (into
-                 picture-keys
-                 [[[:fill-keyword-set]
-                   [{:which 85}]]])})
+                 common-keys
+                 (concat picture-keys
+                         [[[:fill-keyword-set]
+                           [{:which 85}]]]))
+   :prevent-default-keys prevent-keys})
 
 (defn key-rules
   [panel]
   (case panel
-    :projects project-key-set
-    :pictures picture-key-set
-    :details  details-key-set
+    :projects   project-key-set
+    :pictures   picture-key-set
+    :details    details-key-set
+    :keywording keywording-key-set
     project-key-set))
 
-(defn setup-keys
-  ([key-map]
-   (re-frame/dispatch
-     [::re-pressed/set-keydown-rules key-map]))
-  ([]
-   (setup-keys project-key-set)))
+;; (defn setup-keys
+;;   ([key-map]
+;;    (println (str "***********Using key set: " key-map))
+;;    (re-frame/dispatch
+;;      [::re-pressed/set-keydown-rules key-map]))
+;;   ([]
+;;    (setup-keys project-key-set)))

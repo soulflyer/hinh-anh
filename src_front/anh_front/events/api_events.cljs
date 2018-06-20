@@ -1,13 +1,13 @@
 (ns anh-front.api-events
   (:require [ajax.core                :as ajax]
+            [anh-front.config         :as config]
             [anh-front.details-helper :as helper]
             [anh-front.helpers        :as helpers]
             [anh-front.project-tree   :as project-tree]
             [cognitect.transit        :as transit]
             [com.rpl.specter          :as sp]
             [day8.re-frame.http-fx    :as dont-delete-me-or-http-xhrio-will-go-away]
-            [re-frame.core            :as rf]
-            [anh-front.config         :as config]))
+            [re-frame.core            :as rf]))
 
 (rf/reg-event-db
   :load-fail
@@ -70,6 +70,19 @@
                     :on-success      [:add-keyword-local [pic kw]]
                     :on-failure      [:load-fail "add keyword"]}
        :db (assoc db :loading? true)})))
+
+(rf/reg-event-fx
+  :add-keyword-to-photos
+  (fn [{:keys [db]} [_ kw]]
+    (let [photo-paths (rf/subscribe [:selected-pics])
+          photo-ids   (helpers/paths->ids @photo-paths)]
+      {:http-xhrio {:method          :get
+                    :uri             (str config/api-root
+                                          "/photos/add/keyword/" kw "/" photo-ids)
+                    :format          (ajax/json-request-format)
+                    :response-format (ajax/json-response-format {:keywords? true})
+                    :on-success      [:say-hello kw]
+                    :on-failure      [:load-fail "add keyword to photos"]}})))
 
 (rf/reg-event-fx
   :delete-keyword

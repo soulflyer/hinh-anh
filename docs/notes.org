@@ -107,6 +107,7 @@ Check 1991/11/fire_and_ice for an example.
    CLOSED: [2018-06-16 Sat 23:36]
 Changes are written to the database, but the local db doesn't see them until after a refresh. Could sort this by writting the change to the db as well as calling the api, or perhaps have one trigger the other. Or most likely just fetch the pictures again.
 ** TODO [#G] Add keyword in keywording/panel doesn't clear when triggered
+** TODO [#D] Picture keys should work when details panel is displayed.
 * Improvements
 ** Filters
 *** TODO [#F] Filter by stars

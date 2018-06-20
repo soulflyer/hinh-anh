@@ -21,7 +21,8 @@
 
 (defn mount-root []
   (rf/clear-subscription-cache!)
-  (ks/setup-keys)
+  (rf/dispatch-sync [:set-keys :projects])
+  ;;(ks/setup-keys)
   (reagent/render [main/panel]
                   (.getElementById js/document "app")))
 

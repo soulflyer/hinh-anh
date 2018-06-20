@@ -72,11 +72,13 @@
           ;;TODO Clean this up
           html-focus (case keys
                        :pictures "panel-2"
-                       :details  "panel-1"
-                       :projects "panel-1")]
-      (println (str "new-panel " new-panel))
-      (println (str "keys " keys))
-      (println (str "Focus " html-focus))
+                       ;; :details  "panel-1"
+                       ;; :projects "panel-1"
+                       ;; :keywording "panel-1"
+                       "panel-1")]
+      ;; (println (str "new-panel " new-panel))
+      ;; (println (str "keys " keys))
+      ;; (println (str "Focus " html-focus))
       {:db (assoc db :panel-focus new-panel)
        :dispatch [:set-keys-for new-panel]
        :set-html-focus html-focus})))
