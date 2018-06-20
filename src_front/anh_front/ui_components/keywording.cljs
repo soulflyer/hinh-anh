@@ -36,7 +36,7 @@
           [rc/input-text
            :width "100%"
            :height "1.5em"
-           :model @new-keyword
+           :model nil
            :placeholder "Add Keyword"
            ;; TODO save the new keyword. Write an event :add-to-keyword-set
            :on-change #(rf/dispatch [:add-to-keyword-set %])
@@ -48,4 +48,7 @@
        :children
        [[rc/button
          :label "Used Keywords"
-         :on-click #(rf/dispatch [:fill-keyword-set])]]]]]))
+         :on-click #(rf/dispatch [:fill-keyword-set])]
+        [rc/button
+         :label "Favorite Keywords"
+         :on-click #(rf/dispatch [:say-hello "Add an event :load-favorite-keywords"])]]]]]))

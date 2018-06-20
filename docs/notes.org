@@ -106,6 +106,7 @@ Check 1991/11/fire_and_ice for an example.
 ** DONE updating IPTC doesn't refresh db contents
    CLOSED: [2018-06-16 Sat 23:36]
 Changes are written to the database, but the local db doesn't see them until after a refresh. Could sort this by writting the change to the db as well as calling the api, or perhaps have one trigger the other. Or most likely just fetch the pictures again.
+** TODO [#G] Add keyword in keywording/panel doesn't clear when triggered
 * Improvements
 ** Filters
 *** TODO [#F] Filter by stars
@@ -117,6 +118,9 @@ already displayed in the pictures panel
 *** TODO [#E] Display all pictures containing a given keyword
 *** TODO [#C] Add and remove keywords from pictures
 Already done for individual pics, but need to be able to do all selected pics at once.
+*** TODO [#C] Add shortcut key for used-keywords
+*** TODO [#C] Add storage for favorite keywords
+*** TODO [#C] Add shortcut key for favorite keywords
 ** TODO [#G] Make api consistent
 Parameter ordering is different when adding keywords and iptc data
 ** TODO [#D] Make sure that helpers/path->id is getting used.
