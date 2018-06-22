@@ -85,6 +85,18 @@
                     :on-failure      [:load-fail "add keyword to photos"]}})))
 
 (rf/reg-event-fx
+  :delete-keyword-from-photos
+  (fn [{:keys [db]} [_ kw]]
+    (let [photo-paths (rf/subscribe [:selected-pics])
+          photo-ids   (helpers/paths->ids @photo-paths)]
+      {:http-xhrio {:method :get
+                    :uri (str config/api-root "/photos/delete/keyword/" kw "/" photo-ids)
+                    :format (ajax/json-request-format)
+                    :response-format (ajax/json-response-format)
+                    :on-success [:refresh-pictures]
+                    :on-failure [:load-fail "delete keywords"]}})))
+
+(rf/reg-event-fx
   :delete-keyword
   (fn [{:keys [db]} [_ [pic kw]]]
     {:http-xhrio {:method :get
@@ -180,17 +192,16 @@
                     :on-failure      [:load-fail (str "Refresh " project-path)]}
        :db          (assoc db :loading? true)})))
 
-(rf/reg-event-db
+(rf/reg-event-fx
   :refresh-response
   (fn
-    [db [_ response]]
-    (let [reader    (transit/reader :json)
-          resp      (transit/read reader response)]
-      (-> db
-          (assoc    :loading? false)
-          (assoc-in [:picture-list :pictures] resp)
-          ;;(assoc    :displayed-project (get-in db [:project-tree :focus]))
-          ))))
+    [{:keys [db]} [_ response]]
+    (let [reader (transit/reader :json)
+          resp   (transit/read reader response)]
+      {:db (-> db
+               (assoc    :error "Refreshed pictures")
+               (assoc    :loading? false)
+               (assoc-in [:picture-list :pictures] resp))})))
 
 (rf/reg-event-fx
   :open-project

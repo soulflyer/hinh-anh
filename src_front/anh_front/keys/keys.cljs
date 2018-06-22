@@ -22,6 +22,8 @@
       :metaKey true}]] ;;meta f
    [[:rotate-left-panel]
     [{:which 87}]] ;; w
+   [[:fill-keyword-set]
+    [{:which 85}]] ;; u
    ])
 
 (def details-keys

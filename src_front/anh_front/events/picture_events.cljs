@@ -90,10 +90,12 @@
   :fill-keyword-set
   (fn [{:keys [db]} _]
     (let [current-keywords (rf/subscribe [:current-keywords])]
-      {:db (assoc db :keyword-set @current-keywords)})))
+      {:db (-> db
+               (assoc :keyword-set @current-keywords)
+               (assoc :error (str "Set keywords")))})))
 
 (rf/reg-event-fx
   :add-to-keyword-set
   (fn [{:keys [db]} [_ new-keyword]]
     (let [current-set (rf/subscribe [:keyword-set])]
-      {:db (assoc db :keyword-set (conj @current-set new-keyword))})))
+      {:db (assoc db :keyword-set (set (conj @current-set new-keyword)))})))

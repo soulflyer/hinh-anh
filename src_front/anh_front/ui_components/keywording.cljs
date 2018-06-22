@@ -28,7 +28,7 @@
                       :width "100%"
                       :border (str "solid 1px " @header-background)
                       :background @background}
-              :attr {:on-context-menu #(rf/dispatch [:say-hello (str " bye " keyword)])}
+              :attr {:on-context-menu #(rf/dispatch [:delete-keyword-from-photos keyword])}
               :on-click #(rf/dispatch [:add-keyword-to-photos keyword])]))
          [rc/box
           :size "1 0 auto"

@@ -108,9 +108,13 @@ Check 1991/11/fire_and_ice for an example.
 Changes are written to the database, but the local db doesn't see them until after a refresh. Could sort this by writting the change to the db as well as calling the api, or perhaps have one trigger the other. Or most likely just fetch the pictures again.
 ** TODO [#G] Add keyword in keywording/panel doesn't clear when triggered
 ** TODO [#D] Picture keys should work when details panel is displayed.
-** TODO [#B] Error message is not visible.
-** TODO [#C] U key only works when keywording has focus.
-** TODO [#A] Possible to add multiple identical keywords to keywording set.
+** DONE Error message is not visible.
+   CLOSED: [2018-06-22 Fri 13:45]
+** DONE U key only works when keywording has focus.
+   CLOSED: [2018-06-22 Fri 14:38]
+** DONE Possible to add multiple identical keywords to keywording set.
+   CLOSED: [2018-06-22 Fri 13:36]
+** TODO [#F] Preserve order amongst keywords. New ones should be added to the end
 * Improvements
 ** Filters
 *** TODO [#F] Filter by stars
@@ -120,8 +124,9 @@ Changes are written to the database, but the local db doesn't see them until aft
 already displayed in the pictures panel
 *** TODO [#D] Display keyword heirarchy
 *** TODO [#E] Display all pictures containing a given keyword
-*** TODO [#C] Add and remove keywords from pictures
-Already done for individual pics, but need to be able to do all selected pics at once.
+*** DONE Add and remove keywords from pictures
+    CLOSED: [2018-06-22 Fri 13:47]
+Already done for individual pics, but need to be able to do all selected pics at once. Addin works now but still need to be able to delete keyword from multiple pics.
 *** DONE Add shortcut key for used-keywords
     CLOSED: [2018-06-22 Fri 01:56]
 *** TODO [#C] Add storage for favorite keywords
@@ -146,5 +151,10 @@ Not perfect, a border round the pic would be nice.
 ** TODO [#C] Open all intermediate nodes to a specified project
 ** TODO [#C] Remember last viewed project
 ** TODO [#F] Make tabs to select the different views in the left panel.
-** TODO [#A] Consider refreshing pictures
-Might be a better way to go than updating them locally as well as via the api.
+** DONE Consider refreshing pictures
+   CLOSED: [2018-06-22 Fri 13:28]
+Might be a better way to go than updating them locally as well as via the api. Pictures now refresh when multiple keywords are added.
+** TODO [#F] Refactor to make use of :refresh-pictures
+instead of storing changes directly to db
+** DONE Add delete multiple keywords functionality
+   CLOSED: [2018-06-22 Fri 22:04]
