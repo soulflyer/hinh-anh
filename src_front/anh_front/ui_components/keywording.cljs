@@ -29,7 +29,7 @@
                       :border (str "solid 1px " @header-background)
                       :background @background}
               :attr {:on-context-menu #(rf/dispatch [:say-hello (str " bye " keyword)])}
-              :on-click #(rf/dispatch [:say-hello keyword])]))
+              :on-click #(rf/dispatch [:add-keyword-to-photos keyword])]))
          [rc/box
           :size "1 0 auto"
           :child

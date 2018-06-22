@@ -123,7 +123,7 @@
   :fetch-pictures
   (fn [{:keys [db]} _]
     (let [path (:focus (:project-tree db))]
-      {:dispatch [:request-pictures path]})))
+      {:dispatch [:load-pictures-for-project path]})))
 
 (rf/reg-event-fx
   :next-project-open
@@ -132,7 +132,7 @@
           path (:focus tr)
           newpath (tree/next-node tr path)]
       {:dispatch-n [(if (= 3 (count newpath))
-                      [:request-pictures newpath])
+                      [:load-pictures-for-project newpath])
                     [:next-node :project-tree path]]})))
 
 (rf/reg-event-fx
@@ -142,7 +142,7 @@
           path (:focus tr)
           newpath (tree/prev-node tr path)]
       {:dispatch-n [(if (= 3 (count newpath))
-                      [:request-pictures newpath])
+                      [:load-pictures-for-project newpath])
                     [:prev-node :project-tree path]]})))
 
 (rf/reg-event-fx

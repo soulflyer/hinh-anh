@@ -82,6 +82,11 @@
     {:db (assoc-in db [:picture-list :selected] [])}))
 
 (rf/reg-event-fx
+  :set-focus
+  (fn [{:keys [db]} [_ new-focus]]
+    {:db (assoc-in db [:picture-list :focus] new-focus)}))
+
+(rf/reg-event-fx
   :fill-keyword-set
   (fn [{:keys [db]} _]
     (let [current-keywords (rf/subscribe [:current-keywords])]

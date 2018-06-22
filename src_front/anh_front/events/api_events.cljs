@@ -81,7 +81,7 @@
                                           "/photos/add/keyword/" kw "/" photo-ids)
                     :format          (ajax/json-request-format)
                     :response-format (ajax/json-response-format {:keywords? true})
-                    :on-success      [:say-hello kw]
+                    :on-success      [:refresh-pictures]
                     :on-failure      [:load-fail "add keyword to photos"]}})))
 
 (rf/reg-event-fx
@@ -137,7 +137,7 @@
 
 ;;(rf/dispatch-sync [:request-pictures ["2002" "01" "01-Teesdale"]])
 (rf/reg-event-fx
-  :request-pictures
+  :load-pictures-for-project
   (fn
     [{db :db} [_ path]]
     (let [project-path (reduce str (interpose "/" path))]
@@ -154,14 +154,43 @@
   :pictures-response
   (fn
     [db [_ response]]
-    (let [reader   (transit/reader :json)
-          resp     (transit/read reader response)
-          first-pic (helpers/image-path (first resp))
-          ]
+    (let [reader    (transit/reader :json)
+          resp      (transit/read reader response)
+          first-pic (helpers/image-path (first resp))]
       (-> db
-          (assoc :loading? false)
-          (assoc :picture-list {:focus first-pic :selected [] :pictures resp})
-          (assoc :displayed-project (get-in db [:project-tree :focus]))))))
+          (assoc    :loading? false)
+          (assoc-in [:picture-list :focus] first-pic)
+          (assoc-in [:picture-list :pictures] resp)
+          (assoc-in [:picture-list :selected] [])
+          (assoc    :displayed-project (get-in db [:project-tree :focus]))))))
+
+(rf/reg-event-fx
+  :refresh-pictures
+  (fn [{:keys [db]} _]
+    ;;TODO No paramater, should refresh loaded pics
+    (let [project-vector (rf/subscribe [:displayed-project])
+          project-path (reduce str (interpose "/" @project-vector))]
+      (println (str "******" project-path))
+      {:http-xhrio {:method          :get
+                    :cross-origin    true
+                    :uri             (str config/api-root "/photos/" project-path)
+                    :format          (ajax/json-request-format)
+                    :response-format (ajax/json-response-format {:keywords? true})
+                    :on-success      [:refresh-response]
+                    :on-failure      [:load-fail (str "Refresh " project-path)]}
+       :db          (assoc db :loading? true)})))
+
+(rf/reg-event-db
+  :refresh-response
+  (fn
+    [db [_ response]]
+    (let [reader    (transit/reader :json)
+          resp      (transit/read reader response)]
+      (-> db
+          (assoc    :loading? false)
+          (assoc-in [:picture-list :pictures] resp)
+          ;;(assoc    :displayed-project (get-in db [:project-tree :focus]))
+          ))))
 
 (rf/reg-event-fx
   :open-project
