@@ -1,320 +1,34 @@
-# anh
+# Hình Ảnh
+![Hình Ảnh](resources/anh.png)
+Hình Ảnh is a photo management program designed to make sorting and searching as easy as possible. Keywords can be added with the minimum number of keystrokes, or clicks if you still prefer to use a mouse. Writeable IPTC fields can be filled easily and those displayed can be customised to match the fields that you use in your workflow.
 
-This project build by descjop v0.7.0
+## Installation
 
-FIXME: description
+Hinh Anh requires the backend program [photo-api](https://github.com/soulflyer/photo-api) and a working installation of mongo to provide the database containing all the photo details.[metadata-mongo](https://github.com/soulflyer/metadata-mongo) may be useful too, to help automate loading the database with details from your photos.
 
-## Requirements
+## Prerequisites
 
-* leiningen 2.6.x +
-* node v0.12.x +
-* grunt v0.1.13 +
+Hình Ảnh makes some assumptions about the way photos are arranged.
 
-### (if you don't install grunt yet.)
+Firstly, filenames and directory names have NO SPACES. There is no intention to change this. ever. However detection and warning will hopefully feature soon. Maybe even semi automatic correction. Currently there is no protection, so please check before trying to run Hình Ảnh.
 
-```
-$ npm install -g grunt-cli
-```
+Secondly, photos are stored in a 3 level directory heirarchy, ie <year>/<month>/<project>/<photo> This arrangement is duplicated for various sizes of photos. The year/month/project/version part being the last part of the path. My arrangement looks like this:
 
+    /photos/masters/yr/mm/pr/
+    /photos/fullsize/yr/mm/pr/
+    /photos/large/yr/mm/pr/
+    /photos/medium/yr/mm/pr/
+    /photos/small/yr/mm/pr/
+    /photos/thumbs/yr/mm/pr/
+    
+It isn't necessary to have all these directories, and the first part of the path can be whatever you like, but the last part of each must be yr/mm/pr/pic. Checkout the preferences section for details about setting these. 
 
-## Help
+The fullsize directory contains my edited photos and the others are all automatically generated (and watermarked) from that using a simple shell script that you can find [here](https://github.com/soulflyer/publish) and the program to specify the watermark size and position is [here](https://github.com/soulflyer/Watermarker) although you are probably better off waiting for this functionality to be incorporated into Hình Ảnh. Currently it is mac only (sorry, I'm a recovering mac fan and I haven't got round to rewriting this bit yet). The readme may still contain mention of Aperture (damn you Apple) although I have removed that dependancy from the code.
 
-You can display help how to use descjop.
+## The Name
 
-```
-$ lein new descjop help
-```
-
-and you can use alias in project directory.
-
-```
-$ lein descjop-help
-```
-
-## display latest version
-
-You can display latest version.
-
-```
-$ lein new descjop version
-```
-
-## New project from leiningen template
-
-### Minimum project
-
-```
-$ lein new descjop YOUR_APP_NAME
-$ cd YOUR_APP_NAME
-```
-
-### [Om](https://github.com/omcljs/om) based project
-
-```
-$ lein new descjop YOUR_APP_NAME +om
-$ cd YOUR_APP_NAME
-```
-
-### [reagent](https://github.com/reagent-project/reagent) based project
-
-```
-$ lein new descjop YOUR_APP_NAME +reagent
-$ cd YOUR_APP_NAME
-```
-
-## Project Directory
-
-  see your app dir. looks like
-
-```
-.
-+-- Gruntfile.js
-+-- README.md
-+-- app
-|   +-- dev // deveropment mode dir
-|   |   +-- index.html // entry html file
-|   |   +-- js
-|   |   |   +-- externs_front.js
-|   |   |   +-- externs.js
-|   |   |   +-- main.js
-|   |   +-- package.json // for Desktop app
-|   +-- prod // production mode dir
-|       +-- index.html // entry html file
-|       +-- js
-|       |   +-- externs_front.js
-|       |   +-- externs.js
-|       |   +-- main.js
-|       +-- package.json // for Desktop app
-+-- package.json // for Compile
-+-- project.clj // compile settings desktop app
-+-- resources
-+-- src
-|   +-- NAMESPACE
-|       +-- core.cljs // ClojureScript for Electron in here
-+-- src_front
-|   +--NAMESPACE_front
-|      +-- core.cljs // Frontend clojureScript in here
-+-- src_front_profile
-    +--NAMESPACE_front
-       +-- dev
-       |   +-- conf.cljs
-       |   +-- init.cljs
-       +-- prod
-           +-- conf.cljs
-           +-- init.cljs
-```
-
-## Usage
-
-### step 1
-
-run `descjop-init` (windows user should use `descjop-init-win`) alias below.
-
-#### OSX/Linux user
-
-```
-$ lein descjop-init
- ...
+Hình Ảnh means image in Vietnamese
  
-Running "download-electron" task
- 
-Done, without errors.
-```
-
-#### Windows user
-
-```
-$ lein descjop-init-win
- ...
- 
-Running "download-electron" task
- 
-Done, without errors.
-```
-
-### step 2
-
-you have to change `src/PROJECT_NAME/core.cljs` about `:companyName` and `submitURL`.
-
-```
-(defn -main []
-  (.start crash-reporter (clj->js {:companyName "Your Company Name"
-                                   :submitURL   "http://example.com/"}))
-  ...
-```
-
-### step 3
-
-and run extern alias `descjop-externs`,
-
-```
-$ lein descjop-externs
-```
-
-run cljsbuild `lein descjop-once`.
-
-```
-$ lein descjop-once
-
-Compiling ClojureScript.
-Compiling "app/js/cljsbuild-main.js" from ["src"]...
-Successfully compiled "app/js/cljsbuild-main.js" in 10.812 seconds.
-...
-Successfully compiled "app/dev/js/front.js" in 10.588 seconds.
-...
-Successfully compiled "app/prod/js/cljsbuild-main.js" in 19.333 seconds.
-...
-Successfully compiled "app/prod/js/front.js" in 29.94 seconds.
-```
-
-### step 4
-
-You can run Desctop application.
-
-#### development mode
-
-development mode use figwheel. run alias `descjop-figwheel`.  before run application.
-Open other terminal window.
-
-```
-$ lein descjop-figwheel
-```
-
-and you can run Electron(Atom-Shell) app.
-
-On Windows:
-
-```
-$ .\electron\electron.exe app/dev
-```
-
-On Linux:
-
-```
-$ ./electron/electron app/dev
-```
-
-On OS X:
-
-```
-$ ./electron/Electron.app/Contents/MacOS/Electron app/dev
-```
-
-#### production mode
-
-you can run Electron(Atom-Shell) app.
-
-On Windows:
-
-```
-$ .\electron\electron.exe app/prod
-```
-
-On Linux:
-
-```
-$ ./electron/electron app/prod
-```
-
-On OS X:
-
-```
-$ ./electron/Electron.app/Contents/MacOS/Electron app/prod
-```
-
-## Package App
-
-### (If not already installed Electron-packager.)
-
-```
-$ npm install -g electron-packager
-```
-
-### run command
-
-#### for OSX
-
-```
-$ lein descjop-uberapp-osx
-```
-
-#### for OSX app store
-
-```
-$ descjop-uberapp-app-store
-```
-
-#### for windows 32bit app
-
-```
-$ descjop-uberapp-win32
-```
-
-#### for windows 64bit app
-
-```
-$ descjop-uberapp-win64
-```
-
-#### for linux
-
-```
-$ descjop-uberapp-linux
-```
-
-## How to Upgrade to new Electron version
-
-You can change Electron version in Gruntfile.js.
-
-```
-module.exports = function(grunt) {
-
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        "download-electron": {
-            version: "1.3.2", // change Electron version 1.3.2 -> 1.3.3
-            outputDir: "./electron", 
-            rebuild: true
-        }
-    });
-
-    grunt.loadNpmTasks('grunt-download-electron');
-
-};
-```
-
-and re-run
-
-for linux / mac
-
-```
-$ lein descjop-init
-```
-
-for windows
-
-```
-$ lein descjop-init-win
-```
-
-## Aliases
-
-you can use aliases in project directory.
-
-```
-$ lein descjop-version       # descjop version
-$ lein descjop-help          # descjop help
-$ lein descjop-init          # init project
-$ lein descjop-init-win      # init project for windows user
-$ lein descjop-externs       # output externs for develop and production
-$ lein descjop-externs-dev   # output externs for develop
-$ lein descjop-externs-prod  # output externs for production
-$ lein descjop-figwheel      # start figwheel
-$ lein descjop-once          # build JavaScript for develop and production
-$ lein descjop-once-dev      # build JavaScript for develop
-$ lein descjop-once-prod     # build JavaScript for production
-```
-
 ## License
 
 Copyright ©  FIXME

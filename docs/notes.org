@@ -129,8 +129,8 @@ already displayed in the pictures panel
 Already done for individual pics, but need to be able to do all selected pics at once. Addin works now but still need to be able to delete keyword from multiple pics.
 *** DONE Add shortcut key for used-keywords
     CLOSED: [2018-06-22 Fri 01:56]
-*** TODO [#C] Add storage for favorite keywords
-*** TODO [#C] Add shortcut key for favorite keywords
+*** TODO [#B] Add storage for favorite keywords
+*** TODO [#B] Add shortcut key for favorite keywords
 ** TODO [#G] Make api consistent
 Parameter ordering is different when adding keywords and iptc data
 ** TODO [#D] Make sure that helpers/path->id is getting used.
@@ -158,3 +158,5 @@ Might be a better way to go than updating them locally as well as via the api. P
 instead of storing changes directly to db
 ** DONE Add delete multiple keywords functionality
    CLOSED: [2018-06-22 Fri 22:04]
+** TODO [#D] Need to be able to delete keywording buttons
+** TODO [#B] Add key shortcuts for keywording buttons

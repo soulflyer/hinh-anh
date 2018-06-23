@@ -179,10 +179,8 @@
 (rf/reg-event-fx
   :refresh-pictures
   (fn [{:keys [db]} _]
-    ;;TODO No paramater, should refresh loaded pics
     (let [project-vector (rf/subscribe [:displayed-project])
           project-path (reduce str (interpose "/" @project-vector))]
-      (println (str "******" project-path))
       {:http-xhrio {:method          :get
                     :cross-origin    true
                     :uri             (str config/api-root "/photos/" project-path)
@@ -199,7 +197,7 @@
     (let [reader (transit/reader :json)
           resp   (transit/read reader response)]
       {:db (-> db
-               (assoc    :error "Refreshed pictures")
+               ;;(assoc    :error "Refreshed pictures")
                (assoc    :loading? false)
                (assoc-in [:picture-list :pictures] resp))})))
 
