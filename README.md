@@ -1,10 +1,10 @@
 # Hình Ảnh
-![Hình Ảnh](resources/anh.png)
+![Hình Ảnh](resources/anh-small.png)
 Hình Ảnh is a photo management program designed to make sorting and searching as easy as possible. Keywords can be added with the minimum number of keystrokes, or clicks if you still prefer to use a mouse. Writeable IPTC fields can be filled easily and those displayed can be customised to match the fields that you use in your workflow.
 
 ## Installation
 
-Hinh Anh requires the backend program [photo-api](https://github.com/soulflyer/photo-api) and a working installation of mongo to provide the database containing all the photo details.[metadata-mongo](https://github.com/soulflyer/metadata-mongo) may be useful too, to help automate loading the database with details from your photos.
+Hinh Anh requires the backend program [photo-api](https://github.com/soulflyer/photo-api) and a working installation of mongo to provide the database containing all the photo details. [metadata-mongo](https://github.com/soulflyer/metadata-mongo) may be useful too, to help automate loading the database with details from your photos.
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ Hình Ảnh makes some assumptions about the way photos are arranged.
 
 Firstly, filenames and directory names have NO SPACES. There is no intention to change this. ever. However detection and warning will hopefully feature soon. Maybe even semi automatic correction. Currently there is no protection, so please check before trying to run Hình Ảnh.
 
-Secondly, photos are stored in a 3 level directory heirarchy, ie <year>/<month>/<project>/<photo> This arrangement is duplicated for various sizes of photos. The year/month/project/version part being the last part of the path. My arrangement looks like this:
+Secondly, photos are stored in a 3 level directory heirarchy, ie year/month/project/photo This arrangement is duplicated for various sizes of photos. The year/month/project/version part being the last part of the path. My arrangement looks like this:
 
     /photos/masters/yr/mm/pr/
     /photos/fullsize/yr/mm/pr/
