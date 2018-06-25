@@ -9,6 +9,7 @@
         textbox-background (rf/subscribe [:details-textbox-background])
         header-background  (rf/subscribe [:details-header-background])
         background         (rf/subscribe [:details-background])
+        shortcut-highlight (rf/subscribe [:shortcut-highlight])
         new-keyword        (reagent/atom nil)]
     (println (str "############" @keywords))
     [rc/v-box
@@ -23,14 +24,32 @@
         :children
         [(for [keyword @keywords]
            (if keyword ;; TODO keyword-set sometimes has a nil in it. Don't know why.
-             [rc/button
-              :label keyword
-              :style {:padding "0px"
-                      :width "100%"
-                      :border (str "solid 1px " @header-background)
-                      :background @background}
-              :attr {:on-context-menu #(rf/dispatch [:delete-keyword-from-photos keyword])}
-              :on-click #(rf/dispatch [:add-keyword-to-photos keyword])]))
+             [rc/h-box
+              :children
+              ;; TODO find out how to style the box around a button. It's generated
+              ;; automatically and only seems to allow the button to expand to full
+              ;; width when it's contained in an otherwise spurious v-box
+              [[rc/box
+                :child "A"
+                :style {:padding "1px 4px 0px 0px"
+                        :color   @shortcut-highlight}]
+               [rc/v-box
+                :size "1 1 auto"
+                ;;:style {:width "100%"}
+                :children
+                [[rc/button
+                  :label keyword
+                  :style {:padding    "0px 1px 0px 3px"
+                          :width      "100%"
+                          :overflow   "hidden"
+                          :border     (str "solid 1px " @header-background)
+                          :background @background}
+                  :attr {:on-context-menu #(rf/dispatch [:delete-keyword-from-photos keyword])}
+                  :on-click #(rf/dispatch [:add-keyword-to-photos keyword])]]]
+               [rc/md-icon-button
+                :md-icon-name "zmdi-minus"
+                :size :smaller
+                :on-click #(rf/dispatch [:remove-from-keyword-set keyword])]]]))
          [rc/box
           :size "1 0 auto"
           :child
@@ -39,12 +58,11 @@
            :height "1.5em"
            :model nil
            :placeholder "Add Keyword"
-           ;; TODO save the new keyword. Write an event :add-to-keyword-set
            :on-change #(rf/dispatch [:add-to-keyword-set %])
-           :style {:background @textbox-background
+           :style {:background    @textbox-background
                    :border-radius "4px 4px 4px 4px"
-                   :border (str "solid 1px " @header-background)
-                   :padding "1px 3px 1px 3px"}]]]]]
+                   :border        (str "solid 1px " @header-background)
+                   :padding       "1px 3px 1px 3px"}]]]]]
       [rc/h-box
        :children
        [[rc/button
@@ -52,4 +70,4 @@
          :on-click #(rf/dispatch [:fill-keyword-set])]
         [rc/button
          :label "Favorite Keywords"
-         :on-click #(rf/dispatch [:say-hello "Add an event :load-favorite-keywords"])]]]]]))
+         :on-click #(rf/dispatch [:set-favorite-keywords])]]]]]))

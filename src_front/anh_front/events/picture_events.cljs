@@ -112,3 +112,9 @@
   (fn [{:keys [db]} [_ new-keyword]]
     (let [current-set (rf/subscribe [:keyword-set])]
       {:db (assoc db :keyword-set (set (conj @current-set new-keyword)))})))
+
+(rf/reg-event-fx
+  :remove-from-keyword-set
+  (fn [{:keys [db]} [_ old-keyword]]
+    (let [current-set (rf/subscribe [:keyword-set])]
+      {:db (assoc db :keyword-set (remove #{old-keyword} @current-set))})))

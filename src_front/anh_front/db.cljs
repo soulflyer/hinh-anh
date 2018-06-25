@@ -3,9 +3,7 @@
 (def default-db
   {:name                    "Projects"
    :project-list            {}
-   :picture-list            {:pictures [{}]
-                             :focus    ""
-                             :selected []}
+   :picture-list            {:pictures [{}] :focus    "" :selected []}
    :error                   "All is well."
    :panel-focus             :left
    :panel-focus-list        [:left :pictures]
@@ -26,29 +24,26 @@
     :large-directory            "/Users/iain/Pictures/Published/large"
     ;; This vector specifies the writeable fields in the details panel
     :iptc-fields                [[:Object-Name "Title" 1]
-                                 [:Caption-Abstract "Caption" 5]
-                                 ;; [:Special-Instructions "Watermark" 1]
-                                 ;; [:Copyright "Copyright" 1]
-                                 ;; [:Copyright-Notice "Copyright Notice" 1]
-                                 ]
+                                 [:Caption-Abstract "Caption" 5]]
     :picture-columns            5
     :picture-grid-gap           "14px"
-    :picture-text-colour        "#9e9e9e"
-    :pictures-background        "#262626"
-    :picture-background         "#121212"
-    :picture-border             "black"
-    :picture-border-focused     "lightblue"
-    :picture-border-unfocused   "#666666"
-    :picture-selected-colour    "#1c4563"
     :picture-border-width       "1px"
     :hide-footer                false
-    :footer-colour              "#808080"
-    :footer-background          "#f1f1f1"
-    :project-background         "red"
-    :details-background         "darkgray"
-    :details-textbox-background "#cccccc"
-    :details-header-background  "gray"
     :keyword-sets               [{:name     "people"
-                                  :keywords ["me"]}]
+                                  :keywords ["me" "under" "over" "under-over"]}]
     :favorite-keywords          "people"
-    }})
+    :colours
+    {:picture-text-colour        "#9e9e9e"
+     :pictures-background        "#262626"
+     :picture-background         "#121212"
+     :picture-border             "black"
+     :picture-border-focused     "lightblue"
+     :picture-border-unfocused   "#666666"
+     :picture-selected-colour    "#1c4563"
+     :footer-colour              "#808080"
+     :footer-background          "#f1f1f1"
+     :project-background         "red"
+     :details-background         "darkgray"
+     :details-textbox-background "#cccccc"
+     :details-header-background  "gray"
+     :shortcut-highlight         "#295390" }}})

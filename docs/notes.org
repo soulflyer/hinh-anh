@@ -165,5 +165,6 @@ Might be a better way to go than updating them locally as well as via the api. P
 instead of storing changes directly to db
 ** DONE Add delete multiple keywords functionality
    CLOSED: [2018-06-22 Fri 22:04]
-** TODO [#D] Need to be able to delete keywording buttons
+** TODO [#B] Need to be able to delete keywording buttons
 ** TODO [#B] Add key shortcuts for keywording buttons
+** TODO [#H] Add bulk editing of IPTC fields
