@@ -24,6 +24,8 @@
     [{:which 87}]] ;; w
    [[:fill-keyword-set]
     [{:which 85}]] ;; u
+   [[:set-favorite-keywords]
+    [{:which 89}]] ;; y
    ])
 
 (def details-keys
@@ -68,7 +70,7 @@
    :prevent-default-keys prevent-keys})
 
 (def details-key-set
-  {:event-keys (into common-keys details-keys)
+  {:event-keys (into common-keys picture-keys)
    :prevent-default-keys prevent-keys
    :always-listen-keys [{:which 13}]})
 

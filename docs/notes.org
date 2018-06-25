@@ -115,6 +115,10 @@ Changes are written to the database, but the local db doesn't see them until aft
 ** DONE Possible to add multiple identical keywords to keywording set.
    CLOSED: [2018-06-22 Fri 13:36]
 ** TODO [#F] Preserve order amongst keywords. New ones should be added to the end
+** TODO [#D] Attempts to write IPTC fields to the API even when empty.
+** DONE picture not highlighted when keywording
+   CLOSED: [2018-06-24 Sun 00:15]
+Picture keys work, but there is no way of telling which is current. Pic should be highlighted in grey.
 * Improvements
 ** Filters
 *** TODO [#F] Filter by stars
@@ -129,8 +133,11 @@ already displayed in the pictures panel
 Already done for individual pics, but need to be able to do all selected pics at once. Addin works now but still need to be able to delete keyword from multiple pics.
 *** DONE Add shortcut key for used-keywords
     CLOSED: [2018-06-22 Fri 01:56]
-*** TODO [#B] Add storage for favorite keywords
-*** TODO [#B] Add shortcut key for favorite keywords
+*** DONE Add storage for favorite keywords
+    CLOSED: [2018-06-23 Sat 23:51]
+*** DONE Add shortcut key for favorite keywords
+    CLOSED: [2018-06-23 Sat 23:52]
+*** TODO [#E] Store a set of keywords as favorite
 ** TODO [#G] Make api consistent
 Parameter ordering is different when adding keywords and iptc data
 ** TODO [#D] Make sure that helpers/path->id is getting used.

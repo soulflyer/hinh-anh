@@ -95,6 +95,19 @@
                (assoc :error (str "Set keywords")))})))
 
 (rf/reg-event-fx
+  :set-keyword-set
+  (fn [{:keys [db]} [_ keyword-set]]
+    {:db (-> db
+             (assoc :keyword-set keyword-set)
+             (assoc :error "set keywords"))}))
+
+(rf/reg-event-fx
+  :set-favorite-keywords
+  (fn [{:keys [db]} _]
+    (let [fav (rf/subscribe [:favorite-keyword-set])]
+      {:dispatch [:set-keyword-set @fav] })))
+
+(rf/reg-event-fx
   :add-to-keyword-set
   (fn [{:keys [db]} [_ new-keyword]]
     (let [current-set (rf/subscribe [:keyword-set])]

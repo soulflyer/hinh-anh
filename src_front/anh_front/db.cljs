@@ -1,50 +1,54 @@
 (ns anh-front.db)
 
 (def default-db
-  {:name "Projects"
-   :project-list {}
-   :picture-list {:pictures [{}]
-                  :focus ""
-                  :selected []}
-   :error "All is well."
-   :panel-focus :left
-   :panel-focus-list [:left :pictures]
-   :left-panel-list [:projects :details :keywording]
-   :left-panel-display :projects
-   :details-textfields []
+  {:name                    "Projects"
+   :project-list            {}
+   :picture-list            {:pictures [{}]
+                             :focus    ""
+                             :selected []}
+   :error                   "All is well."
+   :panel-focus             :left
+   :panel-focus-list        [:left :pictures]
+   :left-panel-list         [:projects :details :keywording]
+   :left-panel-display      :projects
+   :details-textfields      []
    :details-focused-textbox ""
    ;; picture-display-index refers to picture-display-list.
    ;; First entry must be :grid or odd things will happen.
    ;; TODO change this to use the same technique as panel-focus.
-   :picture-display-index 0
-   :picture-display-list [:grid :single]
-   :keyword-set []
+   :picture-display-index   0
+   :picture-display-list    [:grid :single]
+   :keyword-set             []
 
    :preferences
-   {:show-empty-exif false
-    :medium-directory "/Users/iain/Pictures/Published/medium"
-    :large-directory "/Users/iain/Pictures/Published/large"
+   {:show-empty-exif            false
+    :medium-directory           "/Users/iain/Pictures/Published/medium"
+    :large-directory            "/Users/iain/Pictures/Published/large"
     ;; This vector specifies the writeable fields in the details panel
-    :iptc-fields [[:Object-Name "Title" 1]
-                  [:Caption-Abstract "Caption" 5]
-                  ;; [:Special-Instructions "Watermark" 1]
-                  ;; [:Copyright "Copyright" 1]
-                  ;; [:Copyright-Notice "Copyright Notice" 1]
-                  ]
-    :picture-columns 5
-    :picture-grid-gap "14px"
-    :picture-text-colour "#9e9e9e"
-    :pictures-background "#262626"
-    :picture-background "#121212"
-    :picture-border "black"
-    :picture-border-focused "lightblue"
-    :picture-selected-colour "#1c4563"
-    :picture-border-width "1px"
-    :hide-footer false
-    :footer-colour "#808080"
-    :footer-background "#f1f1f1"
-    :project-background "red"
-    :details-background "darkgray"
+    :iptc-fields                [[:Object-Name "Title" 1]
+                                 [:Caption-Abstract "Caption" 5]
+                                 ;; [:Special-Instructions "Watermark" 1]
+                                 ;; [:Copyright "Copyright" 1]
+                                 ;; [:Copyright-Notice "Copyright Notice" 1]
+                                 ]
+    :picture-columns            5
+    :picture-grid-gap           "14px"
+    :picture-text-colour        "#9e9e9e"
+    :pictures-background        "#262626"
+    :picture-background         "#121212"
+    :picture-border             "black"
+    :picture-border-focused     "lightblue"
+    :picture-border-unfocused   "#666666"
+    :picture-selected-colour    "#1c4563"
+    :picture-border-width       "1px"
+    :hide-footer                false
+    :footer-colour              "#808080"
+    :footer-background          "#f1f1f1"
+    :project-background         "red"
+    :details-background         "darkgray"
     :details-textbox-background "#cccccc"
-    :details-header-background "gray"
+    :details-header-background  "gray"
+    :keyword-sets               [{:name     "people"
+                                  :keywords ["me"]}]
+    :favorite-keywords          "people"
     }})

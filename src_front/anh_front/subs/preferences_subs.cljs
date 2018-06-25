@@ -84,6 +84,13 @@
     (:picture-border-focused prefs)))
 
 (rf/reg-sub
+  :picture-border-unfocused
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [prefs _]
+    (:picture-border-unfocused prefs)))
+
+(rf/reg-sub
   :picture-border-width
   (fn [_ _]
     (rf/subscribe [:preferences]))
@@ -138,3 +145,33 @@
     (rf/subscribe [:preferences]))
   (fn [preferences _]
     (:details-header-background preferences)))
+
+(rf/reg-sub
+  :keyword-sets
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:keyword-sets preferences)))
+
+(rf/reg-sub
+  :favorite-keywords
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:favorite-keywords preferences)))
+
+(rf/reg-sub
+  :favorite-keyword-set
+  (fn [_ _]
+    [(rf/subscribe [:favorite-keywords]) (rf/subscribe [:keyword-sets])])
+  (fn [[favorite-keywords keyword-sets] _]
+    (:keywords (first (filter #(= favorite-keywords (:name %)) keyword-sets)))))
+
+;; (rf/reg-sub
+;;   :favorite-keyword-set
+;;   (fn [_ _]
+;;     (rf/subscribe [:preferences]))
+;;   (fn [preferences _]
+;;     (let [keyword-sets      (:keyword-sets preferences)
+;;           favorite-keywords (:favorite-keywords preferences)]
+;;       (:keywords (first (filter #(= favorite-keywords (:name %)) keyword-sets))))))

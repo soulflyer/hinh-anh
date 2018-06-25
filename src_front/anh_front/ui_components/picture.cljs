@@ -11,6 +11,7 @@
         focused-pic  (rf/subscribe [:focused-pic-path])
         border       (rf/subscribe [:picture-border])
         border-sel   (rf/subscribe [:picture-border-focused])
+        border-un    (rf/subscribe [:picture-border-unfocused])
         border-width (rf/subscribe [:picture-border-width])
         pic-bg       (rf/subscribe [:picture-background])
         selected     (rf/subscribe [:selected-pics])
@@ -32,9 +33,11 @@
             :on-click #(rf/dispatch [:toggle-select-and-focus path])}
      :size "auto"
      :width "100vh"
-     :style (if (and (= @focused-pic path) (= :pictures @panel-focus))
-              {:border (str @border-width" solid " @border-sel)}
-              {:border (str @border-width" solid " @border)})
+     :style (if (and (= @focused-pic path))
+              (if (= :pictures @panel-focus)
+                {:border (str @border-width " solid " @border-sel)}
+                {:border (str @border-width " solid " @border-un)})
+              {:border (str @border-width " solid " @border)})
      :child [rc/v-box
              :class "image-container"
              :style (when version

@@ -1,7 +1,8 @@
 (ns anh-front.picture-subs
   (:require [re-frame.core :as rf]
             [anh-front.helpers :as helpers]
-            [com.rpl.specter :as sp]))
+            ;;[com.rpl.specter :as sp]
+            ))
 
 (rf/reg-sub
   :picture-display-list

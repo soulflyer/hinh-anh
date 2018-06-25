@@ -10,6 +10,7 @@
         header-background  (rf/subscribe [:details-header-background])
         background         (rf/subscribe [:details-background])
         new-keyword        (reagent/atom nil)]
+    (println (str "############" @keywords))
     [rc/v-box
      :height "100%"
      :justify :between

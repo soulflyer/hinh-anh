@@ -1,9 +1,9 @@
 (ns anh-front.subs
-  (:require [anh-front.helpers :as helpers]
-            [anh-front.project-tree :as project-tree]
-            [anh-front.tree :as tree]
-            [day8.re-frame.tracing  :refer-macros [fn-traced]]
-            [re-frame.core :as rf]))
+  (:require ;; [anh-front.helpers      :as helpers]
+   ;; [anh-front.project-tree :as project-tree]
+   ;; [anh-front.tree         :as tree]
+   ;; [day8.re-frame.tracing  :refer-macros [fn-traced]]
+   [re-frame.core          :as rf]))
 
 (rf/reg-sub
   :name
