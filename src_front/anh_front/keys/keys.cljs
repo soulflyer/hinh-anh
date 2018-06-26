@@ -1,65 +1,61 @@
 (ns anh-front.keys
-  (:require [re-frame.core :as re-frame]
-            [re-pressed.core :as re-pressed]))
+  (:require [anh-front.key-codes       :refer [key-codes]]
+            [anh-front.keywording-keys :refer [keywording-keys]]))
 
 (def prevent-keys
-  [{:which 13}])
+  [{:which (key-codes "return")}])
 
 (def common-keys
   [[[:set-keys :projects]
-    [{:which 188}]] ;; ,
+    [{:which (key-codes ",")}]]
    [[:set-keys :pictures]
-    [{:which 190}]] ;; .
+    [{:which (key-codes ".")}]]
    [[:clear-all]
-    [{:which 8}]] ;; del
+    [{:which (key-codes "delete")}]]
    [[:open-project-external]
-    [{:which 80
-      :metaKey true}]] ;; meta p
+    [{:which (key-codes "p")
+      :metaKey true}]]
    [[:next-panel]
-    [{:which 191}]]  ;; /
+    [{:which (key-codes "/")}]]
    [[:toggle-footer]
-    [{:which 70
-      :metaKey true}]] ;;meta f
+    [{:which (key-codes "f")
+      :metaKey true}]]
    [[:rotate-left-panel]
-    [{:which 87}]] ;; w
+    [{:which (key-codes "w")}]]
    [[:fill-keyword-set]
-    [{:which 85}]] ;; u
+    [{:which (key-codes "u")}]]
    [[:set-favorite-keywords]
-    [{:which 89}]] ;; y
-   ])
+    [{:which (key-codes "y")}]]])
 
 (def details-keys
   [[[:say-hello "Details"]
-    [{:which 40}]]
-   ])
+    [{:which (key-codes "down")}]]])
 
 (def project-keys
   [[[:next-project-open :project-tree]
-    [{:which 40}]] ;; down
+    [{:which (key-codes "down")}]]
    [[:prev-project-open :project-tree]
-    [{:which 38}]] ;; up
+    [{:which (key-codes "up")}]]
    [[:fetch-pictures]
-    [{:which 32}]] ;; spc
+    [{:which (key-codes "space")}]]
    [[:up-and-close :project-tree]
-    [{:which 37}]] ;; left
+    [{:which (key-codes "left")}]]
    [[:expand-selected :project-tree]
-    [{:which 39}]]  ;; right
-   ])
+    [{:which (key-codes "right")}]]])
 
 (def picture-keys
   [[[:next-picture]
-    [{:which 39}]] ;; right
+    [{:which (key-codes "right")}]]
    [[:prev-picture]
-    [{:which 37}]] ;; left
+    [{:which (key-codes "left")}]]
    [[:down-picture]
-    [{:which 40}]] ;; down
+    [{:which (key-codes "down")}]]
    [[:up-picture]
-    [{:which 38}]] ;; up
+    [{:which (key-codes "up")}]]
    [[:toggle-select-focused-pic]
-    [{:which 32}]] ;; space
+    [{:which (key-codes "space")}]]
    [[:rotate-display]
-    [{:which 13}]] ;; ret
-   ])
+    [{:which (key-codes "return")}]]])
 
 (def project-key-set
   {:event-keys (into common-keys project-keys)
@@ -77,9 +73,7 @@
 (def keywording-key-set
   {:event-keys (into
                  common-keys
-                 (concat picture-keys
-                         [[[:fill-keyword-set]
-                           [{:which 85}]]]))
+                 (concat picture-keys (keywording-keys)))
    :prevent-default-keys prevent-keys})
 
 (defn key-rules

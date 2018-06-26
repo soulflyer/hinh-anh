@@ -159,3 +159,10 @@
     ;;(js/alert (str "hello " who))
     (println (str "hello " who))
     db))
+
+(rf/reg-event-db
+  :print-sub
+  (fn  [db [_ sub]]
+    (let [sub-val (rf/subscribe [sub])]
+      (println (str "Sub: " @sub-val)))
+    db))

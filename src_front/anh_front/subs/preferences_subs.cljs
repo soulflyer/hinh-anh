@@ -41,6 +41,21 @@
   (fn [[favorite-keywords keyword-sets] _]
     (:keywords (first (filter #(= favorite-keywords (:name %)) keyword-sets)))))
 
+(rf/reg-sub
+  :keyword-shortcuts
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:keyword-shortcuts preferences)))
+
+(rf/reg-sub
+  :keyword-map
+  (fn [_ _]
+    [(rf/subscribe [:keyword-set]) (rf/subscribe [:keyword-shortcuts])])
+  (fn [[fks shortcuts] _]
+    (zipmap fks (seq shortcuts))))
+
+
 ;; (rf/reg-sub
 ;;   :favorite-keyword-set
 ;;   (fn [_ _]

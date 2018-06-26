@@ -119,6 +119,7 @@ Changes are written to the database, but the local db doesn't see them until aft
 ** DONE picture not highlighted when keywording
    CLOSED: [2018-06-24 Sun 00:15]
 Picture keys work, but there is no way of telling which is current. Pic should be highlighted in grey.
+** TODO [#E] keyword-set has a nil in it when there is a pic with no keywords.
 * Improvements
 ** Filters
 *** TODO [#F] Filter by stars
@@ -165,6 +166,9 @@ Might be a better way to go than updating them locally as well as via the api. P
 instead of storing changes directly to db
 ** DONE Add delete multiple keywords functionality
    CLOSED: [2018-06-22 Fri 22:04]
-** TODO [#B] Need to be able to delete keywording buttons
+** DONE Need to be able to delete keywording buttons
+   CLOSED: [2018-06-26 Tue 16:33]
 ** TODO [#B] Add key shortcuts for keywording buttons
 ** TODO [#H] Add bulk editing of IPTC fields
+** TODO [#I] find out how to style the box around a button.
+It's generated automatically and only seems to allow the button to expand to full width when it's contained in an otherwise spurious v-box

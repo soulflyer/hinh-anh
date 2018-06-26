@@ -91,7 +91,6 @@
              :height "1.5em"
              :model @new-keyword
              :placeholder "Add Keyword"
-             ;; TODO save the new keyword
              :on-change #(rf/dispatch [:add-keyword-to-photo [pic-path %]])
              :style {:background @textbox-background
                      :border-radius "0px 0px 4px 4px"

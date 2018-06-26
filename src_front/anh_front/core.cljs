@@ -5,6 +5,7 @@
             [anh-front.events                  :as events]
             [anh-front.key-events              :as key-events]
             [anh-front.keys                    :as ks]
+            [anh-front.keywording-keys         :as keywording-keys]
             [anh-front.layout-preferences-subs :as layout-preferences-subs]
             [anh-front.main                    :as main]
             [anh-front.picture-events          :as picture-events]

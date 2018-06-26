@@ -10,6 +10,7 @@
         header-background  (rf/subscribe [:details-header-background])
         background         (rf/subscribe [:details-background])
         shortcut-highlight (rf/subscribe [:shortcut-highlight])
+        keyword-map        (rf/subscribe [:keyword-map])
         new-keyword        (reagent/atom nil)]
     (println (str "############" @keywords))
     [rc/v-box
@@ -23,14 +24,14 @@
        [rc/v-box
         :children
         [(for [keyword @keywords]
-           (if keyword ;; TODO keyword-set sometimes has a nil in it. Don't know why.
+           (if keyword ;; TODO keyword-set has a nil when there is a pic with no keywords.
              [rc/h-box
               :children
               ;; TODO find out how to style the box around a button. It's generated
               ;; automatically and only seems to allow the button to expand to full
               ;; width when it's contained in an otherwise spurious v-box
               [[rc/box
-                :child "A"
+                :child (str (get @keyword-map keyword))
                 :style {:padding "1px 4px 0px 0px"
                         :color   @shortcut-highlight}]
                [rc/v-box
@@ -66,8 +67,8 @@
       [rc/h-box
        :children
        [[rc/button
-         :label "Used Keywords"
+         :label "Used"
          :on-click #(rf/dispatch [:fill-keyword-set])]
         [rc/button
-         :label "Favorite Keywords"
+         :label "Favorite"
          :on-click #(rf/dispatch [:set-favorite-keywords])]]]]]))
