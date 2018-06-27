@@ -70,10 +70,10 @@
    :prevent-default-keys prevent-keys
    :always-listen-keys [{:which 13}]})
 
-(def keywording-key-set
+(defn keywording-key-set []
   {:event-keys (into
                  common-keys
-                 (concat picture-keys (keywording-keys "a" "b")))
+                 (concat picture-keys (keywording-keys)))
    :prevent-default-keys prevent-keys})
 
 (defn key-rules
@@ -82,7 +82,7 @@
     :projects   project-key-set
     :pictures   picture-key-set
     :details    details-key-set
-    :keywording keywording-key-set
+    :keywording (keywording-key-set)
     project-key-set))
 
 ;; (defn setup-keys
