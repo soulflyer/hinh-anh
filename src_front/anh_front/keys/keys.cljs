@@ -73,7 +73,7 @@
 (def keywording-key-set
   {:event-keys (into
                  common-keys
-                 (concat picture-keys (keywording-keys)))
+                 (concat picture-keys (keywording-keys "a" "b")))
    :prevent-default-keys prevent-keys})
 
 (defn key-rules
