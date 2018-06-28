@@ -35,3 +35,10 @@
     (rf/subscribe [:preferences]))
   (fn [preferences _]
     (:show-empty-exif preferences)))
+
+(rf/reg-sub
+  :show-delete-keywording
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:show-delete-keywording preferences)))

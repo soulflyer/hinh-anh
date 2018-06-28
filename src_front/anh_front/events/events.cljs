@@ -47,6 +47,12 @@
     (let [hf (rf/subscribe [:hide-footer])]
       {:db (assoc-in db [:preferences :hide-footer] (not @hf))})))
 
+(rf/reg-event-fx
+  :toggle-delete-keywording
+  (fn [{:keys [db]} _]
+    (let [sdk (rf/subscribe [:show-delete-keywording])]
+      {:db (assoc-in db [:preferences :show-delete-keywording] (not @sdk))})))
+
 ;;TODO write a set-panel event :next-panel can use it.
 (rf/reg-event-fx
   :set-panel-focus

@@ -138,12 +138,13 @@ Already done for individual pics, but need to be able to do all selected pics at
     CLOSED: [2018-06-23 Sat 23:51]
 *** DONE Add shortcut key for favorite keywords
     CLOSED: [2018-06-23 Sat 23:52]
-*** TODO [#E] Store a set of keywords as favorite
+*** DONE Store a set of keywords as favorite
+    CLOSED: [2018-06-28 Thu 00:35]
 ** TODO [#G] Make api consistent
 Parameter ordering is different when adding keywords and iptc data
 ** TODO [#D] Make sure that helpers/path->id is getting used.
 Pretty sure it's defined inline in several places.
-** TODO [#F] Clean up the way panels are selected and keysets changed.
+** TODO [#C] Clean up the way panels are selected and keysets changed.
  There may be some redundancy in that I probably shouldn't have to change panel-focus and key-set independantly.
 ** TODO [#D] Change tree nav controls
 so left goes up on 1st press then closes on 2nd press. Also make right switch to the right panel if the highlighted tree entry is a leaf.
@@ -168,7 +169,8 @@ instead of storing changes directly to db
    CLOSED: [2018-06-22 Fri 22:04]
 ** DONE Need to be able to delete keywording buttons
    CLOSED: [2018-06-26 Tue 16:33]
-** TODO [#B] Add key shortcuts for keywording buttons
+** DONE Add key shortcuts for keywording buttons
+   CLOSED: [2018-06-28 Thu 00:18]
 ** TODO [#H] Add bulk editing of IPTC fields
 ** TODO [#I] find out how to style the box around a button.
 It's generated automatically and only seems to allow the button to expand to full width when it's contained in an otherwise spurious v-box

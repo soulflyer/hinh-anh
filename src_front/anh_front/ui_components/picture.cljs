@@ -33,7 +33,7 @@
             :on-click #(rf/dispatch [:toggle-select-and-focus path])}
      :size "auto"
      :width "100vh"
-     :style (if (and (= @focused-pic path))
+     :style (if (= @focused-pic path)
               (if (= :pictures @panel-focus)
                 {:border (str @border-width " solid " @border-sel)}
                 {:border (str @border-width " solid " @border-un)})

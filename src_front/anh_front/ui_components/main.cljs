@@ -26,8 +26,8 @@
                                   :tabIndex "1"}
                            :width "100%"
                            :style {:padding-left "5px"}
-                           ;; TODO this sets class so css can colour the focused
-                           ;; item. Should call an event instead
+                           ;; TODO this sets class so css can colour the
+                           ;;focused item. Should call an event instead
                            :class (if (= :left @focus)
                                     "focused-panel"
                                     "unfocused-panel")

@@ -19,20 +19,21 @@
    :keyword-set             []
 
    :preferences
-   {:show-empty-exif      false
-    :medium-directory     "/Users/iain/Pictures/Published/medium"
-    :large-directory      "/Users/iain/Pictures/Published/large"
+   {:show-empty-exif        false
+    :show-delete-keywording false
+    :medium-directory       "/Users/iain/Pictures/Published/medium"
+    :large-directory        "/Users/iain/Pictures/Published/large"
     ;; This vector specifies the writeable fields in the details panel
-    :iptc-fields          [[:Object-Name "Title" 1]
-                           [:Caption-Abstract "Caption" 5]]
-    :picture-columns      5
-    :picture-grid-gap     "14px"
-    :picture-border-width "1px"
-    :hide-footer          false
-    :keyword-sets         [{:name     "people"
-                            :keywords ["me" "under" "over" "under-over"]}]
-    :favorite-keywords    "people"
-    :keyword-shortcuts    "asdfgzxcvb"
+    :iptc-fields            [[:Object-Name "Title" 1]
+                             [:Caption-Abstract "Caption" 5]]
+    :picture-columns        5
+    :picture-grid-gap       "14px"
+    :picture-border-width   "1px"
+    :hide-footer            false
+    :keyword-sets           [{:name     "people"
+                              :keywords ["me" "under" "over" "under-over"]}]
+    :favorite-keywords      "people"
+    :keyword-shortcuts      "asdfgzxcvb"
     :colours
     {:picture-text-colour        "#9e9e9e"
      :pictures-background        "#262626"
@@ -47,4 +48,4 @@
      :details-background         "darkgray"
      :details-textbox-background "#cccccc"
      :details-header-background  "gray"
-     :shortcut-highlight         "#295390" }}})
+     :shortcut-highlight         "#2953d0" }}})

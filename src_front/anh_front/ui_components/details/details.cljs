@@ -26,6 +26,7 @@
        [rc/v-box
         :children
         [[rc/h-box
+          :style {:font-size "0.6em"}
           :children [[:p @pic-path]]]
          [rc/line]
          [:h3 {:style {:margin "5px 0px 3px"}} camera]
