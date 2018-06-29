@@ -15,6 +15,9 @@
    [[:open-project-external]
     [{:which (key-codes "p")
       :metaKey true}]]
+   [[:open-pictures]
+    [{:which (key-codes "o")
+      :metaKey true}]]
    [[:next-panel]
     [{:which (key-codes "/")}]]
    [[:toggle-footer]

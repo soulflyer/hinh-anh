@@ -150,7 +150,8 @@ Pretty sure it's defined inline in several places.
 so left goes up on 1st press then closes on 2nd press. Also make right switch to the right panel if the highlighted tree entry is a leaf.
 ** TODO [#G] Remove dependancy on css to colour the selected tree item.
 One possible solution is to have calls to subscriptions that are defined outside of tree.cljs. Idealy these would be conditional so that it would still work independantly of any external code.
-** TODO [#C] Open a list of pictures.
+** DONE Open a list of pictures.
+   CLOSED: [2018-06-29 Fri 17:14]
 ** DONE Show image in right panel
    CLOSED: [2018-06-02 Sat 18:33]
 Not perfect, a border round the pic would be nice.
@@ -174,3 +175,4 @@ instead of storing changes directly to db
 ** TODO [#H] Add bulk editing of IPTC fields
 ** TODO [#I] find out how to style the box around a button.
 It's generated automatically and only seems to allow the button to expand to full width when it's contained in an otherwise spurious v-box
+** TODO [#G] re-write open-files. Shouldn't assume .jpg.

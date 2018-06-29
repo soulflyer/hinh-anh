@@ -12,6 +12,7 @@
                  ;;[org.clojure/spec.alpha "0.1.143"]
                  [cljs-ajax "0.7.3" :exclusions [[com.fasterxml.jackson.core/jackson-core]]]
                  [day8.re-frame/http-fx "0.1.6"]
+                 [com.cemerick/url "0.1.1"]
                  [com.cognitect/transit-cljs "0.8.256"]
                  [com.rpl/specter "1.1.1"]
                  [re-pressed "0.2.0"]
