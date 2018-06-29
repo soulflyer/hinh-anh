@@ -107,7 +107,8 @@ Check 1991/11/fire_and_ice for an example.
    CLOSED: [2018-06-16 Sat 23:36]
 Changes are written to the database, but the local db doesn't see them until after a refresh. Could sort this by writting the change to the db as well as calling the api, or perhaps have one trigger the other. Or most likely just fetch the pictures again.
 ** TODO [#G] Add keyword in keywording/panel doesn't clear when triggered
-** TODO [#D] Picture keys should work when details panel is displayed.
+** DONE Picture keys should work when details panel is displayed.
+   CLOSED: [2018-06-29 Fri 20:30]
 ** DONE Error message is not visible.
    CLOSED: [2018-06-22 Fri 13:45]
 ** DONE U key only works when keywording has focus.
@@ -119,7 +120,8 @@ Changes are written to the database, but the local db doesn't see them until aft
 ** DONE picture not highlighted when keywording
    CLOSED: [2018-06-24 Sun 00:15]
 Picture keys work, but there is no way of telling which is current. Pic should be highlighted in grey.
-** TODO [#E] keyword-set has a nil in it when there is a pic with no keywords.
+** TODO [#A] keyword-set has a nil in it when there is a pic with no keywords.
+** TODO [#B] Keyword buttons out of order if there are more than 10
 * Improvements
 ** Filters
 *** TODO [#F] Filter by stars

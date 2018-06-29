@@ -2,7 +2,6 @@
 
 (def default-db
   {:name                    "Projects"
-   :project-list            {}
    :picture-list            {:pictures [{}] :focus "" :selected []}
    :error                   "All is well."
    :panel-focus             :left
@@ -21,6 +20,7 @@
    :preferences
    {:show-empty-exif        false
     :show-delete-keywording false
+    :last-project           []
     :medium-directory       "/Users/iain/Pictures/Published/medium"
     :large-directory        "/Users/iain/Pictures/Published/large"
     ;; This vector specifies the writeable fields in the details panel
@@ -34,6 +34,7 @@
                               :keywords ["me" "under" "over" "under-over"]}]
     :favorite-keywords      "people"
     :keyword-shortcuts      "asdfgzxcvb"
+    :keyword-set-shortcuts  "hjkl;nm,./"
     :colours
     {:picture-text-colour        "#9e9e9e"
      :pictures-background        "#262626"

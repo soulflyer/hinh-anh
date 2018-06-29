@@ -128,6 +128,7 @@
 (rf/reg-event-fx
   :fetch-pictures
   (fn [{:keys [db]} _]
+    (println "Fetch pictures")
     (let [path (:focus (:project-tree db))]
       {:dispatch [:load-pictures-for-project path]})))
 

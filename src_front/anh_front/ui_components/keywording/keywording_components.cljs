@@ -8,7 +8,7 @@
    :size :smaller
    :on-click #(rf/dispatch [:remove-from-keyword-set kw])])
 
-(defn keyword-button [kw]
+(defn keyword-button [kw on-click on-right-click]
   (let [header-background (rf/subscribe [:details-header-background])
         background        (rf/subscribe [:details-background])]
     [rc/button
@@ -19,10 +19,11 @@
              :border     (str "solid 1px " @header-background)
              :background @background}
      :attr
-     {:on-context-menu #(rf/dispatch [:delete-keyword-from-photos kw])}
-     :on-click #(rf/dispatch [:add-keyword-to-photos kw])]))
+     {:on-context-menu #(rf/dispatch [on-right-click kw])}
+     :on-click #(rf/dispatch [on-click kw])]))
 
-(defn add-keyword-input []
+(defn add-input
+  [add-function placeholder]
   (let [header-background (rf/subscribe [:details-header-background])
         textbox-background (rf/subscribe [:details-textbox-background])]
     [rc/box
@@ -32,12 +33,44 @@
       :width "100%"
       :height "1.5em"
       :model nil
-      :placeholder "Add Keyword"
-      :on-change #(rf/dispatch [:add-to-keyword-set %])
+      :placeholder placeholder
+      :on-change #(rf/dispatch [add-function %])
       :style {:background    @textbox-background
               :border-radius "4px 4px 4px 4px"
               :border        (str "solid 1px " @header-background)
               :padding       "1px 3px 1px 3px"}]]))
+
+(defn button-set
+  [keyword-map add-event on-click on-right-click name]
+  (let [shortcut-highlight (rf/subscribe [:shortcut-highlight])
+        show-delete        (rf/subscribe [:show-delete-keywording])]
+    [rc/scroller
+     :style {:margin-top "5px"}
+     :h-scroll :off
+     :child
+     [rc/v-box
+      :children
+      [(let [del @show-delete
+             kws (keys @keyword-map)]
+         (for [keyword kws]
+           (if keyword ;; TODO keyword-set has a nil when there is a pic with no keywords.
+             [rc/h-box
+              :children
+              ;; TODO find out how to style the box around a button. It's generated
+              ;; automatically and only seems to allow the button to expand to full
+              ;; width when it's contained in an otherwise spurious v-box
+              [[rc/box
+                :child (str (get @keyword-map keyword))
+                :style {:padding "1px 4px 0px 0px"
+                        :width   "0.75em"
+                        :color   @shortcut-highlight}]
+               [rc/v-box
+                :size "1 1 auto"
+                :children
+                [[keyword-button keyword on-click on-right-click]]]
+               (if del
+                 [delete-button keyword])]])))
+       [add-input add-event (str "Add " name)]]]]))
 
 (defn footer-buttons []
   [rc/v-box

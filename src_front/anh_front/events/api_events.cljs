@@ -162,7 +162,9 @@
                     :response-format (ajax/json-response-format {:keywords? true})
                     :on-success      [:pictures-response]
                     :on-failure      [:load-fail (str "Project " project-path)]}
-       :db          (assoc db :loading? true)})))
+       :db          (-> db
+                        (assoc :loading? true)
+                        (assoc-in [:preferences :last-project] project-path))})))
 
 (rf/reg-event-db
   :pictures-response

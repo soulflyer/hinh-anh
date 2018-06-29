@@ -49,12 +49,33 @@
     (:keyword-shortcuts preferences)))
 
 (rf/reg-sub
+  :keyword-set-shortcuts
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:keyword-set-shortcuts preferences)))
+
+(rf/reg-sub
   :keyword-map
   (fn [_ _]
     [(rf/subscribe [:keyword-set]) (rf/subscribe [:keyword-shortcuts])])
   (fn [[fks shortcuts] _]
     (zipmap fks (seq shortcuts))))
 
+(rf/reg-sub
+  :keyword-sets-map
+  (fn [_ _]
+    [(rf/subscribe [:keyword-set-names]) (rf/subscribe [:keyword-set-shortcuts])])
+  (fn [[keyword-set-names shortcuts] _]
+    (zipmap keyword-set-names (seq shortcuts))))
+
+(rf/reg-sub
+  :keyword-set-names
+  (fn [_ _]
+    (rf/subscribe [:keyword-sets]))
+  (fn [keyword-sets _]
+    (for [keyword-map keyword-sets]
+      (:name keyword-map))))
 
 ;; (rf/reg-sub
 ;;   :favorite-keyword-set
