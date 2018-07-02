@@ -31,7 +31,9 @@
     :picture-border-width   "1px"
     :hide-footer            false
     :keyword-sets           [{:name     "people"
-                              :keywords ["me" "under" "over" "under-over"]}]
+                              :keywords ["me" "Pen" "Nhâm"]}
+                             {:name     "surface"
+                              :keywords ["entry" "under" "over" "under-over" "boat" "ladder" "rope"]}]
     :favorite-keywords      "people"
     :keyword-shortcuts      "asdfgzxcvb"
     :keyword-set-shortcuts  "hjkl;nm,./"

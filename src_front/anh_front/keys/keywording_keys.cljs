@@ -14,3 +14,11 @@
                     [[:delete-keyword-from-photos kw]
                      [{:which (key-codes (get @keyword-shortcuts kw))
                        :shiftKey true}]]]))))
+
+(defn keywording-set-keys []
+  (let [shortcuts (rf/subscribe [:keyword-sets-map])
+        kw-sets   (keys @shortcuts)
+        kw-index-map (zipmap kw-sets (iterate inc 0))]
+    (vec (for [kw-set kw-sets]
+           [[:set-keyword-set-by-name kw-set]
+            [{:which (key-codes (get @shortcuts kw-set))}]]))))

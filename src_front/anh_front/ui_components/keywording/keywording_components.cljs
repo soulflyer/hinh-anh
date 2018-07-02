@@ -43,14 +43,15 @@
 (defn button-set
   [keyword-map add-event on-click on-right-click name]
   (let [shortcut-highlight (rf/subscribe [:shortcut-highlight])
-        show-delete        (rf/subscribe [:show-delete-keywording])]
+        show-edit        (rf/subscribe [:show-delete-keywording])]
     [rc/scroller
      :style {:margin-top "5px"}
      :h-scroll :off
+     :size "none"
      :child
      [rc/v-box
       :children
-      [(let [del @show-delete
+      [(let [edit @show-edit
              kws (keys @keyword-map)]
          (for [keyword kws]
            (if keyword ;; TODO keyword-set has a nil when there is a pic with no keywords.
@@ -68,9 +69,10 @@
                 :size "1 1 auto"
                 :children
                 [[keyword-button keyword on-click on-right-click]]]
-               (if del
+               (if edit
                  [delete-button keyword])]])))
-       [add-input add-event (str "Add " name)]]]]))
+       (if @show-edit
+         [add-input add-event (str "Add " name)])]]]))
 
 (defn footer-buttons []
   [rc/v-box

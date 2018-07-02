@@ -63,3 +63,13 @@
   :keyword-set
   (fn [db _]
     (:keyword-set db)))
+
+(rf/reg-sub
+  :keyword-set-by-name
+  (fn [db [_ name]]
+    ;;name
+    (:keywords
+     (first
+       (filter
+         #(= name (:name %))
+         (get-in db [:preferences :keyword-sets]))))))

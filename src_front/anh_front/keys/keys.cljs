@@ -1,6 +1,7 @@
 (ns anh-front.keys
   (:require [anh-front.key-codes       :refer [key-codes]]
-            [anh-front.keywording-keys :refer [keywording-keys]]))
+            [anh-front.keywording-keys :refer [keywording-keys
+                                               keywording-set-keys]]))
 
 (def prevent-keys
   [{:which (key-codes "return")}])
@@ -74,9 +75,11 @@
    :always-listen-keys [{:which 13}]})
 
 (defn keywording-key-set []
-  {:event-keys (into
-                 common-keys
-                 (concat picture-keys (keywording-keys)))
+  {:event-keys (reduce into
+                       [common-keys
+                        picture-keys
+                        (keywording-keys)
+                        (keywording-set-keys)])
    :prevent-default-keys prevent-keys})
 
 (defn key-rules

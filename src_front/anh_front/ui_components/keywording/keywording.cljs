@@ -14,7 +14,7 @@
         show-delete        (rf/subscribe [:show-delete-keywording])]
     [rc/v-box
      :height "100%"
-     :justify :between
+     :justify :around
      :children
      [[components/button-set
        keyword-map
@@ -26,6 +26,6 @@
       [components/button-set
        keyword-sets-map
        :say-hello
-       :say-hello
-       :say-hello
+       :set-keyword-set-by-name
+       :set-keyword-set-by-name
        "keyword set"]]]))

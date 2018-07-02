@@ -171,5 +171,12 @@
   :print-sub
   (fn  [db [_ sub]]
     (let [sub-val (rf/subscribe [sub])]
-      (println (str "Sub: " @sub-val)))
+      (println (str @sub-val)))
+    db))
+
+(rf/reg-event-db
+  :print2
+  (fn [db [_ [sub name]]]
+    (let [sub-val (rf/subscribe [sub name])]
+      (println (str  @sub-val)))
     db))
