@@ -14,7 +14,7 @@
         show-delete        (rf/subscribe [:show-delete-keywording])]
     [rc/v-box
      :height "100%"
-     :justify :around
+     :justify :between
      :children
      [[components/button-set
        keyword-map
@@ -23,11 +23,16 @@
        :add-keyword-to-photos
        :delete-keyword-from-photos
        "keyword"]
-      [components/footer-buttons]
+      [rc/h-box
+       :children
+       [[components/shortcut "u"]
+        [components/keyword-button "Current Keywords"
+         :fill-keyword-set nil]]]
       [components/button-set
        keyword-sets-map
        :add-keyword-set
        :remove-keyword-set
        :set-keyword-set-by-name
        :set-keyword-set-by-name
-       "keyword set"]]]))
+       "keyword set"]
+      [components/footer-buttons]]]))

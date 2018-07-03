@@ -11,16 +11,22 @@
 (defn keyword-button [kw on-click on-right-click]
   (let [header-background (rf/subscribe [:details-header-background])
         background        (rf/subscribe [:details-background])]
-    [rc/button
-     :label kw
-     :style {:padding    "0px 1px 0px 3px"
-             :width      "100%"
-             :overflow   "hidden"
-             :border     (str "solid 1px " @header-background)
-             :background @background}
-     :attr
-     {:on-context-menu #(rf/dispatch [on-right-click kw])}
-     :on-click #(rf/dispatch [on-click kw])]))
+    [rc/v-box
+     ;; TODO find out how to style the box around a button. It's generated
+     ;; automatically and only seems to allow the button to expand to full
+     ;; width when it's contained in an otherwise spurious v-box
+     :size "1 1 auto"
+     :children
+     [[rc/button
+       :label kw
+       :style {:padding    "0px 1px 0px 3px"
+               :width      "100%"
+               :overflow   "hidden"
+               :border     (str "solid 1px " @header-background)
+               :background @background}
+       :attr
+       {:on-context-menu #(rf/dispatch [on-right-click kw])}
+       :on-click #(rf/dispatch [on-click kw])]]]))
 
 (defn add-input
   [add-function placeholder]
@@ -40,6 +46,14 @@
               :border        (str "solid 1px " @header-background)
               :padding       "1px 3px 1px 3px"}]]))
 
+(defn shortcut [sk]
+  (let [shortcut-highlight (rf/subscribe [:shortcut-highlight])]
+    [rc/box
+     :child sk
+     :style {:padding "1px 4px 0px 0px"
+             :width   "0.75em"
+             :color   @shortcut-highlight}]))
+
 (defn button-set
   [keyword-map add remove on-click on-right-click name]
   (let [shortcut-highlight (rf/subscribe [:shortcut-highlight])
@@ -57,18 +71,8 @@
            (if keyword ;; TODO keyword-set has a nil when there is a pic with no keywords.
              [rc/h-box
               :children
-              ;; TODO find out how to style the box around a button. It's generated
-              ;; automatically and only seems to allow the button to expand to full
-              ;; width when it's contained in an otherwise spurious v-box
-              [[rc/box
-                :child (str (get @keyword-map keyword))
-                :style {:padding "1px 4px 0px 0px"
-                        :width   "0.75em"
-                        :color   @shortcut-highlight}]
-               [rc/v-box
-                :size "1 1 auto"
-                :children
-                [[keyword-button keyword on-click on-right-click]]]
+              [[shortcut (str (get @keyword-map keyword))]
+               [keyword-button keyword on-click on-right-click]
                (if edit
                  [delete-button remove keyword])]])))
        (if @show-edit
@@ -77,12 +81,7 @@
 (defn footer-buttons []
   [rc/v-box
    :children
-   [[rc/button
-     :label "Edit"
-     :on-click #(rf/dispatch [:toggle-delete-keywording])]
-    [rc/button
-     :label "Used"
-     :on-click #(rf/dispatch [:fill-keyword-set])]
-    [rc/button
-     :label "Favorite"
-     :on-click #(rf/dispatch [:set-favorite-keywords])]]])
+   [[rc/md-icon-button
+     :md-icon-name "zmdi-edit"
+     :size :smaller
+     :on-click #(rf/dispatch [:toggle-delete-keywording])]]])

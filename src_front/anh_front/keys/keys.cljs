@@ -1,7 +1,7 @@
 (ns anh-front.keys
   (:require [anh-front.key-codes       :refer [key-codes]]
-            [anh-front.keywording-keys :refer [keywording-keys
-                                               keywording-set-keys]]))
+            [anh-front.keywording-keys :refer [keywording-shortcut-keys
+                                               keywording-set-shortcut-keys]]))
 
 (def prevent-keys
   [{:which (key-codes "return")}])
@@ -61,6 +61,10 @@
    [[:rotate-display]
     [{:which (key-codes "return")}]]])
 
+(def keywording-keys
+  [[[:toggle-delete-keywording]
+    [{:which (key-codes "e")}]]])
+
 (def project-key-set
   {:event-keys (into common-keys project-keys)
    :prevent-default-keys prevent-keys})
@@ -78,8 +82,9 @@
   {:event-keys (reduce into
                        [common-keys
                         picture-keys
-                        (keywording-keys)
-                        (keywording-set-keys)])
+                        keywording-keys
+                        (keywording-shortcut-keys)
+                        (keywording-set-shortcut-keys)])
    :prevent-default-keys prevent-keys})
 
 (defn key-rules

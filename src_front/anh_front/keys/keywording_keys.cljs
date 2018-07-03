@@ -3,7 +3,7 @@
             [re-frame.core       :as rf]
             [clojure.set         :as set]))
 
-(defn keywording-keys []
+(defn keywording-shortcut-keys []
   (let [keyword-shortcuts (rf/subscribe [:keyword-map])
         keyword-set       (rf/subscribe [:keyword-set])
         keyword-index-map (zipmap @keyword-set (iterate inc 0))]
@@ -15,7 +15,7 @@
                      [{:which (key-codes (get @keyword-shortcuts kw))
                        :shiftKey true}]]]))))
 
-(defn keywording-set-keys []
+(defn keywording-set-shortcut-keys []
   (let [shortcuts (rf/subscribe [:keyword-sets-map])
         kw-sets   (keys @shortcuts)
         kw-index-map (zipmap kw-sets (iterate inc 0))]
