@@ -2,11 +2,11 @@
   (:require [re-frame.core :as rf]
             [re-com.core   :as rc]))
 
-(defn delete-button [kw]
+(defn delete-button [on-click kw]
   [rc/md-icon-button
    :md-icon-name "zmdi-minus"
    :size :smaller
-   :on-click #(rf/dispatch [:remove-from-keyword-set kw])])
+   :on-click #(rf/dispatch [on-click kw])])
 
 (defn keyword-button [kw on-click on-right-click]
   (let [header-background (rf/subscribe [:details-header-background])
@@ -41,7 +41,7 @@
               :padding       "1px 3px 1px 3px"}]]))
 
 (defn button-set
-  [keyword-map add-event on-click on-right-click name]
+  [keyword-map add remove on-click on-right-click name]
   (let [shortcut-highlight (rf/subscribe [:shortcut-highlight])
         show-edit        (rf/subscribe [:show-delete-keywording])]
     [rc/scroller
@@ -70,9 +70,9 @@
                 :children
                 [[keyword-button keyword on-click on-right-click]]]
                (if edit
-                 [delete-button keyword])]])))
+                 [delete-button remove keyword])]])))
        (if @show-edit
-         [add-input add-event (str "Add " name)])]]]))
+         [add-input add (str "Add " name)])]]]))
 
 (defn footer-buttons []
   [rc/v-box

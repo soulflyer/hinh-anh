@@ -124,3 +124,22 @@
   (fn [{:keys [db]} [_ old-keyword]]
     (let [current-set (rf/subscribe [:keyword-set])]
       {:db (assoc db :keyword-set (remove #{old-keyword} @current-set))})))
+
+(rf/reg-event-fx
+  :add-keyword-set
+  (fn [{:keys [db]} [_ new-name]]
+    (let [keywords     (rf/subscribe [:keyword-set])
+          keyword-sets (rf/subscribe [:keyword-sets])]
+      {:db (assoc-in
+             db
+             [:preferences :keyword-sets]
+             (conj @keyword-sets {:name new-name :keywords @keywords}))})))
+
+(rf/reg-event-fx
+  :remove-keyword-set
+  (fn [{:keys [db]} [_ name]]
+    (let [keyword-sets (rf/subscribe [:keyword-sets])]
+      {:db (assoc-in
+             db
+             [:preferences :keyword-sets]
+             (remove #(= name (:name %)) @keyword-sets))})))

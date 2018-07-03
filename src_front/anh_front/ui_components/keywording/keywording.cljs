@@ -19,13 +19,15 @@
      [[components/button-set
        keyword-map
        :add-to-keyword-set
+       :remove-from-keyword-set
        :add-keyword-to-photos
        :delete-keyword-from-photos
        "keyword"]
       [components/footer-buttons]
       [components/button-set
        keyword-sets-map
-       :say-hello
+       :add-keyword-set
+       :remove-keyword-set
        :set-keyword-set-by-name
        :set-keyword-set-by-name
        "keyword set"]]]))
