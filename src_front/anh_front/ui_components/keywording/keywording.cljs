@@ -16,23 +16,30 @@
      :height "100%"
      :justify :between
      :children
-     [[components/button-set
-       keyword-map
-       :add-to-keyword-set
-       :remove-from-keyword-set
-       :add-keyword-to-photos
-       :delete-keyword-from-photos
-       "keyword"]
-      [rc/h-box
+     [[rc/v-box
        :children
-       [[components/shortcut "u"]
-        [components/keyword-button "Current Keywords"
-         :fill-keyword-set nil]]]
-      [components/button-set
-       keyword-sets-map
-       :add-keyword-set
-       :remove-keyword-set
-       :set-keyword-set-by-name
-       :set-keyword-set-by-name
-       "keyword set"]
-      [components/footer-buttons]]]))
+       [[components/footer-buttons]
+        [components/button-set
+         keyword-map
+         :add-to-keyword-set
+         :remove-from-keyword-set
+         :add-keyword-to-photos
+         :delete-keyword-from-photos
+         "keyword"]]]
+      [rc/v-box
+       :style {:margin-bottom "5px"}
+       :children
+       [[rc/h-box
+
+         :children
+         [[components/shortcut "u"]
+          [components/keyword-button "Current Keywords"
+           :fill-keyword-set nil]]]
+        [components/button-set
+         keyword-sets-map
+         :add-keyword-set
+         :remove-keyword-set
+         :set-keyword-set-by-name
+         :set-keyword-set-by-name
+         "keyword set"]]]
+      ]]))

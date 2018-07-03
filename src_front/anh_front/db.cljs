@@ -25,7 +25,7 @@
     :large-directory        "/Users/iain/Pictures/Published/large"
     ;; This vector specifies the writeable fields in the details panel
     :iptc-fields            [[:Object-Name "Title" 1]
-                             [:Caption-Abstract "Caption" 5]]
+                             [:Caption-Abstract "Caption" 3]]
     :picture-columns        5
     :picture-grid-gap       "14px"
     :picture-border-width   "1px"

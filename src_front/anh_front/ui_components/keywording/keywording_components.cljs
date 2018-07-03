@@ -59,7 +59,6 @@
   (let [shortcut-highlight (rf/subscribe [:shortcut-highlight])
         show-edit        (rf/subscribe [:show-delete-keywording])]
     [rc/scroller
-     :style {:margin-top "5px"}
      :h-scroll :off
      :size "none"
      :child
@@ -79,9 +78,18 @@
          [add-input add (str "Add " name)])]]]))
 
 (defn footer-buttons []
-  [rc/v-box
+  [rc/h-box
+   :style {:padding "2px 0px 2px 0px"}
    :children
    [[rc/md-icon-button
      :md-icon-name "zmdi-edit"
      :size :smaller
-     :on-click #(rf/dispatch [:toggle-delete-keywording])]]])
+     :on-click #(rf/dispatch [:toggle-delete-keywording])]
+    [rc/md-icon-button
+     :md-icon-name "zmdi-info"
+     :size :smaller
+     :on-click #(rf/dispatch [:toggle-footer])]
+    [rc/md-icon-button
+     :md-icon-name "zmdi-scissors"
+     :size :smaller
+     :on-click #(rf/dispatch [:clear-keywords])]]])

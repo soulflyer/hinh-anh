@@ -106,8 +106,8 @@
                               (mod (inc focus-num)
                                    (count @left-panel-map)))]
       {:dispatch-n [[:set-left-panel new-panel]
-                    (if (= :left @panel-focus)
-                      [:set-keys new-panel])]})))
+                    [:set-keys new-panel]
+                    [:set-html-focus "panel-1"]]})))
 
 (rf/reg-event-db
   :set-display

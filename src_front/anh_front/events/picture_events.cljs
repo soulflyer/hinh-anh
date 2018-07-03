@@ -60,8 +60,9 @@
                                       (vec (remove #{pic} %))
                                       (into % [pic]))
                                    (:picture-list db)))
-     :dispatch-n [[:set-keys :pictures]
-                  [:set-panel-focus :pictures]]}))
+     ;; :dispatch-n [[:set-keys :pictures]
+     ;;              [:set-panel-focus :pictures]]
+     }))
 
 (rf/reg-event-fx
   :toggle-select-focused-pic
@@ -105,13 +106,22 @@
   :set-keyword-set-by-name
   (fn [{:keys [db]} [_ name]]
     (let [keyword-set (rf/subscribe [:keyword-set-by-name name])]
-      {:db (assoc db :keyword-set @keyword-set)})))
+      {:db (assoc db :keyword-set @keyword-set)
+       :dispatch [:set-keys-for :left]})))
 
 (rf/reg-event-fx
   :set-favorite-keywords
   (fn [{:keys [db]} _]
     (let [fav (rf/subscribe [:favorite-keyword-set])]
       {:dispatch [:set-keyword-set @fav] })))
+
+(rf/reg-event-fx
+  :clear-keywords
+  (fn [{:keys [db]} _]
+    {:db (-> db
+             (assoc    :keyword-set [])
+             (assoc    :error "Cleared keywords")
+             (assoc-in [:preferences :show-delete-keywording] true))}))
 
 (rf/reg-event-fx
   :add-to-keyword-set
