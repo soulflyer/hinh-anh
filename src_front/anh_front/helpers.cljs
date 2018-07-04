@@ -33,7 +33,9 @@
     (sort
       (set
         (flatten
-          (sp/select [sp/ALL (sp/submap ["Keywords"]) "Keywords"] pics))))))
+          (remove
+            nil?
+            (sp/select [sp/ALL (sp/submap ["Keywords"]) "Keywords"] pics)))))))
 
 (defn paths->ids
   "convert a vector of paths to a string of space separated ids"

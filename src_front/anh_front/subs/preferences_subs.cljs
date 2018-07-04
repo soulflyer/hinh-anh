@@ -60,7 +60,13 @@
   (fn [_ _]
     [(rf/subscribe [:keyword-set]) (rf/subscribe [:keyword-shortcuts])])
   (fn [[fks shortcuts] _]
-    (zipmap fks (seq shortcuts))))
+    (let [padding          (take (- (count fks) (count shortcuts)) (repeat nil))
+          padded-shortcuts (into padding (reverse (seq shortcuts)))]
+      (apply
+        array-map
+        (flatten
+          (map (fn [a b] [a b])
+               fks padded-shortcuts))))))
 
 (rf/reg-sub
   :keyword-sets-map
