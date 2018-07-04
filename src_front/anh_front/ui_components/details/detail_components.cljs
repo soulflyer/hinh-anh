@@ -69,6 +69,7 @@
                 :border-radius "0px 0px 4px 4px"}
         :children
         [(for [keyword keywords]
+           ^{:key (str "keyword-" keyword)}
            [rc/h-box
             :justify :between
             :style {:font-size "0.85em"

@@ -67,6 +67,7 @@
       [(let [edit @show-edit
              kws (keys @keyword-map)]
          (for [keyword kws]
+           ^{:key (str "button-" name "-" keyword)}
            [rc/h-box
             :children
             [[shortcut (str (get @keyword-map keyword))]
