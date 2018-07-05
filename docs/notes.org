@@ -100,7 +100,8 @@ Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the er
     CLOSED: [2018-06-11 Mon 23:28]
 Click on textfield then hit tab. Correctly moves focus back to the picture but doesn't send the contents of the textfield so keys are not released. Maybe a blur is required. Will probably need to implement a list to track which textfield is focused first.
 
-** TODO [#C] Pictures are not always in the correct order.
+** DONE Pictures are not always in the correct order.
+   CLOSED: [2018-07-06 Fri 01:55]
 Check 1991/11/fire_and_ice for an example.
 ** DONE updating IPTC doesn't refresh db contents
    CLOSED: [2018-06-16 Sat 23:36]
@@ -146,9 +147,9 @@ Already done for individual pics, but need to be able to do all selected pics at
     CLOSED: [2018-06-28 Thu 00:35]
 ** TODO [#G] Make api consistent
 Parameter ordering is different when adding keywords and iptc data
-** TODO [#D] Make sure that helpers/path->id is getting used.
+** TODO [#F] Make sure that helpers/path->id is getting used.
 Pretty sure it's defined inline in several places.
-** TODO [#G] Clean up the way panels are selected and keysets changed.
+** TODO [#I] Clean up the way panels are selected and keysets changed.
  There may be some redundancy in that I probably shouldn't have to change panel-focus and key-set independantly. Partially sorted. Don't need to toggle focus except when projects are in view. Still need to improve it so I CAN'T toggle focus except when projects are in view.
 ** TODO [#D] Change tree nav controls
 so left goes up on 1st press then closes on 2nd press. Also make right switch to the right panel if the highlighted tree entry is a leaf.
@@ -181,3 +182,4 @@ instead of storing changes directly to db
 It's generated automatically and only seems to allow the button to expand to full width when it's contained in an otherwise spurious v-box
 ** TODO [#G] re-write open-files. Shouldn't assume .jpg.
 ** TODO [#E] Show some keywords on startup.
+** TODO [#B] Write keyword sets to permanent storage. Prefs too.

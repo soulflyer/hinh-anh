@@ -21,6 +21,13 @@
     (:large-directory preferences)))
 
 (rf/reg-sub
+  :picture-sort-field
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:picture-sort-field preferences)))
+
+(rf/reg-sub
   :keyword-sets
   (fn [_ _]
     (rf/subscribe [:preferences]))

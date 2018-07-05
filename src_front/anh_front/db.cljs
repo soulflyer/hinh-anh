@@ -27,6 +27,7 @@
     :iptc-fields            [[:Object-Name "Title" 1]
                              [:Caption-Abstract "Caption" 3]]
     :picture-columns        5
+    :picture-sort-field     "_id"
     :picture-grid-gap       "14px"
     :picture-border-width   "1px"
     :hide-footer            false

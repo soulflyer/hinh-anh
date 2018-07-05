@@ -6,7 +6,7 @@
 (rf/reg-event-fx
   :next-picture
   (fn [{:keys [db]} _]
-    (let [pic-ids    (rf/subscribe [:picture-ids])
+    (let [pic-ids    (rf/subscribe [:pictures-map])
           pic-focus  (rf/subscribe [:focused-pic-path])
           invert-ids (set/map-invert @pic-ids)
           focus-num  (invert-ids @pic-focus)
@@ -18,7 +18,7 @@
 (rf/reg-event-fx
   :prev-picture
   (fn [{:keys [db]} _]
-    (let [pic-ids    (rf/subscribe [:picture-ids])
+    (let [pic-ids    (rf/subscribe [:pictures-map])
           pic-focus  (rf/subscribe [:focused-pic-path])
           invert-ids (set/map-invert @pic-ids)
           focus-num  (invert-ids @pic-focus)
@@ -29,7 +29,7 @@
 (rf/reg-event-fx
   :down-picture
   (fn [{:keys [db]} _]
-    (let [pic-ids    (rf/subscribe [:picture-ids])
+    (let [pic-ids    (rf/subscribe [:pictures-map])
           pic-focus  (rf/subscribe [:focused-pic-path])
           columns    (rf/subscribe [:picture-columns])
           invert-ids (set/map-invert @pic-ids)
@@ -42,7 +42,7 @@
 (rf/reg-event-fx
   :up-picture
   (fn [{:keys [db]} _]
-    (let [pic-ids    (rf/subscribe [:picture-ids])
+    (let [pic-ids    (rf/subscribe [:pictures-map])
           pic-focus  (rf/subscribe [:focused-pic-path])
           columns    (rf/subscribe [:picture-columns])
           invert-ids (set/map-invert @pic-ids)

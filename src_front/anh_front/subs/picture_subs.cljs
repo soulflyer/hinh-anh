@@ -35,6 +35,13 @@
 
 (rf/reg-sub
   :picture-ids
+  (fn [_ _]
+    [(rf/subscribe [:pictures]) (rf/subscribe [:picture-sort-field])])
+  (fn [[pics sort-field] _]
+    (sort (map #(get % sort-field) pics))))
+
+(rf/reg-sub
+  :pictures-map
   (fn [_ _]    (rf/subscribe [:pictures]))
   (fn [root _] (zipmap (iterate inc 0) (map helpers/image-path root))))
 

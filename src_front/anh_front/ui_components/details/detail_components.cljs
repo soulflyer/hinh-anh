@@ -90,7 +90,7 @@
             [rc/input-text
              :width "100%"
              :height "1.5em"
-             :model @new-keyword
+             :model nil
              :placeholder "Add Keyword"
              :on-change #(rf/dispatch [:add-keyword-to-photo [pic-path %]])
              :style {:background @textbox-background
