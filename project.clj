@@ -3,7 +3,8 @@
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.9.0"]
+  :dependencies [[akiroz.re-frame/storage "0.1.2"]
+                 [org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.238" :exclusions [org.apache.ant/ant]]
                  [org.clojure/core.async "0.4.474"]
                  [reagent "0.8.0"]

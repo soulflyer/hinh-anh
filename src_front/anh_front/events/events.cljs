@@ -1,8 +1,9 @@
 (ns anh-front.events
-  (:require [anh-front.db   :as db]
-            [anh-front.tree :as tree]
-            [clojure.set    :as set]
-            [re-frame.core  :as rf]))
+  (:require [akiroz.re-frame.storage :as store]
+            [anh-front.db            :as db]
+            [anh-front.tree          :as tree]
+            [clojure.set             :as set]
+            [re-frame.core           :as rf]))
 
 (def bogus "gotta define something or re-frame-jump-to-reg doesn't find the ns")
 
@@ -24,6 +25,23 @@
   :set-html-focus
   (fn [{:keys [db]} [_ panel]]
     {:set-html-focus panel}))
+
+(store/reg-co-fx! :anh
+                  {:fx   :store
+                   :cofx :store})
+
+(rf/reg-event-fx
+  :store-preferences
+  [(rf/inject-cofx :store)]
+  (let [prefs (rf/subscribe [:preferences])]
+    (fn [{:keys [store db]} _]
+      {:store (assoc store :preferences @prefs)})))
+
+(rf/reg-event-fx
+  :load-preferences
+  [(rf/inject-cofx :store)]
+  (fn [{:keys [db store]} _]
+    {:db (assoc db :preferences (:preferences store))}))
 
 
 (rf/reg-event-db
