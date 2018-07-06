@@ -182,4 +182,5 @@ instead of storing changes directly to db
 It's generated automatically and only seems to allow the button to expand to full width when it's contained in an otherwise spurious v-box
 ** TODO [#G] re-write open-files. Shouldn't assume .jpg.
 ** TODO [#E] Show some keywords on startup.
-** TODO [#B] Write keyword sets to permanent storage. Prefs too.
+** DONE Write keyword sets to permanent storage. Prefs too.
+   CLOSED: [2018-07-06 Fri 20:46]

@@ -143,7 +143,8 @@
       {:db (assoc-in
              db
              [:preferences :keyword-sets]
-             (conj @keyword-sets {:name new-name :keywords @keywords}))})))
+             (conj @keyword-sets {:name new-name :keywords @keywords}))
+       :dispatch [:store-preferences]})))
 
 (rf/reg-event-fx
   :remove-keyword-set
@@ -152,4 +153,5 @@
       {:db (assoc-in
              db
              [:preferences :keyword-sets]
-             (remove #(= name (:name %)) @keyword-sets))})))
+             (remove #(= name (:name %)) @keyword-sets))
+       :dispatch [:store-preferences]})))

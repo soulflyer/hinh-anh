@@ -43,11 +43,12 @@
   (fn [{:keys [db store]} _]
     {:db (assoc db :preferences (:preferences store))}))
 
-
 (rf/reg-event-db
   ::initialize-db
   (fn  [_ _]
-    db/default-db))
+    (if (:preferences (store/<-store :anh))
+      (assoc db/default-db :preferences (:preferences (store/<-store :anh)))
+      db/default-db)))
 
 (rf/reg-event-db
   :set-error-message
