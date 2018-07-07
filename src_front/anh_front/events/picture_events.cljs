@@ -93,7 +93,8 @@
     (let [current-keywords (rf/subscribe [:current-keywords])]
       {:db (-> db
                (assoc :keyword-set @current-keywords)
-               (assoc :error (str "Set keywords")))})))
+               (assoc :error (str "Set keywords")))
+       :dispatch [:set-keys-for :left]})))
 
 (rf/reg-event-fx
   :set-keyword-set

@@ -33,6 +33,7 @@
   (fn [_ _]    (rf/subscribe [:picture-list]))
   (fn [pics _] (:pictures pics)))
 
+;;TODO This can only work when given "_id" as the sort field! Should take other fields.
 (rf/reg-sub
   :picture-ids
   (fn [_ _]

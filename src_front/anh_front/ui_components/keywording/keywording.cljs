@@ -30,7 +30,6 @@
        :style {:margin-bottom "5px"}
        :children
        [[rc/h-box
-
          :children
          [[components/shortcut "u"]
           [components/keyword-button "Current Keywords"

@@ -32,7 +32,7 @@
      :attr {:id path
             :on-click #(rf/dispatch [:toggle-select-and-focus path])}
      :size "auto"
-     :width "100vh"
+     :width "100%"
      :style (if (= @focused-pic path)
               (if (= :pictures @panel-focus)
                 {:border (str @border-width " solid " @border-sel)}
