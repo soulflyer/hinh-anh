@@ -59,10 +59,12 @@
                            :expanded false
                            :children []}]}]}"
   [tree]
+  ;; TODO This first bit needs to go to db.cljs
   {:name "root"
    :focus ["root"]
    :expanded true
    :children
+   ;; TODO this should only return the :children
    (into []
          (for [year (sort (year-list tree))]
            {:name year

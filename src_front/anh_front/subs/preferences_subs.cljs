@@ -21,6 +21,13 @@
     (:large-directory preferences)))
 
 (rf/reg-sub
+  :last-project
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:last-project preferences)))
+
+(rf/reg-sub
   :picture-sort-field
   (fn [_ _]
     (rf/subscribe [:preferences]))
@@ -90,11 +97,9 @@
     (for [keyword-map keyword-sets]
       (:name keyword-map))))
 
-;; (rf/reg-sub
-;;   :favorite-keyword-set
-;;   (fn [_ _]
-;;     (rf/subscribe [:preferences]))
-;;   (fn [preferences _]
-;;     (let [keyword-sets      (:keyword-sets preferences)
-;;           favorite-keywords (:favorite-keywords preferences)]
-;;       (:keywords (first (filter #(= favorite-keywords (:name %)) keyword-sets))))))
+(rf/reg-sub
+  :hide-footer
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:hide-footer preferences)))

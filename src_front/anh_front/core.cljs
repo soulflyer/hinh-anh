@@ -24,17 +24,20 @@
 
 (defn mount-root []
   (rf/clear-subscription-cache!)
-  (rf/dispatch-sync [:set-keys :projects])
+  (rf/dispatch [:set-keys :projects])
   ;;(ks/setup-keys)
   (reagent/render [main/panel]
-                  (.getElementById js/document "app")))
+                  (.getElementById js/document "app"))
+  (rf/dispatch [:go-to-project ["2002" "08" "03-Latheron-Hebrides"]]))
 
 (defn ^:export init []
   (rf/dispatch-sync [::events/initialize-db])
-  (rf/dispatch-sync [::rp/add-keyboard-event-listener "keydown"])
+  (rf/dispatch [::rp/add-keyboard-event-listener "keydown"])
   (dev-setup)
-  (rf/dispatch-sync [:request-projects])
-  (mount-root))
+  (rf/dispatch [:request-projects])
+  (rf/dispatch [:open-last-visited-project])
+  (mount-root)
+  )
 
 (defn ^:export speak []
   (println "hello from clojurescript"))

@@ -1,9 +1,5 @@
 (ns anh-front.subs
-  (:require ;; [anh-front.helpers      :as helpers]
-   ;; [anh-front.project-tree :as project-tree]
-   ;; [anh-front.tree         :as tree]
-   ;; [day8.re-frame.tracing  :refer-macros [fn-traced]]
-   [re-frame.core          :as rf]))
+  (:require [re-frame.core :as rf]))
 
 (rf/reg-sub
   :name
@@ -14,13 +10,6 @@
   :error
   (fn [db _]
     (:error db)))
-
-(rf/reg-sub
-  :hide-footer
-  (fn [_ _]
-    (rf/subscribe [:preferences]))
-  (fn [preferences _]
-    (:hide-footer preferences)))
 
 (rf/reg-sub
   :panel-focus

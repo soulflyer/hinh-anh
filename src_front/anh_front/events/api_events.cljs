@@ -43,6 +43,7 @@
           tree-data  (project-tree/tree-data resp)]
       (-> db
           (assoc :loading? false)
+          ;; TODO this should only load the :children section of :project-tree
           (assoc :project-tree tree-data)))))
 
 (rf/reg-event-fx
@@ -164,7 +165,7 @@
                     :on-failure      [:load-fail (str "Project " project-path)]}
        :db          (-> db
                         (assoc :loading? true)
-                        (assoc-in [:preferences :last-project] project-path))})))
+                        (assoc-in [:preferences :last-project] path))})))
 
 (rf/reg-event-db
   :pictures-response

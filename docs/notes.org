@@ -115,7 +115,7 @@ Changes are written to the database, but the local db doesn't see them until aft
    CLOSED: [2018-06-22 Fri 14:38]
 ** DONE Possible to add multiple identical keywords to keywording set.
    CLOSED: [2018-06-22 Fri 13:36]
-** TODO [#F] Preserve order amongst keywords. New ones should be added to the end
+** TODO [#H] Preserve order amongst keywords. New ones should be added to the end
 ** TODO [#D] Attempts to write IPTC fields to the API even when empty.
 ** DONE picture not highlighted when keywording
    CLOSED: [2018-06-24 Sun 00:15]
@@ -165,6 +165,7 @@ Not perfect, a border round the pic would be nice.
 ** TODO [#C] Search tree for a project
 ** TODO [#C] Open all intermediate nodes to a specified project
 ** TODO [#C] Remember last viewed project
+already remembered in :preferences :last-project but needs to be set on startup. also Set :focus in the projects tree
 ** TODO [#F] Make tabs to select the different views in the left panel.
 ** DONE Consider refreshing pictures
    CLOSED: [2018-06-22 Fri 13:28]
