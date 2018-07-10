@@ -1,12 +1,12 @@
 {
     "name": "anh",
-    "version": "0.0.0",
-    "description": "",
+    "version": "0.0.1",
+    "description": "Hình Ảnh photo management system",
     "devDependencies": {
-        "grunt": "^1.0.2",
-        "grunt-download-electron": "^2.1.4",
         "closurecompiler-externs": "^1.0.4",
-        "electron-packager": "^11.0.1"
+        "electron": "2.0.4",
+        "electron-packager": "^11.0.1",
+        "grunt": "^1.0.3"
     },
     "license": "MIT",
     "repository": "https://github.com/soulflyer/hinh-anh"

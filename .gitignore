@@ -28,3 +28,4 @@ figwheel_server.log
 .cljs_rhino_repl/*
 checkouts/*
 .tmux
+anh-darwin-x64
