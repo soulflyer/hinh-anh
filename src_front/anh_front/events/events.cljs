@@ -106,7 +106,8 @@
       ;; (println (str "keys " keys))
       ;; (println (str "Focus " html-focus))
       {:db (assoc db :panel-focus new-panel)
-       :dispatch [:set-keys-for new-panel]
+       :dispatch-n [[:set-keys-for new-panel]
+                    [:store-preferences]]
        :set-html-focus html-focus})))
 
 (rf/reg-event-fx
@@ -127,7 +128,8 @@
                                    (count @left-panel-map)))]
       {:dispatch-n [[:set-left-panel new-panel]
                     [:set-keys new-panel]
-                    [:set-html-focus "panel-1"]]})))
+                    [:set-html-focus "panel-1"]
+                    [:store-preferences]]})))
 
 (rf/reg-event-db
   :set-display
@@ -193,11 +195,6 @@
     ;; overwriting the :focus. Can be simplified when I get round to fixing that.
     {:dispatch-later [{:ms 500
                        :dispatch [:go-to-saved-project]}]}))
-
-(rf/reg-event-fx
-  :open-path
-  (fn [{:keys [db]} [_ path]]
-    {:db (assoc-in db [(first path) ] true)}))
 
 (rf/reg-event-fx
   :open-project-external

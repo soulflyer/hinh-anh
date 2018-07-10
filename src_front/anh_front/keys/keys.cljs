@@ -95,11 +95,3 @@
     :details    details-key-set
     :keywording (keywording-key-set)
     project-key-set))
-
-;; (defn setup-keys
-;;   ([key-map]
-;;    (println (str "***********Using key set: " key-map))
-;;    (re-frame/dispatch
-;;      [::re-pressed/set-keydown-rules key-map]))
-;;   ([]
-;;    (setup-keys project-key-set)))

@@ -125,6 +125,8 @@ Picture keys work, but there is no way of telling which is current. Pic should b
 ** DONE Keyword buttons out of order if there are more than 10
    CLOSED: [2018-07-04 Wed 14:36]
 ** TODO [#D] Edit key doesn't always work without switching panel focus.
+** TODO [#D] edit buttons should not be in preferences
+and it shouldn't be called :show-delete-keywording.
 * Improvements
 ** Filters
 *** TODO [#F] Filter by stars
@@ -162,9 +164,11 @@ One possible solution is to have calls to subscriptions that are defined outside
 Not perfect, a border round the pic would be nice.
 ** DONE Display pic details in left panel
    CLOSED: [2018-06-08 Fri 09:48]
-** TODO [#C] Search tree for a project
-** TODO [#C] Open all intermediate nodes to a specified project
-** TODO [#C] Remember last viewed project
+** TODO [#E] Search tree for a project
+** DONE Open all intermediate nodes to a specified project
+   CLOSED: [2018-07-10 Tue 09:33]
+** DONE Remember last viewed project
+   CLOSED: [2018-07-10 Tue 09:49]
 already remembered in :preferences :last-project but needs to be set on startup. also Set :focus in the projects tree
 ** TODO [#F] Make tabs to select the different views in the left panel.
 ** DONE Consider refreshing pictures

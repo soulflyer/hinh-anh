@@ -71,13 +71,8 @@
   (fn [{:keys [db]} [_ tree-name]]
     (let [path (:focus (get db tree-name))]
       ;;TODO make this more general. Only works for yr/mm/proj now.
-      (println (str "*****" path))
-      (println (str "*****" [(first path)]))
-      (println (str "*****" [(first path) (first (rest path))]))
       {:dispatch-n [[:expand tree-name [(first path)]]
-                    [:expand tree-name [(first path) (first (rest path))]]]
-       ;;:db (assoc-in db [:project-tree :focus] path)
-       })))
+                    [:expand tree-name [(first path) (first (rest path))]]]})))
 
 (rf/reg-event-fx
   :collapse-selected

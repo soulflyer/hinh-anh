@@ -4,7 +4,6 @@
             [anh-front.config                  :as config]
             [anh-front.events                  :as events]
             [anh-front.key-events              :as key-events]
-            [anh-front.keys                    :as ks]
             [anh-front.keywording-keys         :as keywording-keys]
             [anh-front.layout-preferences-subs :as layout-preferences-subs]
             [anh-front.main                    :as main]
@@ -25,10 +24,8 @@
 (defn mount-root []
   (rf/clear-subscription-cache!)
   (rf/dispatch [:set-keys :projects])
-  ;;(ks/setup-keys)
   (reagent/render [main/panel]
-                  (.getElementById js/document "app"))
-  (rf/dispatch [:go-to-project ["2002" "08" "03-Latheron-Hebrides"]]))
+                  (.getElementById js/document "app")))
 
 (defn ^:export init []
   (rf/dispatch-sync [::events/initialize-db])
@@ -36,8 +33,7 @@
   (dev-setup)
   (rf/dispatch [:request-projects])
   (rf/dispatch [:open-last-visited-project])
-  (mount-root)
-  )
+  (mount-root))
 
 (defn ^:export speak []
   (println "hello from clojurescript"))

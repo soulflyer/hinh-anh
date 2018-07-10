@@ -25,14 +25,15 @@
   :request-projects
   (fn
     [{db :db} _]
-    {:http-xhrio {:method          :get
-                  :cross-origin    true
-                  :uri             (str config/api-root "/project/maps")
-                  :format          (ajax/json-request-format)
-                  :response-format (ajax/json-response-format {:keywords? true})
-                  :on-success      [:projects-response]
-                  :on-failure      [:load-fail "Projects"]}
-     :db  (assoc db :loading? true)}))
+    (let [api-root (rf/subscribe [:api-root])]
+      {:http-xhrio {:method          :get
+                    :cross-origin    true
+                    :uri             (str @api-root "/project/maps")
+                    :format          (ajax/json-request-format)
+                    :response-format (ajax/json-response-format {:keywords? true})
+                    :on-success      [:projects-response]
+                    :on-failure      [:load-fail "Projects"]}
+       :db  (assoc db :loading? true)})))
 
 (rf/reg-event-db
   :projects-response
@@ -64,10 +65,10 @@
 (rf/reg-event-fx
   :add-keyword-to-photo
   (fn [{:keys [db]} [_ [pic kw]]]
-    (let [a 1]
+    (let [api-root (rf/subscribe [:api-root])]
       (println (str "Keyword " kw))
       {:http-xhrio {:method          :get
-                    :uri             (str config/api-root "/photos/add/keyword/" kw "/" pic)
+                    :uri             (str @api-root "/photos/add/keyword/" kw "/" pic)
                     :format          (ajax/json-request-format)
                     :response-format (ajax/json-response-format {:keywords? true})
                     :on-success      [:add-keyword-local [pic kw]]
@@ -77,10 +78,11 @@
 (rf/reg-event-fx
   :add-keyword-to-photos
   (fn [{:keys [db]} [_ kw]]
-    (let [photo-paths (rf/subscribe [:selected-pics])
+    (let [api-root    (rf/subscribe [:api-root])
+          photo-paths (rf/subscribe [:selected-pics])
           photo-ids   (helpers/paths->ids @photo-paths)]
       {:http-xhrio {:method          :get
-                    :uri             (str config/api-root
+                    :uri             (str @api-root
                                           "/photos/add/keyword/" kw "/" photo-ids)
                     :format          (ajax/json-request-format)
                     :response-format (ajax/json-response-format {:keywords? true})
@@ -91,23 +93,25 @@
   :delete-keyword-from-photos
   (fn [{:keys [db]} [_ kw]]
     (let [photo-paths (rf/subscribe [:selected-pics])
-          photo-ids   (helpers/paths->ids @photo-paths)]
-      {:http-xhrio {:method :get
-                    :uri (str config/api-root "/photos/delete/keyword/" kw "/" photo-ids)
-                    :format (ajax/json-request-format)
+          photo-ids   (helpers/paths->ids @photo-paths)
+          api-root    (rf/subscribe [:api-root])]
+      {:http-xhrio {:method          :get
+                    :uri             (str @api-root "/photos/delete/keyword/" kw "/" photo-ids)
+                    :format          (ajax/json-request-format)
                     :response-format (ajax/json-response-format)
-                    :on-success [:refresh-pictures]
-                    :on-failure [:load-fail "delete keywords"]}})))
+                    :on-success      [:refresh-pictures]
+                    :on-failure      [:load-fail "delete keywords"]}})))
 
 (rf/reg-event-fx
   :delete-keyword
   (fn [{:keys [db]} [_ [pic kw]]]
-    {:http-xhrio {:method :get
-                  :uri (str config/api-root "/photos/delete/keyword/" kw "/" pic)
-                  :format (ajax/json-request-format)
-                  :response-format (ajax/json-response-format)
-                  :on-success [:delete-keyword-local [pic kw]]
-                  :on-failure [:load-fail "delete keyword"]}}))
+    (let [api-root (rf/subscribe [:api-root])]
+      {:http-xhrio {:method :get
+                    :uri (str @api-root "/photos/delete/keyword/" kw "/" pic)
+                    :format (ajax/json-request-format)
+                    :response-format (ajax/json-response-format)
+                    :on-success [:delete-keyword-local [pic kw]]
+                    :on-failure [:load-fail "delete keyword"]}})))
 
 (rf/reg-event-fx
   :delete-keyword-local
@@ -140,32 +144,34 @@
   :write-iptc
   (fn [{:keys [db]} [_ [pic field text]]]
     ;;(println (str "Path " pic))
-    {:http-xhrio
-     {:method          :get
-      :cross-origin    true
-      :uri             (str config/api-root "/photos/write/" (name field) "/" pic "/" text)
-      :format          (ajax/json-request-format)
-      :response-format (ajax/json-response-format {:keywords? true})
-      :on-success      [:write-iptc-local [pic field text]]
-      :on-failure      [:load-fail (str text " to " pic)]}
-     :db               (assoc db :loading? true)}))
+    (let [api-root (rf/subscribe [:api-root])]
+      {:http-xhrio
+       {:method          :get
+        :cross-origin    true
+        :uri             (str @api-root "/photos/write/" (name field) "/" pic "/" text)
+        :format          (ajax/json-request-format)
+        :response-format (ajax/json-response-format {:keywords? true})
+        :on-success      [:write-iptc-local [pic field text]]
+        :on-failure      [:load-fail (str text " to " pic)]}
+       :db               (assoc db :loading? true)})))
 
 ;;(rf/dispatch-sync [:request-pictures ["2002" "01" "01-Teesdale"]])
 (rf/reg-event-fx
   :load-pictures-for-project
   (fn
     [{db :db} [_ path]]
-    (let [project-path (reduce str (interpose "/" path))]
+    (let [api-root     (rf/subscribe [:api-root])
+          project-path (reduce str (interpose "/" path))]
       {:http-xhrio {:method          :get
                     :cross-origin    true
-                    :uri             (str config/api-root "/photos/" project-path)
+                    :uri             (str @api-root "/photos/" project-path)
                     :format          (ajax/json-request-format)
                     :response-format (ajax/json-response-format {:keywords? true})
                     :on-success      [:pictures-response]
                     :on-failure      [:load-fail (str "Project " project-path)]}
-       :db          (-> db
-                        (assoc :loading? true)
-                        (assoc-in [:preferences :last-project] path))})))
+       :db         (-> db
+                       (assoc :loading? true)
+                       (assoc-in [:preferences :last-project] path))})))
 
 (rf/reg-event-db
   :pictures-response
@@ -184,16 +190,17 @@
 (rf/reg-event-fx
   :refresh-pictures
   (fn [{:keys [db]} _]
-    (let [project-vector (rf/subscribe [:displayed-project])
-          project-path (reduce str (interpose "/" @project-vector))]
+    (let [api-root       (rf/subscribe [:api-root])
+          project-vector (rf/subscribe [:displayed-project])
+          project-path   (reduce str (interpose "/" @project-vector))]
       {:http-xhrio {:method          :get
                     :cross-origin    true
-                    :uri             (str config/api-root "/photos/" project-path)
+                    :uri             (str @api-root "/photos/" project-path)
                     :format          (ajax/json-request-format)
                     :response-format (ajax/json-response-format {:keywords? true})
                     :on-success      [:refresh-response]
                     :on-failure      [:load-fail (str "Refresh " project-path)]}
-       :db          (assoc db :loading? true)})))
+       :db         (assoc db :loading? true)})))
 
 (rf/reg-event-fx
   :refresh-response
@@ -209,22 +216,24 @@
 (rf/reg-event-fx
   :open-project
   (fn [{:keys [db]} [_ path]]
-    {:http-xhrio {:method :get
-                  :cross-origin true
-                  :uri             (str config/api-root "/open/project/" path)
-                  :format          (ajax/json-request-format)
-                  :response-format (ajax/json-response-format {:keywords? true})
-                  :on-success      [:set-error-message (str "Opened " path)]
-                  :on-failure      [:load-fail (str "Open " path)]}}))
+    (let [api-root (rf/subscribe [:api-root])]
+      {:http-xhrio {:method :get
+                    :cross-origin true
+                    :uri             (str @api-root "/open/project/" path)
+                    :format          (ajax/json-request-format)
+                    :response-format (ajax/json-response-format {:keywords? true})
+                    :on-success      [:set-error-message (str "Opened " path)]
+                    :on-failure      [:load-fail (str "Open " path)]}})))
 
 (rf/reg-event-fx
   :open-pictures
   (fn [{:keys [db]} _]
-    (let [selected-pics (rf/subscribe [:selected-pics])
+    (let [api-root      (rf/subscribe [:api-root])
+          selected-pics (rf/subscribe [:selected-pics])
           pics          (url/url-encode (reduce str (interpose " " @selected-pics)))]
       {:http-xhrio {:method          :get
                     :cross-origin    true
-                    :uri             (str config/api-root "/open/medium/" pics)
+                    :uri             (str @api-root "/open/medium/" pics)
                     :format          (ajax/json-request-format)
                     :response-format (ajax/json-response-format {:keywords? true})
                     :on-sucess       [:set-error-message (str "Opened selected pics")]

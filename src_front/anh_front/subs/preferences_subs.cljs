@@ -28,6 +28,13 @@
     (:last-project preferences)))
 
 (rf/reg-sub
+  :api-root
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:api-root preferences)))
+
+(rf/reg-sub
   :picture-sort-field
   (fn [_ _]
     (rf/subscribe [:preferences]))

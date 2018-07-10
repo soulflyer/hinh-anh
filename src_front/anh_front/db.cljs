@@ -18,7 +18,8 @@
    :keyword-set             []
 
    :preferences
-   {:show-empty-exif        false
+   {:api-root               "http://localhost:31000/api"
+    :show-empty-exif        false
     :show-delete-keywording false
     :last-project           []
     :medium-directory       "/Users/iain/Pictures/Published/medium"
