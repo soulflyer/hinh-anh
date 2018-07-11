@@ -4,6 +4,7 @@
             [anh-front.keywording      :as keywording]
             [anh-front.pictures        :as pictures]
             [anh-front.pictures-header :as pictures-header]
+            [anh-front.preferences     :as preferences]
             [anh-front.projects        :as projects]
             [anh-front.sidebar-header  :as sidebar-header]
             [anh-front.styles          :as styles]
@@ -22,7 +23,7 @@
                  :style (styles/main)
                  :size "auto"
                  :panel-1 [rc/v-box
-                           :attr {:id "panel-1"
+                           :attr {:id       "panel-1"
                                   :tabIndex "1"}
                            :width "100%"
                            :style {:padding-left "5px"}
@@ -32,12 +33,13 @@
                                     "focused-panel"
                                     "unfocused-panel")
                            :children [(case @left-panel
-                                        :projects   [projects/panel]
-                                        :details    [details/panel]
-                                        :keywording [keywording/panel]
+                                        :projects    [projects/panel]
+                                        :details     [details/panel]
+                                        :keywording  [keywording/panel]
+                                        :preferences [preferences/panel]
                                         [:p "Default panel" ])]]
                  :panel-2 [rc/v-box
-                           :attr {:id "panel-2"
+                           :attr {:id       "panel-2"
                                   :tabIndex "1"}
                            :size "auto"
                            :children [[pictures/panel]]]

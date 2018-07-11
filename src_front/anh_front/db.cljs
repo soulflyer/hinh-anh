@@ -6,7 +6,7 @@
    :error                   "All is well."
    :panel-focus             :left
    :panel-focus-list        [:left :pictures]
-   :left-panel-list         [:projects :details :keywording]
+   :left-panel-list         [:projects :details :keywording :preferences]
    :left-panel-display      :projects
    :details-textfields      []
    :details-focused-textbox ""
