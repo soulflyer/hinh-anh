@@ -135,6 +135,8 @@ Picture keys work, but there is no way of telling which is current. Pic should b
 ** TODO [#D] Edit key doesn't always work without switching panel focus.
 ** TODO [#D] edit buttons should not be in preferences
 and it shouldn't be called :show-delete-keywording.
+** DONE picture order is correct but previous and next don't always go to the right pic
+   CLOSED: [2018-07-11 Wed 22:41]
 * Improvements
 ** Filters
 *** TODO [#F] Filter by stars
