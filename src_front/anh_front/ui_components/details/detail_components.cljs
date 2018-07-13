@@ -78,7 +78,7 @@
             [[rc/md-icon-button
               :md-icon-name "zmdi-delete"
               :size :smaller
-              :on-click #(rf/dispatch [:delete-keyword [pic-path keyword %]])]
+              :on-click #(rf/dispatch [:delete-keyword-from-photo [pic-path keyword %]])]
              [rc/label
               :style {:margin "2px 3px 0px 0px"}
               :label keyword]]])

@@ -2,6 +2,7 @@
   (:require [anh-front.details         :as details]
             [anh-front.header          :as header]
             [anh-front.keywording      :as keywording]
+            [anh-front.keywords        :as keywords]
             [anh-front.pictures        :as pictures]
             [anh-front.pictures-header :as pictures-header]
             [anh-front.preferences     :as preferences]
@@ -10,7 +11,7 @@
             [anh-front.styles          :as styles]
             [re-com.core               :as rc]
             [anh-front.footer          :as footer]
-            [re-frame.core :as rf]))
+            [re-frame.core             :as rf]))
 
 (defn panel []
   (let [focus       (rf/subscribe [:panel-focus])
@@ -36,6 +37,7 @@
                                         :projects    [projects/panel]
                                         :details     [details/panel]
                                         :keywording  [keywording/panel]
+                                        :keywords    [keywords/panel]
                                         :preferences [preferences/panel]
                                         [:p "Default panel" ])]]
                  :panel-2 [rc/v-box

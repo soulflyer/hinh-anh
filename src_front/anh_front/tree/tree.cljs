@@ -1,6 +1,6 @@
 (ns anh-front.tree
   "Incoming data needs to be rearranged to look something like the data defined
-  in test-tree"
+  in tree-test-data"
   (:require [clojure.string         :as string]
             [clojure.zip            :as zip]
             [com.rpl.specter        :as sp]
@@ -8,33 +8,6 @@
             [day8.re-frame.tracing  :refer [defn-traced]]
             [re-frame.core          :as rf]
             [re-com.core            :as re-com]))
-
-(comment (def test-tree
-           {:name "root"
-            :focus ["root"]
-            :expanded true
-            :children [{:name "2000"
-                        :expanded true
-                        :children [{:name "01"
-                                    :expanded true
-                                    :children [{:name "project-1"}
-                                               {:name "project-2"}
-                                               {:name "project-3"}
-                                               {:name "project-4"}]}
-                                   {:name "02"
-                                    :expanded true
-                                    :children [{:name "project-5"}
-                                               {:name "project-6"}]}]}
-                       {:name "2001"
-                        :expanded false
-                        :children [{:name "01"
-                                    :expanded false
-                                    :children []}]}
-                       {:name "2002"
-                        :expanded false
-                        :children [{:name "01"
-                                    :expanded false
-                                    :children []}]}]}))
 
 (defn path-nav [path]
   (sp/path
