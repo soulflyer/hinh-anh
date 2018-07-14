@@ -35,10 +35,10 @@
     (let [api-root (rf/subscribe [:api-root])]
       {:http-xhrio {:method          :get
                     :cross-origin    true
-                    :uri             (str @api-root "/keyword/maps")
+                    :uri             (str @api-root "/keywords/map/")
                     :format          (ajax/json-request-format)
                     :response-format (ajax/json-response-format {:keywords? true})
-                    :on-success      [:say-hello "keywords"]
+                    :on-success      [:keywords-response]
                     :on-failure      [:load-fail "keywords"]}
        :db         (-> db (assoc :loading? true))})))
 
