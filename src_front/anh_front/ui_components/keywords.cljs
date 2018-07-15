@@ -4,10 +4,10 @@
             [anh-front.tree :as tree]))
 
 (defn panel []
-  (let [tree-name :keywords
+  (let [tree-name :keyword-tree
         tree (rf/subscribe [tree-name])]
     [rc/box
      :child
      (tree/root
-       (for [kw (get-in @tree ["children"])]
-         (tree/node @tree tree-name [(get kw "name")] :say-hello)))]))
+       (for [kw (get-in @tree [:children])]
+         (tree/node @tree tree-name [(get kw :name)] :say-hello)))]))

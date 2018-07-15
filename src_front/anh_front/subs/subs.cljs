@@ -17,9 +17,9 @@
     (:loading? db)))
 
 (rf/reg-sub
-  :keywords
+  :keyword-tree
   (fn [db _]
-    (:keywords db)))
+    (:keyword-tree db)))
 
 (rf/reg-sub
   :panel-focus

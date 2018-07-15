@@ -77,6 +77,10 @@
   {:event-keys (into common-keys project-keys)
    :prevent-default-keys prevent-keys})
 
+(def keywords-key-set
+  {:event-keys (into common-keys keyword-keys)
+   :prevent-default-keys prevent-keys})
+
 (def picture-key-set
   {:event-keys (into common-keys picture-keys)
    :prevent-default-keys prevent-keys})
@@ -101,5 +105,6 @@
     :projects   project-key-set
     :pictures   picture-key-set
     :details    details-key-set
+    :keywords   keywords-key-set
     :keywording (keywording-key-set)
     project-key-set))

@@ -175,6 +175,24 @@
                     [:prev-node :project-tree path]]})))
 
 (rf/reg-event-fx
+  :next-keyword-open
+  (fn [{:keys [db]} _]
+    (let [tr (:keyword-tree db)
+          path (or (:focus tr) ["Root"])
+          newpath (tree/next-node tr path)]
+      {:dispatch-n [[:say-hello newpath]
+                    [:next-node :keyword-tree path]]})))
+
+(rf/reg-event-fx
+  :prev-keyword-open
+  (fn [{:keys [db]} _]
+    (let [tr (:keyword-tree db)
+          path (or (:focus tr) ["Root"])
+          newpath (tree/prev-node tr path)]
+      {:dispatch-n [[:say-hello (str newpath)]
+                    [:prev-node :keyword-tree path]]})))
+
+(rf/reg-event-fx
   :go-to-project
   (fn [{:keys [db]} [_ path]]
     {:db (-> db

@@ -4,6 +4,7 @@
             [anh-front.details-helper :as helper]
             [anh-front.helpers        :as helpers]
             [anh-front.project-tree   :as project-tree]
+            [clojure.walk             :as walk]
             [cognitect.transit        :as transit]
             [com.rpl.specter          :as sp]
             [day8.re-frame.http-fx    :as dont-delete-me-or-http-xhrio-will-go-away]
@@ -27,10 +28,10 @@
           resp   (transit/read reader response)]
       (-> db
           (assoc :loading? false)
-          (assoc :keywords resp)))))
+          (assoc :keyword-tree (walk/keywordize-keys resp))))))
 
 (rf/reg-event-fx
-  :load-keywords
+  :load-keyword-tree
   (fn [{:keys [db]} _]
     (let [api-root (rf/subscribe [:api-root])]
       {:http-xhrio {:method          :get
