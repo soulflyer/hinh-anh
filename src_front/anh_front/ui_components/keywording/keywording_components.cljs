@@ -92,7 +92,8 @@
        :md-icon-name "zmdi-scissors"
        :size :smaller
        :on-click #(rf/dispatch [:clear-keywords])]]]
-    [rc/md-icon-button
-     :md-icon-name "zmdi-info"
-     :size :smaller
-     :on-click #(rf/dispatch [:toggle-footer])]]])
+    ;; [rc/md-icon-button
+    ;;  :md-icon-name "zmdi-info"
+    ;;  :size :smaller
+    ;;  :on-click #(rf/dispatch [:toggle-footer])]
+    ]])

@@ -4,8 +4,17 @@
             [clojure.string :as string]))
 
 (defn panel []
-  (let [current (rf/subscribe [:selected-project])
-        path (string/join "/" @current)]
-    [rc/box
-     :class "sidebar-header-box"
-     :child [:p (str "Selected: " path)]]))
+  (let [loading (rf/subscribe [:loading?])]
+    [rc/h-box
+     :height "0px"
+     :justify :end
+     :children [
+                (if @loading
+                  [rc/throbber
+                   :color :black
+                   :size :smaller])
+                [rc/md-icon-button
+                 :md-icon-name "zmdi-border-bottom"
+                 :size :smaller
+                 :style {:margin "3px 0px 4px 0px"}
+                 :on-click #(rf/dispatch [:toggle-footer])]]]))

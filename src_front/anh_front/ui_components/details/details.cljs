@@ -20,9 +20,9 @@
         version              (get @pic "Version")]
     (rc/v-box
       :attr {:on-click #(rf/dispatch [:set-panel-focus :left])}
-      :height "100%"
+      :size "100"
       :children
-      [[rc/gap :size "3px"]
+      [[rc/gap :size "9px"]
        [rc/v-box
         :children
         [[rc/h-box

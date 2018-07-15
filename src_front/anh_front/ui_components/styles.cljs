@@ -1,6 +1,6 @@
 (ns anh-front.styles
   (:require [re-frame.core :as rf]))
-;; TODO Pull the colours from preference subscrptions
+
 (defn pictures []
   (let [text-colour (rf/subscribe [:picture-text-colour])
         background  (rf/subscribe [:pictures-background])]

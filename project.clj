@@ -25,14 +25,15 @@
   :profiles
   {:dev
    {:dependencies [[figwheel "0.5.16"]
-                   [com.cemerick/piggieback "0.2.2"]
+                   ;;[com.cemerick/piggieback "0.2.2"]
+                   [cider/piggieback "0.3.6"]
                    ;;[org.clojure/tools.nrepl "0.2.13"]
                    [figwheel-sidecar "0.5.16"]
                    [day8.re-frame/re-frame-10x "0.3.3"]
                    [day8.re-frame/tracing "0.5.1"]
                    [org.clojure/data.xml "0.2.0-alpha5"]]
     :repl-options
-    {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
+    {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}}}
   :clean-targets [:target-path "tmp"
                   "app/dev/js/cljsbuild-main.js" "app/dev/js/front.js"
                   "app/prod/js/cljsbuild-main.js" "app/prod/js/front.js"

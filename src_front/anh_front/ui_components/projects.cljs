@@ -8,10 +8,13 @@
   (let [tree-name :project-tree
         tree (rf/subscribe [tree-name])]
     (rc/scroller
+      ;;:style {:margin-top "18px"}
       :v-scroll :auto
       :h-scroll :off
       :child
-      [:div.projects
+      ;;TODO This should probably be a re-com box not a div
+      [rc/box
+       :child
        (tree/root
          (for [year (:children @tree)]
            (tree/node @tree tree-name [(:name year)] :fetch-pictures)))])))

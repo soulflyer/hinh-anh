@@ -27,13 +27,15 @@
                            :attr {:id       "panel-1"
                                   :tabIndex "1"}
                            :width "100%"
+                           ;;:size "auto"
                            :style {:padding-left "5px"}
                            ;; TODO this sets class so css can colour the
                            ;;focused item. Should call an event instead
                            :class (if (= :left @focus)
                                     "focused-panel"
                                     "unfocused-panel")
-                           :children [(case @left-panel
+                           :children [[sidebar-header/panel]
+                                      (case @left-panel
                                         :projects    [projects/panel]
                                         :details     [details/panel]
                                         :keywording  [keywording/panel]

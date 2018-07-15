@@ -146,6 +146,8 @@ and it shouldn't be called :show-delete-keywording.
 already displayed in the pictures panel
 *** TODO [#B] Display keyword heirarchy
 Need to write a new entry in the API keyword/maps
+*** TODO [#A] Set keys to navigate keyword tree
+*** TODO [#B] Add triangle to tree entries with children
 *** TODO [#C] Display all pictures containing a given keyword
 *** DONE Add and remove keywords from pictures
     CLOSED: [2018-06-22 Fri 13:47]

@@ -12,6 +12,16 @@
     (:error db)))
 
 (rf/reg-sub
+  :loading?
+  (fn [db _]
+    (:loading? db)))
+
+(rf/reg-sub
+  :keywords
+  (fn [db _]
+    (:keywords db)))
+
+(rf/reg-sub
   :panel-focus
   (fn [db _]
     (:panel-focus db)))

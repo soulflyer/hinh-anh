@@ -36,15 +36,23 @@
     [{:which (key-codes "down")}]]])
 
 (def project-keys
-  [[[:next-project-open :project-tree]
+  [[[:next-project-open]
     [{:which (key-codes "down")}]]
-   [[:prev-project-open :project-tree]
+   [[:prev-project-open]
     [{:which (key-codes "up")}]]
-   [[:fetch-pictures]
-    [{:which (key-codes "space")}]]
    [[:up-and-close :project-tree]
     [{:which (key-codes "left")}]]
    [[:expand-selected :project-tree]
+    [{:which (key-codes "right")}]]])
+
+(def keyword-keys
+  [[[:next-keyword-open]
+    [{:which (key-codes "down")}]]
+   [[:prev-keyword-open]
+    [{:which (key-codes "up")}]]
+   [[:up-and-close :keyword-tree]
+    [{:which (key-codes "left")}]]
+   [[:expand-selected :keyword-tree]
     [{:which (key-codes "right")}]]])
 
 (def picture-keys

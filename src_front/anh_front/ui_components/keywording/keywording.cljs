@@ -13,7 +13,8 @@
         new-keyword        (reagent/atom nil)
         show-delete        (rf/subscribe [:show-delete-keywording])]
     [rc/v-box
-     :height "100%"
+     :size "100"
+     ;;:style {:margin-top "17px"}
      :justify :between
      :children
      [[rc/v-box
