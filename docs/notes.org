@@ -137,6 +137,8 @@ Picture keys work, but there is no way of telling which is current. Pic should b
 and it shouldn't be called :show-delete-keywording.
 ** DONE picture order is correct but previous and next don't always go to the right pic
 ** TODO [#G] Missing a delete key for keywords and keyword sets
+** TODO [#I] Broke the expand of nodes to the saved project.
+Only when doing a refresh and projects pane is not selected. I don't think this can happen in the production environment.
 * Improvements
 ** Filters
 *** TODO [#F] Filter by stars
@@ -144,11 +146,13 @@ and it shouldn't be called :show-delete-keywording.
 
 ** Keywords
 already displayed in the pictures panel
-*** TODO [#B] Display keyword heirarchy
+*** DONE Display keyword heirarchy
+    CLOSED: [2018-07-18 Wed 10:36]
 Need to write a new entry in the API keyword/maps
-*** TODO [#A] Set keys to navigate keyword tree
+*** DONE Set keys to navigate keyword tree
+    CLOSED: [2018-07-18 Wed 10:36]
 *** TODO [#B] Add triangle to tree entries with children
-*** TODO [#C] Display all pictures containing a given keyword
+*** TODO [#A] Display all pictures containing a given keyword
 *** DONE Add and remove keywords from pictures
     CLOSED: [2018-06-22 Fri 13:47]
 Already done for individual pics, but need to be able to do all selected pics at once. Addin works now but still need to be able to delete keyword from multiple pics.

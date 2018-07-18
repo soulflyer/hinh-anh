@@ -3,6 +3,7 @@
             [anh-front.config         :as config]
             [anh-front.details-helper :as helper]
             [anh-front.helpers        :as helpers]
+            [anh-front.keyword-tree   :as keyword-tree]
             [anh-front.project-tree   :as project-tree]
             [clojure.walk             :as walk]
             [cognitect.transit        :as transit]
@@ -18,7 +19,8 @@
     [db [_ error]]
     (let [error-message (str error " api call failed")]
       (println error-message)
-      (-> db(assoc :loading? false)
+      (-> db
+          (assoc :loading? false)
           (assoc :error error-message)))))
 
 (rf/reg-event-db
@@ -28,7 +30,7 @@
           resp   (transit/read reader response)]
       (-> db
           (assoc :loading? false)
-          (assoc :keyword-tree (walk/keywordize-keys resp))))))
+          (assoc :keyword-tree (keyword-tree/tree-data resp))))))
 
 (rf/reg-event-fx
   :load-keyword-tree
@@ -41,7 +43,9 @@
                     :response-format (ajax/json-response-format {:keywords? true})
                     :on-success      [:keywords-response]
                     :on-failure      [:load-fail "keywords"]}
-       :db         (-> db (assoc :loading? true))})))
+       :db         (-> db
+                       (assoc :loading? true)
+                       (assoc :error "Loading keywords..."))})))
 
 ;;(rf/dispatch-sync [:request-pictures ["2002" "01" "01-Teesdale"]])
 (rf/reg-event-fx

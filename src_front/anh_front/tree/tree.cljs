@@ -37,7 +37,7 @@
 (defn drop-root
   "get rid of the leading root entry from a path"
   [path]
-  (if (= (first path) "root")
+  (if (= (first path) "Root")
     (vec (rest path))
     path))
 

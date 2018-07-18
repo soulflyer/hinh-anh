@@ -162,7 +162,7 @@
           newpath (tree/next-node tr path)]
       {:dispatch-n [(if (= 3 (count newpath))
                       [:load-pictures-for-project newpath])
-                    [:next-node :project-tree path]]})))
+                    [:next-node :project-tree]]})))
 
 (rf/reg-event-fx
   :prev-project-open
@@ -172,25 +172,29 @@
           newpath (tree/prev-node tr path)]
       {:dispatch-n [(if (= 3 (count newpath))
                       [:load-pictures-for-project newpath])
-                    [:prev-node :project-tree path]]})))
+                    [:prev-node :project-tree]]})))
 
 (rf/reg-event-fx
   :next-keyword-open
   (fn [{:keys [db]} _]
     (let [tr (:keyword-tree db)
-          path (or (:focus tr) ["Root"])
+          path (if (< 0 (count (:focus tr)))
+                 (:focus tr)
+                 ["Root"])
           newpath (tree/next-node tr path)]
-      {:dispatch-n [[:say-hello newpath]
-                    [:next-node :keyword-tree path]]})))
+      {:dispatch-n [[:say-hello (str "path: " path " newpath: " newpath)]
+                    [:next-node :keyword-tree]]})))
 
 (rf/reg-event-fx
   :prev-keyword-open
   (fn [{:keys [db]} _]
     (let [tr (:keyword-tree db)
-          path (or (:focus tr) ["Root"])
+          path (if (< 0 (count (:focus tr)))
+                 (:focus tr)
+                 ["Root"])
           newpath (tree/prev-node tr path)]
-      {:dispatch-n [[:say-hello (str newpath)]
-                    [:prev-node :keyword-tree path]]})))
+      {:dispatch-n [[:say-hello (str "path: " path " newpath: " newpath)]
+                    [:prev-node :keyword-tree]]})))
 
 (rf/reg-event-fx
   :go-to-project

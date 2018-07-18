@@ -60,8 +60,8 @@
                            :children []}]}]}"
   [tree]
   ;; TODO This first bit needs to go to db.cljs
-  {:name "root"
-   :focus ["root"]
+  {:name "Root"
+   :focus ["Root"]
    :expanded true
    :children
    ;; TODO this should only return the :children
