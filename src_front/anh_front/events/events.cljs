@@ -182,7 +182,7 @@
                  (:focus tr)
                  ["Root"])
           newpath (tree/next-node tr path)]
-      {:dispatch-n [[:say-hello (str "path: " path " newpath: " newpath)]
+      {:dispatch-n [[:load-best-picture (last newpath)]
                     [:next-node :keyword-tree]]})))
 
 (rf/reg-event-fx
@@ -193,7 +193,7 @@
                  (:focus tr)
                  ["Root"])
           newpath (tree/prev-node tr path)]
-      {:dispatch-n [[:say-hello (str "path: " path " newpath: " newpath)]
+      {:dispatch-n [[:load-best-picture (last newpath)]
                     [:prev-node :keyword-tree]]})))
 
 (rf/reg-event-fx

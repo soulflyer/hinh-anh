@@ -12,7 +12,6 @@
       :v-scroll :auto
       :h-scroll :off
       :child
-      ;;TODO This should probably be a re-com box not a div
       [rc/box
        :child
        (tree/root

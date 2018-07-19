@@ -21,6 +21,7 @@
       (println error-message)
       (-> db
           (assoc :loading? false)
+          (assoc :keyword-loading? false)
           (assoc :error error-message)))))
 
 (rf/reg-event-db
@@ -29,7 +30,8 @@
     (let [reader (transit/reader :json)
           resp   (transit/read reader response)]
       (-> db
-          (assoc :loading? false)
+          (assoc :keyword-loading? false)
+          (assoc :error "Keywords loaded")
           (assoc :keyword-tree (keyword-tree/tree-data resp))))))
 
 (rf/reg-event-fx
@@ -44,8 +46,35 @@
                     :on-success      [:keywords-response]
                     :on-failure      [:load-fail "keywords"]}
        :db         (-> db
-                       (assoc :loading? true)
+                       (assoc :keyword-loading? true)
                        (assoc :error "Loading keywords..."))})))
+
+(rf/reg-event-db
+  :load-best-response
+  (fn  [db [_ response]]
+    (let [reader (transit/reader :json)
+          resp   (transit/read reader response)]
+      (-> db
+          (assoc :loading? false)
+          (assoc :error "%%")
+          (assoc :picture-list {:pictures [resp]
+                                :focus ""
+                                :selected []})))))
+
+(rf/reg-event-fx
+  :load-best-picture
+  (fn [{:keys [db]} [_ kw]]
+    (let [api-root (rf/subscribe [:api-root])]
+      {:http-xhrio {:method          :get
+                    :cross-origin    true
+                    :uri             (str @api-root "/keywords/" kw "/best/map")
+                    :format          (ajax/json-request-format)
+                    :response-format (ajax/json-response-format {:keywords? true})
+                    :on-success      [:load-best-response]
+                    :on-failure      [:load-fail "best keyword"]}
+       :db         (-> db
+                       (assoc :loading? true)
+                       (assoc :error (str "Loading best picture for " kw)))})))
 
 ;;(rf/dispatch-sync [:request-pictures ["2002" "01" "01-Teesdale"]])
 (rf/reg-event-fx
@@ -63,6 +92,7 @@
                     :on-failure      [:load-fail (str "Project " project-path)]}
        :db         (-> db
                        (assoc :loading? true)
+                       (assoc :error "Loading pictures...")
                        (assoc-in [:preferences :last-project] path))})))
 
 (rf/reg-event-db
@@ -74,6 +104,7 @@
           first-pic (helpers/image-path (first resp))]
       (-> db
           (assoc    :loading? false)
+          (assoc    :error "")
           (assoc-in [:picture-list :focus] first-pic)
           (assoc-in [:picture-list :pictures] resp)
           (assoc-in [:picture-list :selected] [])

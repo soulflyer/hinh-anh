@@ -14,7 +14,8 @@
 (rf/reg-sub
   :loading?
   (fn [db _]
-    (:loading? db)))
+    (or (:loading? db)
+        (:keyword-loading? db))))
 
 (rf/reg-sub
   :keyword-tree
