@@ -25,6 +25,48 @@
           (assoc :error error-message)))))
 
 (rf/reg-event-db
+  :keyword-pics-response
+  (fn  [db [_ response]]
+    (let [reader (transit/reader :json)
+          resp   (transit/read reader response)]
+      (-> db
+          (assoc :loading? false)
+          (assoc :error "")
+          (assoc :picture-list {:pictures resp
+                                :focus    (helpers/image-path (first resp))
+                                :selected []})))))
+
+(rf/reg-event-fx
+  :load-all-keyword-pics
+  (fn [{:keys [db]} [_ kw]]
+    (let [api-root (rf/subscribe [:api-root])]
+      {:http-xhrio {:method          :get
+                    :cross-origin    true
+                    :uri             (str @api-root "/photos/keyword/all/" kw)
+                    :format          (ajax/json-request-format)
+                    :response-format (ajax/json-response-format {:keywords? true})
+                    :on-success      [:keyword-pics-response]
+                    :on-failure      [:load-fail "keyword-all-pics"]}
+       :db         (-> db
+                       (assoc :loading? true)
+                       (assoc :error "Loading all pics for keyword " kw))})))
+
+(rf/reg-event-fx
+  :load-keyword-pics
+  (fn [{:keys [db]} [_ kw]]
+    (let [api-root (rf/subscribe [:api-root])]
+      {:http-xhrio {:method          :get
+                    :cross-origin    true
+                    :uri             (str @api-root "/photos/keyword/" kw)
+                    :format          (ajax/json-request-format)
+                    :response-format (ajax/json-response-format {:keywords? true})
+                    :on-success      [:keyword-pics-response]
+                    :on-failure      [:load-fail "keyword-pics"]}
+       :db         (-> db
+                       (assoc :loading? true)
+                       (assoc :error "Loading pics for keyword " kw))})))
+
+(rf/reg-event-db
   :keywords-response
   (fn  [db [_ response]]
     (let [reader (transit/reader :json)
@@ -56,25 +98,27 @@
           resp   (transit/read reader response)]
       (-> db
           (assoc :loading? false)
-          (assoc :error "%%")
+          (assoc :error "")
           (assoc :picture-list {:pictures [resp]
-                                :focus ""
+                                :focus (helpers/image-path resp)
                                 :selected []})))))
 
 (rf/reg-event-fx
   :load-best-picture
   (fn [{:keys [db]} [_ kw]]
     (let [api-root (rf/subscribe [:api-root])]
-      {:http-xhrio {:method          :get
-                    :cross-origin    true
-                    :uri             (str @api-root "/keywords/" kw "/best/map")
-                    :format          (ajax/json-request-format)
-                    :response-format (ajax/json-response-format {:keywords? true})
-                    :on-success      [:load-best-response]
-                    :on-failure      [:load-fail "best keyword"]}
-       :db         (-> db
-                       (assoc :loading? true)
-                       (assoc :error (str "Loading best picture for " kw)))})))
+      {:http-xhrio
+       {:method          :get
+        :cross-origin    true
+        :uri             (str @api-root "/keywords/" kw "/best/map")
+        :format          (ajax/json-request-format)
+        :response-format (ajax/json-response-format {:keywords? true})
+        :on-success      [:load-best-response]
+        :on-failure      [:load-fail "best keyword"]}
+       :db (-> db
+               (assoc :loading? true)
+               (assoc :error (str "Loading best picture for " kw)))})))
+
 
 ;;(rf/dispatch-sync [:request-pictures ["2002" "01" "01-Teesdale"]])
 (rf/reg-event-fx
@@ -108,6 +152,7 @@
           (assoc-in [:picture-list :focus] first-pic)
           (assoc-in [:picture-list :pictures] resp)
           (assoc-in [:picture-list :selected] [])
+          ;; TODO This should probably be a sub
           (assoc    :displayed-project (get-in db [:project-tree :focus]))))))
 
 (rf/reg-event-fx

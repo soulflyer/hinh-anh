@@ -22,7 +22,7 @@
       :attr {:on-click #(rf/dispatch [:set-panel-focus :left])}
       :size "100"
       :children
-      [[rc/gap :size "9px"]
+      [[rc/gap :size "3px"]
        [rc/v-box
         :children
         [[rc/h-box

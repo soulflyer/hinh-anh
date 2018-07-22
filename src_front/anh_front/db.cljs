@@ -17,6 +17,8 @@
    :picture-display-list    [:grid :single]
    :keyword-set             []
 
+   :keyword-pic-display-all true
+
    :preferences
    {:api-root               "http://localhost:31000/api"
     :show-empty-exif        false

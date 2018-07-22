@@ -182,7 +182,7 @@
                  (:focus tr)
                  ["Root"])
           newpath (tree/next-node tr path)]
-      {:dispatch-n [[:load-best-picture (last newpath)]
+      {:dispatch-n [[:keyword-pics (last newpath)]
                     [:next-node :keyword-tree]]})))
 
 (rf/reg-event-fx
@@ -193,8 +193,23 @@
                  (:focus tr)
                  ["Root"])
           newpath (tree/prev-node tr path)]
-      {:dispatch-n [[:load-best-picture (last newpath)]
+      {:dispatch-n [[:keyword-pics (last newpath)]
                     [:prev-node :keyword-tree]]})))
+
+(rf/reg-event-fx
+  :keyword-all-pics
+  (fn [{:keys [db]} _]
+    (let [kw (rf/subscribe [:keyword-focus])]
+      {:dispatch [:load-all-keyword-pics (last @kw)]})))
+
+
+(rf/reg-event-fx
+  :keyword-pics
+  (fn [{:keys [db]} [_ kw]]
+    (let [all (rf/subscribe [:keyword-pic-display-all])]
+      {:dispatch (if @all
+                   [:load-keyword-pics kw]
+                   [:load-best-picture kw])})))
 
 (rf/reg-event-fx
   :go-to-project

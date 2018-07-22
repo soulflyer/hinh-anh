@@ -29,4 +29,7 @@
        :on-change #(rf/dispatch [on-change %]) ]]]))
 
 (defn panel []
-  [text-pref "api root path" :api-root :set-api-root])
+  [rc/v-box
+   :children
+   [[rc/gap :size "3px"]
+    [text-pref "api root path" :api-root :set-api-root]]])

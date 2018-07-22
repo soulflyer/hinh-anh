@@ -28,6 +28,9 @@ li {
 .selected-tree-entry {
     background: gray;
 }
+
+.tree-entry {
+    border: solid 1px transparent}
 p {
     margin:0px;
 }

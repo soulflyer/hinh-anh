@@ -23,6 +23,18 @@
     (:keyword-tree db)))
 
 (rf/reg-sub
+  :keyword-focus
+  (fn [_ _]
+    (rf/subscribe [:keyword-tree]))
+  (fn [keyword-tree _]
+    (:focus keyword-tree)))
+
+(rf/reg-sub
+  :keyword-pic-display-all
+  (fn [db _]
+    (:keyword-pic-display-all db)))
+
+(rf/reg-sub
   :panel-focus
   (fn [db _]
     (:panel-focus db)))

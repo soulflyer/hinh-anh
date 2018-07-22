@@ -53,7 +53,9 @@
    [[:up-and-close :keyword-tree]
     [{:which (key-codes "left")}]]
    [[:expand-selected :keyword-tree]
-    [{:which (key-codes "right")}]]])
+    [{:which (key-codes "right")}]]
+   [[:keyword-all-pics]
+    [{:which (key-codes "a")}]]])
 
 (def picture-keys
   [[[:next-picture]

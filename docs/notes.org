@@ -95,117 +95,52 @@ ReferenceError: document is not defined
 Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.
 
 * Bugs
-** DONE Why don't year month project and version appear in the details?
-   CLOSED: [2018-06-19 Tue 20:30]
-** TODO [#F] Switching back to grid view doesn't call scrollIntoview
-** DONE Wrong keybindings when details panel is active
-    CLOSED: [2018-06-08 Fri 09:46]
-** DONE on-click to select a picture and then the pics don't highlight
- although keys are correctly changed. Maybe panel-focus is not set?
-    CLOSED: [2018-06-10 Sun 23:42]
-
-** DONE Tab not sending textfield contents.
-    CLOSED: [2018-06-11 Mon 23:28]
-Click on textfield then hit tab. Correctly moves focus back to the picture but doesn't send the contents of the textfield so keys are not released. Maybe a blur is required. Will probably need to implement a list to track which textfield is focused first.
-
-** DONE Pictures are not always in the correct order.
-   CLOSED: [2018-07-06 Fri 01:55]
-Check 1991/11/fire_and_ice for an example.
-** DONE updating IPTC doesn't refresh db contents
-   CLOSED: [2018-06-16 Sat 23:36]
-Changes are written to the database, but the local db doesn't see them until after a refresh. Could sort this by writting the change to the db as well as calling the api, or perhaps have one trigger the other. Or most likely just fetch the pictures again.
-** TODO [#G] Add keyword in keywording/panel doesn't clear when triggered
-** DONE Picture keys should work when details panel is displayed.
-   CLOSED: [2018-06-29 Fri 20:30]
-** DONE Error message is not visible.
-   CLOSED: [2018-06-22 Fri 13:45]
-** DONE U key only works when keywording has focus.
-   CLOSED: [2018-06-22 Fri 14:38]
-** DONE Possible to add multiple identical keywords to keywording set.
-   CLOSED: [2018-06-22 Fri 13:36]
-** TODO [#H] Preserve order amongst keywords. New ones should be added to the end
 ** TODO [#D] Attempts to write IPTC fields to the API even when empty.
-** DONE picture not highlighted when keywording
-   CLOSED: [2018-06-24 Sun 00:15]
-Picture keys work, but there is no way of telling which is current. Pic should be highlighted in grey.
-** DONE keyword-set has a nil in it when there is a pic with no keywords.
-   CLOSED: [2018-07-04 Wed 00:17]
-** DONE Keyword buttons out of order if there are more than 10
-   CLOSED: [2018-07-04 Wed 14:36]
 ** TODO [#D] Edit key doesn't always work without switching panel focus.
 ** TODO [#D] edit buttons should not be in preferences
 and it shouldn't be called :show-delete-keywording.
-** DONE picture order is correct but previous and next don't always go to the right pic
+** TODO [#F] Switching back to grid view doesn't call scrollIntoview
+** TODO [#F] Correct info display when pictures are selected by keyword
+** TODO [#G] Add keyword in keywording/panel doesn't clear when triggered
 ** TODO [#G] Missing a delete key for keywords and keyword sets
+** TODO [#H] Preserve order amongst keywords. New ones should be added to the end
 ** TODO [#I] Broke the expand of nodes to the saved project.
 Only when doing a refresh and projects pane is not selected. I don't think this can happen in the production environment.
+
 * Improvements
+
 ** Filters
 *** TODO [#F] Filter by stars
 *** TODO [#F] Filter by colour label.
 
+
 ** Keywords
 already displayed in the pictures panel
-*** DONE Display keyword heirarchy
-    CLOSED: [2018-07-18 Wed 10:36]
-Need to write a new entry in the API keyword/maps
-*** DONE Set keys to navigate keyword tree
-    CLOSED: [2018-07-18 Wed 10:36]
+*** DONE Display all pictures containing a given keyword
+    CLOSED: [2018-07-22 Sun 22:38]
 *** TODO [#B] Add triangle to tree entries with children
-*** TODO [#A] Display all pictures containing a given keyword
-*** DONE Add and remove keywords from pictures
-    CLOSED: [2018-06-22 Fri 13:47]
-Already done for individual pics, but need to be able to do all selected pics at once. Addin works now but still need to be able to delete keyword from multiple pics.
-*** DONE Add shortcut key for used-keywords
-    CLOSED: [2018-06-22 Fri 01:56]
-*** DONE Add storage for favorite keywords
-    CLOSED: [2018-06-23 Sat 23:51]
-*** DONE Add shortcut key for favorite keywords
-    CLOSED: [2018-06-23 Sat 23:52]
-*** DONE Store a set of keywords as favorite
-    CLOSED: [2018-06-28 Thu 00:35]
 *** TODO [#C] sample stores a path with .jpg on the end. Remove it.
-** TODO [#G] Make api consistent
-Parameter ordering is different when adding keywords and iptc data
-** TODO [#F] Make sure that helpers/path->id is getting used.
-Pretty sure it's defined inline in several places.
-** TODO [#I] Clean up the way panels are selected and keysets changed.
- There may be some redundancy in that I probably shouldn't have to change panel-focus and key-set independantly. Partially sorted. Don't need to toggle focus except when projects are in view. Still need to improve it so I CAN'T toggle focus except when projects are in view.
+
+
 ** TODO [#D] Change tree nav controls
 so left goes up on 1st press then closes on 2nd press. Also make right switch to the right panel if the highlighted tree entry is a leaf.
-** TODO [#G] Remove dependancy on css to colour the selected tree item.
-One possible solution is to have calls to subscriptions that are defined outside of tree.cljs. Idealy these would be conditional so that it would still work independantly of any external code.
-** DONE Open a list of pictures.
-   CLOSED: [2018-06-29 Fri 17:14]
-** DONE Show image in right panel
-   CLOSED: [2018-06-02 Sat 18:33]
-Not perfect, a border round the pic would be nice.
-** DONE Display pic details in left panel
-   CLOSED: [2018-06-08 Fri 09:48]
+** TODO [#D] Add ability to jump to project from a picture
 ** TODO [#E] Search tree for a project
-** DONE Open all intermediate nodes to a specified project
-   CLOSED: [2018-07-10 Tue 09:33]
-** DONE Remember last viewed project
-   CLOSED: [2018-07-10 Tue 09:49]
-already remembered in :preferences :last-project but needs to be set on startup. also Set :focus in the projects tree
+** TODO [#E] Show some keywords on startup.
+** TODO [#F] Make sure that helpers/path->id is getting used.
+Pretty sure it's defined inline in several places.
 ** TODO [#F] Make tabs to select the different views in the left panel.
-** DONE Consider refreshing pictures
-   CLOSED: [2018-06-22 Fri 13:28]
-Might be a better way to go than updating them locally as well as via the api. Pictures now refresh when multiple keywords are added.
 ** TODO [#F] Refactor to make use of :refresh-pictures
 instead of storing changes directly to db
-** DONE Add delete multiple keywords functionality
-   CLOSED: [2018-06-22 Fri 22:04]
-** DONE Need to be able to delete keywording buttons
-   CLOSED: [2018-06-26 Tue 16:33]
-** DONE Add key shortcuts for keywording buttons
-   CLOSED: [2018-06-28 Thu 00:18]
+** TODO [#G] Make api consistent
+Parameter ordering is different when adding keywords and iptc data
+** TODO [#G] Remove dependancy on css to colour the selected tree item.
+One possible solution is to have calls to subscriptions that are defined outside of tree.cljs. Idealy these would be conditional so that it would still work independantly of any external code.
+** TODO [#G] re-write open-files. Shouldn't assume .jpg.
+** TODO [#G] export and import keyword sets
+** TODO [#G] Switch to master versions so keywording can be done before generating versions.
 ** TODO [#H] Add bulk editing of IPTC fields
+** TODO [#I] Clean up the way panels are selected and keysets changed.
+ There may be some redundancy in that I probably shouldn't have to change panel-focus and key-set independantly. Partially sorted. Don't need to toggle focus except when projects are in view. Still need to improve it so I CAN'T toggle focus except when projects are in view.
 ** TODO [#I] find out how to style the box around a button.
 It's generated automatically and only seems to allow the button to expand to full width when it's contained in an otherwise spurious v-box
-** TODO [#G] re-write open-files. Shouldn't assume .jpg.
-** TODO [#E] Show some keywords on startup.
-** DONE Write keyword sets to permanent storage. Prefs too.
-   CLOSED: [2018-07-06 Fri 20:46]
-
-** TODO [#G] export and import keyword sets

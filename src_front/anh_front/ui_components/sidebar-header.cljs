@@ -8,13 +8,7 @@
     [rc/h-box
      :height "0px"
      :justify :end
-     :children [
-                (if @loading
+     :children [(if @loading
                   [rc/throbber
                    :color :black
-                   :size :smaller])
-                [rc/md-icon-button
-                 :md-icon-name "zmdi-border-bottom"
-                 :size :smaller
-                 :style {:margin "3px 0px 4px 0px"}
-                 :on-click #(rf/dispatch [:toggle-footer])]]]))
+                   :size :small])]]))

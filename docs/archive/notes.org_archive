@@ -1,0 +1,344 @@
+#    -*- mode: org -*-
+
+
+* Improvements
+
+** DONE Write keyword sets to permanent storage. Prefs too. :ARCHIVE:
+   CLOSED: [2018-07-06 Fri 20:46]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:03
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Add delete multiple keywords functionality
+   CLOSED: [2018-06-22 Fri 22:04]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:10
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Need to be able to delete keywording buttons
+   CLOSED: [2018-06-26 Tue 16:33]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:10
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Add key shortcuts for keywording buttons
+   CLOSED: [2018-06-28 Thu 00:18]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:10
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Consider refreshing pictures
+   CLOSED: [2018-06-22 Fri 13:28]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:10
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+Might be a better way to go than updating them locally as well as via the api. Pictures now refresh when multiple keywords are added.
+
+** DONE Open all intermediate nodes to a specified project
+   CLOSED: [2018-07-10 Tue 09:33]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:10
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Remember last viewed project
+   CLOSED: [2018-07-10 Tue 09:49]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:10
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+already remembered in :preferences :last-project but needs to be set on startup. also Set :focus in the projects tree
+
+** DONE Open a list of pictures.
+   CLOSED: [2018-06-29 Fri 17:14]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:11
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Show image in right panel
+   CLOSED: [2018-06-02 Sat 18:33]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:11
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+Not perfect, a border round the pic would be nice.
+
+** DONE Display pic details in left panel
+   CLOSED: [2018-06-08 Fri 09:48]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:11
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Display keyword heirarchy
+   CLOSED: [2018-07-18 Wed 10:36]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:18
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+Need to write a new entry in the API keyword/maps
+
+** DONE Display keyword heirarchy
+   CLOSED: [2018-07-18 Wed 10:36]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:24
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+Need to write a new entry in the API keyword/maps
+
+** DONE Set keys to navigate keyword tree
+   CLOSED: [2018-07-18 Wed 10:36]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:25
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Add and remove keywords from pictures
+   CLOSED: [2018-06-22 Fri 13:47]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:25
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+Already done for individual pics, but need to be able to do all selected pics at once. Addin works now but still need to be able to delete keyword from multiple pics.
+
+** DONE Add shortcut key for used-keywords
+   CLOSED: [2018-06-22 Fri 01:56]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:25
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Add storage for favorite keywords
+   CLOSED: [2018-06-23 Sat 23:51]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:25
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Add shortcut key for favorite keywords
+   CLOSED: [2018-06-23 Sat 23:52]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:25
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Store a set of keywords as favorite
+   CLOSED: [2018-06-28 Thu 00:35]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:25
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Open all intermediate nodes to a specified project
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:28
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+* Bugs
+
+** DONE Why don't year month project and version appear in the details?
+   CLOSED: [2018-06-19 Tue 20:30]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:11
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Wrong keybindings when details panel is active
+    CLOSED: [2018-06-08 Fri 09:46]
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2018-07-19 Thu 18:11
+    :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+    :ARCHIVE_OLPATH: Bugs
+    :ARCHIVE_CATEGORY: notes
+    :ARCHIVE_TODO: DONE
+    :END:
+
+** DONE on-click to select a picture and then the pics don't highlight
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:11
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+ although keys are correctly changed. Maybe panel-focus is not set?
+    CLOSED: [2018-06-10 Sun 23:42]
+
+** DONE Tab not sending textfield contents.
+    CLOSED: [2018-06-11 Mon 23:28]
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2018-07-19 Thu 18:11
+    :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+    :ARCHIVE_OLPATH: Bugs
+    :ARCHIVE_CATEGORY: notes
+    :ARCHIVE_TODO: DONE
+    :END:
+Click on textfield then hit tab. Correctly moves focus back to the picture but doesn't send the contents of the textfield so keys are not released. Maybe a blur is required. Will probably need to implement a list to track which textfield is focused first.
+
+** DONE Pictures are not always in the correct order.
+   CLOSED: [2018-07-06 Fri 01:55]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:11
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+Check 1991/11/fire_and_ice for an example.
+
+** DONE updating IPTC doesn't refresh db contents
+   CLOSED: [2018-06-16 Sat 23:36]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:11
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+Changes are written to the database, but the local db doesn't see them until after a refresh. Could sort this by writting the change to the db as well as calling the api, or perhaps have one trigger the other. Or most likely just fetch the pictures again.
+
+** DONE Picture keys should work when details panel is displayed.
+   CLOSED: [2018-06-29 Fri 20:30]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:11
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Error message is not visible.
+   CLOSED: [2018-06-22 Fri 13:45]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:11
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE U key only works when keywording has focus.
+   CLOSED: [2018-06-22 Fri 14:38]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:11
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Possible to add multiple identical keywords to keywording set.
+   CLOSED: [2018-06-22 Fri 13:36]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:12
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE picture not highlighted when keywording
+   CLOSED: [2018-06-24 Sun 00:15]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:12
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+Picture keys work, but there is no way of telling which is current. Pic should be highlighted in grey.
+
+** DONE keyword-set has a nil in it when there is a pic with no keywords.
+   CLOSED: [2018-07-04 Wed 00:17]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:12
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Keyword buttons out of order if there are more than 10
+   CLOSED: [2018-07-04 Wed 14:36]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:12
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE picture order is correct but previous and next don't always go to the right pic
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-07-19 Thu 18:12
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:

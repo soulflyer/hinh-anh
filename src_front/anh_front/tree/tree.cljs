@@ -113,6 +113,8 @@
     [:li {:style {:list-style "none"}  :id path-str}
      [re-com/v-box
       ;; TODO change this to check for a user defined sub and use that to set the highlight.
+      ;; or maybe just have the border colour info here not in a css file? That might lose
+      ;; the ability to have a different highlight when the focus is elsewhere.
       :class (if (= path (drop-root (:focus tree)))
                "selected-tree-entry"
                "tree-entry")
