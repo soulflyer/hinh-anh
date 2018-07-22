@@ -55,7 +55,9 @@
    [[:expand-selected :keyword-tree]
     [{:which (key-codes "right")}]]
    [[:keyword-all-pics]
-    [{:which (key-codes "a")}]]])
+    [{:which (key-codes "a")}]]
+   [[:toggle-keyword-pic-display]
+    [{:which (key-codes "b")}]]])
 
 (def picture-keys
   [[[:next-picture]

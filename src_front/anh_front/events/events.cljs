@@ -212,6 +212,14 @@
                    [:load-best-picture kw])})))
 
 (rf/reg-event-fx
+  :toggle-keyword-pic-display
+  (fn [{:keys [db]} _]
+    (let [disp  (rf/subscribe [:keyword-pic-display-all])
+          focus (rf/subscribe [:keyword-focus])]
+      {:db       (assoc db :keyword-pic-display-all (not @disp))
+       :dispatch [:keyword-pics (last @focus)]})))
+
+(rf/reg-event-fx
   :go-to-project
   (fn [{:keys [db]} [_ path]]
     {:db (-> db
