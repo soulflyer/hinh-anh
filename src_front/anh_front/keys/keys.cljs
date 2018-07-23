@@ -4,7 +4,9 @@
                                                keywording-set-shortcut-keys]]))
 
 (def prevent-keys
-  [{:which (key-codes "return")}])
+  [{:which (key-codes "return")}
+   {:which (key-codes "a")
+    :metaKey true}])
 
 (def common-keys
   [[[:set-keys :projects]
@@ -13,6 +15,9 @@
     [{:which (key-codes ".")}]]
    [[:clear-all]
     [{:which (key-codes "delete")}]]
+   [[:select-all]
+    [{:which (key-codes "a")
+      :metaKey true}]]
    [[:open-project-external]
     [{:which (key-codes "p")
       :metaKey true}]]

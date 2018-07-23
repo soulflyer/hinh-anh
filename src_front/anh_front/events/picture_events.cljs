@@ -1,7 +1,8 @@
 (ns anh-front.picture-events
   (:require [clojure.set     :as set]
             [com.rpl.specter :as sp]
-            [re-frame.core   :as rf]))
+            [re-frame.core   :as rf]
+            [anh-front.helpers :as helpers]))
 
 (rf/reg-event-fx
   :next-picture
@@ -76,6 +77,13 @@
     (let [a 1]
       {:db (assoc-in db [:picture-list :focus] pic)
        :dispatch [:toggle-select-picture pic]})))
+
+(rf/reg-event-fx
+  :select-all
+  (fn [{:keys [db]} _]
+    (let [pictures (rf/subscribe [:pictures])]
+      {:db (assoc-in db [:picture-list :selected]
+                     (vec (map helpers/image-path @pictures)))})))
 
 (rf/reg-event-fx
   :clear-all
