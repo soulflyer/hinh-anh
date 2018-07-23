@@ -15,6 +15,9 @@
 (defn stars [num]
   (str/join (take (js/parseInt num) (repeat "★"))))
 
+(def right-triangle "▶")
+(def down-triangle  "▼")
+
 (defn path->id
   "convert a path to the corresponding _id, ie. remove all the / characters."
   [path]

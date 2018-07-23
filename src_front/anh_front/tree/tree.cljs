@@ -7,7 +7,8 @@
             [com.rpl.specter.zipper :as sz]
             [day8.re-frame.tracing  :refer [defn-traced]]
             [re-frame.core          :as rf]
-            [re-com.core            :as re-com]))
+            [re-com.core            :as re-com]
+            [anh-front.helpers      :as helpers]))
 
 (defn path-nav [path]
   (sp/path
@@ -89,7 +90,8 @@
 
 (defn root
   [&leaves]
-  [:ul.tree-root {:style {:padding "0px 0px 0px 4px"}} &leaves])
+  [:ul.tree-root
+   {:style {:padding "0px"}} &leaves])
 
 (defn expanded? [tree path]
   (sp/select-one [(path-nav path) :expanded] tree))
@@ -103,14 +105,13 @@
 (defn node
   "A tree node built using a :li. Takes a vector representing the path from the root of the tree"
   [tree tree-name path hook]
-  (let [expanded (expanded? tree path)
-        ;; Indent the tree using spaces so the whole row can be highlighted
-        level (dec (count path))
-        pad (string/join (take level (repeat "   ")))
-        label (str pad (last path))
-        path-str (reduce str (interpose "-" path))]
+  (let [expanded  (expanded? tree path)
+        label     (last path)
+        path-str  (reduce str (interpose "-" path))
+        ch        (children tree path)
+        children? (< 0 (count ch))]
     ^{:key path-str}
-    [:li {:style {:list-style "none"}  :id path-str}
+    [:li {:style {:list-style "none"} :id path-str}
      [re-com/v-box
       ;; TODO change this to check for a user defined sub and use that to set the highlight.
       ;; or maybe just have the border colour info here not in a css file? That might lose
@@ -120,12 +121,20 @@
                "tree-entry")
       :style {:overflow "hidden"}
       :children
-      [[re-com/label
-        :label label
-        :on-click (toggle-expand tree-name path hook)]
-       (let [ch (children tree path)]
-         (if (and expanded (< 0 (count ch)))
-           (into [:ul {:style {:padding-left "0em", :white-space "pre"}}]
-                 ;; don't let html optimise away the extra spaces, set white-space pre
-                 (for [child ch]
-                   (node tree tree-name (conj path (:name child)) hook)))))]]]))
+      [[re-com/h-box
+        :children [[re-com/box
+                    :style {:width     "10px"
+                            :padding   "6px 0px 0px 2px"
+                            :font-size "0.5em"}
+                    :child (if children?
+                             (if expanded
+                               helpers/down-triangle
+                               helpers/right-triangle)
+                             "")]
+                   [re-com/label
+                    :label label
+                    :on-click (toggle-expand tree-name path hook)]]]
+       (if (and expanded (< 0 (count ch)))
+         (into [:ul {:style {:padding-left "0.8em"}}]
+               (for [child ch]
+                 (node tree tree-name (conj path (:name child)) hook))))]]]))

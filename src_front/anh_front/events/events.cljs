@@ -212,6 +212,12 @@
                    [:load-best-picture kw])})))
 
 (rf/reg-event-fx
+  :focused-keyword-pics
+  (fn [{:keys [db]} _]
+    (let [kw (rf/subscribe [:keyword-focus])]
+      {:dispatch [:keyword-pics (last @kw)]})))
+
+(rf/reg-event-fx
   :toggle-keyword-pic-display
   (fn [{:keys [db]} _]
     (let [disp  (rf/subscribe [:keyword-pic-display-all])

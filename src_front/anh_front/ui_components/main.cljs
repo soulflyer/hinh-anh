@@ -27,8 +27,7 @@
                            :attr {:id       "panel-1"
                                   :tabIndex "1"}
                            :width "100%"
-                           ;;:size "auto"
-                           :style {:padding-left "5px"}
+                           :style {:padding-left "0px"}
                            ;; TODO this sets class so css can colour the
                            ;;focused item. Should call an event instead
                            :class (if (= :left @focus)

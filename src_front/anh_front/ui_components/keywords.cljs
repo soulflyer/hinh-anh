@@ -10,4 +10,4 @@
      :child
      (tree/root
        (for [kw (get-in @tree [:children])]
-         (tree/node @tree tree-name [(get kw :name)] :load-best-picture)))]))
+         (tree/node @tree tree-name [(get kw :name)] :focused-keyword-pics)))]))

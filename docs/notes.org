@@ -119,9 +119,10 @@ already displayed in the pictures panel
 *** DONE Display all pictures containing a given keyword
     CLOSED: [2018-07-22 Sun 22:38]
 *** TODO [#B] Add triangle to tree entries with children
-*** TODO [#C] sample stores a path with .jpg on the end. Remove it.
+*** TODO [#E] sample stores a path with .jpg on the end. Remove it.
 
-
+** TODO [#C] Add select all
+and remove the default select all action
 ** TODO [#D] Change tree nav controls
 so left goes up on 1st press then closes on 2nd press. Also make right switch to the right panel if the highlighted tree entry is a leaf.
 ** TODO [#D] Add ability to jump to project from a picture
