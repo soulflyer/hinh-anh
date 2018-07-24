@@ -21,7 +21,9 @@ Removed grunt-download-electron after updating to electron 2.0.4 because npm was
 Note that electron-packager should be run inside (or specify?) the app/prod directory.
 electron-packager . --icon=../../resources/anh.icns
 maybe:
-electron-packager app/prod --icon=resources/anh.icns
+electron-packager app/prod --icon=resources/anh.icns --overwrite
+
+run lein rebuild first or it will build with an old version of prod.
 
 see https://github.com/rasom/lein-externs
 
@@ -95,6 +97,7 @@ ReferenceError: document is not defined
 Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.
 
 * Bugs
+** TODO [#B] Refresh after adding a keyword gets a project even when looking at a keyword.
 ** TODO [#D] Attempts to write IPTC fields to the API even when empty.
 ** TODO [#D] Edit key doesn't always work without switching panel focus.
 ** TODO [#D] edit buttons should not be in preferences
@@ -119,7 +122,18 @@ already displayed in the pictures panel
 *** DONE Display all pictures containing a given keyword
     CLOSED: [2018-07-22 Sun 22:38]
 *** DONE Add triangle to tree entries with children
+
     CLOSED: [2018-07-23 Mon 11:41]
+*** TODO [#B] Make keyword browsing default to best image.
+*** TODO [#B] Store best image in :sample if it is empty
+*** TODO [#B] editing functions
+**** TODO [#C] add-keyword
+**** TODO [#C] safe-delete-keyword
+**** TODO [#C] rename-keyword
+**** TODO [#C] disconnect-keyword
+**** TODO [#C] move-keyword
+**** TODO [#C] merge-keyword
+*** TODO [#D] Handle orphaned and empty keywords
 *** TODO [#E] sample stores a path with .jpg on the end. Remove it.
 
 ** DONE Add select all

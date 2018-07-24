@@ -20,7 +20,8 @@
        :width "100%"
        :attr {:id label
               :tabIndex "1"}
-       :style {:padding "0px 0px 0px 3px"
+       :style {:height "1.5em"
+               :padding "0px 0px 0px 3px"
                :border-radius "0px 0px 4px 4px"
                :background @textbox-background
                :border-color @header-background}
@@ -30,6 +31,7 @@
 
 (defn panel []
   [rc/v-box
+   :style {:padding-left "5px"}
    :children
    [[rc/gap :size "3px"]
     [text-pref "api root path" :api-root :set-api-root]]])

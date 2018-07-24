@@ -18,16 +18,14 @@
                  [com.rpl/specter "1.1.1"]
                  [re-pressed "0.2.2"]
                  [prismatic/dommy "1.1.0"]]
-  :plugins      [[lein-cljsbuild "1.1.5"]
+  :plugins      [[lein-cljsbuild "1.1.7"]
                  [lein-externs "0.1.6"]
                  [lein-shell "0.5.0"]
                  [lein-figwheel "0.5.16" :exclusions [org.clojure/core.cache]]]
   :profiles
   {:dev
    {:dependencies [[figwheel "0.5.16"]
-                   ;;[com.cemerick/piggieback "0.2.2"]
                    [cider/piggieback "0.3.6"]
-                   ;;[org.clojure/tools.nrepl "0.2.13"]
                    [figwheel-sidecar "0.5.16"]
                    [day8.re-frame/re-frame-10x "0.3.3"]
                    [day8.re-frame/tracing "0.5.1"]

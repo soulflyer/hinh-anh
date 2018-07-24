@@ -14,7 +14,7 @@
         show-delete        (rf/subscribe [:show-delete-keywording])]
     [rc/v-box
      :size "100"
-     ;;:style {:margin-top "17px"}
+     :style {:padding-left "5px"}
      :justify :between
      :children
      [[rc/v-box

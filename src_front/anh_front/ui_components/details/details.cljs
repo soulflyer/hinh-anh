@@ -20,6 +20,7 @@
         version              (get @pic "Version")]
     (rc/v-box
       :attr {:on-click #(rf/dispatch [:set-panel-focus :left])}
+      :style {:padding-left "5px"}
       :size "100"
       :children
       [[rc/gap :size "3px"]
