@@ -14,15 +14,18 @@ body {
 }
 
 li {
-    border: solid 1px darkgray;
+    border: solid transparent;
+    border-width: 1px 0px 1px 1px;
 }
 
 .focused-panel .selected-tree-entry {
-    border: solid 1px lightblue;
+    border: solid lightblue;
+    border-width: 1px 1px 1px 1px;
 }
 
 .unfocused-panel .selected-tree-entry {
-    border: solid 1px gray
+    border: solid transparent;
+    border-width: 1px 0px 1px 1px;
 }
 
 .selected-tree-entry {
@@ -30,7 +33,9 @@ li {
 }
 
 .tree-entry {
-    border: solid 1px transparent}
+    border: solid 1px transparent;
+    border-width: 1px 0px 1px 1px;
+}
 p {
     margin:0px;
 }

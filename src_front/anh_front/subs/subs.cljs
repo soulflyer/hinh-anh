@@ -34,6 +34,26 @@
   (fn [db _]
     (:keyword-pic-display-all db)))
 
+;; (rf/reg-sub
+;;   :keyword-delete-button-show
+;;   (fn [db _]
+;;     (:keyword-delete-button-show db)))
+
+(rf/reg-sub
+  :keyword-move-button-show
+  (fn [db _]
+    (:keyword-move-button-show db)))
+
+(rf/reg-sub
+  :keyword-merge-button-show
+  (fn [db _]
+    (:keyword-merge-button-show db)))
+
+(rf/reg-sub
+  :keyword-add-button-show
+  (fn [db _]
+    (:keyword-add-button-show db)))
+
 (rf/reg-sub
   :panel-focus
   (fn [db _]

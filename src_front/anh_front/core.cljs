@@ -21,7 +21,8 @@
             [anh-front.tree-events              :as tree-events]
             [re-frame.core                      :as rf]
             [re-pressed.core                    :as rp]
-            [reagent.core                       :as reagent :refer [atom]]))
+            [reagent.core                       :as reagent :refer [atom]]
+            [anh-front.atoms                    :as atoms]))
 
 (defn dev-setup []
   (when config/debug?

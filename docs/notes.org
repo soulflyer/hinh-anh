@@ -126,7 +126,8 @@ already displayed in the pictures panel
 *** TODO [#B] Make keyword browsing default to best image.
 *** TODO [#B] Store best image in :sample if it is empty
 *** TODO [#B] editing functions
-**** TODO [#C] add-keyword
+**** DONE add-keyword
+     CLOSED: [2018-07-30 Mon 17:53]
 **** DONE safe-delete-keyword
      CLOSED: [2018-07-25 Wed 11:03]
 **** TODO [#C] rename-keyword

@@ -1,9 +1,10 @@
 (ns anh-front.keywords
-  (:require [re-frame.core :as rf]
-            [re-com.core :as rc]
-            [anh-front.tree :as tree]
+  (:require [re-frame.core             :as rf]
+            [re-com.core               :as rc]
+            [anh-front.atoms           :as atoms]
+            [anh-front.tree            :as tree]
             [anh-front.keywords-helper :as helper]
-            [reagent.core :as reagent]))
+            [reagent.core              :as reagent]))
 
 (defn panel []
   (let [tree-name :keyword-tree
@@ -19,11 +20,17 @@
            (tree/node @tree tree-name [(get kw :name)] :focused-keyword-pics)))]
       [rc/h-box
        :children
-       [(let [showing? (reagent/atom false)
-              focused  (rf/subscribe [:keyword-focus])
-              path (reduce str (interpose "-" @focused))]
-          [rc/popover-anchor-wrapper
-           :showing? showing?
-           :position :above-center
-           :anchor (helper/anchor "Add" #(swap! showing? not))
-           :popover (helper/popover (str "Added keyword to " path) "whatever")])]]]]))
+       (let [focused  (rf/subscribe [:keyword-focus])]
+         [(let [showing? atoms/keyword-add-button-show]
+            [rc/popover-anchor-wrapper
+             :showing? showing?
+             :position :above-center
+             :anchor (helper/anchor "Add" #(swap! showing? not))
+             :popover (helper/popover
+                        (str "Add keyword to " (last @focused))
+                        [rc/input-text
+                         :model nil
+                         :on-change #(rf/dispatch [:add-to-focused-keyword %])])])
+          [rc/button
+           :label "Del"
+           :on-click #(rf/dispatch [:delete-focused-keyword])]])]]]))
