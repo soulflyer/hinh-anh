@@ -2,9 +2,11 @@
   (:require [re-frame.core             :as rf]
             [re-com.core               :as rc]
             [anh-front.atoms           :as atoms]
+            [anh-front.styles          :as styles]
             [anh-front.tree            :as tree]
             [anh-front.keywords-helper :as helper]
-            [reagent.core              :as reagent]))
+            [reagent.core              :as reagent]
+            [anh-front.styles :as styles]))
 
 (defn panel []
   (let [tree-name :keyword-tree
@@ -20,7 +22,7 @@
            (tree/node @tree tree-name [(get kw :name)] :focused-keyword-pics)))]
       [rc/h-box
        :children
-       (let [focused  (rf/subscribe [:keyword-focus])]
+       (let [focused    (rf/subscribe [:keyword-focus])]
          [(let [showing? atoms/keyword-add-button-show]
             [rc/popover-anchor-wrapper
              :showing? showing?
@@ -32,5 +34,42 @@
                          :model nil
                          :on-change #(rf/dispatch [:add-to-focused-keyword %])])])
           [rc/button
+           :style (styles/button)
            :label "Del"
-           :on-click #(rf/dispatch [:delete-focused-keyword])]])]]]))
+           :on-click #(rf/dispatch [:delete-focused-keyword])]
+          (let [showing? atoms/keyword-move-button-show]
+            [rc/popover-anchor-wrapper
+             :showing? showing?
+             :position :above-center
+             :anchor (helper/anchor "Mov" #(swap! showing? not))
+             :popover (helper/popover
+                        (str "Move " (last @focused) " to:")
+                        [rc/input-text
+                         :model nil
+                         :on-change
+                         #(rf/dispatch
+                            [:say-hello (str "Moved " (last @focused) " to " %)])])])
+          (let [showing? atoms/keyword-rename-button-show]
+            [rc/popover-anchor-wrapper
+             :showing? showing?
+             :position :above-center
+             :anchor (helper/anchor "Ren" #(swap! showing? not))
+             :popover (helper/popover
+                        (str "Rename " (last @focused) " to:")
+                        [rc/input-text
+                         :model nil
+                         :on-change
+                         #(rf/dispatch
+                            [:say-hello (str "Renamed " (last @focused) " to " %)])])])
+          (let [showing? atoms/keyword-merge-button-show]
+            [rc/popover-anchor-wrapper
+             :showing? showing?
+             :position :above-center
+             :anchor (helper/anchor "Mer" #(swap! showing? not))
+             :popover (helper/popover
+                        (str "Merge " (last @focused) " with:")
+                        [rc/input-text
+                         :model nil
+                         :on-change
+                         #(rf/dispatch
+                            [:say-hello (str "Merged " (last @focused) " with " %)])])])])]]]))

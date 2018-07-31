@@ -105,3 +105,10 @@
     (rf/subscribe [:colour-preferences]))
   (fn [preferences _]
     (:shortcut-highlight preferences)))
+
+(rf/reg-sub
+  :button-background
+  (fn [_ _]
+    (rf/subscribe [:colour-preferences]))
+  (fn [preferences _]
+    (:button-background preferences)))

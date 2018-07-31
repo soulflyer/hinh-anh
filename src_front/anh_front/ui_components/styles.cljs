@@ -20,3 +20,8 @@
         fg (rf/subscribe [:footer-colour])]
     {:background @bg
      :color @fg}))
+
+(defn button []
+  (let [background (rf/subscribe [:button-background])]
+    {:background @background
+     :padding "0px 4px 0px 4px"}))

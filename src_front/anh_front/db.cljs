@@ -59,4 +59,5 @@
      :details-background         "darkgray"
      :details-textbox-background "#cccccc"
      :details-header-background  "gray"
-     :shortcut-highlight         "#2953d0" }}})
+     :shortcut-highlight         "#2953d0"
+     :button-background          "gray"}}})
