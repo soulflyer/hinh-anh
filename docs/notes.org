@@ -130,11 +130,14 @@ already displayed in the pictures panel
      CLOSED: [2018-07-30 Mon 17:53]
 **** DONE safe-delete-keyword
      CLOSED: [2018-07-25 Wed 11:03]
-**** TODO [#C] rename-keyword
+**** DONE rename-keyword
+     CLOSED: [2018-08-02 Thu 11:08]
 **** DONE add-missing-keywords
      CLOSED: [2018-07-25 Wed 10:02]
-**** TODO [#C] move-keyword
+**** DONE move-keyword
+     CLOSED: [2018-08-02 Thu 11:08]
 **** TODO [#C] merge-keyword
+Seems to be ok in hinh-anh, but the api call isn't doing anything.
 *** TODO [#D] Handle orphaned and empty keywords
 *** TODO [#E] sample stores a path with .jpg on the end. Remove it.
 

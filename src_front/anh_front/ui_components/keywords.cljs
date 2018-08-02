@@ -48,7 +48,7 @@
                          :model nil
                          :on-change
                          #(rf/dispatch
-                            [:say-hello (str "Moved " (last @focused) " to " %)])])])
+                            [:move-focused-keyword %])])])
           (let [showing? atoms/keyword-rename-button-show]
             [rc/popover-anchor-wrapper
              :showing? showing?
@@ -60,7 +60,7 @@
                          :model nil
                          :on-change
                          #(rf/dispatch
-                            [:say-hello (str "Renamed " (last @focused) " to " %)])])])
+                            [:rename-focused-keyword %])])])
           (let [showing? atoms/keyword-merge-button-show]
             [rc/popover-anchor-wrapper
              :showing? showing?
@@ -72,4 +72,4 @@
                          :model nil
                          :on-change
                          #(rf/dispatch
-                            [:say-hello (str "Merged " (last @focused) " with " %)])])])])]]]))
+                            [:merge-focused-keyword %])])])])]]]))
