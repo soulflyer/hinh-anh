@@ -2,6 +2,33 @@
 ![Hình Ảnh](resources/anh-small.png)
 Hình Ảnh is a photo management program designed to make sorting and searching as easy as possible. Keywords can be added with the minimum number of keystrokes, or clicks if you still prefer to use a mouse. Writeable IPTC fields can be filled easily and those displayed can be customised to match the fields that you use in your workflow.
 
+## Use
+
+Hinh Anh is designed to be used from the keyboard, although all functions are possible by mouse too. By default there is very little on display that isn't necessary for a keyboard driven app. This gives a very clean, non-distracting look. To start with it may be best to turn on the extra displays until the shortcuts all become familiar.
+
+### Projects Screen
+This is the project screen. Projects can be selected from the tree on the left. This is for browsing and rating a photo shoot.
+
+![Project Screen](docs/screenshots/projects.png?raw=true) 
+
+### Details Screen
+The full details, EXIF and IPTC, for each picture are displayed here. Captions, Titles and keywords can be added here, although the dedicated keywording screen will allow much faster keywording.
+
+![Details Screen](docs/screenshots/details.png?raw=true) 
+
+### Keywording Screen
+The top half of the left panel is the keyword set currently in use. Down the left hand edge are the keyword shortcuts. Pressing one of these will add the keyword to all selected photos allowing for fast keywording of multiple shots.
+
+The bottom half of the left panel contains the stored keyword sets. These can be switched in and out with a single keypress.
+
+![Keywording Screen](docs/screenshots/keywording.png?raw=true) 
+
+### Keyword Screen
+
+This is where the keyword heirarchy is created and maintained. Any keywords applied to a photo that don't already appear in the keyword heirarchy will appear in `Orphaned Keywords` where they can be moved into the correct place. Alternatively they can be created here before applying to photos.
+
+![Keyword Screen](docs/screenshots/keywords.png?raw=true) 
+
 ## Installation
 
 Hinh Anh requires the backend program [photo-api](https://github.com/soulflyer/photo-api) and a working installation of mongo to provide the database containing all the photo details. [metadata-mongo](https://github.com/soulflyer/metadata-mongo) may be useful too, to help automate loading the database with details from your photos.

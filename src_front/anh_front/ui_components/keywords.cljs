@@ -21,6 +21,7 @@
          (for [kw (get-in @tree [:children])]
            (tree/node @tree tree-name [(get kw :name)] :focused-keyword-pics)))]
       [rc/h-box
+       :justify :center
        :children
        (let [focused    (rf/subscribe [:keyword-focus])]
          [(let [showing? atoms/keyword-add-button-show]
@@ -41,7 +42,7 @@
             [rc/popover-anchor-wrapper
              :showing? showing?
              :position :above-center
-             :anchor (helper/anchor "Mov" #(swap! showing? not))
+             :anchor (helper/anchor "Move" #(swap! showing? not))
              :popover (helper/popover
                         (str "Move " (last @focused) " to:")
                         [rc/input-text
@@ -53,7 +54,7 @@
             [rc/popover-anchor-wrapper
              :showing? showing?
              :position :above-center
-             :anchor (helper/anchor "Ren" #(swap! showing? not))
+             :anchor (helper/anchor "Rename" #(swap! showing? not))
              :popover (helper/popover
                         (str "Rename " (last @focused) " to:")
                         [rc/input-text
@@ -65,7 +66,7 @@
             [rc/popover-anchor-wrapper
              :showing? showing?
              :position :above-center
-             :anchor (helper/anchor "Mer" #(swap! showing? not))
+             :anchor (helper/anchor "Merge" #(swap! showing? not))
              :popover (helper/popover
                         (str "Merge " (last @focused) " with:")
                         [rc/input-text
