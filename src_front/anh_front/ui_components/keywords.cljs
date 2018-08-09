@@ -6,7 +6,7 @@
             [anh-front.tree            :as tree]
             [anh-front.keywords-helper :as helper]
             [reagent.core              :as reagent]
-            [anh-front.styles :as styles]))
+            [anh-front.styles          :as styles]))
 
 (defn panel []
   (let [tree-name :keyword-tree
@@ -15,62 +15,40 @@
      :justify :between
      :height "100%"
      :children
-     [[rc/scroller
-       :child
-       (tree/root
-         (for [kw (get-in @tree [:children])]
-           (tree/node @tree tree-name [(get kw :name)] :focused-keyword-pics)))]
-      [rc/h-box
-       :justify :center
-       :children
-       (let [focused    (rf/subscribe [:keyword-focus])]
-         [(let [showing? atoms/keyword-add-button-show]
-            [rc/popover-anchor-wrapper
-             :showing? showing?
-             :position :above-center
-             :anchor (helper/anchor "Add" #(swap! showing? not))
-             :popover (helper/popover
-                        (str "Add keyword to " (last @focused))
-                        [rc/input-text
-                         :model nil
-                         :on-change #(rf/dispatch [:add-to-focused-keyword %])])])
-          [rc/button
-           :style (styles/button)
-           :label "Del"
-           :on-click #(rf/dispatch [:delete-focused-keyword])]
-          (let [showing? atoms/keyword-move-button-show]
-            [rc/popover-anchor-wrapper
-             :showing? showing?
-             :position :above-center
-             :anchor (helper/anchor "Move" #(swap! showing? not))
-             :popover (helper/popover
-                        (str "Move " (last @focused) " to:")
-                        [rc/input-text
-                         :model nil
-                         :on-change
-                         #(rf/dispatch
-                            [:move-focused-keyword %])])])
-          (let [showing? atoms/keyword-rename-button-show]
-            [rc/popover-anchor-wrapper
-             :showing? showing?
-             :position :above-center
-             :anchor (helper/anchor "Rename" #(swap! showing? not))
-             :popover (helper/popover
-                        (str "Rename " (last @focused) " to:")
-                        [rc/input-text
-                         :model nil
-                         :on-change
-                         #(rf/dispatch
-                            [:rename-focused-keyword %])])])
-          (let [showing? atoms/keyword-merge-button-show]
-            [rc/popover-anchor-wrapper
-             :showing? showing?
-             :position :above-center
-             :anchor (helper/anchor "Merge" #(swap! showing? not))
-             :popover (helper/popover
-                        (str "Merge " (last @focused) " with:")
-                        [rc/input-text
-                         :model nil
-                         :on-change
-                         #(rf/dispatch
-                            [:merge-focused-keyword %])])])])]]]))
+     (let [focused (rf/subscribe [:keyword-focus])]
+       [[rc/scroller
+         :child
+         (tree/root
+           (for [kw (get-in @tree [:children])]
+             (tree/node @tree tree-name [(get kw :name)] :focused-keyword-pics)))]
+        [rc/h-box
+         :justify :center
+         :children
+         [(helper/popover-wrapper atoms/keyword-add-button-show
+                                  "zmdi-plus"
+                                  (str "Add to " (last @focused))
+                                  #(rf/dispatch [:add-to-focused-keyword %]))
+          (helper/popover-wrapper atoms/keyword-delete-button-show
+                                  "zmdi-delete"
+                                  (str "Delete " (last @focused))
+                                  #(rf/dispatch [:delete-focused-keyword]))
+          (helper/popover-wrapper atoms/keyword-move-button-show
+                                  "zmdi-open-in-new"
+                                  (str "Move " (last @focused) " to:")
+                                  #(rf/dispatch [:move-focused-keyword %]))
+          (helper/popover-wrapper atoms/keyword-rename-button-show
+                                  "zmdi-edit"
+                                  (str "Rename " (last @focused) " to:")
+                                  #(rf/dispatch [:rename-focused-keyword %]))
+          (helper/popover-wrapper atoms/keyword-merge-button-show
+                                  "zmdi-arrow-merge"
+                                  (str "Merge with " (last @focused) ":")
+                                  #(rf/dispatch [:merge-focused-keyword %]))
+          (helper/popover-wrapper atoms/keyword-add-orphans-button-show
+                                  "zmdi-collection-plus"
+                                  (str "Add keywords from photos")
+                                  #(rf/dispatch [:add-missing-keywords]))
+          (helper/popover-wrapper atoms/keyword-purge-unused-button-show
+                                  "zmdi-flash"
+                                  (str "DANGER: remove unused keywords")
+                                  #(rf/dispatch [:delete-unused-keywords]))]]])]))

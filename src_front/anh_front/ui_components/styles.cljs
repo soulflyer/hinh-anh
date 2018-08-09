@@ -25,3 +25,6 @@
   (let [background (rf/subscribe [:button-background])]
     {:background @background
      :padding "0px 4px 0px 4px"}))
+
+(defn icon-button []
+  {:margin "2px 0px 2px 2px"})

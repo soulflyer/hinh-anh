@@ -10,9 +10,31 @@
      :label label
      :on-click on-click]))
 
+(defn anchor-icon [icon on-click]
+  (let [background (rf/subscribe [:button-background])]
+    [rc/md-icon-button
+     :style (styles/icon-button)
+     :size :smaller
+     :md-icon-name icon
+     :on-click on-click]))
+
 (defn popover [title body]
   [rc/popover-content-wrapper
    :padding 1
    :no-clip? true
    :title title
    :body body])
+
+(defn popover-wrapper
+  ;; TODO add an extra parameter so popover body can be something other than
+  ;; just a text field.
+  [showing-atom icon title on-click]
+  [rc/popover-anchor-wrapper
+   :showing? showing-atom
+   :position :above-center
+   :anchor (anchor-icon icon #(swap! showing-atom not))
+   :popover (popover
+              title
+              [rc/input-text
+               :model nil
+               :on-change on-click])])

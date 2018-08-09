@@ -115,17 +115,19 @@ Only when doing a refresh and projects pane is not selected. I don't think this 
 ** Filters
 *** TODO [#F] Filter by stars
 *** TODO [#F] Filter by colour label.
-
-
 ** Keywords
 already displayed in the pictures panel
 *** DONE Display all pictures containing a given keyword
     CLOSED: [2018-07-22 Sun 22:38]
 *** DONE Add triangle to tree entries with children
     CLOSED: [2018-07-23 Mon 11:41]
-*** TODO [#B] Make keyword browsing default to best image.
 *** TODO [#B] Store best image in :sample if it is empty
-*** TODO [#B] editing functions
+*** TODO editing functions
+**** DONE Make del button raise a popover for confirmation
+     CLOSED: [2018-08-08 Wed 19:22]
+**** TODO [#C] Make esc cancel popovers
+**** TODO [#C] Make return trigger highlighted popover.
+**** TODO [#C] Highlight edit field when popover opens
 **** DONE add-keyword
      CLOSED: [2018-07-30 Mon 17:53]
 **** DONE safe-delete-keyword
@@ -136,11 +138,15 @@ already displayed in the pictures panel
      CLOSED: [2018-07-25 Wed 10:02]
 **** DONE move-keyword
      CLOSED: [2018-08-02 Thu 11:08]
-**** TODO [#C] merge-keyword
+**** DONE merge-keyword
+     CLOSED: [2018-08-04 Sat 10:53]
 Seems to be ok in hinh-anh, but the api call isn't doing anything.
+**** TODO [#B] Button to set sample
 *** TODO [#D] Handle orphaned and empty keywords
-*** TODO [#E] sample stores a path with .jpg on the end. Remove it.
-
+*** TODO [#E] Change keyword buttons to modals?
+*** TODO [#I] sample stores a path with .jpg on the end. Remove it.
+Removed by the API. Should be removed from image-lib, but functions ok with or without.
+*** TODO [#G] Make keyword browsing default to best image.
 ** DONE Add select all
    CLOSED: [2018-07-23 Mon 14:15]
 and remove the default select all action

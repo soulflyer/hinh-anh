@@ -3,10 +3,13 @@
   (:require [reagent.core :as reagent]
             [re-frame.core :as rf]))
 
-(def keyword-add-button-show    (reagent/atom false))
-(def keyword-rename-button-show (reagent/atom false))
-(def keyword-move-button-show   (reagent/atom false))
-(def keyword-merge-button-show  (reagent/atom false))
+(def keyword-add-button-show          (reagent/atom false))
+(def keyword-rename-button-show       (reagent/atom false))
+(def keyword-move-button-show         (reagent/atom false))
+(def keyword-merge-button-show        (reagent/atom false))
+(def keyword-delete-button-show       (reagent/atom false))
+(def keyword-purge-unused-button-show (reagent/atom false))
+(def keyword-add-orphans-button-show  (reagent/atom false))
 
 (rf/reg-event-db
   :toggle-keyword-add-button-show
@@ -30,4 +33,22 @@
   :toggle-keyword-merge-button-show
   (fn [db _]
     (swap! keyword-merge-button-show not)
+    db))
+
+(rf/reg-event-db
+  :toggle-keyword-delete-button-show
+  (fn [db _]
+    (swap! keyword-delete-button-show not)
+    db))
+
+(rf/reg-event-db
+  :toggle-keyword-add-orphans-button-show
+  (fn [db _]
+    (swap! keyword-add-orphans-button-show not)
+    db))
+
+(rf/reg-event-db
+  :toggle-keyword-purge-unused-button-show
+  (fn [db _]
+    (swap! keyword-purge-unused-button-show not)
     db))
