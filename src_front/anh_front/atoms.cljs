@@ -12,43 +12,7 @@
 (def keyword-add-orphans-button-show  (reagent/atom false))
 
 (rf/reg-event-db
-  :toggle-keyword-add-button-show
-  (fn [db _]
-    (swap! keyword-add-button-show not)
-    db))
-
-(rf/reg-event-db
-  :toggle-keyword-rename-button-show
-  (fn [db _]
-    (swap! keyword-rename-button-show not)
-    db))
-
-(rf/reg-event-db
-  :toggle-keyword-move-button-show
-  (fn [db _]
-    (swap! keyword-move-button-show not)
-    db))
-
-(rf/reg-event-db
-  :toggle-keyword-merge-button-show
-  (fn [db _]
-    (swap! keyword-merge-button-show not)
-    db))
-
-(rf/reg-event-db
-  :toggle-keyword-delete-button-show
-  (fn [db _]
-    (swap! keyword-delete-button-show not)
-    db))
-
-(rf/reg-event-db
-  :toggle-keyword-add-orphans-button-show
-  (fn [db _]
-    (swap! keyword-add-orphans-button-show not)
-    db))
-
-(rf/reg-event-db
-  :toggle-keyword-purge-unused-button-show
-  (fn [db _]
-    (swap! keyword-purge-unused-button-show not)
+  :toggle-button-show
+  (fn [db [_ but]]
+    (swap! but not)
     db))

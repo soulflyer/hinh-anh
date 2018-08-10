@@ -1,9 +1,9 @@
 (ns anh-front.project-api-events
-  (:require [ajax.core                :as ajax]
-            [anh-front.project-tree   :as project-tree]
-            [cognitect.transit        :as transit]
-            [day8.re-frame.http-fx    :as dont-delete-me-or-http-xhrio-will-go-away]
-            [re-frame.core            :as rf]))
+  "Events used to load the project tree."
+  (:require [ajax.core :as ajax]
+            [anh-front.project-tree :as project-tree]
+            [cognitect.transit :as transit]
+            [re-frame.core :as rf]))
 
 (rf/reg-event-fx
   :request-projects

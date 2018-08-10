@@ -1,4 +1,5 @@
 (ns anh-front.photo-iptc-api-events
+  "Events used to write IPTC data to pictures"
   (:require [ajax.core                :as ajax]
             [anh-front.helpers        :as helpers]
             [com.rpl.specter          :as sp]

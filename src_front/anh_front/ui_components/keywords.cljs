@@ -51,4 +51,5 @@
           (helper/popover-wrapper atoms/keyword-purge-unused-button-show
                                   "zmdi-flash"
                                   (str "DANGER: remove unused keywords")
-                                  #(rf/dispatch [:delete-unused-keywords]))]]])]))
+                                  #(rf/dispatch [:delete-unused-keywords]))
+          (helper/anchor-icon "zmdi-refresh" #(rf/dispatch [:load-keyword-tree]))]]])]))

@@ -1,4 +1,5 @@
 (ns anh-front.keyword-edit-api-events
+  "The events used to edit the keyword tree."
   (:require [ajax.core     :as ajax]
             [re-frame.core :as rf]))
 

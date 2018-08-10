@@ -19,9 +19,10 @@
 
    :keyword-pic-display-all true
 
-   :keyword-add-button-show   false
-   :keyword-move-button-show  false
-   :keyword-merge-button-show false
+   ;; re-com popover won't accept these so they are now defined in atoms.cljs
+   ;; :keyword-add-button-show   false
+   ;; :keyword-move-button-show  false
+   ;; :keyword-merge-button-show false
 
    :preferences
    {:api-root               "http://localhost:31000/api"
