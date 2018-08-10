@@ -1,5 +1,6 @@
 (ns anh-front.keys
-  (:require [anh-front.key-codes       :refer [key-codes]]
+  (:require [anh-front.atoms           :as atoms]
+            [anh-front.key-codes       :refer [key-codes]]
             [anh-front.keywording-keys :refer [keywording-shortcut-keys
                                                keywording-set-shortcut-keys]]))
 
@@ -62,7 +63,29 @@
    [[:keyword-all-pics]
     [{:which (key-codes "a")}]]
    [[:toggle-keyword-pic-display]
-    [{:which (key-codes "b")}]]])
+    [{:which (key-codes "b")}]]
+   [[:toggle-button-show atoms/keyword-add-button-show]
+    [{:which (key-codes "=")}]]
+   [[:toggle-button-show atoms/keyword-delete-button-show]
+    [{:which (key-codes "-")}]]
+   [[:toggle-button-show atoms/keyword-move-button-show]
+    [{:which (key-codes "m")
+      :shiftKey false}]]
+   [[:toggle-button-show atoms/keyword-merge-button-show]
+    [{:which (key-codes "m")
+      :shiftKey true}]]
+   [[:toggle-button-show atoms/keyword-rename-button-show]
+    [{:which (key-codes "r")
+      :shiftKey false}]]
+   [[:toggle-button-show atoms/keyword-set-best-button-show]
+    [{:which (key-codes "s")}]]
+   [[:toggle-button-show atoms/keyword-add-orphans-button-show]
+    [{:which (key-codes "o")}]]
+   [[:toggle-button-show atoms/keyword-purge-unused-button-show]
+    [{:which (key-codes "p")}]]
+   [[:load-keyword-tree]
+    [{:which (key-codes "r")
+      :shiftKey true}]]])
 
 (def picture-keys
   [[[:next-picture]
@@ -79,41 +102,41 @@
     [{:which (key-codes "return")}]]])
 
 (def keywording-keys
-  [[[:toggle-delete-keywording]
-    [{:which (key-codes "e")}]]])
+[[[:toggle-delete-keywording]
+[{:which (key-codes "e")}]]])
 
 (def project-key-set
-  {:event-keys (into common-keys project-keys)
-   :prevent-default-keys prevent-keys})
+{:event-keys (into common-keys project-keys)
+:prevent-default-keys prevent-keys})
 
 (def keywords-key-set
-  {:event-keys (into common-keys keyword-keys)
-   :prevent-default-keys prevent-keys})
+{:event-keys (into common-keys keyword-keys)
+:prevent-default-keys prevent-keys})
 
 (def picture-key-set
-  {:event-keys (into common-keys picture-keys)
-   :prevent-default-keys prevent-keys})
+{:event-keys (into common-keys picture-keys)
+:prevent-default-keys prevent-keys})
 
 (def details-key-set
-  {:event-keys (into common-keys picture-keys)
-   :prevent-default-keys prevent-keys
-   :always-listen-keys [{:which 13}]})
+{:event-keys (into common-keys picture-keys)
+:prevent-default-keys prevent-keys
+:always-listen-keys [{:which 13}]})
 
 (defn keywording-key-set []
-  {:event-keys (reduce into
-                       [common-keys
-                        picture-keys
-                        keywording-keys
-                        (keywording-shortcut-keys)
-                        (keywording-set-shortcut-keys)])
-   :prevent-default-keys prevent-keys})
+{:event-keys (reduce into
+[common-keys
+picture-keys
+keywording-keys
+(keywording-shortcut-keys)
+(keywording-set-shortcut-keys)])
+:prevent-default-keys prevent-keys})
 
 (defn key-rules
-  [panel]
-  (case panel
-    :projects   project-key-set
-    :pictures   picture-key-set
-    :details    details-key-set
-    :keywords   keywords-key-set
-    :keywording (keywording-key-set)
-    project-key-set))
+[panel]
+(case panel
+:projects   project-key-set
+:pictures   picture-key-set
+:details    details-key-set
+:keywords   keywords-key-set
+:keywording (keywording-key-set)
+project-key-set))
