@@ -75,6 +75,11 @@
     (:left-panel-list db)))
 
 (rf/reg-sub
+  :displaying
+  (fn [db _]
+    (:displaying db)))
+
+(rf/reg-sub
   :panel-focus-map
   (fn [_ _]
     (rf/subscribe [:panel-focus-list]))

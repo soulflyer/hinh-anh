@@ -102,18 +102,20 @@
                        ;; :projects "panel-1"
                        ;; :keywording "panel-1"
                        "panel-1")]
-      ;; (println (str "new-panel " new-panel))
-      ;; (println (str "keys " keys))
-      ;; (println (str "Focus " html-focus))
       {:db (assoc db :panel-focus new-panel)
        :dispatch-n [[:set-keys-for new-panel]
                     [:store-preferences]]
        :set-html-focus html-focus})))
 
 (rf/reg-event-fx
+  :set-displaying
+  (fn [{:keys [db]} [_ new-panel]]
+    {:db (assoc db :displaying new-panel)}))
+
+(rf/reg-event-fx
   :set-left-panel
   (fn [{:keys [db]} [_ new-panel]]
-    {:db (assoc db :left-panel-display new-panel )}))
+    {:db (assoc db :left-panel-display new-panel)}))
 
 (rf/reg-event-fx
   :rotate-left-panel

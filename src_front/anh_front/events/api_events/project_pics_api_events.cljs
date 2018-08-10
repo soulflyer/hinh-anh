@@ -36,5 +36,6 @@
           (assoc-in [:picture-list :focus] first-pic)
           (assoc-in [:picture-list :pictures] resp)
           (assoc-in [:picture-list :selected] [])
+          (assoc    :displaying :projects)
           ;; TODO This should probably be a sub
           (assoc    :displayed-project (get-in db [:project-tree :focus]))))))

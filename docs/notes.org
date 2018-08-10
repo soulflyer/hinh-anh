@@ -97,7 +97,8 @@ ReferenceError: document is not defined
 Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.
 
 * Bugs
-** TODO [#B] Refresh after adding a keyword gets a project even when looking at a keyword.
+** DONE Refresh after adding a keyword gets a project even when looking at a keyword.
+   CLOSED: [2018-08-10 Fri 17:13]
 ** TODO [#D] Attempts to write IPTC fields to the API even when empty.
 ** TODO [#D] Edit key doesn't always work without switching panel focus.
 ** TODO [#D] edit buttons should not be in preferences

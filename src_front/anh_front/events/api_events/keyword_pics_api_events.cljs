@@ -13,6 +13,7 @@
       (-> db
           (assoc :loading? false)
           (assoc :error "")
+          (assoc :displaying :keywords)
           (assoc :picture-list {:pictures resp
                                 :focus    (helpers/image-path (first resp))
                                 :selected []})))))
@@ -25,6 +26,7 @@
       (-> db
           (assoc :loading? false)
           (assoc :error "")
+          (assoc :displaying :keywords)
           (assoc :picture-list {:pictures [resp]
                                 :focus (helpers/image-path resp)
                                 :selected []})))))
