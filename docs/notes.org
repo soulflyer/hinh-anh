@@ -141,7 +141,8 @@ already displayed in the pictures panel
 **** DONE merge-keyword
      CLOSED: [2018-08-04 Sat 10:53]
 Seems to be ok in hinh-anh, but the api call isn't doing anything.
-**** TODO [#B] Button to set sample
+**** DONE Button to set sample
+     CLOSED: [2018-08-10 Fri 10:59]
 *** TODO [#D] Handle orphaned and empty keywords
 *** TODO [#E] Change keyword buttons to modals?
 *** TODO [#I] sample stores a path with .jpg on the end. Remove it.

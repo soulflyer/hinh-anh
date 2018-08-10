@@ -1,7 +1,27 @@
 (ns anh-front.keyword-edit-api-events
   "The events used to edit the keyword tree."
   (:require [ajax.core     :as ajax]
+            [cemerick.url  :as url]
             [re-frame.core :as rf]))
+
+(rf/reg-event-fx
+  :set-sample
+  (fn [{:keys [db]} [_ response]]
+    (let [api-root (rf/subscribe [:api-root])
+          kw       (last @(rf/subscribe [:keyword-focus]))
+          pics     (rf/subscribe [:selected-pics])
+          pic      (url/url-encode (first @pics))]
+      {:http-xhrio
+       {:method          :get
+        :cross-origin    true
+        :uri             (str @api-root "/keywords/" kw "/sample/" pic)
+        :format          (ajax/json-request-format)
+        :response-format (ajax/json-response-format {:keywords? true})
+        :on-success      [:simple-response]
+        :on-failure      [:load-fail "set-sample"]}
+       :db ( -> db
+            (assoc :loading? true)
+            (assoc :error (str "Setting " pic " as best for " kw)))})))
 
 (rf/reg-event-fx
   :delete-focused-keyword

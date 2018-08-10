@@ -10,6 +10,7 @@
 (def keyword-delete-button-show       (reagent/atom false))
 (def keyword-purge-unused-button-show (reagent/atom false))
 (def keyword-add-orphans-button-show  (reagent/atom false))
+(def keyword-set-best-button-show     (reagent/atom false))
 
 (rf/reg-event-db
   :toggle-button-show

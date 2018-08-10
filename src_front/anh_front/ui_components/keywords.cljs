@@ -15,12 +15,16 @@
      :justify :between
      :height "100%"
      :children
-     (let [focused (rf/subscribe [:keyword-focus])]
+     (let [focused       (rf/subscribe [:keyword-focus])
+           selected-pics (rf/subscribe [:selected-pics])
+           selected-pic  (first @selected-pics)]
        [[rc/scroller
          :child
          (tree/root
            (for [kw (get-in @tree [:children])]
              (tree/node @tree tree-name [(get kw :name)] :focused-keyword-pics)))]
+        [rc/line
+         :style {:margin-left "6px"}]
         [rc/h-box
          :justify :center
          :children
@@ -44,6 +48,10 @@
                                   "zmdi-arrow-merge"
                                   (str "Merge with " (last @focused) ":")
                                   #(rf/dispatch [:merge-focused-keyword %]))
+          (helper/popover-wrapper atoms/keyword-set-best-button-show
+                                  "zmdi-image"
+                                  (str "Set " " as best for " (last @focused))
+                                  #(rf/dispatch [:set-sample]))
           (helper/popover-wrapper atoms/keyword-add-orphans-button-show
                                   "zmdi-collection-plus"
                                   (str "Add keywords from photos")
