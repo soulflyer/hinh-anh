@@ -9,6 +9,11 @@
    {:which (key-codes "a")
     :metaKey true}])
 
+(def always-listen-keys
+  [{:which (key-codes "esc")}
+;;   {:which (key-codes "return")}
+   ])
+
 (def common-keys
   [[[:set-keys :projects]
     [{:which (key-codes ",")}]]
@@ -85,7 +90,10 @@
     [{:which (key-codes "p")}]]
    [[:load-keyword-tree]
     [{:which (key-codes "r")
-      :shiftKey true}]]])
+      :shiftKey true}]]
+   [[:close-popovers]
+    [{:which (key-codes "esc")}]
+    [{:which (key-codes "return")}]]])
 
 (def picture-keys
   [[[:next-picture]
@@ -110,8 +118,9 @@
 :prevent-default-keys prevent-keys})
 
 (def keywords-key-set
-{:event-keys (into common-keys keyword-keys)
-:prevent-default-keys prevent-keys})
+  {:event-keys (into common-keys keyword-keys)
+   ;;:prevent-default-keys prevent-keys
+   :always-listen-keys always-listen-keys})
 
 (def picture-key-set
 {:event-keys (into common-keys picture-keys)

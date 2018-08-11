@@ -11,6 +11,7 @@
           kw       (last @(rf/subscribe [:keyword-focus]))
           pics     (rf/subscribe [:selected-pics])
           pic      (url/url-encode (first @pics))]
+      (println (str "%%%%%%%%%% set " pic " as best for " kw))
       {:http-xhrio
        {:method          :get
         :cross-origin    true
@@ -21,13 +22,15 @@
         :on-failure      [:load-fail "set-sample"]}
        :db ( -> db
             (assoc :loading? true)
-            (assoc :error (str "Setting " pic " as best for " kw)))})))
+            (assoc :error (str "Setting " pic " as best for " kw)))
+       :dispatch [:close-popovers]})))
 
 (rf/reg-event-fx
   :delete-focused-keyword
   (fn [{:keys [db]} [_ response]]
     (let [api-root (rf/subscribe [:api-root])
           kw       (rf/subscribe [:keyword-focus])]
+      (println (str "%%%%%%%%%%  delete " kw))
       {:http-xhrio
        {:method          :get
         :cross-origin    true
@@ -38,7 +41,8 @@
         :on-failure      [:load-fail "delete-focused-keyword"]}
        :db ( -> db
             (assoc :loading? true)
-            (assoc :error (str "Deleting keyword " (last @kw))))})))
+            (assoc :error (str "Deleting keyword " (last @kw))))
+       :dispatch [:close-popovers]})))
 
 (rf/reg-event-fx
   :add-to-focused-keyword
@@ -46,7 +50,7 @@
     (let [api-root (rf/subscribe [:api-root])
           focus    (rf/subscribe [:keyword-focus])
           parent   (last @focus)]
-      (println (str "%%%%%%%%%%" parent "-" kw))
+      (println (str "%%%%%%%%%% add " kw " to " parent))
       {:http-xhrio
        {:method          :get
         :cross-origin    true
@@ -57,7 +61,8 @@
         :on-failure      [:load-fail "{add-to-focused-keyword}"]}
        :db ( -> db
             (assoc :loading? true)
-            (assoc :error (str "Added " kw " to " parent)))})))
+            (assoc :error (str "Added " kw " to " parent)))
+       :dispatch [:close-popovers]})))
 
 (rf/reg-event-fx
   :move-focused-keyword
@@ -69,17 +74,19 @@
                        "Root"
                        (nth @focus (- depth 2)))
           kw         (last @focus)]
+      (println (str "%%%%%%%%%% move " kw " to " new-parent))
       {:http-xhrio
        {:method          :get
         :cross-origin    true
         :uri             (str @api-root "/keywords/move/" kw "/" old-parent "/" new-parent )
         :format          (ajax/json-request-format)
         :response-format (ajax/json-response-format {:keywords? true})
-        :on-success      [:say-hello kw "-" old-parent "-" new-parent]
+        :on-success      [:simple-response]
         :on-failure      [:load-fail "move-focused-keyword"]}
        :db ( -> db
             (assoc :loading? true)
-            (assoc :error (str "Moved " kw " to " new-parent )))})))
+            (assoc :error (str "Moved " kw " to " new-parent )))
+       :dispatch [:close-popovers]})))
 
 (rf/reg-event-fx
   :rename-focused-keyword
@@ -88,6 +95,7 @@
           focus      (rf/subscribe [:keyword-focus])
           depth      (count @focus)
           kw         (last @focus)]
+      (println (str "%%%%%%%%%% rename " kw " to " new-name))
       {:http-xhrio
        {:method          :get
         :cross-origin    true
@@ -98,7 +106,8 @@
         :on-failure      [:load-fail "rename-focused-keyword"]}
        :db ( -> db
             (assoc :loading? true)
-            (assoc :error (str "Renamed " kw " to " new-name )))})))
+            (assoc :error (str "Renamed " kw " to " new-name )))
+       :dispatch [:close-popovers]})))
 
 (rf/reg-event-fx
   :merge-focused-keyword
@@ -107,6 +116,7 @@
           focus      (rf/subscribe [:keyword-focus])
           depth      (count @focus)
           kw         (last @focus)]
+      (println (str "%%%%%%%%%% merge " kw " with " merge-with))
       {:http-xhrio
        {:method          :get
         :cross-origin    true
@@ -117,12 +127,14 @@
         :on-failure      [:load-fail "merge-focused-keyword"]}
        :db ( -> db
             (assoc :loading? true)
-            (assoc :error (str "Merged " kw " with " merge-with)))})))
+            (assoc :error (str "Merged " kw " with " merge-with)))
+       :dispatch [:close-popovers]})))
 
 (rf/reg-event-fx
   :add-missing-keywords
   (fn [{:keys [db]} _]
     (let [api-root (rf/subscribe [:api-root])]
+      (println (str "%%%%%%%%%% add-missing keywords"))
       {:http-xhrio
        {:method          :get
         :cross-origin    true
@@ -130,12 +142,14 @@
         :format          (ajax/json-request-format)
         :response-format (ajax/json-response-format {:keywords? true})
         :on-success      [:simple-response]
-        :on-failure      [:load-fail "add-missing-keywords"]}})))
+        :on-failure      [:load-fail "add-missing-keywords"]}
+       :dispatch [:close-popovers]})))
 
 (rf/reg-event-fx
   :delete-unused-keywords
   (fn [{:keys [db]} _]
     (let [api-root (rf/subscribe [:api-root])]
+      (println (str "%%%%%%%%%% delete unused keywords"))
       {:http-xhrio
        {:method          :get
         :cross-origin    true
@@ -143,4 +157,5 @@
         :format          (ajax/json-request-format)
         :response-format (ajax/json-response-format {:keywords? true})
         :on-success      [:simple-response]
-        :on-failure      [:load-fail "delete-unused-keywords"]}})))
+        :on-failure      [:load-fail "delete-unused-keywords"]}
+       :dispatch [:close-popovers]})))

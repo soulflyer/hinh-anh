@@ -17,3 +17,16 @@
   (fn [db [_ but]]
     (swap! but not)
     db))
+
+(rf/reg-event-db
+  :close-popovers
+  (fn [db _]
+    (reset! keyword-add-button-show false)
+    (reset! keyword-rename-button-show false)
+    (reset! keyword-move-button-show false)
+    (reset! keyword-merge-button-show false)
+    (reset! keyword-delete-button-show false)
+    (reset! keyword-purge-unused-button-show false)
+    (reset! keyword-add-orphans-button-show false)
+    (reset! keyword-set-best-button-show false)
+    db))

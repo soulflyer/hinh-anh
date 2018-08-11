@@ -197,6 +197,159 @@ Already done for individual pics, but need to be able to do all selected pics at
    :ARCHIVE_CATEGORY: notes
    :ARCHIVE_TODO: DONE
    :END:
+
+** DONE Button to set sample
+   CLOSED: [2018-08-10 Fri 10:59]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-10 Fri 22:38
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords/editing functions
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE add-keyword
+   CLOSED: [2018-07-30 Mon 17:53]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-10 Fri 22:39
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords/editing functions
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE safe-delete-keyword
+   CLOSED: [2018-07-25 Wed 11:03]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-10 Fri 22:39
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords/editing functions
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE rename-keyword
+   CLOSED: [2018-08-02 Thu 11:08]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-10 Fri 22:39
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords/editing functions
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE add-missing-keywords
+   CLOSED: [2018-07-25 Wed 10:02]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-10 Fri 22:39
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords/editing functions
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE move-keyword
+   CLOSED: [2018-08-02 Thu 11:08]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-10 Fri 22:39
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords/editing functions
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE merge-keyword
+   CLOSED: [2018-08-04 Sat 10:53]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-10 Fri 22:39
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords/editing functions
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+Seems to be ok in hinh-anh, but the api call isn't doing anything.
+
+** DONE Button to set sample
+   CLOSED: [2018-08-10 Fri 10:59]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-10 Fri 22:39
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords/editing functions
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Handle orphaned and empty keywords
+   CLOSED: [2018-08-10 Fri 22:36]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-10 Fri 22:39
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE sample stores a path with .jpg on the end. Remove it.
+   CLOSED: [2018-08-10 Fri 22:37]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-10 Fri 22:39
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+Removed by the API. Should be removed from image-lib, but functions ok with or without.
+
+** DONE Add select all
+   CLOSED: [2018-07-23 Mon 14:15]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-10 Fri 22:39
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+and remove the default select all action
+
+** DONE Make del button raise a popover for confirmation
+   CLOSED: [2018-08-08 Wed 19:22]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-10 Fri 22:39
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords/editing functions
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Display all pictures containing a given keyword
+   CLOSED: [2018-07-22 Sun 22:38]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-10 Fri 22:39
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Add triangle to tree entries with children
+   CLOSED: [2018-07-23 Mon 11:41]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-10 Fri 22:39
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Store best image in :sample if it is empty
+   CLOSED: [2018-08-10 Fri 22:34]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-10 Fri 22:39
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
 * Bugs
 
 ** DONE Why don't year month project and version appear in the details?
@@ -337,6 +490,16 @@ Picture keys work, but there is no way of telling which is current. Pic should b
 ** DONE picture order is correct but previous and next don't always go to the right pic
    :PROPERTIES:
    :ARCHIVE_TIME: 2018-07-19 Thu 18:12
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Refresh after adding a keyword gets a project even when looking at a keyword.
+   CLOSED: [2018-08-10 Fri 17:13]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-10 Fri 22:40
    :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
    :ARCHIVE_OLPATH: Bugs
    :ARCHIVE_CATEGORY: notes

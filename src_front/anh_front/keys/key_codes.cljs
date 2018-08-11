@@ -49,4 +49,5 @@
    "space"  32
    "return" 13
    "delete" 8
+   "esc"    27
    })
