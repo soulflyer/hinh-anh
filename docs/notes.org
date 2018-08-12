@@ -125,8 +125,10 @@ Only when doing a refresh and projects pane is not selected. I don't think this 
     CLOSED: [2018-08-12 Sun 17:19]
 *** DONE Highlight edit field when popover opens
     CLOSED: [2018-08-12 Sun 19:03]
-*** TODO [#D] Make delete-keyword etc show a button not a text field.
-*** TODO [#G] Make keyword browsing default to best image.
+*** DONE Make delete-keyword etc show a button not a text field.
+    CLOSED: [2018-08-12 Sun 23:18]
+*** DONE Make keyword browsing default to best image.
+    CLOSED: [2018-08-12 Sun 22:25]
 ** TODO [#D] Change tree nav controls
 so left goes up on 1st press then closes on 2nd press. Also make right switch to the right panel if the highlighted tree entry is a leaf.
 ** TODO [#D] Add ability to jump to project from a picture

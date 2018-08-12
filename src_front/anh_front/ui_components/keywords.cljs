@@ -31,33 +31,41 @@
          [(helper/popover-wrapper atoms/keyword-add-button-show
                                   "zmdi-plus"
                                   (str "Add to " (last @focused))
+                                  :text-box
                                   #(rf/dispatch [:add-to-focused-keyword %]))
           (helper/popover-wrapper atoms/keyword-delete-button-show
                                   "zmdi-delete"
                                   (str "Delete " (last @focused))
+                                  :button
                                   #(rf/dispatch [:delete-focused-keyword]))
           (helper/popover-wrapper atoms/keyword-move-button-show
                                   "zmdi-open-in-new"
                                   (str "Move " (last @focused) " to:")
+                                  :text-box
                                   #(rf/dispatch [:move-focused-keyword %]))
           (helper/popover-wrapper atoms/keyword-rename-button-show
                                   "zmdi-edit"
                                   (str "Rename " (last @focused) " to:")
+                                  :text-box
                                   #(rf/dispatch [:rename-focused-keyword %]))
           (helper/popover-wrapper atoms/keyword-merge-button-show
                                   "zmdi-arrow-merge"
                                   (str "Merge with " (last @focused) ":")
+                                  :text-box
                                   #(rf/dispatch [:merge-focused-keyword %]))
           (helper/popover-wrapper atoms/keyword-set-best-button-show
                                   "zmdi-image"
                                   (str "Set " " as best for " (last @focused))
+                                  :text-box
                                   #(rf/dispatch [:set-sample]))
           (helper/popover-wrapper atoms/keyword-add-orphans-button-show
                                   "zmdi-collection-plus"
                                   (str "Add keywords from photos")
+                                  :button
                                   #(rf/dispatch [:add-missing-keywords]))
           (helper/popover-wrapper atoms/keyword-purge-unused-button-show
                                   "zmdi-flash"
                                   (str "DANGER: remove unused keywords")
+                                  :button
                                   #(rf/dispatch [:delete-unused-keywords]))
           (helper/anchor-icon "zmdi-refresh" #(rf/dispatch [:load-keyword-tree]))]]])]))

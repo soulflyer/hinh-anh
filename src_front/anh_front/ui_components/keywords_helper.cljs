@@ -28,14 +28,19 @@
 (defn popover-wrapper
   ;; TODO add an extra parameter so popover body can be something other than
   ;; just a text field.
-  [showing-atom icon title on-click]
+  [showing-atom icon title type on-click]
   [rc/popover-anchor-wrapper
    :showing? showing-atom
    :position :above-center
    :anchor (anchor-icon icon #(swap! showing-atom not))
    :popover (popover
               title
-              [rc/input-text
-               :attr {:id (str "popover-" )}
-               :model nil
-               :on-change on-click])])
+              (case type
+                :text-box [rc/input-text
+                           :attr {:id (str "popover-" )}
+                           :model nil
+                           :on-change on-click]
+                [rc/button
+                 :attr {:id (str "popover-" )}
+                 :label "OK"
+                 :on-click on-click]))])
