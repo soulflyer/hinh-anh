@@ -10,9 +10,7 @@
     :metaKey true}])
 
 (def always-listen-keys
-  [{:which (key-codes "esc")}
-;;   {:which (key-codes "return")}
-   ])
+  [{:which (key-codes "esc")}])
 
 (def common-keys
   [[[:set-keys :projects]

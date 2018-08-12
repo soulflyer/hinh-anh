@@ -350,6 +350,26 @@ and remove the default select all action
    :ARCHIVE_CATEGORY: notes
    :ARCHIVE_TODO: DONE
    :END:
+
+** DONE Make esc cancel popovers
+   CLOSED: [2018-08-11 Sat 10:55]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-11 Sat 15:29
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords/editing functions
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Make return trigger highlighted popover.
+   CLOSED: [2018-08-11 Sat 12:39]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-11 Sat 15:29
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords/editing functions
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
 * Bugs
 
 ** DONE Why don't year month project and version appear in the details?

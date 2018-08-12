@@ -49,7 +49,7 @@
   (fn [{:keys [db]} [_ kw]]
     (let [api-root (rf/subscribe [:api-root])
           focus    (rf/subscribe [:keyword-focus])
-          parent   (last @focus)]
+          parent   (or (last @focus) "Root")]
       (println (str "%%%%%%%%%% add " kw " to " parent))
       {:http-xhrio
        {:method          :get

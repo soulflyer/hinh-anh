@@ -14,7 +14,7 @@
 
 (rf/reg-event-db
   :simple-response
-  (fn [db _]
+  (fn [db [_ response]]
     (-> db
         (assoc :loading? false)
-        (assoc :error ""))))
+        (assoc :error response))))
