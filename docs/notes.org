@@ -123,7 +123,8 @@ Only when doing a refresh and projects pane is not selected. I don't think this 
     CLOSED: [2018-08-12 Sun 15:29]
 *** DONE delete-unused should return a list of actual deletes, not attempted deletes
     CLOSED: [2018-08-12 Sun 17:19]
-*** TODO [#C] Highlight edit field when popover opens
+*** DONE Highlight edit field when popover opens
+    CLOSED: [2018-08-12 Sun 19:03]
 *** TODO [#D] Make delete-keyword etc show a button not a text field.
 *** TODO [#G] Make keyword browsing default to best image.
 ** TODO [#D] Change tree nav controls

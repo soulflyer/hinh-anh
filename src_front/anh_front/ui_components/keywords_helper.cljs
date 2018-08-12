@@ -36,5 +36,6 @@
    :popover (popover
               title
               [rc/input-text
+               :attr {:id (str "popover-" )}
                :model nil
                :on-change on-click])])
