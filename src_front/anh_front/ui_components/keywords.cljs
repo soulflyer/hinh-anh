@@ -2,6 +2,7 @@
   (:require [re-frame.core             :as rf]
             [re-com.core               :as rc]
             [anh-front.atoms           :as atoms]
+            [anh-front.helpers         :as helpers]
             [anh-front.styles          :as styles]
             [anh-front.tree            :as tree]
             [anh-front.keywords-helper :as helper]
@@ -16,8 +17,9 @@
      :height "100%"
      :children
      (let [focused       (rf/subscribe [:keyword-focus])
-           selected-pics (rf/subscribe [:selected-pics])
-           selected-pic  (first @selected-pics)]
+           focused-pic   (rf/subscribe [:focused-pic-path])
+           project       (butlast (helpers/path->vector @focused-pic))
+           project-path  (helpers/vector->path project)]
        [[rc/scroller
          :child
          (tree/root
@@ -55,8 +57,8 @@
                                   #(rf/dispatch [:merge-focused-keyword %]))
           (helper/popover-wrapper atoms/keyword-set-best-button-show
                                   "zmdi-image"
-                                  (str "Set " " as best for " (last @focused))
-                                  :text-box
+                                  (str "Set " @focused-pic " as best for " (last @focused))
+                                  :button
                                   #(rf/dispatch [:set-sample]))
           (helper/popover-wrapper atoms/keyword-add-orphans-button-show
                                   "zmdi-collection-plus"
@@ -68,4 +70,9 @@
                                   (str "DANGER: remove unused keywords")
                                   :button
                                   #(rf/dispatch [:delete-unused-keywords]))
+          (helper/popover-wrapper atoms/go-to-project-button-show
+                                  "zmdi-collection-folder-image"
+                                  (str "Go to project " project-path)
+                                  :button
+                                  #(rf/dispatch [:go-to-project project]))
           (helper/anchor-icon "zmdi-refresh" #(rf/dispatch [:load-keyword-tree]))]]])]))

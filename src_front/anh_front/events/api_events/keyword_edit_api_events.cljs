@@ -9,8 +9,8 @@
   (fn [{:keys [db]} [_ response]]
     (let [api-root (rf/subscribe [:api-root])
           kw       (last @(rf/subscribe [:keyword-focus]))
-          pics     (rf/subscribe [:selected-pics])
-          pic      (url/url-encode (first @pics))]
+          pic-path (rf/subscribe [:focused-pic-path])
+          pic      (url/url-encode @pic-path)]
       (println (str "%%%%%%%%%% set " pic " as best for " kw))
       {:http-xhrio
        {:method          :get

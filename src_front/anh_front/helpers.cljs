@@ -23,6 +23,15 @@
   [path]
   (str/join (str/split path #"/")))
 
+(defn path->vector
+  "converts \"2002/01/09-project\" to [\"2002\" \"01\" \"09-project\"]"
+  [path]
+  (str/split path #"/"))
+
+(defn vector->path
+  [path-vector]
+  (reduce str (interpose "/" path-vector)))
+
 (defn get-pic
   "given a vector of picture maps and a path return the map representing that picture"
   [pictures path]

@@ -11,6 +11,7 @@
 (def keyword-purge-unused-button-show (reagent/atom false))
 (def keyword-add-orphans-button-show  (reagent/atom false))
 (def keyword-set-best-button-show     (reagent/atom false))
+(def go-to-project-button-show        (reagent/atom false))
 
 (rf/reg-event-db
   :toggle-button-show
@@ -30,4 +31,5 @@
     (reset! keyword-purge-unused-button-show false)
     (reset! keyword-add-orphans-button-show false)
     (reset! keyword-set-best-button-show false)
+    (reset! go-to-project-button-show false)
     db))

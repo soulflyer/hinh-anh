@@ -97,10 +97,7 @@ ReferenceError: document is not defined
 Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.
 
 * Bugs
-** DONE move-keyword is deleting keyword
-   CLOSED: [2018-08-12 Sun 15:26]
-** DONE delete-unused API call fails
-   CLOSED: [2018-08-11 Sat 23:09]
+** TODO [#D] Multiple copies displayed when displaying all when pic contains multiple keywords .
 ** TODO [#D] Attempts to write IPTC fields to the API even when empty.
 ** TODO [#D] Edit key doesn't always work without switching panel focus.
 ** TODO [#D] edit buttons should not be in preferences
@@ -119,16 +116,6 @@ Only when doing a refresh and projects pane is not selected. I don't think this 
 *** TODO [#F] Filter by stars
 *** TODO [#F] Filter by colour label.
 ** Keywords
-*** DONE Add keyword should default to root if no parent is selected.
-    CLOSED: [2018-08-12 Sun 15:29]
-*** DONE delete-unused should return a list of actual deletes, not attempted deletes
-    CLOSED: [2018-08-12 Sun 17:19]
-*** DONE Highlight edit field when popover opens
-    CLOSED: [2018-08-12 Sun 19:03]
-*** DONE Make delete-keyword etc show a button not a text field.
-    CLOSED: [2018-08-12 Sun 23:18]
-*** DONE Make keyword browsing default to best image.
-    CLOSED: [2018-08-12 Sun 22:25]
 ** TODO [#D] Change tree nav controls
 so left goes up on 1st press then closes on 2nd press. Also make right switch to the right panel if the highlighted tree entry is a leaf.
 ** TODO [#D] Add ability to jump to project from a picture

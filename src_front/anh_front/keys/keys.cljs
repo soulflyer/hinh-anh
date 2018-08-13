@@ -84,8 +84,12 @@
     [{:which (key-codes "s")}]]
    [[:toggle-button-show atoms/keyword-add-orphans-button-show]
     [{:which (key-codes "o")}]]
+   [[:toggle-button-show atoms/go-to-project-button-show]
+    [{:which (key-codes "p")
+      :shiftKey false}]]
    [[:toggle-button-show atoms/keyword-purge-unused-button-show]
-    [{:which (key-codes "p")}]]
+    [{:which (key-codes "p")
+      :shiftKey true}]]
    [[:load-keyword-tree]
     [{:which (key-codes "r")
       :shiftKey true}]]

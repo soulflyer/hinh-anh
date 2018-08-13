@@ -370,6 +370,56 @@ and remove the default select all action
    :ARCHIVE_CATEGORY: notes
    :ARCHIVE_TODO: DONE
    :END:
+
+** DONE Add keyword should default to root if no parent is selected.
+   CLOSED: [2018-08-12 Sun 15:29]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-13 Mon 08:25
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE delete-unused should return a list of actual deletes, not attempted deletes
+   CLOSED: [2018-08-12 Sun 17:19]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-13 Mon 08:25
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Highlight edit field when popover opens
+   CLOSED: [2018-08-12 Sun 19:03]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-13 Mon 08:25
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Make delete-keyword etc show a button not a text field.
+   CLOSED: [2018-08-12 Sun 23:18]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-13 Mon 08:25
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Make keyword browsing default to best image.
+   CLOSED: [2018-08-12 Sun 22:25]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-13 Mon 08:25
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Keywords
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
 * Bugs
 
 ** DONE Why don't year month project and version appear in the details?
@@ -520,6 +570,26 @@ Picture keys work, but there is no way of telling which is current. Pic should b
    CLOSED: [2018-08-10 Fri 17:13]
    :PROPERTIES:
    :ARCHIVE_TIME: 2018-08-10 Fri 22:40
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE move-keyword is deleting keyword
+   CLOSED: [2018-08-12 Sun 15:26]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-13 Mon 08:25
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE delete-unused API call fails
+   CLOSED: [2018-08-11 Sat 23:09]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-13 Mon 08:25
    :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
    :ARCHIVE_OLPATH: Bugs
    :ARCHIVE_CATEGORY: notes
