@@ -102,3 +102,8 @@
   :displayed-project
   (fn [db _]
     (:displayed-project db)))
+
+(rf/reg-sub
+  :show-delete-keywording
+  (fn [db]
+    (:show-delete-keywording db)))

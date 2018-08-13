@@ -77,6 +77,13 @@
     (:keyword-set-shortcuts preferences)))
 
 (rf/reg-sub
+  :keyword-set
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:keyword-set preferences)))
+
+(rf/reg-sub
   :keyword-map
   (fn [_ _]
     [(rf/subscribe [:keyword-set]) (rf/subscribe [:keyword-shortcuts])])

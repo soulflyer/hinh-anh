@@ -68,10 +68,10 @@
   (fn [_ _]        (rf/subscribe [:pictures]))
   (fn [pictures _] (helpers/all-keywords pictures)))
 
-(rf/reg-sub
-  :keyword-set
-  (fn [db _]
-    (:keyword-set db)))
+;; (rf/reg-sub
+;;   :keyword-set
+;;   (fn [db _]
+;;     (:keyword-set db)))
 
 (rf/reg-sub
   :keyword-set-by-name

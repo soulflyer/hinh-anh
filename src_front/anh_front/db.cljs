@@ -15,7 +15,7 @@
    ;; TODO change this to use the same technique as panel-focus.
    :picture-display-index   0
    :picture-display-list    [:grid :single]
-   :keyword-set             []
+   ;;:keyword-set             []
 
    :keyword-pic-display-all true
 
@@ -23,11 +23,11 @@
    ;; :keyword-add-button-show   false
    ;; :keyword-move-button-show  false
    ;; :keyword-merge-button-show false
+   :show-delete-keywording false
 
    :preferences
    {:api-root               "http://localhost:31000/api"
     :show-empty-exif        false
-    :show-delete-keywording false
     :last-project           []
     :medium-directory       "/Users/iain/Pictures/Published/medium"
     :large-directory        "/Users/iain/Pictures/Published/large"
@@ -39,6 +39,7 @@
     :picture-grid-gap       "14px"
     :picture-border-width   "1px"
     :hide-footer            false
+    :keyword-set            []
     :keyword-sets           [{:name     "people"
                               :keywords ["me" "Pen" "Nhâm"]}
                              {:name     "surface"

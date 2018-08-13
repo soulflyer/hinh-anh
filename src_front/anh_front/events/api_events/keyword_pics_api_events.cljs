@@ -14,7 +14,7 @@
           (assoc :loading? false)
           (assoc :error "")
           (assoc :displaying :keywords)
-          (assoc :picture-list {:pictures resp
+          (assoc :picture-list {:pictures (set resp)
                                 :focus    (helpers/image-path (first resp))
                                 :selected []})))))
 

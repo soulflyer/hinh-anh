@@ -100,7 +100,7 @@
   (fn [{:keys [db]} _]
     (let [current-keywords (rf/subscribe [:current-keywords])]
       {:db (-> db
-               (assoc :keyword-set @current-keywords)
+               (assoc-in [:preferences :keyword-set] @current-keywords)
                (assoc :error (str "Set keywords")))
        :dispatch [:set-keys-for :left]})))
 
@@ -108,14 +108,14 @@
   :set-keyword-set
   (fn [{:keys [db]} [_ keyword-set]]
     {:db (-> db
-             (assoc :keyword-set keyword-set)
+             (assoc-in [:preferences :keyword-set] keyword-set)
              (assoc :error "set keywords"))}))
 
 (rf/reg-event-fx
   :set-keyword-set-by-name
   (fn [{:keys [db]} [_ name]]
     (let [keyword-set (rf/subscribe [:keyword-set-by-name name])]
-      {:db (assoc db :keyword-set @keyword-set)
+      {:db (assoc-in db [:preferences :keyword-set] @keyword-set)
        :dispatch [:set-keys-for :left]})))
 
 (rf/reg-event-fx
@@ -128,7 +128,7 @@
   :clear-keywords
   (fn [{:keys [db]} _]
     {:db (-> db
-             (assoc    :keyword-set [])
+             (assoc-in [:preferences :keyword-set] [])
              (assoc    :error "Cleared keywords")
              (assoc-in [:preferences :show-delete-keywording] true))}))
 
@@ -136,13 +136,15 @@
   :add-to-keyword-set
   (fn [{:keys [db]} [_ new-keyword]]
     (let [current-set (rf/subscribe [:keyword-set])]
-      {:db (assoc db :keyword-set (set (conj @current-set new-keyword)))})))
+      {:db (assoc-in db [:preferences :keyword-set]
+                     (set (conj @current-set new-keyword)))})))
 
 (rf/reg-event-fx
   :remove-from-keyword-set
   (fn [{:keys [db]} [_ old-keyword]]
     (let [current-set (rf/subscribe [:keyword-set])]
-      {:db (assoc db :keyword-set (remove #{old-keyword} @current-set))})))
+      {:db (assoc-in db [:preferences :keyword-set]
+                     (remove #{old-keyword} @current-set))})))
 
 (rf/reg-event-fx
   :add-keyword-set
