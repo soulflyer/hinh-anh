@@ -420,6 +420,37 @@ and remove the default select all action
    :ARCHIVE_CATEGORY: notes
    :ARCHIVE_TODO: DONE
    :END:
+
+** DONE Show some keywords on startup.
+   CLOSED: [2018-08-13 Mon 17:44]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-13 Mon 19:24
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Add ability to jump to project from a picture
+   CLOSED: [2018-08-13 Mon 13:29]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-13 Mon 19:24
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Make sure that helpers/path->id is getting used.
+   CLOSED: [2018-08-13 Mon 22:20]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-13 Mon 22:21
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+Pretty sure it's defined inline in several places.
 * Bugs
 
 ** DONE Why don't year month project and version appear in the details?
@@ -590,6 +621,27 @@ Picture keys work, but there is no way of telling which is current. Pic should b
    CLOSED: [2018-08-11 Sat 23:09]
    :PROPERTIES:
    :ARCHIVE_TIME: 2018-08-13 Mon 08:25
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE edit buttons should not be in preferences
+   CLOSED: [2018-08-13 Mon 13:51]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-13 Mon 19:24
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+and it shouldn't be called :show-delete-keywording.
+
+** DONE Multiple copies displayed when displaying all when pic contains multiple keywords .
+   CLOSED: [2018-08-13 Mon 15:20]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-13 Mon 19:24
    :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
    :ARCHIVE_OLPATH: Bugs
    :ARCHIVE_CATEGORY: notes

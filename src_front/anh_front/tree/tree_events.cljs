@@ -21,12 +21,16 @@
                            (tree-name db))))))
 (rf/reg-event-db
   :expand
+  ;; check for :children first and only expand if there are some.
   (fn [db [_ tree-name path]]
-    (-> db
-        (assoc tree-name (sp/setval
-                           [(tree/path-nav path) :expanded]
-                           true
-                           (tree-name db))))))
+    (let [tree (rf/subscribe [tree-name])]
+      (if (tree/children @tree path)
+        (-> db
+            (assoc tree-name (sp/setval
+                               [(tree/path-nav path) :expanded]
+                               true
+                               (tree-name db))))
+        db))))
 
 (rf/reg-event-db
   :collapse
@@ -52,6 +56,18 @@
     (let [path (tree/up-node (:focus (get db tree-name)))]
       {:dispatch-n [[:save-selected tree-name path]
                     [:collapse tree-name path]]})))
+
+(rf/reg-event-fx
+  :up-or-close
+  (fn [{:keys [db]} [_ tree-name]]
+    (let [tree (rf/subscribe [tree-name])
+          focus (:focus @tree)
+          children (tree/children @tree focus)]
+      (if (and children (tree/expanded? @tree focus))
+        {:dispatch-n [[:say-hello (str "focus has children")]
+                      [:collapse tree-name focus]]}
+        {:dispatch-n [[:save-selected tree-name (tree/up-node focus)]
+                      [:say-hello (str "focus has no children")]]}))))
 
 (rf/reg-event-fx
   :toggle-selected

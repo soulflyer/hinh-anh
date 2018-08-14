@@ -97,14 +97,10 @@ ReferenceError: document is not defined
 Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.
 
 * Bugs
-** DONE Multiple copies displayed when displaying all when pic contains multiple keywords .
-   CLOSED: [2018-08-13 Mon 15:20]
-** TODO [#D] Attempts to write IPTC fields to the API even when empty.
+** TODO [#I] Attempts to write IPTC fields to the API even when empty.
+Not seeing this anymore, and would it matter?
 ** TODO [#I] Edit key doesn't always work without switching panel focus.
 Need to see this on the production version before worrying about it. Probably won't show unless the app is refreshed. (can't do a refresh from the prod version)
-** DONE edit buttons should not be in preferences
-   CLOSED: [2018-08-13 Mon 13:51]
-and it shouldn't be called :show-delete-keywording.
 ** TODO [#F] Switching back to grid view doesn't call scrollIntoview
 ** TODO [#F] Correct info display when pictures are selected by keyword (In the footer bar)
 ** TODO [#G] Add keyword in keywording/panel doesn't clear when triggered
@@ -114,20 +110,16 @@ and it shouldn't be called :show-delete-keywording.
 Only when doing a refresh and projects pane is not selected. I don't think this can happen in the production environment.
 
 * Improvements
-
+** TODO [#A] rate photos
 ** Filters
 *** TODO [#F] Filter by stars
 *** TODO [#F] Filter by colour label.
-** Keywords
-** TODO [#D] Change tree nav controls
+** TODO [#D] Keyword display should default to best.
+** DONE Change tree nav controls
+   CLOSED: [2018-08-14 Tue 10:47]
 so left goes up on 1st press then closes on 2nd press. Also make right switch to the right panel if the highlighted tree entry is a leaf.
-** DONE Add ability to jump to project from a picture
-   CLOSED: [2018-08-13 Mon 13:29]
 ** TODO [#E] Search tree for a project
-** DONE Show some keywords on startup.
-   CLOSED: [2018-08-13 Mon 17:44]
-** TODO [#F] Make sure that helpers/path->id is getting used.
-Pretty sure it's defined inline in several places.
+** TODO [#E] tree should use subs not directly access db (document it too)
 ** TODO [#F] Make tabs to select the different views in the left panel.
 ** TODO [#F] Refactor to make use of :refresh-pictures
 instead of storing changes directly to db

@@ -49,7 +49,7 @@
     [{:which (key-codes "down")}]]
    [[:prev-project-open]
     [{:which (key-codes "up")}]]
-   [[:up-and-close :project-tree]
+   [[:up-or-close :project-tree]
     [{:which (key-codes "left")}]]
    [[:expand-selected :project-tree]
     [{:which (key-codes "right")}]]])
@@ -59,7 +59,7 @@
     [{:which (key-codes "down")}]]
    [[:prev-keyword-open]
     [{:which (key-codes "up")}]]
-   [[:up-and-close :keyword-tree]
+   [[:up-or-close :keyword-tree]
     [{:which (key-codes "left")}]]
    [[:expand-selected :keyword-tree]
     [{:which (key-codes "right")}]]

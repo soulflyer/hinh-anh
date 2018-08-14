@@ -11,6 +11,7 @@
             [anh-front.layout-preferences-subs  :as layout-preferences-subs]
             [anh-front.main                     :as main]
             [anh-front.open-api-events          :as open-api-events]
+            [anh-front.photo-iptc-api-events    :as photo-iptc-api-events]
             [anh-front.photo-keyword-api-events :as photo-keyword-api-events]
             [anh-front.picture-events           :as picture-events]
             [anh-front.picture-subs             :as picture-subs]
