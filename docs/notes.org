@@ -110,7 +110,6 @@ Need to see this on the production version before worrying about it. Probably wo
 Only when doing a refresh and projects pane is not selected. I don't think this can happen in the production environment.
 
 * Improvements
-** TODO [#A] rate photos
 ** Filters
 *** TODO [#F] Filter by stars
 *** TODO [#F] Filter by colour label.

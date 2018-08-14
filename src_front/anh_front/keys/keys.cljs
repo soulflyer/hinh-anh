@@ -109,7 +109,19 @@
    [[:toggle-select-focused-pic]
     [{:which (key-codes "space")}]]
    [[:rotate-display]
-    [{:which (key-codes "return")}]]])
+    [{:which (key-codes "return")}]]
+   [[:rating 5]
+    [{:which (key-codes "5")}]]
+   [[:rating 4]
+    [{:which (key-codes "4")}]]
+   [[:rating 3]
+    [{:which (key-codes "3")}]]
+   [[:rating 2]
+    [{:which (key-codes "2")}]]
+   [[:rating 1]
+    [{:which (key-codes "1")}]]
+   [[:rating 0]
+    [{:which (key-codes "0")}]]])
 
 (def keywording-keys
 [[[:toggle-delete-keywording]

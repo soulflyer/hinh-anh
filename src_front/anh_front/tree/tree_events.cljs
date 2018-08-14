@@ -64,10 +64,8 @@
           focus (:focus @tree)
           children (tree/children @tree focus)]
       (if (and children (tree/expanded? @tree focus))
-        {:dispatch-n [[:say-hello (str "focus has children")]
-                      [:collapse tree-name focus]]}
-        {:dispatch-n [[:save-selected tree-name (tree/up-node focus)]
-                      [:say-hello (str "focus has no children")]]}))))
+        {:dispatch [:collapse tree-name focus]}
+        {:dispatch [:save-selected tree-name (tree/up-node focus)]}))))
 
 (rf/reg-event-fx
   :toggle-selected

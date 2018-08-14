@@ -33,3 +33,14 @@
         :on-success      [:write-iptc-local [pic field text]]
         :on-failure      [:load-fail (str text " to " pic)]}
        :db               (assoc db :loading? true)})))
+
+(rf/reg-event-fx
+  :write-rating
+  (fn [{:keys [db]} [_ [pic rating]]]
+    {:dispatch [:write-iptc [pic "Rating" (str rating)]]}))
+
+(rf/reg-event-fx
+  :rating
+  (fn [_ [_ rating]]
+    (let [focused (helpers/image-path @(rf/subscribe [:focused-pic]))]
+      {:dispatch [:write-rating [focused rating]]})))
