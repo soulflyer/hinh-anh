@@ -21,6 +21,20 @@
     (:large-directory preferences)))
 
 (rf/reg-sub
+  :fullsize-directory
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:fullsize-directory preferences)))
+
+(rf/reg-sub
+  :view-fullsize
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:view-fullsize preferences)))
+
+(rf/reg-sub
   :last-project
   (fn [_ _]
     (rf/subscribe [:preferences]))

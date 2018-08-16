@@ -162,9 +162,11 @@
     (let [tr (:project-tree db)
           path (:focus tr)
           newpath (tree/next-node tr path)]
-      {:dispatch-n [(if (= 3 (count newpath))
+      {:dispatch-n [(when (= 3 (count newpath))
                       [:load-pictures-for-project newpath])
-                    [:next-node :project-tree]]})))
+                    [:next-node :project-tree]]
+       :dispatch-later [{:ms 200
+                         :dispatch [:clear-focus]}]})))
 
 (rf/reg-event-fx
   :prev-project-open
@@ -172,9 +174,11 @@
     (let [tr (:project-tree db)
           path (:focus tr)
           newpath (tree/prev-node tr path)]
-      {:dispatch-n [(if (= 3 (count newpath))
+      {:dispatch-n [(when (= 3 (count newpath))
                       [:load-pictures-for-project newpath])
-                    [:prev-node :project-tree]]})))
+                    [:prev-node :project-tree]]
+       :dispatch-later [{:ms 200
+                         :dispatch [:clear-focus]}]})))
 
 (rf/reg-event-fx
   :next-keyword-open

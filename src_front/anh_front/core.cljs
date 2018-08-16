@@ -8,6 +8,7 @@
             [anh-front.keyword-api-events       :as keyword-api-events]
             [anh-front.keyword-edit-api-events  :as keyword-edit-api-events]
             [anh-front.keyword-pics-api-events  :as keyword-pics-api-events]
+            [anh-front.keyword-set-events       :as keyword-set-events]
             [anh-front.layout-preferences-subs  :as layout-preferences-subs]
             [anh-front.main                     :as main]
             [anh-front.open-api-events          :as open-api-events]

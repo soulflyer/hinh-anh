@@ -7,29 +7,34 @@
             [re-com.core       :as rc]))
 
 (defn panel [pic]
-  (let [medium-path  (rf/subscribe [:medium-directory])
-        focused-pic  (rf/subscribe [:focused-pic-path])
-        border       (rf/subscribe [:picture-border])
-        border-sel   (rf/subscribe [:picture-border-focused])
-        border-un    (rf/subscribe [:picture-border-unfocused])
-        border-width (rf/subscribe [:picture-border-width])
-        pic-bg       (rf/subscribe [:picture-background])
-        selected     (rf/subscribe [:selected-pics])
-        pic-sel-col  (rf/subscribe [:picture-selected-colour])
-        panel-focus  (rf/subscribe [:panel-focus])
-        focused      (= :pictures @panel-focus)
-        version      (get pic "Version")
-        id           (get pic "_id")
-        path         (when pic (helpers/image-path pic))
-        pic-path     (str @medium-path "/" path ".jpg")
-        width        (reader/read-string (get pic "Image-Width"))
-        height       (reader/read-string (get pic "Image-Height"))
-        pic-width    (if (< height width)
-                       "100%"
-                       (str (int (* 100 (/ width height))) "%"))]
+  (let [large-path    (rf/subscribe [:large-directory])
+        fullsize-path (rf/subscribe [:fullsize-directory])
+        view-fullsize (rf/subscribe [:view-fullsize])
+        focused-pic   (rf/subscribe [:focused-pic-path])
+        border        (rf/subscribe [:picture-border])
+        border-sel    (rf/subscribe [:picture-border-focused])
+        border-un     (rf/subscribe [:picture-border-unfocused])
+        border-width  (rf/subscribe [:picture-border-width])
+        pic-bg        (rf/subscribe [:picture-background])
+        selected      (rf/subscribe [:selected-pics])
+        pic-sel-col   (rf/subscribe [:picture-selected-colour])
+        panel-focus   (rf/subscribe [:panel-focus])
+        focused       (= :pictures @panel-focus)
+        version       (get pic "Version")
+        id            (get pic "_id")
+        path          (when pic (helpers/image-path pic))
+        pic-path      (str (if @view-fullsize
+                             @fullsize-path
+                             @large-path)
+                           "/" path ".jpg")
+        width         (reader/read-string (get pic "Image-Width"))
+        height        (reader/read-string (get pic "Image-Height"))
+        pic-width     (if (< height width)
+                        "100%"
+                        (str (int (* 100 (/ width height))) "%"))]
     ;;^{:key (get pic "_id")}
     [rc/box
-     :attr {:id path
+     :attr {:id       path
             :on-click #(rf/dispatch [:toggle-select-and-focus path])}
      :size "auto"
      :width "100%"
@@ -58,7 +63,7 @@
                 [rc/box
                  :child
                  [:img
-                  {:src pic-path
+                  {:src   pic-path
                    :style {:margin "auto"}
                    :width pic-width}]]
                 [rc/scroller

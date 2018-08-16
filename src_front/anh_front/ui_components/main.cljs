@@ -25,7 +25,8 @@
                  :size "auto"
                  :panel-1 [rc/v-box
                            :attr {:id       "panel-1"
-                                  :tabIndex "1"}
+                                  ;;:tabIndex "1"
+                                  }
                            :width "100%"
                            :style {:padding-left "0px"}
                            ;; TODO this sets class so css can colour the
@@ -43,7 +44,8 @@
                                         [:p "Default panel" ])]]
                  :panel-2 [rc/v-box
                            :attr {:id       "panel-2"
-                                  :tabIndex "1"}
+                                  ;;:tabIndex "0"
+                                  }
                            :size "auto"
                            :children [[pictures/panel]]]
                  :initial-split "20%"]

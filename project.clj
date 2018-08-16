@@ -25,9 +25,9 @@
   :profiles
   {:dev
    {:dependencies [[figwheel "0.5.16"]
-                   [cider/piggieback "0.3.6"]
+                   [cider/piggieback "0.3.8"]
                    [figwheel-sidecar "0.5.16"]
-                   [day8.re-frame/re-frame-10x "0.3.3"]
+                   [day8.re-frame/re-frame-10x "0.3.3-react16"]
                    [day8.re-frame/tracing "0.5.1"]
                    [org.clojure/data.xml "0.2.0-alpha5"]]
     :repl-options

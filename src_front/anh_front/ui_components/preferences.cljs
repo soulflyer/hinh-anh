@@ -29,9 +29,30 @@
        :model field-contents
        :on-change #(rf/dispatch [on-change %]) ]]]))
 
+(defn boolean-pref [label field on-change]
+  (let [textbox-background (rf/subscribe [:details-textbox-background])
+        header-background  (rf/subscribe [:details-header-background])
+        field-contents     (rf/subscribe [field])]
+    [rc/h-box
+     :style {:width "100%"
+             :background @header-background
+             :border-radius "4px"
+             :margin-bottom "5px"}
+     :justify :between
+     :children
+     [[rc/label
+       :style {:font-size "0.75em"
+               :padding-left "3px"}
+       :label label]
+      [rc/checkbox
+       :style {:margin "2px"}
+       :model field-contents
+       :on-change #(rf/dispatch [on-change %])]]]))
+
 (defn panel []
   [rc/v-box
    :style {:padding-left "5px"}
    :children
    [[rc/gap :size "3px"]
-    [text-pref "api root path" :api-root :set-api-root]]])
+    [text-pref "api root path" :api-root :set-api-root]
+    [boolean-pref "view masters" :view-fullsize :toggle-view-fullsize]]])

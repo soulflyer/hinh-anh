@@ -451,6 +451,27 @@ and remove the default select all action
    :ARCHIVE_TODO: DONE
    :END:
 Pretty sure it's defined inline in several places.
+
+** DONE rate photos
+   CLOSED: [2018-08-14 Tue 15:36]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-14 Tue 15:37
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE Change tree nav controls
+   CLOSED: [2018-08-14 Tue 10:47]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-15 Wed 15:14
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+so left goes up on 1st press then closes on 2nd press. Also make right switch to the right panel if the highlighted tree entry is a leaf.
 * Bugs
 
 ** DONE Why don't year month project and version appear in the details?
