@@ -3,7 +3,6 @@
             [anh-front.helpers :as helpers]
             ;;[com.rpl.specter :as sp]
             ))
-
 (rf/reg-sub
   :picture-display-list
   (fn [db _] (:picture-display-list db)))
@@ -33,19 +32,24 @@
   (fn [_ _]    (rf/subscribe [:picture-list]))
   (fn [pics _] (:pictures pics)))
 
-;;TODO This can only work when given "_id" as the sort field! Should take other fields.
+;; TODO add in filtering and different sort criteria here:
+(rf/reg-sub
+  :sorted-pictures
+  (fn [_ _] [(rf/subscribe [:pictures])
+             (rf/subscribe [:picture-sort-field])
+             (rf/subscribe [:picture-filter-stars])])
+  (fn [[pictures sort-field filter-stars] _]
+    (helpers/sort-map-vector sort-field pictures)))
+
 (rf/reg-sub
   :picture-ids
-  (fn [_ _]
-    [(rf/subscribe [:pictures]) (rf/subscribe [:picture-sort-field])])
-  (fn [[pics sort-field] _]
-    (sort (map #(get % sort-field) pics))))
+  (fn [_ _] (rf/subscribe [:sorted-pictures]))
+  (fn [pictures _] (map #(get % "_id") pictures)))
 
-;;TODO this only sorts by _id
 (rf/reg-sub
   :pictures-map
-  (fn [_ _]    (rf/subscribe [:pictures]))
-  (fn [root _] (zipmap (iterate inc 0) (sort (map helpers/image-path root)))))
+  (fn [_ _] (rf/subscribe [:sorted-pictures]))
+  (fn [pictures _] (zipmap (iterate inc 0) (map helpers/image-path pictures))))
 
 (rf/reg-sub
   :focused-pic-path

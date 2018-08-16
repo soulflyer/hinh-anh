@@ -111,8 +111,6 @@ Need to see this on the production version before worrying about it. Probably wo
 ** TODO [#I] Broke the expand of nodes to the saved project.
 Only when doing a refresh and projects pane is not selected. I don't think this can happen in the production environment.
 
-** DONE refresh pictures shouldn't clear selected-pics.
-   CLOSED: [2018-08-15 Wed 20:05]
 ** TODO [#E] clear-select should pick the first picture but sometimes picks another
 probably need to sort the map before picking the first.
 * Improvements
@@ -133,8 +131,6 @@ One possible solution is to have calls to subscriptions that are defined outside
 ** TODO [#G] export and import keyword sets
 ** TODO [#C] Add zoom function to single pic display.
 This will probably mean switching from displaying the pic as a background to and img tag.
-** DONE Switch to master versions so keywording can be done before generating versions.
-   CLOSED: [2018-08-16 Thu 11:46]
 ** TODO [#I] Add bulk editing of IPTC fields
 ** TODO [#I] Clean up the way panels are selected and keysets changed.
  There may be some redundancy in that I probably shouldn't have to change panel-focus and key-set independantly. Partially sorted. Don't need to toggle focus except when projects are in view. Still need to improve it so I CAN'T toggle focus except when projects are in view.

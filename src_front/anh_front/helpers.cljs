@@ -53,3 +53,7 @@
   "convert a vector of paths to a string of space separated ids"
   [pics]
   (reduce str (interpose " " (for [pic pics] (path->id pic)))))
+
+(defn sort-map-vector
+  [sort-field maps]
+  (sort #(compare (get %1 sort-field) (get %2 sort-field)) maps))

@@ -1,4 +1,4 @@
-(ns anh-front.preferences
+(ns anh-front.preferences-components
   (:require [re-com.core   :as rc]
             [re-frame.core :as rf]))
 
@@ -48,11 +48,3 @@
        :style {:margin "2px"}
        :model field-contents
        :on-change #(rf/dispatch [on-change %])]]]))
-
-(defn panel []
-  [rc/v-box
-   :style {:padding-left "5px"}
-   :children
-   [[rc/gap :size "3px"]
-    [text-pref "api root path" :api-root :set-api-root]
-    [boolean-pref "view masters" :view-fullsize :toggle-view-fullsize]]])

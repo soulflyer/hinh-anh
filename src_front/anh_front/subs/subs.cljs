@@ -18,6 +18,11 @@
         (:keyword-loading? db))))
 
 (rf/reg-sub
+  :picture-filter-stars
+  (fn [db _]
+    (:picture-filter-stars db)))
+
+(rf/reg-sub
   :keyword-tree
   (fn [db _]
     (:keyword-tree db)))

@@ -472,6 +472,16 @@ Pretty sure it's defined inline in several places.
    :ARCHIVE_TODO: DONE
    :END:
 so left goes up on 1st press then closes on 2nd press. Also make right switch to the right panel if the highlighted tree entry is a leaf.
+
+** DONE Switch to master versions so keywording can be done before generating versions.
+   CLOSED: [2018-08-16 Thu 11:46]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-16 Thu 12:35
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
 * Bugs
 
 ** DONE Why don't year month project and version appear in the details?
@@ -663,6 +673,16 @@ and it shouldn't be called :show-delete-keywording.
    CLOSED: [2018-08-13 Mon 15:20]
    :PROPERTIES:
    :ARCHIVE_TIME: 2018-08-13 Mon 19:24
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE refresh pictures shouldn't clear selected-pics.
+   CLOSED: [2018-08-15 Wed 20:05]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-16 Thu 12:35
    :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
    :ARCHIVE_OLPATH: Bugs
    :ARCHIVE_CATEGORY: notes

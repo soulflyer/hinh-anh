@@ -24,31 +24,32 @@
    ;; :keyword-move-button-show  false
    ;; :keyword-merge-button-show false
    :show-delete-keywording false
+   :picture-filter-stars   0
 
    :preferences
-   {:api-root               "http://localhost:31000/api"
-    :show-empty-exif        false
-    :last-project           []
-    :fullsize-directory     "/Users/iain/Pictures/Published/fullsize"
-    :medium-directory       "/Users/iain/Pictures/Published/medium"
-    :large-directory        "/Users/iain/Pictures/Published/large"
-    :view-fullsize          true
+   {:api-root              "http://localhost:31000/api"
+    :show-empty-exif       false
+    :last-project          []
+    :fullsize-directory    "/Users/iain/Pictures/Published/fullsize"
+    :medium-directory      "/Users/iain/Pictures/Published/medium"
+    :large-directory       "/Users/iain/Pictures/Published/large"
+    :view-fullsize         true
     ;; This vector specifies the writeable fields in the details panel
-    :iptc-fields            [[:Object-Name "Title" 1]
-                             [:Caption-Abstract "Caption" 3]]
-    :picture-columns        5
-    :picture-sort-field     "_id"
-    :picture-grid-gap       "14px"
-    :picture-border-width   "1px"
-    :hide-footer            false
-    :keyword-set            []
-    :keyword-sets           [{:name     "people"
-                              :keywords ["me" "Pen" "Nhâm"]}
-                             {:name     "surface"
-                              :keywords ["entry" "under" "over" "under-over" "boat" "ladder" "rope"]}]
-    :favorite-keywords      "people"
-    :keyword-shortcuts      "asdfgzxcvb"
-    :keyword-set-shortcuts  "hjkl;nm,./"
+    :iptc-fields           [[:Object-Name "Title" 1]
+                            [:Caption-Abstract "Caption" 3]]
+    :picture-columns       5
+    :picture-sort-field    "_id"
+    :picture-grid-gap      "14px"
+    :picture-border-width  "1px"
+    :hide-footer           false
+    :keyword-set           []
+    :keyword-sets          [{:name     "people"
+                             :keywords ["me" "Pen" "Nhâm"]}
+                            {:name     "surface"
+                             :keywords ["entry" "under" "over" "under-over" "boat" "ladder" "rope"]}]
+    :favorite-keywords     "people"
+    :keyword-shortcuts     "asdfgzxcvb"
+    :keyword-set-shortcuts "hjkl;nm,./"
     :colours
     {:picture-text-colour        "#9e9e9e"
      :pictures-background        "#262626"
