@@ -88,7 +88,7 @@
 (rf/reg-event-fx
   :clear-focus
   (fn [{:keys [db]} _]
-    (let [pictures  (rf/subscribe [:pictures])
+    (let [pictures  (rf/subscribe [:sorted-pictures])
           first-pic (helpers/image-path (first @pictures))]
       {:db (-> db
                (assoc-in [:picture-list :focus] first-pic)

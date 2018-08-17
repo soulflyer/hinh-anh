@@ -32,14 +32,16 @@
   (fn [_ _]    (rf/subscribe [:picture-list]))
   (fn [pics _] (:pictures pics)))
 
-;; TODO add in filtering and different sort criteria here:
+;; TODO test with different filters and sort fields
 (rf/reg-sub
   :sorted-pictures
   (fn [_ _] [(rf/subscribe [:pictures])
              (rf/subscribe [:picture-sort-field])
              (rf/subscribe [:picture-filter-stars])])
   (fn [[pictures sort-field filter-stars] _]
-    (helpers/sort-map-vector sort-field pictures)))
+    (filter
+      #(>= (get % "Rating") filter-stars)
+      (helpers/sort-map-vector sort-field pictures))))
 
 (rf/reg-sub
   :picture-ids
