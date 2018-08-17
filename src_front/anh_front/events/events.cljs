@@ -3,15 +3,6 @@
             [anh-front.db :as db]
             [re-frame.core :as rf]))
 
-(def bogus "gotta define something or re-frame-jump-to-reg doesn't find the ns")
-
-(rf/reg-fx
-  :scroll-into-view
-  (fn [element]
-    (let [dom-element (.getElementById js/document element)]
-      (when dom-element
-        (.scrollIntoViewIfNeeded dom-element false)))))
-
 (rf/reg-fx
   :set-html-focus
   (fn [element]
@@ -67,11 +58,4 @@
   (fn  [db [_ sub]]
     (let [sub-val (rf/subscribe [sub])]
       (println (str @sub-val)))
-    db))
-
-(rf/reg-event-db
-  :print2
-  (fn [db [_ [sub name]]]
-    (let [sub-val (rf/subscribe [sub name])]
-      (println (str  @sub-val)))
     db))

@@ -2,6 +2,13 @@
   (:require [clojure.set :as set]
             [re-frame.core :as rf]))
 
+(rf/reg-fx
+  :scroll-into-view
+  (fn [element]
+    (let [dom-element (.getElementById js/document element)]
+      (when dom-element
+        (.scrollIntoViewIfNeeded dom-element false)))))
+
 (rf/reg-event-fx
   :next-picture
   (fn [{:keys [db]} _]
