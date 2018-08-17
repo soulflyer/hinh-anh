@@ -4,31 +4,31 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[akiroz.re-frame/storage "0.1.2"]
-                 [org.clojure/clojure "1.9.0"]
-                 [org.clojure/clojurescript "1.10.339" :exclusions [org.apache.ant/ant]]
-                 [org.clojure/core.async "0.4.474"]
-                 [reagent "0.8.1"]
-                 [re-com "2.1.0"]
-                 [re-frame "0.10.5"]
-                 ;;[org.clojure/spec.alpha "0.1.143"]
                  [cljs-ajax "0.7.4" :exclusions [[com.fasterxml.jackson.core/jackson-core]]]
-                 [day8.re-frame/http-fx "0.1.6"]
                  [com.cemerick/url "0.1.1"]
                  [com.cognitect/transit-cljs "0.8.256"]
                  [com.rpl/specter "1.1.1"]
+                 [day8.re-frame/http-fx "0.1.6"]
+                 [org.clojure/clojure "1.9.0"]
+                 [org.clojure/clojurescript "1.10.339" :exclusions [org.apache.ant/ant]]
+                 [org.clojure/core.async "0.4.474"]
+                 ;;[org.clojure/spec.alpha "0.1.143"]
+                 [prismatic/dommy "1.1.0"]
+                 [re-com "2.1.0"]
+                 [re-frame "0.10.5"]
                  [re-pressed "0.2.2"]
-                 [prismatic/dommy "1.1.0"]]
+                 [reagent "0.8.1"]]
   :plugins      [[lein-cljsbuild "1.1.7"]
                  [lein-externs "0.1.6"]
                  [lein-shell "0.5.0"]
                  [lein-figwheel "0.5.16" :exclusions [org.clojure/core.cache]]]
   :profiles
   {:dev
-   {:dependencies [[figwheel "0.5.16"]
-                   [cider/piggieback "0.3.8"]
-                   [figwheel-sidecar "0.5.16"]
+   {:dependencies [[cider/piggieback "0.3.8"]
                    [day8.re-frame/re-frame-10x "0.3.3-react16"]
                    [day8.re-frame/tracing "0.5.1"]
+                   [figwheel "0.5.16"]
+                   [figwheel-sidecar "0.5.16"]
                    [org.clojure/data.xml "0.2.0-alpha5"]]
     :repl-options
     {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}}}
@@ -107,7 +107,7 @@
                            :closure-defines
                            {"re_frame.trace.trace_enabled_QMARK_" true
                             "day8.re_frame.tracing.trace_enabled_QMARK_" true}
-                           :preloads [day8.re-frame-10x.preload devtools.preload]
+                           :preloads [day8.re-frame-10x.preload]
                            :main "anh-front.core"
                            :asset-path "js/out_front"}
                 :figwheel {:on-jsload "anh-front.core/mount-root"}}

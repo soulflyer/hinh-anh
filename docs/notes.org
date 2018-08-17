@@ -111,8 +111,6 @@ Need to see this on the production version before worrying about it. Probably wo
 ** TODO [#I] Broke the expand of nodes to the saved project.
 Only when doing a refresh and projects pane is not selected. I don't think this can happen in the production environment.
 
-** TODO [#E] clear-select should pick the first picture but sometimes picks another
-probably need to sort the map before picking the first.
 * Improvements
 ** Filters
 *** TODO [#C] Filter by stars

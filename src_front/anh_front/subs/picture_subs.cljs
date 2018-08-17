@@ -39,7 +39,9 @@
              (rf/subscribe [:picture-sort-field])
              (rf/subscribe [:picture-filter-stars])])
   (fn [[pictures sort-field filter-stars] _]
-    (helpers/sort-map-vector sort-field pictures)))
+    (filter
+      #(>= (get % "Rating") filter-stars)
+      (helpers/sort-map-vector sort-field pictures))))
 
 (rf/reg-sub
   :picture-ids

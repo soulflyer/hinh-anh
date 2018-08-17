@@ -688,3 +688,14 @@ and it shouldn't be called :show-delete-keywording.
    :ARCHIVE_CATEGORY: notes
    :ARCHIVE_TODO: DONE
    :END:
+
+** DONE clear-select should pick the first picture but sometimes picks another
+   CLOSED: [2018-08-16 Thu 22:51]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-16 Thu 22:51
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+probably need to sort the map before picking the first.
