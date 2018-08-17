@@ -1,9 +1,9 @@
 (ns anh-front.events
   (:require [akiroz.re-frame.storage :as store]
-            [anh-front.db            :as db]
-            [anh-front.tree          :as tree]
-            [clojure.set             :as set]
-            [re-frame.core           :as rf]))
+            [anh-front.db :as db]
+            [anh-front.tree :as tree]
+            [clojure.set :as set]
+            [re-frame.core :as rf]))
 
 (def bogus "gotta define something or re-frame-jump-to-reg doesn't find the ns")
 
@@ -25,23 +25,6 @@
   :set-html-focus
   (fn [{:keys [db]} [_ panel]]
     {:set-html-focus panel}))
-
-(store/reg-co-fx! :anh
-                  {:fx   :store
-                   :cofx :store})
-
-(rf/reg-event-fx
-  :store-preferences
-  [(rf/inject-cofx :store)]
-  (let [prefs (rf/subscribe [:preferences])]
-    (fn [{:keys [store db]} _]
-      {:store (assoc store :preferences @prefs)})))
-
-(rf/reg-event-fx
-  :load-preferences
-  [(rf/inject-cofx :store)]
-  (fn [{:keys [db store]} _]
-    {:db (assoc db :preferences (:preferences store))}))
 
 (rf/reg-event-db
   ::initialize-db
@@ -179,57 +162,6 @@
                     [:prev-node :project-tree]]
        :dispatch-later [{:ms 200
                          :dispatch [:clear-focus]}]})))
-
-(rf/reg-event-fx
-  :next-keyword-open
-  (fn [{:keys [db]} _]
-    (let [tr (:keyword-tree db)
-          path (if (< 0 (count (:focus tr)))
-                 (:focus tr)
-                 ["Root"])
-          newpath (tree/next-node tr path)]
-      {:dispatch-n [[:keyword-pics (last newpath)]
-                    [:next-node :keyword-tree]]})))
-
-(rf/reg-event-fx
-  :prev-keyword-open
-  (fn [{:keys [db]} _]
-    (let [tr (:keyword-tree db)
-          path (if (< 0 (count (:focus tr)))
-                 (:focus tr)
-                 ["Root"])
-          newpath (tree/prev-node tr path)]
-      {:dispatch-n [[:keyword-pics (last newpath)]
-                    [:prev-node :keyword-tree]]})))
-
-(rf/reg-event-fx
-  :keyword-all-pics
-  (fn [{:keys [db]} _]
-    (let [kw (rf/subscribe [:keyword-focus])]
-      {:dispatch [:load-all-keyword-pics (last @kw)]})))
-
-
-(rf/reg-event-fx
-  :keyword-pics
-  (fn [{:keys [db]} [_ kw]]
-    (let [all (rf/subscribe [:keyword-pic-display-all])]
-      {:dispatch (if @all
-                   [:load-keyword-pics kw]
-                   [:load-best-picture kw])})))
-
-(rf/reg-event-fx
-  :focused-keyword-pics
-  (fn [{:keys [db]} _]
-    (let [kw (rf/subscribe [:keyword-focus])]
-      {:dispatch [:keyword-pics (last @kw)]})))
-
-(rf/reg-event-fx
-  :toggle-keyword-pic-display
-  (fn [{:keys [db]} _]
-    (let [disp  (rf/subscribe [:keyword-pic-display-all])
-          focus (rf/subscribe [:keyword-focus])]
-      {:db       (assoc db :keyword-pic-display-all (not @disp))
-       :dispatch [:keyword-pics (last @focus)]})))
 
 (rf/reg-event-fx
   :go-to-project
