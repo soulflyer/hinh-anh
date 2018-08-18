@@ -97,8 +97,6 @@ ReferenceError: document is not defined
 Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.
 
 * Bugs
-** TODO [#C] something is writting spurious new entries to the db
-They are of the form ["<keyword>" nil]
 ** TODO [#H] Production app is reading but not writing local-storage
 Seems to be working for most things. Circumstances where the save is done need to be clarified and improved.
 ** TODO [#I] Attempts to write IPTC fields to the API even when empty.

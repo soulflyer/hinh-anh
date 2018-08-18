@@ -44,7 +44,7 @@
                     :on-failure      [:load-fail "keyword-all-pics"]}
        :db         (-> db
                        (assoc :loading? true)
-                       (assoc :error "Loading all pics for keyword " kw))})))
+                       (assoc :error (str "Loading all pics for keyword " kw)))})))
 
 (rf/reg-event-fx
   :load-keyword-pics
@@ -59,7 +59,7 @@
                     :on-failure      [:load-fail "keyword-pics"]}
        :db         (-> db
                        (assoc :loading? true)
-                       (assoc :error "Loading pics for keyword " kw))})))
+                       (assoc :error (str "Loading pics for keyword " kw)))})))
 
 (rf/reg-event-fx
   :load-best-picture
