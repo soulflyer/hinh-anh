@@ -119,7 +119,6 @@ probably need to sort the map before picking the first.
 ** Filters
 *** TODO [#G] Filter by colour label.
 Would be nice, but lots of work and not that important.
-** TODO [#A] Keyword display should default to best.
 ** TODO [#E] Search tree for a project
 ** TODO [#E] tree should use subs not directly access db (document it too)
 ** TODO [#F] Make tabs to select the different views in the left panel.
@@ -131,7 +130,7 @@ Parameter ordering is different when adding keywords and iptc data
 One possible solution is to have calls to subscriptions that are defined outside of tree.cljs. Idealy these would be conditional so that it would still work independantly of any external code.
 ** TODO [#G] re-write open-files. Shouldn't assume .jpg.
 ** TODO [#G] export and import keyword sets
-** TODO [#C] Add zoom function to single pic display.
+** TODO [#F] Add zoom function to single pic display.
 This will probably mean switching from displaying the pic as a background to and img tag.
 ** TODO [#I] Add bulk editing of IPTC fields
 ** TODO [#I] Clean up the way panels are selected and keysets changed.
