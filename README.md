@@ -62,8 +62,8 @@ right   | open parent keyword
 left    | close parent keyword or go up to parent
 a       | show all pics for a keyword
 b       | show only best pic for a keyword
--       | delete keyword
-+       | add keyword
+\-      | delete keyword
+\+      | add keyword
 m       | move keyword to a different parent
 M       | merge keyword
 r       |rename keyword
