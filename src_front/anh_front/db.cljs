@@ -49,7 +49,7 @@
                              :keywords ["entry" "under" "over" "under-over" "boat" "ladder" "rope"]}]
     :favorite-keywords     "people"
     :keyword-shortcuts     "asdfgzxcvb"
-    :keyword-set-shortcuts "hjkl;nm,./"
+    :keyword-set-shortcuts "hjkl;nmiop"
     :colours
     {:picture-text-colour        "#9e9e9e"
      :pictures-background        "#262626"

@@ -4,7 +4,7 @@ Hình Ảnh is a photo management program designed to make sorting and searching
 
 ## Use
 
-Hinh Anh is designed to be used from the keyboard, although all functions are possible by mouse too. By default there is very little on display that isn't necessary for a keyboard driven app. This gives a very clean, non-distracting look. To start with it may be best to turn on the extra displays until the shortcuts all become familiar.
+Hinh Anh is designed to be used from the keyboard. By default there is very little on display that isn't necessary for a keyboard driven app. This gives a very clean, non-distracting look. To start with it may be best to turn on the extra displays until the shortcuts all become familiar.
 
 ### Projects Screen
 This is the project screen. Projects can be selected from the tree on the left. This is for browsing and rating a photo shoot.
@@ -28,6 +28,57 @@ The bottom half of the left panel contains the stored keyword sets. These can be
 This is where the keyword heirarchy is created and maintained. Any keywords applied to a photo that don't already appear in the keyword heirarchy will appear in `Orphaned Keywords` where they can be moved into the correct place. Alternatively they can be created here before applying to photos.
 
 ![Keyword Screen](docs/screenshots/keywords.png?raw=true) 
+
+### Shortcut keys
+At the moment these are hardcoded, although it's fairly easy to change that if you are prepared to edit the source. They are all in `src_front/anh_front/keys/keys.cljs`. Making these configureable is on the to-do list.
+
+### General
+key  | action
+----:|:-----------
+/    | switch between left and right panels
+w    | switch left panel between the various screens
+
+### Pictures
+key         |  action
+---:        |:---
+up/down     | basic navigation
+left/right  |
+return      | Switch to and from single pic display
+1,2,3,4,5,0 | Apply rating to focused pic
+option *n*  | Only show pics rated *n* or greater
+
+### Projects
+key     | action
+---:    |:---
+up/down | next/previous folder or project
+right   | open folder
+left    | close folder or go up to enclosing folder
+
+### Keywords
+key     | action
+---:    |:---
+up/down | next/previous keyword
+right   | open parent keyword
+left    | close parent keyword or go up to parent
+a       | show all pics for a keyword
+b       | show only best pic for a keyword
+-       | delete keyword
++       | add keyword
+m       | move keyword to a different parent
+M       | merge keyword
+r       |rename keyword
+s       | set focussed pic as best for that keyword
+o       | add orphan keywords (keywords found in pics but not in the keyword tree, or keywords in the tree but with no parents)
+p       | purge keywords that are not used in any pics (parent keywords excluded)
+esc     | cancel any of the keyword edit functions
+
+### Keywording
+key         | action
+---         |---
+asdfg zxcvb | add keyword to focused or selected pics
+u           | show buttons for all currently used keywords
+hjkl; nmiop | switch to specified key set
+
 
 ## Installation
 
