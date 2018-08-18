@@ -111,17 +111,41 @@
    [[:rotate-display]
     [{:which (key-codes "return")}]]
    [[:rating 5]
-    [{:which (key-codes "5")}]]
+    [{:which (key-codes "5")
+      :metaKey false}]]
    [[:rating 4]
-    [{:which (key-codes "4")}]]
+    [{:which (key-codes "4")
+      :metaKey false}]]
    [[:rating 3]
-    [{:which (key-codes "3")}]]
+    [{:which (key-codes "3")
+      :metaKey false}]]
    [[:rating 2]
-    [{:which (key-codes "2")}]]
+    [{:which (key-codes "2")
+      :metaKey false}]]
    [[:rating 1]
-    [{:which (key-codes "1")}]]
+    [{:which (key-codes "1")
+      :metaKey false}]]
    [[:rating 0]
-    [{:which (key-codes "0")}]]])
+    [{:which (key-codes "0")
+      :metaKey false}]]
+   [[:picture-filter-stars 5]
+    [{:which (key-codes "5")
+      :metaKey true}]]
+   [[:picture-filter-stars 4]
+    [{:which (key-codes "4")
+      :metaKey true}]]
+   [[:picture-filter-stars 3]
+    [{:which (key-codes "3")
+      :metaKey true}]]
+   [[:picture-filter-stars 2]
+    [{:which (key-codes "2")
+      :metaKey true}]]
+   [[:picture-filter-stars 1]
+    [{:which (key-codes "1")
+      :metaKey true}]]
+   [[:picture-filter-stars 0]
+    [{:which (key-codes "0")
+      :metaKey true}]]])
 
 (def keywording-keys
 [[[:toggle-delete-keywording]

@@ -17,3 +17,9 @@
   (fn [{:keys [db]} _]
     (let [sdk (rf/subscribe [:show-delete-keywording])]
       {:db (assoc db :show-delete-keywording (not @sdk))})))
+
+(rf/reg-event-db
+  :picture-filter-stars
+  (fn [db [_ stars]]
+    (println "****** " stars)
+    (assoc db :picture-filter-stars stars)))
