@@ -108,6 +108,9 @@ The fullsize directory contains my edited photos and the others are all automati
 ### Photos are stored as jpegs
 This is temporary, just haven't got round to writing the code to check what kind of pics are actually there. For now they need to have filenames that end in .jpg (lower-case)
 
+### Keywords are unique
+Odd things will happen if you have 2 keywords in the keyword tree with the same name. At the moment there are no checks to stop this. If you are navigating through the keyword tree you see strange jumps to different parts of the tree then it's because you have duplicates. It's fairly easy to clean up with keyword merge though. Rename is untested in this situation, its behaviour with duplicte keywords should be considered undefined.
+
 ## The Name
 
 Hình Ảnh means image in Vietnamese

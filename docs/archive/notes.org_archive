@@ -708,3 +708,25 @@ and it shouldn't be called :show-delete-keywording.
    :ARCHIVE_CATEGORY: notes
    :ARCHIVE_TODO: DONE
    :END:
+
+** DONE [#C] something is writting spurious new entries to the db
+   CLOSED: [2018-08-18 Sat 23:57]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-18 Sat 23:57
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+They are of the form ["<keyword>" nil] and occur when pressing a to run :keyword-all-pics
+
+** DONE [#E] clear-select should pick the first picture but sometimes picks another
+   CLOSED: [2018-08-18 Sat 23:58]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-08-19 Sun 08:25
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+probably need to sort the map before picking the first.
