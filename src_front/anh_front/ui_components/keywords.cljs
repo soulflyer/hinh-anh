@@ -30,7 +30,12 @@
         [rc/h-box
          :justify :center
          :children
-         [(helper/popover-wrapper atoms/keyword-add-button-show
+         [(helper/popover-wrapper atoms/keyword-find-button-show
+                                  "zmdi-search"
+                                  (str "Find keyword")
+                                  :text-box
+                                  #(rf/dispatch [:say-hello "find"]))
+          (helper/popover-wrapper atoms/keyword-add-button-show
                                   "zmdi-plus"
                                   (str "Add to " (last @focused))
                                   :text-box

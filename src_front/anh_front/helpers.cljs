@@ -15,6 +15,14 @@
 (defn stars [num]
   (str/join (take (js/parseInt num) (repeat "★"))))
 
+(defn empty-stars [num]
+  (str/join (take (js/parseInt num) (repeat "☆"))))
+
+(defn fraction-stars
+  "Returns a string of stars where <numerator> are filled in and the rest are empty"
+  [numerator denominator]
+  (str (stars numerator) (empty-stars (- denominator numerator))))
+
 (def right-triangle "▶")
 (def down-triangle  "▼")
 

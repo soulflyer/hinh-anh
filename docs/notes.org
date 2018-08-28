@@ -115,7 +115,17 @@ Only when doing a refresh and projects pane is not selected. I don't think this 
 ** Filters
 *** TODO [#G] Filter by colour label.
 Would be nice, but lots of work and not that important.
+** TODO [#D] Dislay best for every sub keyword
+** TODO [#D] Display best image even if it isn't up to the current Rating
+** DONE [#C] Display current filter rating
+   CLOSED: [2018-08-28 Tue 12:11]
 ** TODO [#E] Search tree for a project or keyword.
+*** TODO [#E] Call API for a full list of keywords (or maybe extract from keyword tree)
+*** TODO [#E] re-com typeahead
+*** TODO [#E] Modify or bypass popover-wrapper to fit typeahead
+*** TODO [#E] On found, call API to get the parents of the keyword
+(or add to API, get path from keyword)
+*** TODO [#E] Pass path to :expand-path
 ** TODO [#E] tree should use subs not directly access db (document it too)
 ** TODO [#F] Make tabs to select the different views in the left panel.
 ** TODO [#F] Refactor to make use of :refresh-pictures

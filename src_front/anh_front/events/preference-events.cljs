@@ -12,3 +12,10 @@
   (fn [db _]
     (let [view-fullsize (rf/subscribe [:view-fullsize])]
       (assoc-in db [:preferences :view-fullsize] (not @view-fullsize)))))
+
+(rf/reg-event-db
+  ;; Sadly this requires a restart. Doesn't seem to be any way to change
+  ;; the split except by the mouse.
+  :set-screen-split
+  (fn [db [_ split-percent]]
+    (assoc-in db [:preferences :screen-split] split-percent)))

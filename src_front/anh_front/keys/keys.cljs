@@ -93,6 +93,8 @@
    [[:load-keyword-tree]
     [{:which (key-codes "r")
       :shiftKey true}]]
+   [[:toggle-button-show atoms/keyword-find-button-show]
+    [{:which (key-codes "f")}]]
    [[:close-popovers]
     [{:which (key-codes "esc")}]
     [{:which (key-codes "return")}]]])

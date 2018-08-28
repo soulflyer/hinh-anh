@@ -28,6 +28,13 @@
     (:fullsize-directory preferences)))
 
 (rf/reg-sub
+  :screen-split
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:screen-split preferences)))
+
+(rf/reg-sub
   :view-fullsize
   (fn [_ _]
     (rf/subscribe [:preferences]))

@@ -30,10 +30,11 @@
    {:api-root              "http://localhost:31000/api"
     :show-empty-exif       false
     :last-project          []
+    :screen-split          20
     :fullsize-directory    "/Users/iain/Pictures/Published/fullsize"
     :medium-directory      "/Users/iain/Pictures/Published/medium"
     :large-directory       "/Users/iain/Pictures/Published/large"
-    :view-fullsize         true
+    :view-fullsize         false
     ;; This vector specifies the writeable fields in the details panel
     :iptc-fields           [[:Object-Name "Title" 1]
                             [:Caption-Abstract "Caption" 3]]
