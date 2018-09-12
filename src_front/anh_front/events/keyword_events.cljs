@@ -10,7 +10,8 @@
                  (:focus tr)
                  ["Root"])
           newpath (tree/next-node tr path)]
-      {:dispatch-n [[:load-best-picture (last newpath)]
+      {:db         (assoc db :keyword-pic-display-all false)
+       :dispatch-n [[:load-best-picture (last newpath)]
                     [:next-node :keyword-tree]]})))
 
 (rf/reg-event-fx
@@ -21,9 +22,20 @@
                  (:focus tr)
                  ["Root"])
           newpath (tree/prev-node tr path)]
-      {:dispatch-n [[:load-best-picture (last newpath)]
+      {:db         (assoc db :keyword-pic-display-all false)
+       :dispatch-n [[:load-best-picture (last newpath)]
                     [:prev-node :keyword-tree]]})))
 
+;; TODO toggle between load-all-keyword-pics and load-keyword-pics (Redundant?)
+(rf/reg-event-fx
+  :toggle-keyword-all-pics
+  (fn [{:keys [db]} _]
+    (let [kw (rf/subscribe [:keyword-focus])]
+      {:dispatch (if true
+                   [:load-all-keyword-pics]
+                   [:load-keyword-pics])})))
+
+;; Possibly redundant. Incorporate in :keyword-pics
 (rf/reg-event-fx
   :keyword-all-pics
   (fn [{:keys [db]} _]
@@ -34,9 +46,10 @@
 (rf/reg-event-fx
   :keyword-pics
   (fn [{:keys [db]} [_ kw]]
-    (let [all (rf/subscribe [:keyword-pic-display-all])]
+    (let [all (rf/subscribe [:keyword-pic-display-all])
+          sub (rf/subscribe [:keyword-pic-display-sub])]
       {:dispatch (if @all
-                   [:load-keyword-pics kw]
+                   [:load-all-keyword-pics kw]
                    [:load-best-picture kw])})))
 
 (rf/reg-event-fx
@@ -51,6 +64,14 @@
     (let [disp  (rf/subscribe [:keyword-pic-display-all])
           focus (rf/subscribe [:keyword-focus])]
       {:db       (assoc db :keyword-pic-display-all (not @disp))
+       :dispatch [:keyword-pics (last @focus)]})))
+
+(rf/reg-event-fx
+  :toggle-keyword-sub-display
+  (fn [{:keys [db]} _]
+    (let [disp  (rf/subscribe [:keyword-pic-display-sub])
+          focus (rf/subscribe [:keyword-focus])]
+      {:db       (assoc db :keyword-pic-display-sub (not @disp))
        :dispatch [:keyword-pics (last @focus)]})))
 
 (rf/reg-event-db

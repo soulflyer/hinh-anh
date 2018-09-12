@@ -39,6 +39,11 @@
   (fn [db _]
     (:keyword-pic-display-all db)))
 
+(rf/reg-sub
+  :keyword-pic-display-sub
+  (fn [db _]
+    (:keyword-pic-display-sub db)))
+
 ;; (rf/reg-sub
 ;;   :keyword-delete-button-show
 ;;   (fn [db _]

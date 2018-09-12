@@ -63,7 +63,7 @@
     [{:which (key-codes "left")}]]
    [[:expand-selected :keyword-tree]
     [{:which (key-codes "right")}]]
-   [[:keyword-all-pics]
+   [[:toggle-keyword-sub-display]
     [{:which (key-codes "a")}]]
    [[:toggle-keyword-pic-display]
     [{:which (key-codes "b")}]]
