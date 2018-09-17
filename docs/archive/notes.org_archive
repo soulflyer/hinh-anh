@@ -512,6 +512,25 @@ so left goes up on 1st press then closes on 2nd press. Also make right switch to
    :ARCHIVE_CATEGORY: notes
    :ARCHIVE_TODO: DONE
    :END:
+
+** DONE Rationalise dislay best/all
+   CLOSED: [2018-09-12 Wed 22:12]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-09-13 Thu 09:03
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+States include:
+Best for single keyword
+Best for all keywords
+All for keyword
+All for keyword with sub-keywords
+Probably best to have one key (b) to toggle between best and all and another to toggle between just the keyword and the keyword plus sub-keywords (a).
+*** DONE Turn the a key into a toggle
+    CLOSED: [2018-09-04 Tue 22:09]
+
 * Bugs
 
 ** DONE Why don't year month project and version appear in the details?

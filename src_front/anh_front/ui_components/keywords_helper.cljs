@@ -26,8 +26,6 @@
    :body body])
 
 (defn popover-wrapper
-  ;; TODO add an extra parameter so popover body can be something other than
-  ;; just a text field.
   [showing-atom icon title type on-click]
   [rc/popover-anchor-wrapper
    :showing? showing-atom

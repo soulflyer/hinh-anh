@@ -56,6 +56,13 @@
     (:api-root preferences)))
 
 (rf/reg-sub
+  :dive-centre
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:dive-centre preferences)))
+
+(rf/reg-sub
   :picture-sort-field
   (fn [_ _]
     (rf/subscribe [:preferences]))

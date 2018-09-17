@@ -19,7 +19,8 @@
      (let [focused       (rf/subscribe [:keyword-focus])
            focused-pic   (rf/subscribe [:focused-pic-path])
            project       (butlast (helpers/path->vector @focused-pic))
-           project-path  (helpers/vector->path project)]
+           project-path  (helpers/vector->path project)
+           dive-centre   (rf/subscribe [:dive-centre])]
        [[rc/scroller
          :child
          (tree/root
@@ -80,4 +81,9 @@
                                   (str "Go to project " project-path)
                                   :button
                                   #(rf/dispatch [:go-to-project project]))
+          (helper/popover-wrapper atoms/export-json-button-show
+                                  "zmdi-language-javascript"
+                                  (str "Export selection as JSON for " @dive-centre)
+                                  :text-box
+                                  #(rf/dispatch [:write-json %]))
           (helper/anchor-icon "zmdi-refresh" #(rf/dispatch [:load-keyword-tree]))]]])]))

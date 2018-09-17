@@ -28,6 +28,7 @@
             [anh-front.show-events              :as show-events]
             [anh-front.subs                     :as reframe-subs]
             [anh-front.tree-events              :as tree-events]
+            [anh-front.write-api-events         :as write-api-events]
             [re-frame.core                      :as rf]
             [re-pressed.core                    :as rp]
             [reagent.core                       :as reagent :refer [atom]]

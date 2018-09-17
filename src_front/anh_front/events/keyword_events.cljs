@@ -26,23 +26,6 @@
        :dispatch-n [[:load-best-picture (last newpath)]
                     [:prev-node :keyword-tree]]})))
 
-;; TODO toggle between load-all-keyword-pics and load-keyword-pics (Redundant?)
-(rf/reg-event-fx
-  :toggle-keyword-all-pics
-  (fn [{:keys [db]} _]
-    (let [kw (rf/subscribe [:keyword-focus])]
-      {:dispatch (if true
-                   [:load-all-keyword-pics]
-                   [:load-keyword-pics])})))
-
-;; Possibly redundant. Incorporate in :keyword-pics
-(rf/reg-event-fx
-  :keyword-all-pics
-  (fn [{:keys [db]} _]
-    (let [kw (rf/subscribe [:keyword-focus])]
-      {:dispatch [:load-all-keyword-pics (last @kw)]})))
-
-
 (rf/reg-event-fx
   :keyword-pics
   (fn [{:keys [db]} [_ kw]]
@@ -74,6 +57,7 @@
       {:db       (assoc db :keyword-pic-display-sub (not @disp))
        :dispatch [:keyword-pics (last @focus)]})))
 
+;; Not used but should it be?
 (rf/reg-event-db
   :set-keyword-pic-display-all
   (fn [db [_ x]]

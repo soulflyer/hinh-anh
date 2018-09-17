@@ -18,8 +18,7 @@
        :label label]
       [rc/input-text
        :width "100%"
-       :attr {:id label
-              :tabIndex "1"}
+       :attr {:id label}
        :style {:height "1.5em"
                :padding "0px 0px 0px 3px"
                :border-radius "0px 0px 4px 4px"

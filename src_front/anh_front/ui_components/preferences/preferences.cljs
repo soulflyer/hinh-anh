@@ -8,4 +8,5 @@
    :children
    [[rc/gap :size "3px"]
     [components/text-pref "api root path" :api-root :set-api-root]
-    [components/boolean-pref "view masters" :view-fullsize :toggle-view-fullsize]]])
+    [components/boolean-pref "view masters" :view-fullsize :toggle-view-fullsize]
+    [components/text-pref "Dive centre" :dive-centre :set-dive-centre]]])

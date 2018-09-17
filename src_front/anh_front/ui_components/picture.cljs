@@ -7,7 +7,7 @@
             [re-com.core       :as rc]))
 
 (defn panel [pic]
-  (let [large-path    (rf/subscribe [:large-directory])
+  (let [small-path    (rf/subscribe [:medium-directory])
         fullsize-path (rf/subscribe [:fullsize-directory])
         view-fullsize (rf/subscribe [:view-fullsize])
         focused-pic   (rf/subscribe [:focused-pic-path])
@@ -25,7 +25,7 @@
         path          (when pic (helpers/image-path pic))
         pic-path      (str (if @view-fullsize
                              @fullsize-path
-                             @large-path)
+                             @small-path)
                            "/" path ".jpg")
         width         (reader/read-string (get pic "Image-Width"))
         height        (reader/read-string (get pic "Image-Height"))

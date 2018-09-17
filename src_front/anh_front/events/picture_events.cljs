@@ -14,8 +14,8 @@
   (fn [{:keys [db]} _]
     (let [pic-ids    (rf/subscribe [:pictures-map])
           pic-focus  (rf/subscribe [:focused-pic-path])
-          invert-ids (set/map-invert @pic-ids)
-          focus-num  (invert-ids @pic-focus)
+          invert-ids (rf/subscribe [:pictures-inverse-map])
+          focus-num  (@invert-ids @pic-focus)
           new-id     (get @pic-ids (min (dec (count @pic-ids))
                                         (inc focus-num)))]
       {:db (assoc-in db [:picture-list :focus] new-id)

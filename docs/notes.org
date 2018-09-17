@@ -117,22 +117,8 @@ Only when doing a refresh and projects pane is not selected. I don't think this 
 ** Filters
 *** TODO [#G] Filter by colour label.
 Would be nice, but lots of work and not that important.
-** DONE Rationalise dislay best/all
-   CLOSED: [2018-09-12 Wed 22:12]
-States include:
-Best for single keyword
-Best for all keywords
-All for keyword
-All for keyword with sub-keywords
-Probably best to have one key (b) to toggle between best and all and another to toggle between just the keyword and the keyword plus sub-keywords (a).
-*** DONE Turn the a key into a toggle
-    CLOSED: [2018-09-04 Tue 22:09]
-
-** TODO [#F] display best for every sub keyword
-**** TODO [#F] Add API call to return all best images
-*** TODO [#G] Display current state of all/best
-** TODO [#G] Display best image even if it isn't up to the current Rating
-May not be worth doing. Maybe reset filter-stars if picture-list is empty? Or alter filter to include pictures tagged with red.
+** TODO [#A] Export selection as text file
+** TODO [#B] Read text file into selection
 ** TODO [#C] Search tree for a project or keyword.
 *** TODO [#C] Call API for a full list of keywords (or maybe extract from keyword tree)
 *** TODO [#C] re-com typeahead
@@ -145,14 +131,19 @@ May not be worth doing. Maybe reset filter-stars if picture-list is empty? Or al
 ** TODO [#F] Make tabs to select the different views in the left panel.
 ** TODO [#F] Refactor to make use of :refresh-pictures
 instead of storing changes directly to db
-** TODO [#G] Make api consistent
+** TODO [#F] display best for every sub keyword
+**** TODO [#F] Add API call to return all best images
+*** TODO [#G] Display current state of all/best
+** TODO [#F] Add zoom function to single pic display.
+   This will probably mean switching from displaying the pic as a background to and img tag.
+** TODO [#G] Display best image even if it isn't up to the current Rating
+May not be worth doing. Maybe reset filter-stars if picture-list is empty? Or alter filter to include pictures tagged with red.** TODO [#G] Make api consistent
 Parameter ordering is different when adding keywords and iptc data
 ** TODO [#G] Remove dependancy on css to colour the selected tree item.
 One possible solution is to have calls to subscriptions that are defined outside of tree.cljs. Idealy these would be conditional so that it would still work independantly of any external code.
 ** TODO [#G] re-write open-files. Shouldn't assume .jpg.
 ** TODO [#G] export and import keyword sets
-** TODO [#F] Add zoom function to single pic display.
-This will probably mean switching from displaying the pic as a background to and img tag.
+** TODO [#G] add messages to simple-response
 ** TODO [#I] Add bulk editing of IPTC fields
 ** TODO [#I] Clean up the way panels are selected and keysets changed.
  There may be some redundancy in that I probably shouldn't have to change panel-focus and key-set independantly. Partially sorted. Don't need to toggle focus except when projects are in view. Still need to improve it so I CAN'T toggle focus except when projects are in view.

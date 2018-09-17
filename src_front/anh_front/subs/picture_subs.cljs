@@ -1,8 +1,8 @@
 (ns anh-front.picture-subs
   (:require [re-frame.core :as rf]
             [anh-front.helpers :as helpers]
-            ;;[com.rpl.specter :as sp]
-            ))
+            [clojure.set :as set]))
+
 (rf/reg-sub
   :picture-display-list
   (fn [db _] (:picture-display-list db)))
@@ -52,6 +52,11 @@
   :pictures-map
   (fn [_ _] (rf/subscribe [:sorted-pictures]))
   (fn [pictures _] (zipmap (iterate inc 0) (map helpers/image-path pictures))))
+
+(rf/reg-sub
+  :pictures-inverse-map
+  (fn [_ _] (rf/subscribe [:pictures-map]))
+  (fn [pictures _] (set/map-invert pictures)))
 
 (rf/reg-sub
   :focused-pic-path

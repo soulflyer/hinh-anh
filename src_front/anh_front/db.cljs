@@ -52,6 +52,7 @@
     :favorite-keywords     "people"
     :keyword-shortcuts     "asdfgzxcvb"
     :keyword-set-shortcuts "hjkl;nmiop"
+    :dive-centre           "Sailing Club"
     :colours
     {:picture-text-colour        "#9e9e9e"
      :pictures-background        "#262626"

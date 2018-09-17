@@ -4,8 +4,13 @@
 
 (rf/reg-event-db
   :set-api-root
-  (fn  [db [_ api-root]]
+  (fn [db [_ api-root]]
     (assoc-in db [:preferences :api-root] api-root)))
+
+(rf/reg-event-db
+  :set-dive-centre
+  (fn [db [_ dive-centre]]
+    (assoc-in db [:preferences :dive-centre] dive-centre)))
 
 (rf/reg-event-db
   :toggle-view-fullsize
