@@ -14,7 +14,7 @@
   (fn [{:keys [db]} [_ filename]]
     (let [api-root   (rf/subscribe [:api-root])
           divecentre (rf/subscribe [:dive-centre])
-          selection  (rf/subscribe [:selected-pics])
+          selection  (rf/subscribe [:selected-jpegs])
           pics       (url/url-encode (reduce str (interpose " " @selection)))]
       {:http-xhrio {:method          :get
                     :cross-origin    true

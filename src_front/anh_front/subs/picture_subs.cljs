@@ -75,6 +75,11 @@
   (fn [picture-list _] (:selected picture-list)))
 
 (rf/reg-sub
+  :selected-jpegs
+  (fn [_ _] (rf/subscribe [:selected-pics]))
+  (fn [pics _] (map #(str % ".jpg") pics)))
+
+(rf/reg-sub
   :current-keywords
   (fn [_ _]        (rf/subscribe [:pictures]))
   (fn [pictures _] (helpers/all-keywords pictures)))
