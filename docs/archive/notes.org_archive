@@ -759,3 +759,13 @@ They are of the form ["<keyword>" nil] and occur when pressing a to run :keyword
    :ARCHIVE_TODO: DONE
    :END:
 probably need to sort the map before picking the first.
+
+** DONE [#C] Single pic view does not respect view-masters
+   CLOSED: [2018-08-30 Thu 15:43]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-09-18 Tue 01:00
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:

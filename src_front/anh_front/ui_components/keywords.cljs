@@ -1,13 +1,13 @@
 (ns anh-front.keywords
-  (:require [re-frame.core             :as rf]
-            [re-com.core               :as rc]
-            [anh-front.atoms           :as atoms]
-            [anh-front.helpers         :as helpers]
-            [anh-front.styles          :as styles]
-            [anh-front.tree            :as tree]
-            [anh-front.keywords-helper :as helper]
-            [reagent.core              :as reagent]
-            [anh-front.styles          :as styles]))
+  (:require [re-frame.core      :as rf]
+            [re-com.core        :as rc]
+            [anh-front.atoms    :as atoms]
+            [anh-front.helpers  :as helpers]
+            [anh-front.styles   :as styles]
+            [anh-front.tree     :as tree]
+            [anh-front.popovers :as helper]
+            [reagent.core       :as reagent]
+            [anh-front.styles   :as styles]))
 
 (defn panel []
   (let [tree-name :keyword-tree

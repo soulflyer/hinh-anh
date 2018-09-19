@@ -38,7 +38,48 @@
    [[:fill-keyword-set]
     [{:which (key-codes "u")}]]
    [[:set-favorite-keywords]
-    [{:which (key-codes "y")}]]])
+    [{:which (key-codes "y")}]]
+   [[:picture-filter-stars 5]
+    [{:which (key-codes "5")
+      :metaKey true}]]
+   [[:picture-filter-stars 4]
+    [{:which (key-codes "4")
+      :metaKey true}]]
+   [[:picture-filter-stars 3]
+    [{:which (key-codes "3")
+      :metaKey true}]]
+   [[:picture-filter-stars 2]
+    [{:which (key-codes "2")
+      :metaKey true}]]
+   [[:picture-filter-stars 1]
+    [{:which (key-codes "1")
+      :metaKey true}]]
+   [[:picture-filter-stars 0]
+    [{:which (key-codes "0")
+      :metaKey true}]]
+   [[:rating 5]
+    [{:which (key-codes "5")
+      :metaKey false}]]
+   [[:rating 4]
+    [{:which (key-codes "4")
+      :metaKey false}]]
+   [[:rating 3]
+    [{:which (key-codes "3")
+      :metaKey false}]]
+   [[:rating 2]
+    [{:which (key-codes "2")
+      :metaKey false}]]
+   [[:rating 1]
+    [{:which (key-codes "1")
+      :metaKey false}]]
+   [[:rating 0]
+    [{:which (key-codes "0")
+      :metaKey false}]]
+   [[:toggle-button-show atoms/export-json-button-show]
+    [{:which (key-codes "j")}]]
+   [[:close-popovers]
+    [{:which (key-codes "esc")}]
+    [{:which (key-codes "return")}]]])
 
 (def details-keys
   [[[:say-hello "Details"]
@@ -94,10 +135,7 @@
     [{:which (key-codes "r")
       :shiftKey true}]]
    [[:toggle-button-show atoms/keyword-find-button-show]
-    [{:which (key-codes "f")}]]
-   [[:close-popovers]
-    [{:which (key-codes "esc")}]
-    [{:which (key-codes "return")}]]])
+    [{:which (key-codes "f")}]]])
 
 (def picture-keys
   [[[:next-picture]
@@ -112,50 +150,17 @@
     [{:which (key-codes "space")}]]
    [[:rotate-display]
     [{:which (key-codes "return")}]]
-   [[:rating 5]
-    [{:which (key-codes "5")
-      :metaKey false}]]
-   [[:rating 4]
-    [{:which (key-codes "4")
-      :metaKey false}]]
-   [[:rating 3]
-    [{:which (key-codes "3")
-      :metaKey false}]]
-   [[:rating 2]
-    [{:which (key-codes "2")
-      :metaKey false}]]
-   [[:rating 1]
-    [{:which (key-codes "1")
-      :metaKey false}]]
-   [[:rating 0]
-    [{:which (key-codes "0")
-      :metaKey false}]]
-   [[:picture-filter-stars 5]
-    [{:which (key-codes "5")
-      :metaKey true}]]
-   [[:picture-filter-stars 4]
-    [{:which (key-codes "4")
-      :metaKey true}]]
-   [[:picture-filter-stars 3]
-    [{:which (key-codes "3")
-      :metaKey true}]]
-   [[:picture-filter-stars 2]
-    [{:which (key-codes "2")
-      :metaKey true}]]
-   [[:picture-filter-stars 1]
-    [{:which (key-codes "1")
-      :metaKey true}]]
-   [[:picture-filter-stars 0]
-    [{:which (key-codes "0")
-      :metaKey true}]]])
+
+   ])
 
 (def keywording-keys
-[[[:toggle-delete-keywording]
-[{:which (key-codes "e")}]]])
+  [[[:toggle-delete-keywording]
+    [{:which (key-codes "e")}]]])
 
 (def project-key-set
-{:event-keys (into common-keys project-keys)
-:prevent-default-keys prevent-keys})
+  {:event-keys (into common-keys project-keys)
+   :prevent-default-keys prevent-keys
+   :always-listen-keys always-listen-keys})
 
 (def keywords-key-set
   {:event-keys (into common-keys keyword-keys)
@@ -163,29 +168,31 @@
    :always-listen-keys always-listen-keys})
 
 (def picture-key-set
-{:event-keys (into common-keys picture-keys)
-:prevent-default-keys prevent-keys})
+  {:event-keys (into common-keys picture-keys)
+   :prevent-default-keys prevent-keys
+   :always-listen-keys always-listen-keys})
 
 (def details-key-set
-{:event-keys (into common-keys picture-keys)
-:prevent-default-keys prevent-keys
-:always-listen-keys [{:which 13}]})
+  {:event-keys (into common-keys picture-keys)
+   :prevent-default-keys prevent-keys
+   :always-listen-keys [{:which 13}]})
 
 (defn keywording-key-set []
-{:event-keys (reduce into
-[common-keys
-picture-keys
-keywording-keys
-(keywording-shortcut-keys)
-(keywording-set-shortcut-keys)])
-:prevent-default-keys prevent-keys})
+  {:event-keys (reduce into
+                       [common-keys
+                        picture-keys
+                        keywording-keys
+                        (keywording-shortcut-keys)
+                        (keywording-set-shortcut-keys)])
+   :prevent-default-keys prevent-keys
+   :always-listen-keys always-listen-keys})
 
 (defn key-rules
-[panel]
-(case panel
-:projects   project-key-set
-:pictures   picture-key-set
-:details    details-key-set
-:keywords   keywords-key-set
-:keywording (keywording-key-set)
-project-key-set))
+  [panel]
+  (case panel
+    :projects   project-key-set
+    :pictures   picture-key-set
+    :details    details-key-set
+    :keywords   keywords-key-set
+    :keywording (keywording-key-set)
+    project-key-set))
