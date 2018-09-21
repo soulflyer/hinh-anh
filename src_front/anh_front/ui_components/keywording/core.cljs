@@ -1,8 +1,8 @@
-(ns anh-front.keywording
+(ns anh-front.keywording.core
   (:require [re-com.core   :as rc]
             [re-frame.core :as rf]
             [reagent.core  :as reagent]
-            [anh-front.keywording-components :as components]))
+            [anh-front.keywording.components :as components]))
 
 (defn panel
   []

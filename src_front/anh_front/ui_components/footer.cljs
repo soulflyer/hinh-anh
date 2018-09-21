@@ -1,9 +1,9 @@
-(ns anh-front.footer
-  (:require [re-com.core    :as rc]
-            [re-frame.core  :as rf]
-            [clojure.string :as string]
-            [anh-front.styles :as styles]
-            [anh-front.helpers :as helpers]))
+(ns anh-front.ui-components.footer
+  (:require [re-com.core                    :as rc]
+            [re-frame.core                  :as rf]
+            [clojure.string                 :as string]
+            [anh-front.ui-components.styles :as styles]
+            [anh-front.helpers              :as helpers]))
 
 (defn panel []
   (let [current (rf/subscribe [:displayed-project])

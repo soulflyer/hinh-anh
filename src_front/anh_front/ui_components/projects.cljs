@@ -1,4 +1,4 @@
-(ns anh-front.projects
+(ns anh-front.ui-components.projects
   (:require [anh-front.atoms                          :as atoms]
             [re-com.core                              :as rc]
             [re-frame.core                            :as rf]

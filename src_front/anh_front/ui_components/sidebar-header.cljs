@@ -1,4 +1,4 @@
-(ns anh-front.sidebar-header
+(ns anh-front.ui-components.sidebar-header
   (:require [re-com.core    :as rc]
             [re-frame.core  :as rf]
             [clojure.string :as string]))

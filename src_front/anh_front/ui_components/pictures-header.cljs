@@ -1,4 +1,4 @@
-(ns anh-front.pictures-header
+(ns anh-front.ui-components.pictures-header
   (:require [re-com.core :as rc]))
 
 (defn panel []

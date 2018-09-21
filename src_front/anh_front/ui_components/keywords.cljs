@@ -1,14 +1,14 @@
-(ns anh-front.keywords
-  (:require [anh-front.atoms                          :as atoms]
-            [anh-front.helpers                        :as helpers]
-            [anh-front.styles                         :as styles]
+(ns anh-front.ui-components.keywords
+  (:require [anh-front.helpers                        :as helpers]
             [anh-front.tree                           :as tree]
             [anh-front.ui-components.popover.core     :as pc]
             [anh-front.ui-components.popover.popovers :as popover]
             [anh-front.ui-components.popover.wrapper  :as pw]
+            [anh-front.ui-components.styles           :as styles]
             [re-com.core                              :as rc]
+            [re-frame.core                            :as rf]
             [reagent.core                             :as reagent]
-            [re-frame.core                            :as rf]))
+            [anh-front.atoms                          :as atoms]))
 
 (defn panel []
   (let [tree-name :keyword-tree
@@ -17,7 +17,7 @@
      :justify :between
      :height "100%"
      :children
-     (let [focused       (rf/subscribe [:keyword-focus])
+     (let [focused       (last @(rf/subscribe [:keyword-focus]))
            focused-pic   (rf/subscribe [:focused-pic-path])
            project       (butlast (helpers/path->vector @focused-pic))
            project-path  (helpers/vector->path project)
@@ -33,14 +33,14 @@
          :justify :center
          :children
          [(popover/find-keyword)
-          (popover/add-keyword (last @focused))
-          (popover/delete-keyword (last @focused))
-          (popover/move-keyword (last @focused))
-          (popover/rename-keyword (last @focused))
-          (popover/merge-keywords (last @focused))
-          (popover/set-best @focused-pic (last @focused))
+          (popover/add-keyword focused)
+          (popover/delete-keyword focused)
+          (popover/move-keyword focused)
+          (popover/rename-keyword focused)
+          (popover/merge-keywords focused)
+          (popover/set-best @focused-pic focused)
           (popover/add-orphans)
           (popover/purge-keywords)
-          (popover/goto-project)
+          (popover/goto-project project)
           (popover/json-export @dive-centre)
           (pc/anchor-icon "zmdi-refresh" #(rf/dispatch [:load-keyword-tree]))]]])]))

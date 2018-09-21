@@ -1,4 +1,4 @@
-(ns anh-front.single-pic
+(ns anh-front.ui-components.single-pic
   (:require [re-com.core       :as rc]
             [re-frame.core     :as rf]
             [cljs.reader       :as reader]

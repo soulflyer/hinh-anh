@@ -1,4 +1,4 @@
-(ns anh-front.styles
+(ns anh-front.ui-components.styles
   (:require [re-frame.core :as rf]))
 
 (defn pictures []

@@ -1,4 +1,4 @@
-(ns anh-front.preferences-components
+(ns anh-front.preferences.components
   (:require [re-com.core   :as rc]
             [re-frame.core :as rf]))
 

@@ -1,7 +1,7 @@
 (ns anh-front.ui-components.popover.core
-  (:require [anh-front.styles :as styles]
-            [re-com.core :as rc]
-            [re-frame.core :as rf]))
+  (:require [anh-front.ui-components.styles :as styles]
+            [re-com.core                    :as rc]
+            [re-frame.core                  :as rf]))
 
 (defn anchor [label on-click]
   (let [background (rf/subscribe [:button-background])]

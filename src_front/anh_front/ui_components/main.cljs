@@ -1,17 +1,17 @@
-(ns anh-front.main
-  (:require [anh-front.details         :as details]
-            [anh-front.header          :as header]
-            [anh-front.keywording      :as keywording]
-            [anh-front.keywords        :as keywords]
-            [anh-front.pictures        :as pictures]
-            [anh-front.pictures-header :as pictures-header]
-            [anh-front.preferences     :as preferences]
-            [anh-front.projects        :as projects]
-            [anh-front.sidebar-header  :as sidebar-header]
-            [anh-front.styles          :as styles]
-            [re-com.core               :as rc]
-            [anh-front.footer          :as footer]
-            [re-frame.core             :as rf]))
+(ns anh-front.ui-components.main
+  (:require [anh-front.keywording.core               :as keywording]
+            [anh-front.preferences.core              :as preferences]
+            [anh-front.ui-components.footer          :as footer]
+            [anh-front.ui-components.header          :as header]
+            [anh-front.ui-components.keywords        :as keywords]
+            [anh-front.ui-components.pictures        :as pictures]
+            [anh-front.ui-components.pictures-header :as pictures-header]
+            [anh-front.ui-components.projects        :as projects]
+            [anh-front.ui-components.sidebar-header  :as sidebar-header]
+            [anh-front.ui-components.styles          :as styles]
+            [re-com.core                             :as rc]
+            [re-frame.core                           :as rf]
+            [anh-front.details.core                  :as details]))
 
 (defn panel []
   (let [focus        (rf/subscribe [:panel-focus])

@@ -1,9 +1,9 @@
-(ns anh-front.detail-components
-  (:require [clojure.string :as str]
+(ns anh-front.details.components
+  (:require [anh-front.helpers :as helpers]
             [re-com.core :as rc]
             [re-frame.core :as rf]
             [reagent.core :as reagent]
-            [anh-front.helpers :as helpers]))
+            [clojure.string :as str]))
 
 (defn line
   [contents label]
