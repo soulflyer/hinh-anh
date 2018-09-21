@@ -1,13 +1,14 @@
 (ns anh-front.keywords
-  (:require [re-frame.core      :as rf]
-            [re-com.core        :as rc]
-            [anh-front.atoms    :as atoms]
-            [anh-front.helpers  :as helpers]
-            [anh-front.styles   :as styles]
-            [anh-front.tree     :as tree]
-            [anh-front.popovers :as helper]
-            [reagent.core       :as reagent]
-            [anh-front.styles   :as styles]))
+  (:require [anh-front.atoms                          :as atoms]
+            [anh-front.helpers                        :as helpers]
+            [anh-front.styles                         :as styles]
+            [anh-front.tree                           :as tree]
+            [anh-front.ui-components.popover.core     :as pc]
+            [anh-front.ui-components.popover.popovers :as popover]
+            [anh-front.ui-components.popover.wrapper  :as pw]
+            [re-com.core                              :as rc]
+            [reagent.core                             :as reagent]
+            [re-frame.core                            :as rf]))
 
 (defn panel []
   (let [tree-name :keyword-tree
@@ -25,65 +26,21 @@
          :child
          (tree/root
            (for [kw (get-in @tree [:children])]
-             (tree/node @tree tree-name [(get kw :name)] :focused-keyword-pics)))]
+             (tree/node @tree tree-name [(get kw :name)] :keyword-open)))]
         [rc/line
          :style {:margin-left "6px"}]
         [rc/h-box
          :justify :center
          :children
-         [(helper/popover-wrapper atoms/keyword-find-button-show
-                                  "zmdi-search"
-                                  (str "Find keyword")
-                                  :text-box
-                                  #(rf/dispatch [:say-hello "find"]))
-          (helper/popover-wrapper atoms/keyword-add-button-show
-                                  "zmdi-plus"
-                                  (str "Add to " (last @focused))
-                                  :text-box
-                                  #(rf/dispatch [:add-to-focused-keyword %]))
-          (helper/popover-wrapper atoms/keyword-delete-button-show
-                                  "zmdi-delete"
-                                  (str "Delete " (last @focused))
-                                  :button
-                                  #(rf/dispatch [:delete-focused-keyword]))
-          (helper/popover-wrapper atoms/keyword-move-button-show
-                                  "zmdi-open-in-new"
-                                  (str "Move " (last @focused) " to:")
-                                  :text-box
-                                  #(rf/dispatch [:move-focused-keyword %]))
-          (helper/popover-wrapper atoms/keyword-rename-button-show
-                                  "zmdi-edit"
-                                  (str "Rename " (last @focused) " to:")
-                                  :text-box
-                                  #(rf/dispatch [:rename-focused-keyword %]))
-          (helper/popover-wrapper atoms/keyword-merge-button-show
-                                  "zmdi-arrow-merge"
-                                  (str "Merge with " (last @focused) ":")
-                                  :text-box
-                                  #(rf/dispatch [:merge-focused-keyword %]))
-          (helper/popover-wrapper atoms/keyword-set-best-button-show
-                                  "zmdi-image"
-                                  (str "Set " @focused-pic " as best for " (last @focused))
-                                  :button
-                                  #(rf/dispatch [:set-sample]))
-          (helper/popover-wrapper atoms/keyword-add-orphans-button-show
-                                  "zmdi-collection-plus"
-                                  (str "Add keywords from photos")
-                                  :button
-                                  #(rf/dispatch [:add-missing-keywords]))
-          (helper/popover-wrapper atoms/keyword-purge-unused-button-show
-                                  "zmdi-flash"
-                                  (str "DANGER: remove unused keywords")
-                                  :button
-                                  #(rf/dispatch [:delete-unused-keywords]))
-          (helper/popover-wrapper atoms/go-to-project-button-show
-                                  "zmdi-collection-folder-image"
-                                  (str "Go to project " project-path)
-                                  :button
-                                  #(rf/dispatch [:go-to-project project]))
-          (helper/popover-wrapper atoms/export-json-button-show
-                                  "zmdi-language-javascript"
-                                  (str "Export selection as JSON for " @dive-centre)
-                                  :text-box
-                                  #(rf/dispatch [:write-json %]))
-          (helper/anchor-icon "zmdi-refresh" #(rf/dispatch [:load-keyword-tree]))]]])]))
+         [(popover/find-keyword)
+          (popover/add-keyword (last @focused))
+          (popover/delete-keyword (last @focused))
+          (popover/move-keyword (last @focused))
+          (popover/rename-keyword (last @focused))
+          (popover/merge-keywords (last @focused))
+          (popover/set-best @focused-pic (last @focused))
+          (popover/add-orphans)
+          (popover/purge-keywords)
+          (popover/goto-project)
+          (popover/json-export @dive-centre)
+          (pc/anchor-icon "zmdi-refresh" #(rf/dispatch [:load-keyword-tree]))]]])]))

@@ -27,6 +27,12 @@
                     [:prev-node :keyword-tree]]})))
 
 (rf/reg-event-fx
+  :keyword-open
+  (fn [{:keys [db]} _]
+    {:db (assoc db :keyword-pic-display-all false)
+     :dispatch [:focused-keyword-pics]}))
+
+(rf/reg-event-fx
   :keyword-pics
   (fn [{:keys [db]} [_ kw]]
     (let [all (rf/subscribe [:keyword-pic-display-all])

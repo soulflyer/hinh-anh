@@ -97,7 +97,8 @@ ReferenceError: document is not defined
 Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.
 
 * Bugs
-** TODO [#C] clicking on a keyword doesn't switch to best only display as next-keyword does
+** TODO [#E] Delete keyword should refresh keyword tree.
+** TODO [#D] return doesn't close popover
 ** TODO [#D] :selected-pics can sometimes contain an empty string
 this confuses JSON export. Might be easier to guard against empty entries than track down what causes them.
 ** TODO [#H] Production app is reading but not writing local-storage
@@ -118,11 +119,11 @@ Only when doing a refresh and projects pane is not selected. I don't think this 
 ** Filters
 *** TODO [#G] Filter by colour label.
 Would be nice, but lots of work and not that important.
-** DONE Export selection as text file
-   CLOSED: [2018-09-17 Mon 23:58]
-** TODO [#B] Read text file into selection
+** TODO [#E] Interface with image-search for more complex searches.
+Could be done by reading the contents of picture list from a file,
+or by expanding the api to take clojure code to feed to image-search.
+Ideally there should be an "open in hinh-anh" option in image-search.
 ** TODO [#C] Search tree for a project or keyword.
-*** TODO [#C] Call API for a full list of keywords (or maybe extract from keyword tree)
 *** TODO [#C] re-com typeahead
 *** TODO [#D] Modify or bypass popover-wrapper to fit typeahead
 *** TODO [#D] On found, call API to get the parents of the keyword

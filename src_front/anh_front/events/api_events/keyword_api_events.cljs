@@ -29,3 +29,29 @@
        :db         (-> db
                        (assoc :keyword-loading? true)
                        (assoc :error "Loading keywords..."))})))
+
+(rf/reg-event-db
+  :keyword-list-response
+  (fn  [db [_ response]]
+    (let [reader (transit/reader :json)
+          resp   (transit/read reader response)]
+      (-> db
+          (assoc :keyword-list resp)
+          (assoc :loading? false)
+          (assoc :error (str "Loaded keyword list for autocomplete."))))))
+
+(rf/reg-event-fx
+  :load-keyword-list
+  (fn [{:keys [db]} [_ response]]
+    (let [api-root (rf/subscribe [:api-root])]
+      {:http-xhrio
+       {:method          :get
+        :cross-origin    true
+        :uri             (str @api-root "/keywords/all/")
+        :format          (ajax/json-request-format)
+        :response-format (ajax/json-response-format {:keywords? true})
+        :on-success      [:keyword-list-response]
+        :on-failure      [:load-fail "load-keyword-list"]}
+       :db ( -> db
+            (assoc :loading? true)
+            (assoc :error (str "Loading keyword list for autocomplete.")))})))

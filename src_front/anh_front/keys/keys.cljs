@@ -78,8 +78,7 @@
    [[:toggle-button-show atoms/export-json-button-show]
     [{:which (key-codes "j")}]]
    [[:close-popovers]
-    [{:which (key-codes "esc")}]
-    [{:which (key-codes "return")}]]])
+    [{:which (key-codes "esc")}]]])
 
 (def details-keys
   [[[:say-hello "Details"]
@@ -135,7 +134,9 @@
     [{:which (key-codes "r")
       :shiftKey true}]]
    [[:toggle-button-show atoms/keyword-find-button-show]
-    [{:which (key-codes "f")}]]])
+    [{:which (key-codes "f")}]]
+   [[:close-popovers]
+    [{:which (key-codes "return")}]]])
 
 (def picture-keys
   [[[:next-picture]

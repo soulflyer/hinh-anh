@@ -531,6 +531,15 @@ Probably best to have one key (b) to toggle between best and all and another to 
 *** DONE Turn the a key into a toggle
     CLOSED: [2018-09-04 Tue 22:09]
 
+** DONE Export selection as text file
+   CLOSED: [2018-09-17 Mon 23:58]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-09-20 Thu 10:47
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
 * Bugs
 
 ** DONE Why don't year month project and version appear in the details?
@@ -764,6 +773,16 @@ probably need to sort the map before picking the first.
    CLOSED: [2018-08-30 Thu 15:43]
    :PROPERTIES:
    :ARCHIVE_TIME: 2018-09-18 Tue 01:00
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE [#C] clicking on a keyword doesn't switch to best only display as next-keyword does
+   CLOSED: [2018-09-20 Thu 09:23]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-09-20 Thu 09:24
    :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
    :ARCHIVE_OLPATH: Bugs
    :ARCHIVE_CATEGORY: notes

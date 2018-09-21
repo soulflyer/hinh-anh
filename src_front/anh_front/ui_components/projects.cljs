@@ -1,9 +1,9 @@
 (ns anh-front.projects
-  (:require [anh-front.atoms    :as atoms]
-            [anh-front.popovers :as helper]
-            [anh-front.tree     :as tree]
-            [re-frame.core      :as rf]
-            [re-com.core        :as rc]))
+  (:require [anh-front.atoms                          :as atoms]
+            [re-com.core                              :as rc]
+            [re-frame.core                            :as rf]
+            [anh-front.tree                           :as tree]
+            [anh-front.ui-components.popover.popovers :as popover]))
 
 (defn panel
   []
@@ -28,11 +28,7 @@
         [rc/h-box
          :justify :center
          :children
-         [(helper/popover-wrapper atoms/export-json-button-show
-                                  "zmdi-language-javascript"
-                                  (str "Export selection as JSON for " @dive-centre)
-                                  :text-box
-                                  #(rf/dispatch [:write-json %]))]]])]))
+         [(popover/json-export @dive-centre)]]])]))
 
 (defn selected-project []
   (let [sp (rf/subscribe [:selected-project])]

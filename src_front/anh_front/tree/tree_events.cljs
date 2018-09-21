@@ -84,9 +84,6 @@
   :expand-path
   (fn [{:keys [db]} [_ [tree-name path]]]
     (println (str "Expand " tree-name " " path))
-    ;; TODO make this more general. Only works for yr/mm/proj now.
-    ;; {:dispatch-n [[:expand tree-name [(first path)]]
-    ;;               [:expand tree-name [(first path) (first (rest path))]]]}
     {:dispatch-n (loop [i (rest (reverse path))
                         out []]
                    (if (= (count i) 0)
@@ -108,7 +105,6 @@
                                [:focus]
                                #(tree/next-node (tree-name db) %)
                                (tree-name db)))
-     ;; TODO This works but there is no guarantee that :focus won't already have changed.
      :scroll (reduce
                str
                (interpose
