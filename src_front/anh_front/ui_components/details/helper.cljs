@@ -1,4 +1,4 @@
-(ns anh-front.details.helper
+(ns anh-front.ui-components.details.helper
   (:require [clojure.string :as str]))
 
 (def file-fields

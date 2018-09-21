@@ -1,6 +1,6 @@
-(ns anh-front.details.core
-  (:require [anh-front.details.components :as components]
-            [anh-front.details.helper     :as helper]
+(ns anh-front.ui-components.details.core
+  (:require [anh-front.ui-components.details.components :as components]
+            [anh-front.ui-components.details.helper     :as helper]
             [re-com.core                  :as rc]
             [re-frame.core                :as rf]))
 

@@ -1,4 +1,4 @@
-(ns anh-front.details.components
+(ns anh-front.ui-components.details.components
   (:require [anh-front.helpers :as helpers]
             [re-com.core :as rc]
             [re-frame.core :as rf]

@@ -1,5 +1,5 @@
-(ns anh-front.preferences.core
-  (:require [anh-front.preferences.components :as components]
+(ns anh-front.ui-components.preferences.core
+  (:require [anh-front.ui-components.preferences.components :as components]
             [re-com.core :as rc]))
 
 (defn panel []

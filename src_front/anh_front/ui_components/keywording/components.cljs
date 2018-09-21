@@ -1,4 +1,4 @@
-(ns anh-front.keywording.components
+(ns anh-front.ui-components.keywording.components
   (:require [re-frame.core :as rf]
             [re-com.core   :as rc]))
 
