@@ -19,7 +19,7 @@
                  :on-click on-click]]])])
 
 (defn popover-textbox-wrapper
-  [showing-atom icon title description on-click]
+  [showing-atom icon title description suggestions on-click]
   [rc/popover-anchor-wrapper
    :showing? showing-atom
    :position :above-center
@@ -29,7 +29,9 @@
               [rc/v-box
                :children [[rc/label
                            :label description]
-                          [rc/input-text
+                          [rc/typeahead
+                           :data-source suggestions
+                           :change-on-blur? true
                            :attr {:id (str "popover-" )}
                            :model nil
                            :on-change on-click]]])])

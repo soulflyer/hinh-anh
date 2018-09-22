@@ -4,12 +4,23 @@
             [re-frame.core :as rf]
             [anh-front.helpers :as helpers]))
 
+(defn keyword-suggestions [s]
+  (let [names (rf/subscribe [:keyword-list])]
+    (into []
+          (take 16
+                (for [n @names :when (re-find (re-pattern (str "(?i)" s)) n)]
+                  n)))))
+
+(defn dive-centre-suggestions []
+  ["Sailing Club" "Alpha" "Soulfyer"])
+
 (defn json-export [dive-centre]
   (pw/popover-textbox-wrapper
     atoms/export-json-button-show
     "zmdi-language-javascript"
     "Export JSON"
     (str "Export selection as JSON for " dive-centre)
+    dive-centre-suggestions
     #(rf/dispatch [:write-json %])))
 
 (defn find-keyword []
@@ -26,6 +37,7 @@
     "zmdi-plus"
     "Add"
     (str "Add to " parent)
+    keyword-suggestions
     #(rf/dispatch [:add-to-focused-keyword %])))
 
 (defn delete-keyword [kw]
@@ -42,6 +54,7 @@
     "zmdi-open-in-new"
     "Move"
     (str "Move " kw " to:")
+    keyword-suggestions
     #(rf/dispatch [:move-focused-keyword %])))
 
 (defn rename-keyword [kw]
@@ -50,6 +63,7 @@
     "zmdi-edit"
     "Rename"
     (str "Rename " kw " to:")
+    keyword-suggestions
     #(rf/dispatch [:rename-focused-keyword %])))
 
 (defn merge-keywords [kw]
@@ -58,6 +72,7 @@
     "zmdi-arrow-merge"
     "Merge"
     (str "Merge with " kw ":")
+    keyword-suggestions
     #(rf/dispatch [:merge-focused-keyword %])))
 
 (defn set-best [pic kw]

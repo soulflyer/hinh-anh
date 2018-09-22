@@ -28,6 +28,11 @@
     (:keyword-tree db)))
 
 (rf/reg-sub
+  :keyword-list
+  (fn [db _]
+    (:keyword-list db)))
+
+(rf/reg-sub
   :keyword-focus
   (fn [_ _]
     (rf/subscribe [:keyword-tree]))

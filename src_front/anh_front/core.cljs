@@ -52,6 +52,7 @@
   (rf/dispatch [:request-projects])
   (rf/dispatch [:open-last-visited-project])
   (rf/dispatch [:load-keyword-tree])
+  (rf/dispatch [:load-keyword-list])
   (mount-root))
 
 (defn ^:export speak []
