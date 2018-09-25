@@ -26,17 +26,6 @@
        :dispatch-n [[:load-best-picture (last newpath)]
                     [:prev-node :keyword-tree]]})))
 
-;; (rf/reg-event-fx
-;;   :go-to-keyword
-;;   ;; TODO call this as :on-success of call to api keyword/<kw>/path
-;;   (fn [{:keys [db]} [_ path]]
-;;     (println (str "********* " path))
-;;     {:db (-> db
-;;              (assoc-in [:keyword-tree :focus] path))
-;;      :dispatch-n [[:keyword-pics (last path)]
-;;                   [:expand-path [:keyword-tree path]]]}))
-;; Moved to :open-keyword-response
-
 (rf/reg-event-fx
   :keyword-open
   (fn [{:keys [db]} _]

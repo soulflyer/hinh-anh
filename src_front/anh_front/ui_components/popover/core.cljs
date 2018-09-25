@@ -19,8 +19,12 @@
      :on-click on-click]))
 
 (defn popover [title body]
-  [rc/popover-content-wrapper
-   :padding 1
-   :no-clip? true
-   :title title
-   :body body])
+  (let [background (rf/subscribe [:details-textbox-background])]
+    [rc/popover-content-wrapper
+     :padding 1
+     :arrow-length 100
+     :no-clip? true
+     :title title
+     :style {:border "solid 1px black"}
+     :popover-color @background
+     :body body]))

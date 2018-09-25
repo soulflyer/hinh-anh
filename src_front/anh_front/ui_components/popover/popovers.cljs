@@ -7,7 +7,7 @@
 (defn keyword-suggestions [s]
   (let [names (rf/subscribe [:keyword-list])]
     (into []
-          (take 16
+          (take 7
                 (for [n @names :when (re-find (re-pattern (str "(?i)" s)) n)]
                   n)))))
 

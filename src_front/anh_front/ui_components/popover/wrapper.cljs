@@ -1,6 +1,7 @@
 (ns anh-front.ui-components.popover.wrapper
   (:require [anh-front.ui-components.popover.core :as pc]
-            [re-com.core :as rc]))
+            [re-com.core :as rc]
+            [re-frame.core :as rf]))
 
 (defn popover-button-wrapper
   [showing-atom icon title description on-click]
@@ -20,18 +21,23 @@
 
 (defn popover-textbox-wrapper
   [showing-atom icon title description suggestions on-click]
-  [rc/popover-anchor-wrapper
-   :showing? showing-atom
-   :position :above-center
-   :anchor (pc/anchor-icon icon #(swap! showing-atom not))
-   :popover (pc/popover
-              title
-              [rc/v-box
-               :children [[rc/label
-                           :label description]
-                          [rc/typeahead
-                           :data-source suggestions
-                           :change-on-blur? true
-                           :attr {:id (str "popover-" )}
-                           :model nil
-                           :on-change on-click]]])])
+  (let [background (rf/subscribe [:details-textbox-background])]
+    [rc/popover-anchor-wrapper
+     :showing? showing-atom
+     :position :above-center
+     :anchor (pc/anchor-icon icon #(swap! showing-atom not))
+     :popover (pc/popover
+                title
+                [rc/v-box
+                 :children [[rc/label
+                             :label description]
+                            [rc/typeahead
+                             :data-source suggestions
+                             :change-on-blur? true
+                             :style {:padding "0px 5px 0px 5px"
+                                     :height "1.2em"
+                                     ;;:background @background
+                                     }
+                             :attr {:id (str "popover-" )}
+                             :model nil
+                             :on-change on-click]]])]))

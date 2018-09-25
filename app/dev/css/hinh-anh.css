@@ -39,3 +39,14 @@ li {
 p {
     margin:0px;
 }
+
+.rc-typeahead-suggestion {
+    background: lightgreen;
+    height: 1.3em;
+    padding: 0px;
+}
+
+.popover-title {
+    background: gray;
+    border: 0px;
+}
