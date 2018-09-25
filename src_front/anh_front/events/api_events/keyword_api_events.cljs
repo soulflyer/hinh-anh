@@ -42,7 +42,7 @@
 
 (rf/reg-event-fx
   :load-keyword-list
-  (fn [{:keys [db]} [_ response]]
+  (fn [{:keys [db]} [_ response]] ;; TODO don't think response is necessary here.
     (let [api-root (rf/subscribe [:api-root])]
       {:http-xhrio
        {:method          :get
@@ -55,3 +55,32 @@
        :db ( -> db
             (assoc :loading? true)
             (assoc :error (str "Loading keyword list for autocomplete.")))})))
+
+(rf/reg-event-fx
+  :open-keyword-response
+  (fn [{:keys [db]} [_ response]]
+    (let [reader (transit/reader :json)
+          resp   (transit/read reader response)]
+      {:db (-> db
+               (assoc :loading? false)
+               (assoc :error (str "Opened keyword "))
+               (assoc-in [:keyword-tree :focus] resp))
+       :dispatch-n [[:keyword-pics (last resp)]
+                    [:expand-path [:keyword-tree resp]]]}
+      )))
+
+(rf/reg-event-fx
+  :open-keyword
+  (fn [{:keys [db]} [_ kw]]
+    (let [api-root (rf/subscribe [:api-root])]
+      {:http-xhrio
+       {:method          :get
+        :cross-origin    true
+        :uri             (str @api-root "/keywords/" kw "/path")
+        :format          (ajax/json-request-format)
+        :response-format (ajax/json-response-format {:keywords? true})
+        :on-success      [:open-keyword-response]
+        :on-failure      [:load-fail "open-keyword"]}
+       :db ( -> db
+            (assoc :loading? true)
+            (assoc :error (str "Opened keyword " kw)))})))

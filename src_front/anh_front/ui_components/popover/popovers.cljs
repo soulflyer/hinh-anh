@@ -24,12 +24,13 @@
     #(rf/dispatch [:write-json %])))
 
 (defn find-keyword []
-  (pw/popover-button-wrapper
+  (pw/popover-textbox-wrapper
     atoms/keyword-find-button-show
     "zmdi-search"
     "Find"
     "Find keyword"
-    #(rf/dispatch [:say-hello "find"])))
+    keyword-suggestions
+    #(rf/dispatch [:open-keyword %])))
 
 (defn add-keyword [parent]
   (pw/popover-textbox-wrapper

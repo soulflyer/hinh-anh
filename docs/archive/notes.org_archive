@@ -540,6 +540,17 @@ Probably best to have one key (b) to toggle between best and all and another to 
    :ARCHIVE_CATEGORY: notes
    :ARCHIVE_TODO: DONE
    :END:
+
+** DONE [#C] On found, call API to get the parents of the keyword
+   CLOSED: [2018-09-24 Mon 14:20]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-09-24 Mon 14:20
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/Search tree for a project or keyword.
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+(or add to API, get path from keyword)
 * Bugs
 
 ** DONE Why don't year month project and version appear in the details?
