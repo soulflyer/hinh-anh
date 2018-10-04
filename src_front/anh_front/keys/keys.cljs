@@ -37,8 +37,6 @@
     [{:which (key-codes "w")}]]
    [[:fill-keyword-set]
     [{:which (key-codes "u")}]]
-   ;; [[:set-favorite-keywords]
-   ;;  [{:which (key-codes "y")}]]
    [[:picture-filter-stars 5]
     [{:which (key-codes "5")
       :metaKey true}]]
@@ -75,8 +73,6 @@
    [[:rating 0]
     [{:which (key-codes "0")
       :metaKey false}]]
-   [[:toggle-button-show atoms/export-json-button-show]
-    [{:which (key-codes "j")}]]
    [[:close-popovers]
     [{:which (key-codes "esc")}]]])
 
@@ -91,6 +87,8 @@
     [{:which (key-codes "up")}]]
    [[:up-or-close :project-tree]
     [{:which (key-codes "left")}]]
+   [[:toggle-button-show atoms/export-json-button-show]
+    [{:which (key-codes "j")}]]
    [[:expand-selected :project-tree]
     [{:which (key-codes "right")}]]])
 
@@ -135,6 +133,8 @@
       :shiftKey true}]]
    [[:toggle-button-show atoms/keyword-find-button-show]
     [{:which (key-codes "f")}]]
+   [[:toggle-button-show atoms/export-json-button-show]
+    [{:which (key-codes "j")}]]
    [[:close-popovers]
     [{:which (key-codes "return")}]]])
 
@@ -150,9 +150,7 @@
    [[:toggle-select-focused-pic]
     [{:which (key-codes "space")}]]
    [[:rotate-display]
-    [{:which (key-codes "return")}]]
-
-   ])
+    [{:which (key-codes "return")}]]])
 
 (def keywording-keys
   [[[:toggle-delete-keywording]

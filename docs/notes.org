@@ -97,8 +97,6 @@ ReferenceError: document is not defined
 Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.
 
 * Bugs
-** TODO [#C] J key for json export is interfering with keywording
-** TODO [#C] ; key doesn't work when selecting keyword sets
 ** TODO [#D] project tree not expanding on startup (pics displayed ok tho)
 ** TODO [#D] Empty keyword set created when tab is hit in create text-box
 ** TODO [#E] Delete keyword should refresh keyword tree.
@@ -136,7 +134,6 @@ or by expanding the api to take clojure code to feed to image-search.
 Ideally there should be an "open in hinh-anh" option in image-search.
 ** TODO [#D] Search tree for a project or keyword.
 *** TODO [#D] Add a find project popover.
-** TODO [#C] keyword set needs an update-from-current button (or save it automatically)
 ** TODO [#E] tree should use subs not directly access db (document it too)
 ** TODO [#F] Make tabs to select the different views in the left panel.
 ** TODO [#F] Refactor to make use of :refresh-pictures
