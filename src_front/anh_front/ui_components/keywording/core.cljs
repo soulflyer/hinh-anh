@@ -19,8 +19,7 @@
      :children
      [[rc/v-box
        :children
-       [[components/footer-buttons]
-        [components/button-set
+       [[components/button-set
          keyword-map
          :add-to-keyword-set
          :remove-from-keyword-set
@@ -41,5 +40,6 @@
          :remove-keyword-set
          :set-keyword-set-by-name
          :set-keyword-set-by-name
-         "keyword set"]]]
-      ]]))
+         "keyword set"]
+        [rc/line :style {:margin "6px 0px 0px 6px"}]
+        [components/footer-buttons]]]]]))

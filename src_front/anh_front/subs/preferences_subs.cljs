@@ -83,12 +83,12 @@
   (fn [preferences _]
     (:favorite-keywords preferences)))
 
-(rf/reg-sub
-  :favorite-keyword-set
-  (fn [_ _]
-    [(rf/subscribe [:favorite-keywords]) (rf/subscribe [:keyword-sets])])
-  (fn [[favorite-keywords keyword-sets] _]
-    (:keywords (first (filter #(= favorite-keywords (:name %)) keyword-sets)))))
+;; (rf/reg-sub
+;;   :favorite-keyword-set
+;;   (fn [_ _]
+;;     [(rf/subscribe [:favorite-keywords]) (rf/subscribe [:keyword-sets])])
+;;   (fn [[favorite-keywords keyword-sets] _]
+;;     (:keywords (first (filter #(= favorite-keywords (:name %)) keyword-sets)))))
 
 (rf/reg-sub
   :keyword-shortcuts

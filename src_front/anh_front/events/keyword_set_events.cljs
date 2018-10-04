@@ -11,24 +11,12 @@
        :dispatch [:set-keys-for :left]})))
 
 (rf/reg-event-fx
-  :set-keyword-set
-  (fn [{:keys [db]} [_ keyword-set]]
-    {:db (-> db
-             (assoc-in [:preferences :keyword-set] keyword-set)
-             (assoc :error "set keywords"))}))
-
-(rf/reg-event-fx
   :set-keyword-set-by-name
   (fn [{:keys [db]} [_ name]]
     (let [keyword-set (rf/subscribe [:keyword-set-by-name name])]
-      {:db (assoc-in db [:preferences :keyword-set] @keyword-set)
+      {:db (-> db (assoc-in [:preferences :keyword-set] @keyword-set)
+               (assoc :loaded-keyword-set name))
        :dispatch [:set-keys-for :left]})))
-
-(rf/reg-event-fx
-  :set-favorite-keywords
-  (fn [{:keys [db]} _]
-    (let [fav (rf/subscribe [:favorite-keyword-set])]
-      {:dispatch [:set-keyword-set @fav] })))
 
 (rf/reg-event-fx
   :clear-keywords
@@ -41,16 +29,28 @@
 (rf/reg-event-fx
   :add-to-keyword-set
   (fn [{:keys [db]} [_ new-keyword]]
-    (let [current-set (rf/subscribe [:keyword-set])]
-      {:db (assoc-in db [:preferences :keyword-set]
-                     (set (conj @current-set new-keyword)))})))
+    (let [current-set     (rf/subscribe [:keyword-set])
+          loaded-keywords (rf/subscribe [:loaded-keyword-set])]
+      {:db (cond-> db
+             true (assoc-in [:preferences :keyword-set]
+                            (set (conj @current-set new-keyword))))
+       :dispatch [:refresh-keyword-set]})))
+
+(rf/reg-event-fx
+  :refresh-keyword-set
+  (fn [_ _]
+    (let [ loaded-keywords (rf/subscribe [:loaded-keyword-set])]
+      (if @loaded-keywords
+        {:dispatch-n [[:remove-keyword-set @loaded-keywords]
+                      [:add-keyword-set @loaded-keywords]]}))))
 
 (rf/reg-event-fx
   :remove-from-keyword-set
   (fn [{:keys [db]} [_ old-keyword]]
     (let [current-set (rf/subscribe [:keyword-set])]
       {:db (assoc-in db [:preferences :keyword-set]
-                     (remove #{old-keyword} @current-set))})))
+                     (remove #{old-keyword} @current-set))
+       :dispatch [:refresh-keyword-set]})))
 
 (rf/reg-event-fx
   :add-keyword-set

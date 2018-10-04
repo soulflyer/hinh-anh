@@ -25,6 +25,6 @@
      :arrow-length 100
      :no-clip? true
      :title title
-     :style {:border "solid 1px black"}
      :popover-color @background
+     :position-offset -4
      :body body]))

@@ -37,8 +37,8 @@
     [{:which (key-codes "w")}]]
    [[:fill-keyword-set]
     [{:which (key-codes "u")}]]
-   [[:set-favorite-keywords]
-    [{:which (key-codes "y")}]]
+   ;; [[:set-favorite-keywords]
+   ;;  [{:which (key-codes "y")}]]
    [[:picture-filter-stars 5]
     [{:which (key-codes "5")
       :metaKey true}]]
