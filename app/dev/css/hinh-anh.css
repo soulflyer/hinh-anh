@@ -36,8 +36,13 @@ li {
     border: solid 1px transparent;
     border-width: 1px 0px 1px 1px;
 }
+
 p {
     margin:0px;
+}
+
+.rc-typeahead-suggestions-container {
+    position: relative;
 }
 
 .rc-typeahead-suggestion {

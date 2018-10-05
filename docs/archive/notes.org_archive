@@ -561,6 +561,16 @@ Probably best to have one key (b) to toggle between best and all and another to 
    :ARCHIVE_CATEGORY: notes
    :ARCHIVE_TODO: DONE
    :END:
+
+** DONE [#C] keyword set needs an update-from-current button (or save it automatically)
+   CLOSED: [2018-10-04 Thu 18:35]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-10-04 Thu 18:35
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
 * Bugs
 
 ** DONE Why don't year month project and version appear in the details?
@@ -804,6 +814,56 @@ probably need to sort the map before picking the first.
    CLOSED: [2018-09-20 Thu 09:23]
    :PROPERTIES:
    :ARCHIVE_TIME: 2018-09-20 Thu 09:24
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE [#C] ; key doesn't work when selecting keyword sets
+   CLOSED: [2018-10-04 Thu 18:45]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-10-04 Thu 18:45
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE [#C] J key for json export is interfering with keywording
+   CLOSED: [2018-10-04 Thu 18:44]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-10-04 Thu 18:45
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE [#D] Empty keyword set created when tab is hit in create text-box
+   CLOSED: [2018-10-04 Thu 18:59]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-10-04 Thu 18:59
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE [#E] Delete keyword should refresh keyword tree.
+   CLOSED: [2018-10-04 Thu 18:59]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-10-04 Thu 19:00
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
+
+** DONE [#E] Delete keyword should delete keyword from photos too.
+   CLOSED: [2018-10-04 Thu 19:00]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-10-04 Thu 19:00
    :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
    :ARCHIVE_OLPATH: Bugs
    :ARCHIVE_CATEGORY: notes

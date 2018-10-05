@@ -1,6 +1,7 @@
 (ns anh-front.ui-components.keywording.components
   (:require [re-frame.core :as rf]
-            [re-com.core   :as rc]))
+            [re-com.core   :as rc]
+            [anh-front.suggestions :as suggestions]))
 
 (defn delete-button [on-click kw]
   [rc/md-icon-button
@@ -8,7 +9,7 @@
    :size :smaller
    :on-click #(rf/dispatch [on-click kw])])
 
-(defn keyword-button [kw on-click on-right-click]
+(defn kw-button [kw on-click on-right-click]
   (let [header-background (rf/subscribe [:details-header-background])
         background        (rf/subscribe [:details-background])]
     [rc/v-box
@@ -33,18 +34,31 @@
   (let [header-background (rf/subscribe [:details-header-background])
         textbox-background (rf/subscribe [:details-textbox-background])]
     [rc/box
-     :size "1 0 auto"
+     ;;:size "1 0 auto"
      :child
-     [rc/input-text
-      :width "100%"
+     ;; TODO change this to a typeahead
+     ;; [rc/input-text
+     ;;  :width "100%"
+     ;;  :height "1.5em"
+     ;;  :model nil
+     ;;  :placeholder placeholder
+     ;;  :on-change #(rf/dispatch [add-function %])
+     ;;  :style {:background    @textbox-background
+     ;;          :border-radius "4px 4px 4px 4px"
+     ;;          :border        (str "solid 1px " @header-background)
+     ;;          :padding       "1px 3px 1px 3px"}]
+     [rc/typeahead
+      :data-source suggestions/keywords
+      ;;:width "100%"
       :height "1.5em"
+      :change-on-blur? true
       :model nil
-      :placeholder placeholder
       :on-change #(rf/dispatch [add-function %])
       :style {:background    @textbox-background
               :border-radius "4px 4px 4px 4px"
               :border        (str "solid 1px " @header-background)
-              :padding       "1px 3px 1px 3px"}]]))
+              :padding       "1px 3px 1px 3px"}
+      ]]))
 
 (defn shortcut [sk]
   (let [shortcut-highlight (rf/subscribe [:shortcut-highlight])]
@@ -55,7 +69,7 @@
              :color   @shortcut-highlight}]))
 
 (defn button-set
-  [keyword-map add remove on-click on-right-click name]
+  [button-map add remove on-click on-right-click name]
   (let [shortcut-highlight (rf/subscribe [:shortcut-highlight])
         show-edit        (rf/subscribe [:show-delete-keywording])]
     [rc/scroller
@@ -65,15 +79,15 @@
      [rc/v-box
       :children
       [(let [edit @show-edit
-             kws (keys @keyword-map)]
-         (for [keyword kws]
-           ^{:key (str "button-" name "-" keyword)}
+             buttons (keys @button-map)]
+         (for [btn buttons]
+           ^{:key (str "button-" name "-" btn)}
            [rc/h-box
             :children
-            [[shortcut (str (get @keyword-map keyword))]
-             [keyword-button keyword on-click on-right-click]
+            [[shortcut (str (get @button-map btn))]
+             [kw-button btn on-click on-right-click]
              (if edit
-               [delete-button remove keyword])]]))
+               [delete-button remove btn])]]))
        (if @show-edit
          [add-input add (str "Add " name)])]]]))
 

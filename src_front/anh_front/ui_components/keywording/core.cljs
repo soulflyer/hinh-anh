@@ -32,7 +32,7 @@
        [[rc/h-box
          :children
          [[components/shortcut "u"]
-          [components/keyword-button "Current Keywords"
+          [components/kw-button "Current Keywords"
            :fill-keyword-set nil]]]
         [components/button-set
          keyword-sets-map

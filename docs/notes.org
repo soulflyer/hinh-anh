@@ -97,10 +97,11 @@ ReferenceError: document is not defined
 Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.
 
 * Bugs
-** TODO [#D] project tree not expanding on startup (pics displayed ok tho)
-** TODO [#D] Empty keyword set created when tab is hit in create text-box
-** TODO [#E] Delete keyword should refresh keyword tree.
-** TODO [#E] Delete keyword should delete keyword from photos too.
+** TODO [#E] Tab should choose selection in typeahead not go to next suggestion.
+** TODO [#C] list of keywords doesn't get updated
+** TODO [#C] add keyword to key set doesn't use typeahead
+** TODO [#F] project tree not expanding on startup (pics displayed ok tho)
+This only happens some times. May not be a problem.
 ** TODO [#E] Selecting a keyword which is not in any photos should clear the pictures display
 ** TODO [#E] space should not scroll the pictures window
 ** TODO [#D] go to project should switch left-panel to projects

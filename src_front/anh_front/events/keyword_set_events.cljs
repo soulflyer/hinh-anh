@@ -31,10 +31,11 @@
   (fn [{:keys [db]} [_ new-keyword]]
     (let [current-set     (rf/subscribe [:keyword-set])
           loaded-keywords (rf/subscribe [:loaded-keyword-set])]
-      {:db (cond-> db
-             true (assoc-in [:preferences :keyword-set]
-                            (set (conj @current-set new-keyword))))
-       :dispatch [:refresh-keyword-set]})))
+      (if (not (= "" new-keyword))
+        {:db (cond-> db
+               true (assoc-in [:preferences :keyword-set]
+                              (set (conj @current-set new-keyword))))
+         :dispatch [:refresh-keyword-set]}))))
 
 (rf/reg-event-fx
   :refresh-keyword-set
@@ -42,7 +43,8 @@
     (let [ loaded-keywords (rf/subscribe [:loaded-keyword-set])]
       (if @loaded-keywords
         {:dispatch-n [[:remove-keyword-set @loaded-keywords]
-                      [:add-keyword-set @loaded-keywords]]}))))
+                      [:add-keyword-set @loaded-keywords]
+                      [:load-keyword-list]]}))))
 
 (rf/reg-event-fx
   :remove-from-keyword-set
@@ -55,13 +57,14 @@
 (rf/reg-event-fx
   :add-keyword-set
   (fn [{:keys [db]} [_ new-name]]
-    (let [keywords     (rf/subscribe [:keyword-set])
-          keyword-sets (rf/subscribe [:keyword-sets])]
-      {:db (assoc-in
-             db
-             [:preferences :keyword-sets]
-             (conj @keyword-sets {:name new-name :keywords @keywords}))
-       :dispatch [:store-preferences]})))
+    (if (not (= "" new-name))
+      (let [keywords     (rf/subscribe [:keyword-set])
+            keyword-sets (rf/subscribe [:keyword-sets])]
+        {:db (assoc-in
+               db
+               [:preferences :keyword-sets]
+               (conj @keyword-sets {:name new-name :keywords @keywords}))
+         :dispatch [:store-preferences]}))))
 
 (rf/reg-event-fx
   :remove-keyword-set
