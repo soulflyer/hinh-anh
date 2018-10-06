@@ -62,7 +62,9 @@
        :db ( -> db
             (assoc :loading? true)
             (assoc :error (str "Added " kw " to " parent)))
-       :dispatch [:close-popovers]})))
+       :dispatch-n [[:load-keyword-list]
+                    [:load-keyword-tree]
+                    [:close-popovers]]})))
 
 (rf/reg-event-fx
   :move-focused-keyword

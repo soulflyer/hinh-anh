@@ -97,15 +97,14 @@ ReferenceError: document is not defined
 Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.
 
 * Bugs
+** TODO [#D] State of keyword tree is not restored when refreshing
 ** TODO [#E] Tab should choose selection in typeahead not go to next suggestion.
-** TODO [#C] list of keywords doesn't get updated
-** TODO [#C] add keyword to key set doesn't use typeahead
 ** TODO [#F] project tree not expanding on startup (pics displayed ok tho)
 This only happens some times. May not be a problem.
 ** TODO [#E] Selecting a keyword which is not in any photos should clear the pictures display
 ** TODO [#E] space should not scroll the pictures window
 ** TODO [#D] go to project should switch left-panel to projects
-** TODO [#D] return doesn't close popover
+** TODO [#C] return doesn't close popover
 Probably needs adding to always-listen-keys
 ** TODO [#D] :selected-pics can sometimes contain an empty string
 this confuses JSON export. Might be easier to guard against empty entries than track down what causes them.
@@ -129,12 +128,12 @@ Only when doing a refresh and projects pane is not selected. I don't think this 
 Would be nice, but lots of work and not that important.
 *** TODO [#F] Filter by tags stored in keywords
 Could use this as a substitute for colour labels, even allocate a colour to each of t1 to t9
+** TODO [#D] Check and prevent duplicate keywords
 ** TODO [#E] Interface with image-search for more complex searches.
 Could be done by reading the contents of picture list from a file,
 or by expanding the api to take clojure code to feed to image-search.
 Ideally there should be an "open in hinh-anh" option in image-search.
-** TODO [#D] Search tree for a project or keyword.
-*** TODO [#D] Add a find project popover.
+** TODO [#F] Add a find project popover.
 ** TODO [#E] tree should use subs not directly access db (document it too)
 ** TODO [#F] Make tabs to select the different views in the left panel.
 ** TODO [#F] Refactor to make use of :refresh-pictures

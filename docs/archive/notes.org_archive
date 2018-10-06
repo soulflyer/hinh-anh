@@ -869,3 +869,13 @@ probably need to sort the map before picking the first.
    :ARCHIVE_CATEGORY: notes
    :ARCHIVE_TODO: DONE
    :END:
+
+** DONE [#C] add keyword to key set doesn't use typeahead
+   CLOSED: [2018-10-05 Fri 14:23]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-10-05 Fri 14:24
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
