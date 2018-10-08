@@ -44,7 +44,8 @@
 (rf/reg-event-fx
   :set-left-panel
   (fn [{:keys [db]} [_ new-panel]]
-    {:db (assoc db :left-panel-display new-panel)}))
+    {:db (assoc db :left-panel-display new-panel)
+     :dispatch [:set-keys new-panel]}))
 
 (rf/reg-event-fx
   :rotate-left-panel

@@ -38,7 +38,7 @@
                true (assoc-in [:preferences :keyword-set]
                               (set (conj @current-set new-keyword))))
          :dispatch-n [;;TODO check if set-keys can take :keywords or only :left
-                      [:set-keys-for :keywords]
+                      [:set-keys :keywording]
                       [:refresh-keyword-set]]}))))
 
 (rf/reg-event-fx

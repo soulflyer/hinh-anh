@@ -5,7 +5,7 @@
                                                keywording-set-shortcut-keys]]))
 
 (def prevent-keys
-  [;;{:which (key-codes "return")}
+  [{:which (key-codes "return")}
    {:which (key-codes "up")}
    {:which (key-codes "down")}
    {:which (key-codes "space")}
@@ -40,11 +40,13 @@
     [{:which (key-codes "f")
       :metaKey true}]]
    [[:rotate-left-panel]
-    [{:which (key-codes "q")}]]
+    [{:which (key-codes "q")
+      :ctrlKey false}]]
    [[:set-left-panel :projects]
     [{:which (key-codes "w")}]]
    [[:set-left-panel :keywording]
-    [{:which (key-codes "e")}]]
+    [{:which (key-codes "e")
+      :ctrlKey false}]]
    [[:set-left-panel :keywords]
     [{:which (key-codes "r")}]]
    [[:fill-keyword-set]
@@ -167,7 +169,8 @@
 
 (def keywording-keys
   [[[:toggle-delete-keywording]
-    [{:which (key-codes "e")}]]
+    [{:which (key-codes "e")
+      :ctrlKey true}]]
    [[:close-popovers]
     [{:which (key-codes "return")}]]
    [[:toggle-button-show atoms/save-keyword-set-show]
