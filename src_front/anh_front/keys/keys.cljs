@@ -13,7 +13,7 @@
 (def always-listen-keys
   [{:which (key-codes "esc")}
    ;;{:which (key-codes "space")}
-   ;;{:which (key-codes "return")}
+   {:which (key-codes "return")}
    ])
 
 (def common-keys
@@ -140,7 +140,8 @@
    [[:toggle-button-show atoms/export-json-button-show]
     [{:which (key-codes "j")}]]
    [[:close-popovers]
-    [{:which (key-codes "return")}]]])
+    [{:which (key-codes "return")}]]
+   ])
 
 (def picture-keys
   [[[:next-picture]
@@ -158,7 +159,12 @@
 
 (def keywording-keys
   [[[:toggle-delete-keywording]
-    [{:which (key-codes "e")}]]])
+    [{:which (key-codes "e")}]]
+   [[:close-popovers]
+    [{:which (key-codes "return")}]]
+   [[:toggle-button-show atoms/save-keyword-set-show]
+    [{:which (key-codes "s")
+      :ctrlKey true}]]])
 
 (def project-key-set
   {:event-keys (into common-keys project-keys)
@@ -183,7 +189,7 @@
 (defn keywording-key-set []
   {:event-keys (reduce into
                        [common-keys
-                        picture-keys
+   ;;                     picture-keys
                         keywording-keys
                         (keywording-shortcut-keys)
                         (keywording-set-shortcut-keys)])

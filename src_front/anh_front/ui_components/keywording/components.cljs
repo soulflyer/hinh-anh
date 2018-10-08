@@ -1,7 +1,8 @@
 (ns anh-front.ui-components.keywording.components
   (:require [re-frame.core :as rf]
             [re-com.core   :as rc]
-            [anh-front.suggestions :as suggestions]))
+            [anh-front.suggestions :as suggestions]
+            [anh-front.ui-components.popover.popovers :as popover]))
 
 (defn delete-button [on-click kw]
   [rc/md-icon-button
@@ -53,6 +54,7 @@
       :height "1.5em"
       :change-on-blur? true
       :model nil
+      :rigid? false
       :on-change #(rf/dispatch [add-function %])
       :style {:background    @textbox-background
               :border-radius "4px 4px 4px 4px"
@@ -105,7 +107,8 @@
       [rc/md-icon-button
        :md-icon-name "zmdi-scissors"
        :size :smaller
-       :on-click #(rf/dispatch [:clear-keywords])]]]
+       :on-click #(rf/dispatch [:clear-keywords])]
+      [popover/save-keyword-set]]]
     ;; [rc/md-icon-button
     ;;  :md-icon-name "zmdi-info"
     ;;  :size :smaller

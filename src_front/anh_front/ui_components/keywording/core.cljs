@@ -11,6 +11,7 @@
         keyword-map        (rf/subscribe [:keyword-map])
         keyword-sets-map   (rf/subscribe [:keyword-sets-map])
         new-keyword        (reagent/atom nil)
+        keyword-set        (rf/subscribe [:loaded-keyword-set])
         show-delete        (rf/subscribe [:show-delete-keywording])]
     [rc/v-box
      :size "100"
@@ -19,7 +20,9 @@
      :children
      [[rc/v-box
        :children
-       [[components/button-set
+       [[rc/label
+         :label @keyword-set]
+        [components/button-set
          keyword-map
          :add-to-keyword-set
          :remove-from-keyword-set

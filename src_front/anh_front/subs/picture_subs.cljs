@@ -90,6 +90,11 @@
     (:loaded-keyword-set db)))
 
 (rf/reg-sub
+  :keyword-set-list
+  (fn [db _]
+    ))
+
+(rf/reg-sub
   :keyword-set-by-name
   (fn [db [_ name]]
     ;;name

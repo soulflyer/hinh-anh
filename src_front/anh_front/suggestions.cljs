@@ -10,3 +10,10 @@
 
 (defn dive-centres []
   ["Sailing Club" "Alpha" "Soulfyer"])
+
+(defn keyword-sets [s]
+  (let [names (rf/subscribe [:keyword-set-names])]
+    (into []
+          (take 7
+                (for [n @names :when (re-find (re-pattern (str "(?i)" s)) n)]
+                  n)))))

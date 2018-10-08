@@ -581,6 +581,24 @@ Probably best to have one key (b) to toggle between best and all and another to 
    :ARCHIVE_CATEGORY: notes
    :ARCHIVE_TODO: DONE
    :END:
+
+** TODO [#G] Display current state of all/best
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-10-08 Mon 10:17
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements/display best for every sub keyword
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: TODO
+   :END:
+
+** TODO [#C] Display current keyword set title
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-10-08 Mon 16:25
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: TODO
+   :END:
 * Bugs
 
 ** DONE Why don't year month project and version appear in the details?
@@ -917,3 +935,31 @@ probably need to sort the map before picking the first.
    :ARCHIVE_CATEGORY: notes
    :ARCHIVE_TODO: TODO
    :END:
+
+** TODO [#E] Selecting a keyword which is not in any photos should clear the pictures display
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-10-08 Mon 10:05
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: TODO
+   :END:
+
+** TODO [#E] space should not scroll the pictures window
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-10-08 Mon 10:14
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: TODO
+   :END:
+
+** TODO [#H] Production app is reading but not writing local-storage
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-10-08 Mon 10:14
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: TODO
+   :END:
+Seems to be working for most things. Circumstances where the save is done need to be clarified and improved.

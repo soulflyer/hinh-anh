@@ -99,3 +99,12 @@
       "Go To Project"
       (str "Go to project <" project-path ">")
       #(rf/dispatch [:go-to-project project]))))
+
+(defn save-keyword-set []
+  (pw/popover-textbox-wrapper
+    atoms/save-keyword-set-show
+    "zmdi-file-text"
+    "Save keyword set"
+    (str "Save keywords to:")
+    suggestions/keyword-sets
+    #(rf/dispatch [:save-keyword-set %])))
