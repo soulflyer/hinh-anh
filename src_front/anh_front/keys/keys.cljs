@@ -6,6 +6,8 @@
 
 (def prevent-keys
   [;;{:which (key-codes "return")}
+   {:which (key-codes "up")}
+   {:which (key-codes "down")}
    {:which (key-codes "space")}
    {:which (key-codes "a")
     :metaKey true}])
@@ -38,7 +40,13 @@
     [{:which (key-codes "f")
       :metaKey true}]]
    [[:rotate-left-panel]
+    [{:which (key-codes "q")}]]
+   [[:set-left-panel :projects]
     [{:which (key-codes "w")}]]
+   [[:set-left-panel :keywording]
+    [{:which (key-codes "e")}]]
+   [[:set-left-panel :keywords]
+    [{:which (key-codes "r")}]]
    [[:fill-keyword-set]
     [{:which (key-codes "u")}]]
    [[:picture-filter-stars 5]
