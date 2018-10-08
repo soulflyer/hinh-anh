@@ -75,4 +75,8 @@
         :on-failure      [:load-fail "best keyword"]}
        :db (-> db
                (assoc :loading? true)
+               ;; This seems to be clearing anyway, not sure where...
+               (assoc :picture-lists {:pictures []
+                                      :focus ""
+                                      :selected []})
                (assoc :error (str "Loading best picture for " kw)))})))

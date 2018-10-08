@@ -5,12 +5,16 @@
                                                keywording-set-shortcut-keys]]))
 
 (def prevent-keys
-  [{:which (key-codes "return")}
+  [;;{:which (key-codes "return")}
+   {:which (key-codes "space")}
    {:which (key-codes "a")
     :metaKey true}])
 
 (def always-listen-keys
-  [{:which (key-codes "esc")}])
+  [{:which (key-codes "esc")}
+   ;;{:which (key-codes "space")}
+   ;;{:which (key-codes "return")}
+   ])
 
 (def common-keys
   [[[:set-keys :projects]

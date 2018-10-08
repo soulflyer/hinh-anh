@@ -42,7 +42,9 @@
        :db ( -> db
             (assoc :loading? true)
             (assoc :error (str "Deleting keyword " (last @kw))))
-       :dispatch [:close-popovers]})))
+       :dispatch-n [[:load-keyword-list]
+                    [:load-keyword-tree]
+                    [:close-popovers]]})))
 
 (rf/reg-event-fx
   :add-to-focused-keyword

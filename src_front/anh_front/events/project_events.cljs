@@ -40,7 +40,8 @@
     (println (str "######### " path))
     {:db (-> db
              (assoc-in [:project-tree :focus] path))
-     :dispatch-n [[:load-pictures-for-project path]
+     :dispatch-n [[:set-left-panel :projects]
+                  [:load-pictures-for-project path]
                   [:expand-path [:project-tree path]]]}))
 
 (rf/reg-event-fx
