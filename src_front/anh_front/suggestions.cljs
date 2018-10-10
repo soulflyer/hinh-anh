@@ -4,7 +4,7 @@
 (defn keywords [s]
   (let [names (rf/subscribe [:keyword-list])]
     (into []
-          (take 7
+          (take 20
                 (for [n @names :when (re-find (re-pattern (str "(?i)" s)) n)]
                   n)))))
 
@@ -14,6 +14,6 @@
 (defn keyword-sets [s]
   (let [names (rf/subscribe [:keyword-set-names])]
     (into []
-          (take 7
+          (take 10
                 (for [n @names :when (re-find (re-pattern (str "(?i)" s)) n)]
                   n)))))

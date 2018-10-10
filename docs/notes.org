@@ -99,8 +99,9 @@ Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the er
 * Bugs
 ** TODO [#A] Keyword shortcuts are out of order when adding one rearranges the order.
 Corrects itself when tabbing away and switching the focus to and from the pictures panel.
-** TODO [#B] Can't add keywording button for new keyword if there are possible completions.
+** TODO [#H] Can't add keywording button for new keyword if there are possible completions.
 This is a bug (reported) in re-com. Till its fixed, add new keywords directly to a photo before trying to add using a keywording button.
+** TODO [#C] API call fails when given a string containing a /
 ** TODO [#C] State of keyword tree is not restored when refreshing
 ** TODO [#C] keyword shortcuts don't work when focus is not on left panel.
 ** TODO [#F] Tab should choose selection in typeahead not go to next suggestion.
@@ -130,7 +131,11 @@ Only when doing a refresh and projects pane is not selected. I don't think this 
 Would be nice, but lots of work and not that important.
 *** TODO [#F] Filter by tags stored in keywords
 Could use this as a substitute for colour labels, even allocate a colour to each of t1 to t9
-** TODO [#B] Switch adding keywords to popovers
+** TODO [#C] Make keywords scroll horizontaly.
+Add a width to the tree root will do this. 100% is not scrollable, 100vh is. Could control this from a subscription in a style setting?
+** TODO [#C] If there are no pictures selected then keywording buttons should affect the highlighted pic
+** TODO [#C] make sets of keywords selectable
+So there are no more than 10 visible at a time. Different sets for family, woodwork, diving, taxonomy etc.
 ** TODO [#D] Check and prevent duplicate keywords
 ** TODO [#E] Interface with image-search for more complex searches.
 Could be done by reading the contents of picture list from a file,

@@ -26,8 +26,8 @@
                :overflow   "hidden"
                :border     (str "solid 1px " @header-background)
                :background @background}
-       :attr
-       {:on-context-menu #(rf/dispatch [on-right-click kw])}
+       :attr {:on-context-menu #(rf/dispatch [on-right-click kw])
+              :tabIndex "-1"}
        :on-click #(rf/dispatch [on-click kw])]]]))
 
 (defn add-input
@@ -35,32 +35,20 @@
   (let [header-background (rf/subscribe [:details-header-background])
         textbox-background (rf/subscribe [:details-textbox-background])]
     [rc/box
-     ;;:size "1 0 auto"
      :child
-     ;; TODO change this to a typeahead
-     ;; [rc/input-text
-     ;;  :width "100%"
-     ;;  :height "1.5em"
-     ;;  :model nil
-     ;;  :placeholder placeholder
-     ;;  :on-change #(rf/dispatch [add-function %])
-     ;;  :style {:background    @textbox-background
-     ;;          :border-radius "4px 4px 4px 4px"
-     ;;          :border        (str "solid 1px " @header-background)
-     ;;          :padding       "1px 3px 1px 3px"}]
      [rc/typeahead
       :data-source suggestions/keywords
-      ;;:width "100%"
+      :width "100%"
       :height "1.5em"
       :change-on-blur? true
       :model nil
+      :placeholder placeholder
       :rigid? false
       :on-change #(rf/dispatch [add-function %])
       :style {:background    @textbox-background
               :border-radius "4px 4px 4px 4px"
               :border        (str "solid 1px " @header-background)
-              :padding       "1px 3px 1px 3px"}
-      ]]))
+              :padding       "1px 3px 1px 3px"}]]))
 
 (defn shortcut [sk]
   (let [shortcut-highlight (rf/subscribe [:shortcut-highlight])]
@@ -71,9 +59,8 @@
              :color   @shortcut-highlight}]))
 
 (defn button-set
-  [button-map add remove on-click on-right-click name]
-  (let [shortcut-highlight (rf/subscribe [:shortcut-highlight])
-        show-edit        (rf/subscribe [:show-delete-keywording])]
+  [button-map add remove on-click on-right-click show-edit name]
+  (let [shortcut-highlight (rf/subscribe [:shortcut-highlight])]
     [rc/scroller
      :h-scroll :off
      :size "none"

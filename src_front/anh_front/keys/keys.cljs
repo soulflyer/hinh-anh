@@ -46,9 +46,12 @@
     [{:which (key-codes "w")}]]
    [[:set-left-panel :keywording]
     [{:which (key-codes "e")
-      :ctrlKey false}]]
+      :ctrlKey false
+      :shiftKey false}]]
    [[:set-left-panel :keywords]
-    [{:which (key-codes "r")}]]
+    [{:which (key-codes "r")
+      :shiftKey false
+      :ctrlKey false}]]
    [[:fill-keyword-set]
     [{:which (key-codes "u")}]]
    [[:picture-filter-stars 5]
@@ -131,7 +134,7 @@
       :shiftKey true}]]
    [[:toggle-button-show atoms/keyword-rename-button-show]
     [{:which (key-codes "r")
-      :shiftKey false}]]
+      :ctrlKey true}]]
    [[:toggle-button-show atoms/keyword-set-best-button-show]
     [{:which (key-codes "s")}]]
    [[:toggle-button-show atoms/keyword-add-orphans-button-show]
@@ -168,9 +171,12 @@
     [{:which (key-codes "return")}]]])
 
 (def keywording-keys
-  [[[:toggle-delete-keywording]
+  [[[:toggle-edit-keywords]
     [{:which (key-codes "e")
       :ctrlKey true}]]
+   [[:toggle-edit-keyword-sets]
+    [{:which (key-codes "e")
+      :shiftKey true}]]
    [[:close-popovers]
     [{:which (key-codes "return")}]]
    [[:toggle-button-show atoms/save-keyword-set-show]

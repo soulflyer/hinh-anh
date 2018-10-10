@@ -114,6 +114,11 @@
     (:displayed-project db)))
 
 (rf/reg-sub
-  :show-delete-keywording
+  :show-edit-keyword-sets
   (fn [db]
-    (:show-delete-keywording db)))
+    (:show-edit-keyword-sets db)))
+
+(rf/reg-sub
+  :show-edit-keywords
+  (fn [db _]
+    (:show-edit-keywords db)))

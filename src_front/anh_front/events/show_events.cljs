@@ -13,10 +13,16 @@
       {:db (assoc-in db [:preferences :hide-footer] (not @hf))})))
 
 (rf/reg-event-fx
-  :toggle-delete-keywording
+  :toggle-edit-keyword-sets
   (fn [{:keys [db]} _]
-    (let [sdk (rf/subscribe [:show-delete-keywording])]
-      {:db (assoc db :show-delete-keywording (not @sdk))})))
+    (let [sdk (rf/subscribe [:show-edit-keyword-sets])]
+      {:db (assoc db :show-edit-keyword-sets (not @sdk))})))
+
+(rf/reg-event-fx
+  :toggle-edit-keywords
+  (fn [{:keys [db]} _]
+    (let [sdk (rf/subscribe [:show-edit-keywords])]
+      {:db (assoc db :show-edit-keywords (not @sdk))})))
 
 (rf/reg-event-db
   :picture-filter-stars

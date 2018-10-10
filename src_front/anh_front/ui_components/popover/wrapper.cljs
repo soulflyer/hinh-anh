@@ -36,7 +36,6 @@
                              :change-on-blur? true
                              :style {:padding "0px 5px 0px 5px"
                                      :height "1.2em"}
-                             :attr {:id (str "popover-" )}
                              :model nil
                              :rigid? false
                              :on-change on-click]]])]))

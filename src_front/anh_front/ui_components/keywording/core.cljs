@@ -6,13 +6,9 @@
 
 (defn panel
   []
-  (let [;;keywords           (rf/subscribe [:keyword-set])
-        shortcut-highlight (rf/subscribe [:shortcut-highlight])
-        keyword-map        (rf/subscribe [:keyword-map])
+  (let [keyword-map        (rf/subscribe [:keyword-map])
         keyword-sets-map   (rf/subscribe [:keyword-sets-map])
-        new-keyword        (reagent/atom nil)
-        keyword-set        (rf/subscribe [:loaded-keyword-set])
-        show-delete        (rf/subscribe [:show-delete-keywording])]
+        keyword-set        (rf/subscribe [:loaded-keyword-set])]
     [rc/v-box
      :size "100"
      :style {:padding-left "5px"}
@@ -28,6 +24,7 @@
          :remove-from-keyword-set
          :add-keyword-to-photos
          :delete-keyword-from-photos
+         (rf/subscribe [:show-edit-keywords])
          "keyword"]]]
       [rc/v-box
        :style {:margin-bottom "5px"}
@@ -43,6 +40,7 @@
          :remove-keyword-set
          :set-keyword-set-by-name
          :set-keyword-set-by-name
+         (rf/subscribe [:show-edit-keyword-sets])nil
          "keyword set"]
         [rc/line :style {:margin "6px 0px 0px 6px"}]
         [components/footer-buttons]]]]]))
