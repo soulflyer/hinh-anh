@@ -19,7 +19,13 @@
    ])
 
 (def common-keys
-  [[[:set-keys :projects]
+  [[[:inc-picture-columns]
+    [{:which (key-codes "right")
+      :ctrlKey true}]]
+   [[:dec-picture-columns]
+    [{:which (key-codes "left")
+      :ctrlKey true}]]
+   [[:set-keys :projects]
     [{:which (key-codes ",")}]]
    [[:set-keys :pictures]
     [{:which (key-codes ".")}]]
@@ -99,21 +105,26 @@
 
 (def project-keys
   [[[:next-project-open]
-    [{:which (key-codes "down")}]]
+    [{:which (key-codes "down")
+      :ctrlKey false}]]
    [[:prev-project-open]
-    [{:which (key-codes "up")}]]
+    [{:which (key-codes "up")
+      :ctrlKey false}]]
    [[:up-or-close :project-tree]
     [{:which (key-codes "left")}]]
    [[:toggle-button-show atoms/export-json-button-show]
     [{:which (key-codes "j")}]]
    [[:expand-selected :project-tree]
-    [{:which (key-codes "right")}]]])
+    [{:which (key-codes "right")
+      :ctrlKey false}]]])
 
 (def keyword-keys
   [[[:next-keyword-open]
-    [{:which (key-codes "down")}]]
+    [{:which (key-codes "down")
+      :ctrlKey false}]]
    [[:prev-keyword-open]
-    [{:which (key-codes "up")}]]
+    [{:which (key-codes "up")
+      :ctrlKey false}]]
    [[:up-or-close :keyword-tree]
     [{:which (key-codes "left")}]]
    [[:expand-selected :keyword-tree]
@@ -158,13 +169,17 @@
 
 (def picture-keys
   [[[:next-picture]
-    [{:which (key-codes "right")}]]
+    [{:which (key-codes "right")
+      :ctrlKey false}]]
    [[:prev-picture]
-    [{:which (key-codes "left")}]]
+    [{:which (key-codes "left")
+      :ctrlKey false}]]
    [[:down-picture]
-    [{:which (key-codes "down")}]]
+    [{:which (key-codes "down")
+      :ctrlKey false}]]
    [[:up-picture]
-    [{:which (key-codes "up")}]]
+    [{:which (key-codes "up")
+      :ctrlKey false}]]
    [[:toggle-select-focused-pic]
     [{:which (key-codes "space")}]]
    [[:rotate-display]

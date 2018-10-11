@@ -29,3 +29,23 @@
   :set-picture-columns
   (fn [db [_ cols]]
     (assoc-in db [:preferences :picture-columns] cols)))
+
+(rf/reg-event-db
+  :inc-picture-columns
+  (fn  [db _]
+    (let [max-columns 12
+          columns (rf/subscribe [:picture-columns])]
+      (assoc-in
+        db
+        [:preferences :picture-columns]
+        (min (inc @columns) max-columns)))))
+
+(rf/reg-event-db
+  :dec-picture-columns
+  (fn  [db _]
+    (let [min-columns 1
+          columns (rf/subscribe [:picture-columns])]
+      (assoc-in
+        db
+        [:preferences :picture-columns]
+        (max (dec @columns) min-columns)))))
