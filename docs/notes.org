@@ -99,12 +99,13 @@ Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the er
 * Bugs
 ** TODO [#A] Keyword shortcuts are out of order when adding one rearranges the order.
 Corrects itself when tabbing away and switching the focus to and from the pictures panel.
-** TODO [#H] Can't add keywording button for new keyword if there are possible completions.
+** TODO [#I] Can't add keywording button for new keyword if there are possible completions.
 This is a bug (reported) in re-com. Till its fixed, add new keywords directly to a photo before trying to add using a keywording button.
 ** TODO [#C] API call fails when given a string containing a /
 ** TODO [#C] State of keyword tree is not restored when refreshing
 ** TODO [#C] keyword shortcuts don't work when focus is not on left panel.
-** TODO [#F] Tab should choose selection in typeahead not go to next suggestion.
+** TODO [#I] Tab should choose selection in typeahead not go to next suggestion.
+This is just the way re-com typeahead works. Rewrite it or put up with it.
 ** TODO [#E] Clicking on a picture doesn't focus the pictures pane
 ** TODO [#I] project tree not expanding on startup (pics displayed ok tho)
 This only happens some times. May not be a problem.
@@ -120,7 +121,6 @@ Need to see this on the production version before worrying about it. Probably wo
 ** TODO [#F] Switching back to grid view doesn't call scrollIntoview
 ** TODO [#F] Correct info display when pictures are selected by keyword (In the footer bar)
 ** TODO [#G] Add keyword in keywording/panel doesn't clear when triggered
-** TODO [#G] Missing a delete key for keywords and keyword sets
 ** TODO [#H] Preserve order amongst keywords. New ones should be added to the end
 ** TODO [#I] Broke the expand of nodes to the saved project.
 Only when doing a refresh and projects pane is not selected. I don't think this can happen in the production environment.
@@ -133,6 +133,7 @@ Would be nice, but lots of work and not that important.
 Could use this as a substitute for colour labels, even allocate a colour to each of t1 to t9
 ** TODO [#C] Make keywords scroll horizontaly.
 Add a width to the tree root will do this. 100% is not scrollable, 100vh is. Could control this from a subscription in a style setting?
+** TODO [#C] select a range of pictures
 ** TODO [#C] If there are no pictures selected then keywording buttons should affect the highlighted pic
 ** TODO [#C] make sets of keywords selectable
 So there are no more than 10 visible at a time. Different sets for family, woodwork, diving, taxonomy etc.
@@ -150,7 +151,6 @@ instead of storing changes directly to db
 **** TODO [#F] Add API call to return all best images
 ** TODO [#F] Add zoom function to single pic display.
    This will probably mean switching from displaying the pic as a background to and img tag.
-** TODO [#F] Add keys to go directly between left-panel screens
 ** TODO [#G] Display best image even if it isn't up to the current Rating
 May not be worth doing. Maybe reset filter-stars if picture-list is empty? Or alter filter to include pictures tagged with red.** TODO [#G] Make api consistent
 Parameter ordering is different when adding keywords and iptc data

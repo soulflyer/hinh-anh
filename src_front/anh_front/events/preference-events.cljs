@@ -24,3 +24,8 @@
   :set-screen-split
   (fn [db [_ split-percent]]
     (assoc-in db [:preferences :screen-split] split-percent)))
+
+(rf/reg-event-db
+  :set-picture-columns
+  (fn [db [_ cols]]
+    (assoc-in db [:preferences :picture-columns] cols)))

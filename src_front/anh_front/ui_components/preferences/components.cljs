@@ -47,3 +47,26 @@
        :style {:margin "2px"}
        :model field-contents
        :on-change #(rf/dispatch [on-change %])]]]))
+
+(defn number-pref [label field on-change range & range-start]
+  (let [start              (or range-start 0)
+        textbox-background (rf/subscribe [:details-textbox-background])
+        header-background  (rf/subscribe [:details-header-background])
+        field-contents     (rf/subscribe [field])]
+    [rc/h-box
+     :style {:width "100%"
+             :background @header-background
+             :border-radius "4px"
+             :margin-bottom "5px"}
+     :justify :between
+     :children
+     [[rc/label
+       :style {:font-size "0.75em"
+               :padding-left "3px"}
+       :label label]
+      [rc/slider
+       :width "100%"
+       :min start
+       :max range
+       :model field-contents
+       :on-change #(rf/dispatch [on-change %])]]]))
