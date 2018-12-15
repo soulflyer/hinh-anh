@@ -109,7 +109,7 @@
   (fn [_ _]
     (rf/subscribe [:preferences]))
   (fn [preferences _]
-    (:keyword-set preferences)))
+    (sort (:keyword-set preferences))))
 
 (rf/reg-sub
   :keyword-map
@@ -126,6 +126,7 @@
 
 (rf/reg-sub
   :keyword-sets-map
+  ;;TODO This is returning name/keyword pairs in a fairly random order
   (fn [_ _]
     [(rf/subscribe [:keyword-set-names]) (rf/subscribe [:keyword-set-shortcuts])])
   (fn [[keyword-set-names shortcuts] _]
@@ -136,8 +137,8 @@
   (fn [_ _]
     (rf/subscribe [:keyword-sets]))
   (fn [keyword-sets _]
-    (for [keyword-map keyword-sets]
-      (:name keyword-map))))
+    (sort (for [keyword-map keyword-sets]
+            (:name keyword-map)))))
 
 (rf/reg-sub
   :hide-footer

@@ -135,6 +135,6 @@
                     :label label
                     :on-click (toggle-expand tree-name path hook)]]]
        (if (and expanded (< 0 (count ch)))
-         (into [:ul {:style {:padding-left "0.8em"}}]
+         (into [:ul {:style {:padding-left "0.2em"}}]
                (for [child ch]
                  (node tree tree-name (conj path (:name child)) hook))))]]]))

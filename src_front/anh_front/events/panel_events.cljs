@@ -77,4 +77,5 @@
           new-index (mod (inc @index) len)]
       ;;TODO can I call scroll-into-view on :focused-pic-path here?
       {:dispatch-n [[:set-display new-index]
-                    [:set-keys :pictures]]})))
+                    ;;[:set-keys :pictures]
+                    ]})))

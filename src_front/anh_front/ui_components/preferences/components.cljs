@@ -54,18 +54,21 @@
         header-background  (rf/subscribe [:details-header-background])
         field-contents     (rf/subscribe [field])]
     [rc/h-box
+     ;;:size "auto"
      :style {:width "100%"
              :background @header-background
              :border-radius "4px"
-             :margin-bottom "5px"}
+             :margin-bottom "5px"
+             :padding-right "5px"}
      :justify :between
      :children
      [[rc/label
        :style {:font-size "0.75em"
                :padding-left "3px"}
-       :label label]
+       :label (str label ": " @field-contents)]
       [rc/slider
-       :width "100%"
+       :style {:width "100%"}
+       ;;:size "auto"
        :min start
        :max range
        :model field-contents

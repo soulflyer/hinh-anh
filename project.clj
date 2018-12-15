@@ -3,17 +3,17 @@
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[akiroz.re-frame/storage "0.1.2"]
-                 [cljs-ajax "0.7.4"]
+  :dependencies [[akiroz.re-frame/storage "0.1.3"]
+                 [cljs-ajax "0.8.0"]
                  [com.cemerick/url "0.1.1"]
                  [com.cognitect/transit-cljs "0.8.256"]
-                 [com.rpl/specter "1.1.1"]
+                 [com.rpl/specter "1.1.2"]
                  [day8.re-frame/http-fx "0.1.6"]
                  [org.clojure/clojure "1.9.0"]
-                 [org.clojure/clojurescript "1.10.339" :exclusions [org.apache.ant/ant]]
-                 [org.clojure/core.async "0.4.474"]
+                 [org.clojure/clojurescript "1.10.439" :exclusions [org.apache.ant/ant]]
+                 [org.clojure/core.async "0.4.490"]
                  [prismatic/dommy "1.1.0"]
-                 [re-com "2.1.0"]
+                 [re-com "2.3.0"]
                  [re-frame "0.10.6"]
                  [re-pressed "0.2.2"]
                  [reagent "0.8.1"]]
@@ -23,11 +23,11 @@
                  [lein-figwheel "0.5.16" :exclusions [org.clojure/core.cache]]]
   :profiles
   {:dev
-   {:dependencies [[cider/piggieback "0.3.9"]
-                   [day8.re-frame/re-frame-10x "0.3.3-react16"]
+   {:dependencies [[cider/piggieback "0.3.10"]
+                   [day8.re-frame/re-frame-10x "0.3.3"]
                    [day8.re-frame/tracing "0.5.1"]
-                   [figwheel "0.5.16"]
-                   [figwheel-sidecar "0.5.16"]
+                   [figwheel "0.5.17"]
+                   [figwheel-sidecar "0.5.17"]
                    [org.clojure/data.xml "0.2.0-alpha5"]]
     :repl-options
     {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}}}

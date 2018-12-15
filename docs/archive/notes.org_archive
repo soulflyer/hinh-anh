@@ -599,6 +599,16 @@ Probably best to have one key (b) to toggle between best and all and another to 
    :ARCHIVE_CATEGORY: notes
    :ARCHIVE_TODO: TODO
    :END:
+
+** DONE [#F] Add keys to go directly between left-panel screens
+   CLOSED: [2018-10-11 Thu 13:14]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-10-11 Thu 13:14
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Improvements
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:
 * Bugs
 
 ** DONE Why don't year month project and version appear in the details?
@@ -963,3 +973,22 @@ probably need to sort the map before picking the first.
    :ARCHIVE_TODO: TODO
    :END:
 Seems to be working for most things. Circumstances where the save is done need to be clarified and improved.
+
+** TODO [#G] Missing a delete key for keywords and keyword sets
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-10-11 Thu 13:15
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: TODO
+   :END:
+
+** DONE [#G] Missing a delete key for keywords and keyword sets
+   CLOSED: [2018-10-11 Thu 13:15]
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2018-10-11 Thu 13:15
+   :ARCHIVE_FILE: ~/Code/Clojure/Descjop/hinh-anh/docs/notes.org
+   :ARCHIVE_OLPATH: Bugs
+   :ARCHIVE_CATEGORY: notes
+   :ARCHIVE_TODO: DONE
+   :END:

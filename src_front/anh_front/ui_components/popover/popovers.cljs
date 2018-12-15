@@ -29,7 +29,7 @@
     "zmdi-plus"
     "Add"
     (str "Add to " parent)
-    suggestions/keywords
+    nil
     #(rf/dispatch [:add-to-focused-keyword %])))
 
 (defn delete-keyword [kw]

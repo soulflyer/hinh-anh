@@ -5,7 +5,7 @@
                                                keywording-set-shortcut-keys]]))
 
 (def prevent-keys
-  [{:which (key-codes "return")}
+  [;{:which (key-codes "return")}
    {:which (key-codes "up")}
    {:which (key-codes "down")}
    {:which (key-codes "space")}
@@ -163,8 +163,8 @@
     [{:which (key-codes "f")}]]
    [[:toggle-button-show atoms/export-json-button-show]
     [{:which (key-codes "j")}]]
-   [[:close-popovers]
-    [{:which (key-codes "return")}]]
+   ;; [[:close-popovers]
+   ;;  [{:which (key-codes "return")}]]
    ])
 
 (def picture-keys

@@ -68,8 +68,11 @@
      [rc/v-box
       :children
       [(let [edit @show-edit
-             buttons (keys @button-map)]
+             buttons (sort (keys @button-map))]
          (for [btn buttons]
+           ;;TODO buttons are sorted here to keep buttons in order. Can't rely on them
+           ;; staying sorted in button-map even though it works for less than 9 buttons
+           ;; need to change implementation so button-map is a vector of maps instead.
            ^{:key (str "button-" name "-" btn)}
            [rc/h-box
             :children
