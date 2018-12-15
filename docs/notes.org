@@ -25,6 +25,11 @@ electron-packager app/prod --icon=resources/anh.icns --overwrite
 
 run lein rebuild first or it will build with an old version of prod.
 
+** Electron Update
+To update I edited package.json, deleted package-lock.json and ran npm install.
+Installed electron download to replace the now unmaintained grunt-download-electron.
+Run electron-download --version=<whatever> to get a newer version of electron. This will end up as a zip file in ~/Library/Caches/electron and needs to be copied to the electron folder in the project in order to customise the name and icon. This is probably not necessary but it's good to have the dev version look like the finished app.
+
 see https://github.com/rasom/lein-externs
 
 * Debugging assistants
