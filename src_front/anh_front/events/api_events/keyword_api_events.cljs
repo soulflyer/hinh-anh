@@ -83,4 +83,5 @@
         :on-failure      [:load-fail "open-keyword"]}
        :db ( -> db
             (assoc :loading? true)
-            (assoc :error (str "Opened keyword " kw)))})))
+            (assoc :error (str "Opened keyword " kw)))
+       :dispatch [:close-popovers]})))

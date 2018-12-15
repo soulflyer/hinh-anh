@@ -5,7 +5,7 @@
                                                keywording-set-shortcut-keys]]))
 
 (def prevent-keys
-  [;{:which (key-codes "return")}
+  [;;{:which (key-codes "return")}
    {:which (key-codes "up")}
    {:which (key-codes "down")}
    {:which (key-codes "space")}

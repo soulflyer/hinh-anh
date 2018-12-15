@@ -16,6 +16,8 @@ Removing one of the colons, running lein descjop-externs and then replacing the 
 lein-externs has an issue and a pull request to fix this, but no response. There is a fork of lein-externs that has the fix, which I have cloned and linked in checkouts. Not yet tested
 [2018-05-31 Thu] Seems to work [Tue 10 Jul 16:27:03 2018]
 
+see https://github.com/rasom/lein-externs
+
 Removed grunt-download-electron after updating to electron 2.0.4 because npm was complaining about vulnerabilities and they were all in that or its dependancies. Can probably do without grunt altogether.
 
 Note that electron-packager should be run inside (or specify?) the app/prod directory.
@@ -30,8 +32,18 @@ To update I edited package.json, deleted package-lock.json and ran npm install.
 Installed electron download to replace the now unmaintained grunt-download-electron.
 Run electron-download --version=<whatever> to get a newer version of electron. This will end up as a zip file in ~/Library/Caches/electron and needs to be copied to the electron folder in the project in order to customise the name and icon. This is probably not necessary but it's good to have the dev version look like the finished app.
 
-see https://github.com/rasom/lein-externs
+For mac osx, menu title is taken from the app name, so rename the app in the .plist file of the version of electron used to run the app.
+This might be in node-modules or elswhere depending on how it is called in the project.
 
+in Electron.app/Contents/info.plist:
+
+change:
+
+	<key>CFBundleName</key>
+
+to the desired title
+
+The name in the doc (hover) is set by the name of the app. or by changing CFBundleDisplayName
 * Debugging assistants
 ** re-frisk
 NOTE Using this stops the re-frame template from running, ie lein new re-frame throws an error.
