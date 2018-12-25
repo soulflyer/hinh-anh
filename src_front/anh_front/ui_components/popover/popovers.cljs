@@ -11,7 +11,7 @@
     "zmdi-language-javascript"
     "Export JSON"
     (str "Export selection as JSON for " dive-centre)
-    suggestions/dive-centres
+    nil
     #(rf/dispatch [:write-json %])))
 
 (defn find-keyword []
