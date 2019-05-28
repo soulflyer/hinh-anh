@@ -51,23 +51,23 @@ NOTE Using this stops the re-frame template from running, ie lein new re-frame t
 This seems to work. Added [lein-re-frisk "0.5.5"] to ~/.lein/profiles.clj in the :user :plugins section.
 Added [re-frisk-remote.core] to the requires in anh-front.core, and called (enable-re-frisk-remote!) in init! as below:
 #+BEGIN_SRC clojure
-(ns anh-front.core
-  (:require  [reagent.core :as reagent :refer [atom]]
-             [re-frame.core :as re-frame]
-             [anh-front.events :as events]
-             [anh-front.views :as views]
-             [anh-front.config :as config]
-             [re-frisk-remote.core :refer [enable-re-frisk-remote!]]))
+  (ns anh-front.core
+    (:require  [reagent.core :as reagent :refer [atom]]
+               [re-frame.core :as re-frame]
+               [anh-front.events :as events]
+               [anh-front.views :as views]
+               [anh-front.config :as config]
+               [re-frisk-remote.core :refer [enable-re-frisk-remote!]]))
 
-(defn mount-root [setting]
-  (re-frame/clear-subscription-cache!)
-  (reagent/render [views/main-panel]
-                  (.getElementById js/document "app")))
+  (defn mount-root [setting]
+    (re-frame/clear-subscription-cache!)
+    (reagent/render [views/main-panel]
+                    (.getElementById js/document "app")))
 
-(defn init! [setting]
-  (re-frame/dispatch-sync [::events/initialize-db])
-  (enable-re-frisk-remote!)
-  (mount-root setting))
+  (defn init! [setting]
+    (re-frame/dispatch-sync [::events/initialize-db])
+    (enable-re-frisk-remote!)
+    (mount-root setting))
 #+END_SRC
 Then run the re-frisk server with lein re-frisk and the electron executable and go to localhost:4567 to see the re-frisk data. The server doesn't seem to like being run in the background which is a pain in the arse, but workable.
 
@@ -114,6 +114,7 @@ ReferenceError: document is not defined
 Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.
 
 * Bugs
+** TODO [#A] Full size view not working
 ** DONE [#A] Return doesn't work when adding keyword
    CLOSED: [2018-12-15 Sat 23:22]
 Seems to be because of the suggestions. Get rid of them and just have a textbox.
@@ -171,6 +172,7 @@ Could use this as a substitute for colour labels, even allocate a colour to each
 ** TODO [#B] Add a tool to delete all versions of a pic
 Create thumbnails if they aren't already present. Perhaps a default thumbnail directory in the projects master directory.
 
+** TODO [#C] Copy and paste doesn't work
 ** TODO [#C] Make keywords scroll horizontaly.
 Add a width to the tree root will do this. 100% is not scrollable, 100vh is. Could control this from a subscription in a style setting?
 ** TODO [#C] select a range of pictures
