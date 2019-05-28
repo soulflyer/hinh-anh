@@ -57,9 +57,6 @@
                     ["shell" "touch" "./src_front/anh_front/core.cljs"]
                     ["cljsbuild" "once" "dev-main"]
                     ["cljsbuild" "once" "dev-front"]]
-   "get-electron"  ["do"
-                    ["shell" "npm" "install"]
-                    ["shell" "grunt" "download-electron"]]
    "build-externs" ["do"
                     ["externs" "dev-main" "app/dev/js/externs.js"]
                     ["externs" "dev-front" "app/dev/js/externs_front.js"]

@@ -20,6 +20,15 @@ see https://github.com/rasom/lein-externs
 
 Removed grunt-download-electron after updating to electron 2.0.4 because npm was complaining about vulnerabilities and they were all in that or its dependancies. Can probably do without grunt altogether.
 
+[2019-15-28] Removed grunt and electron-download altogether now. Install electron with:
+#+BEGIN_SRC shell
+npm install electron --save-dev
+#+END_SRC
+And run it in development as:
+#+BEGIN_SRC shell
+./node_modules/.bin/electron app/dev/
+#+END_SRC
+
 Note that electron-packager should be run inside (or specify?) the app/prod directory.
 electron-packager . --icon=../../resources/anh.icns
 maybe:
