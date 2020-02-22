@@ -30,3 +30,4 @@ checkouts/*
 .tmux
 anh-darwin-x64
 wtf
+.eastwood

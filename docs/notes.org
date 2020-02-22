@@ -123,7 +123,11 @@ ReferenceError: document is not defined
 Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.
 
 * Bugs
-** TODO [#A] Full size view not working
+** DONE [#A] Full size view not working
+   CLOSED: [2020-02-22 Sat 19:39]
+Just forgot the key to press...
+** TODO [#A] Tab doesn't switch to right pane
+Wrong key. / switches from left to right.
 ** DONE [#A] Return doesn't work when adding keyword
    CLOSED: [2018-12-15 Sat 23:22]
 Seems to be because of the suggestions. Get rid of them and just have a textbox.
@@ -136,6 +140,7 @@ Need to change this in the API first. Also add another option so pictures can be
 ** TODO [#D] find best is not working.
 The API call works, but something is putting "///" into the sample: field. Deleting it fixes it. Probably something to do with the creation of new keywords.
 ** TODO [#C] Add orphans doesn't appear to be working
+** TODO [#C] Open files doesn't sort the files.
 ** TODO [#D] Keywords are not always ordered
 ** TODO [#D] Keyword shortcuts are out of order when adding one rearranges the order.
 Corrects itself when tabbing away and switching the focus to and from the pictures panel.
@@ -181,6 +186,7 @@ Could use this as a substitute for colour labels, even allocate a colour to each
 ** TODO [#B] Add a tool to delete all versions of a pic
 Create thumbnails if they aren't already present. Perhaps a default thumbnail directory in the projects master directory.
 
+** TODO [#C] Refresh projects without restart
 ** TODO [#C] Copy and paste doesn't work
 ** TODO [#C] Make keywords scroll horizontaly.
 Add a width to the tree root will do this. 100% is not scrollable, 100vh is. Could control this from a subscription in a style setting?
@@ -217,7 +223,12 @@ One possible solution is to have calls to subscriptions that are defined outside
  There may be some redundancy in that I probably shouldn't have to change panel-focus and key-set independantly. Partially sorted. Don't need to toggle focus except when projects are in view. Still need to improve it so I CAN'T toggle focus except when projects are in view.
 ** TODO [#I] find out how to style the box around a button.
 It's generated automatically and only seems to allow the button to expand to full width when it's contained in an otherwise spurious v-box
-* Updates
-** DONE [#A] Update electron
+* Updates** DONE [#A] Update electron
    CLOSED: [2018-12-15 Sat 23:22]
 Github is warning about a vulnerability in 2.0.4 so edited package-lock.json. Probably shouldn't have, also edited Gruntfile.js which is where the version of electron gets specified. Need to re-run the lein task get-electron to actually update electron.
+* Notes
+Don't forget the keys to press:
+/   Switch between left and right panels
+q   Rotate left pane
+0-5 Rate pics
+ret open single pic.
