@@ -1,4 +1,4 @@
-(ns anh-front.keyword-edit-api-events
+(ns anh-front.events.api-events.keyword-edit-api-events
   "The events used to edit the keyword tree."
   (:require [ajax.core     :as ajax]
             [cemerick.url  :as url]

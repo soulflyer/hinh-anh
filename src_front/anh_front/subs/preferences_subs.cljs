@@ -1,4 +1,4 @@
-(ns anh-front.preferences-subs
+(ns anh-front.subs.preferences-subs
   (:require [re-frame.core :as rf]))
 
 (rf/reg-sub

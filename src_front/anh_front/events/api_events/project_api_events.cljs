@@ -1,4 +1,4 @@
-(ns anh-front.project-api-events
+(ns anh-front.events.api-events.project-api-events
   "Events used to load the project tree."
   (:require [ajax.core :as ajax]
             [anh-front.project-tree :as project-tree]

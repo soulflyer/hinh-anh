@@ -1,4 +1,4 @@
-(ns anh-front.picture-select-events
+(ns anh-front.events.picture-select-events
   (:require [anh-front.helpers :as helpers]
             [com.rpl.specter :as sp]
             [re-frame.core :as rf]))

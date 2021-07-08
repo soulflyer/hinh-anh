@@ -1,4 +1,4 @@
-(ns anh-front.keyword-events
+(ns anh-front.events.keyword-events
   (:require [anh-front.tree :as tree]
             [re-frame.core :as rf]))
 

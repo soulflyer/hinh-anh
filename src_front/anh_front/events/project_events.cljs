@@ -1,4 +1,4 @@
-(ns anh-front.project-events
+(ns anh-front.events.project-events
   (:require [anh-front.tree :as tree]
             [re-frame.core :as rf]))
 

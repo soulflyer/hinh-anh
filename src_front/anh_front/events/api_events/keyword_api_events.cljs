@@ -1,4 +1,4 @@
-(ns anh-front.keyword-api-events
+(ns anh-front.events.api-events.keyword-api-events
   "The events used to load the tree of keywords"
   (:require [ajax.core :as ajax]
             [anh-front.keyword-tree :as keyword-tree]

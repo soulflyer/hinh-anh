@@ -1,4 +1,4 @@
-(ns anh-front.keyword-pics-api-events
+(ns anh-front.events.api-events.keyword-pics-api-events
   "These are the events that load pictures for a given keyword. This could be the single best picture, all the pictures for the given keyword, or all the pictures for the given keyword and its sub-keywords."
   (:require [ajax.core :as ajax]
             [anh-front.helpers :as helpers]

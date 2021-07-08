@@ -1,4 +1,4 @@
-(ns anh-front.tree-events
+(ns anh-front.tree.tree-events
   (:require [anh-front.tree :as tree]
             [com.rpl.specter :as sp]
             [re-frame.core :as rf]

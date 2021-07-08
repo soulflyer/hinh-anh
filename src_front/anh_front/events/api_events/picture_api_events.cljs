@@ -1,4 +1,4 @@
-(ns anh-front.picture-api-events
+(ns anh-front.events.api-events.picture-api-events
   (:require [ajax.core :as ajax]
             [cognitect.transit :as transit]
             [re-frame.core :as rf]))

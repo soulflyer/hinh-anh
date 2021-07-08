@@ -1,4 +1,4 @@
-(ns anh-front.key-codes)
+(ns anh-front.keys.key-codes)
 
 (def key-codes
   {"1" 49

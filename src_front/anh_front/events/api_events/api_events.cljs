@@ -1,4 +1,4 @@
-(ns anh-front.api-events
+(ns anh-front.events.api-events.api-events
   (:require [re-frame.core :as rf]))
 
 (rf/reg-event-db

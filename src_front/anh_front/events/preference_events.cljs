@@ -1,4 +1,4 @@
-(ns anh-front.preference-events
+(ns anh-front.events.preference-events
   (:require [anh-front.db  :as db]
             [re-frame.core :as rf]))
 

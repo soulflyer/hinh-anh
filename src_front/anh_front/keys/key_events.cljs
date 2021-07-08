@@ -1,4 +1,4 @@
-(ns anh-front.key-events
+(ns anh-front.keys.key-events
   (:require [anh-front.keys :as ks]
             [re-frame.core :as rf]
             [re-pressed.core :as rp]))

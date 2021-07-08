@@ -1,4 +1,4 @@
-(ns anh-front.project-pics-api-events
+(ns anh-front.events.api-events.project-pics-api-events
   "Events used to load the pictures for a project."
   (:require [ajax.core :as ajax]
             [anh-front.helpers :as helpers]

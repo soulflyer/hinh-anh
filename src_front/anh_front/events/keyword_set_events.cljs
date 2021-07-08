@@ -1,4 +1,4 @@
-(ns anh-front.keyword-set-events
+(ns anh-front.events.keyword-set-events
   (:require [re-frame.core :as rf]))
 
 (rf/reg-event-fx

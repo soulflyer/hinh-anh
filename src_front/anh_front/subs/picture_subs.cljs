@@ -1,4 +1,4 @@
-(ns anh-front.picture-subs
+(ns anh-front.subs.picture-subs
   (:require [re-frame.core :as rf]
             [anh-front.helpers :as helpers]
             [clojure.set :as set]))

@@ -1,4 +1,4 @@
-(ns anh-front.photo-keyword-api-events
+(ns anh-front.events.api-events.photo-keyword-api-events
   "Events used to add and remove keywords from photos."
   (:require [ajax.core                :as ajax]
             [anh-front.helpers        :as helpers]

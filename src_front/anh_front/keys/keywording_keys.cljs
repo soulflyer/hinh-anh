@@ -1,7 +1,7 @@
-(ns anh-front.keywording-keys
-  (:require [anh-front.key-codes :refer [key-codes]]
-            [re-frame.core       :as rf]
-            [clojure.set         :as set]))
+(ns anh-front.keys.keywording-keys
+  (:require [anh-front.keys.key-codes :refer [key-codes]]
+            [re-frame.core            :as rf]
+            [clojure.set              :as set]))
 
 (defn keywording-shortcut-keys []
   (let [keyword-shortcuts (rf/subscribe [:keyword-map])

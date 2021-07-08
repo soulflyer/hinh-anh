@@ -1,4 +1,4 @@
-(ns anh-front.write-api-events
+(ns anh-front.events.api-events.write-api-events
   (:require [ajax.core     :as ajax]
             [cemerick.url  :as url]
             [re-frame.core :as rf]))

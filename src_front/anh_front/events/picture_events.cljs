@@ -1,4 +1,4 @@
-(ns anh-front.picture-events
+(ns anh-front.events.picture-events
   (:require [clojure.set :as set]
             [re-frame.core :as rf]))
 

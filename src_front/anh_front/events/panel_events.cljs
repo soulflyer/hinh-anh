@@ -1,4 +1,4 @@
-(ns anh-front.panel-events
+(ns anh-front.events.panel-events
   (:require [clojure.set :as set]
             [re-frame.core :as rf]))
 

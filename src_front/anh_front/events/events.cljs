@@ -1,4 +1,4 @@
-(ns anh-front.events
+(ns anh-front.events.events
   (:require [akiroz.re-frame.storage :as store]
             [anh-front.db :as db]
             [re-frame.core :as rf]))

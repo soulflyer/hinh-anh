@@ -1,4 +1,4 @@
-(ns anh-front.open-api-events
+(ns anh-front.events.api-events.open-api-events
   "Events used to open pictures in an external viewer"
   (:require [ajax.core                :as ajax]
             [day8.re-frame.http-fx    :as dont-delete-me-or-http-xhrio-will-go-away]

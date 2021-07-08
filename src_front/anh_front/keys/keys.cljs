@@ -1,8 +1,8 @@
 (ns anh-front.keys
-  (:require [anh-front.atoms           :as atoms]
-            [anh-front.key-codes       :refer [key-codes]]
-            [anh-front.keywording-keys :refer [keywording-shortcut-keys
-                                               keywording-set-shortcut-keys]]))
+  (:require [anh-front.atoms                :as atoms]
+            [anh-front.keys.key-codes       :refer [key-codes]]
+            [anh-front.keys.keywording-keys :refer [keywording-shortcut-keys
+                                                    keywording-set-shortcut-keys]]))
 
 (def prevent-keys
   [;;{:which (key-codes "return")}
