@@ -4,8 +4,8 @@
     "description": "Hình Ảnh photo management system",
     "devDependencies": {
         "closurecompiler-externs": "^1.0.4",
-        "electron": "^3.1.9",
-        "electron-packager": "^13.1.1"
+        "electron": "^19.0.3",
+        "electron-packager": "^15.5.1"
     },
     "license": "MIT",
     "repository": "https://github.com/soulflyer/hinh-anh"

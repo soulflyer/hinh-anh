@@ -18,7 +18,7 @@
                  [re-pressed "0.3.1"]
                  [reagent "0.9.1"]]
   :plugins      [[lein-cljsbuild "1.1.7"]
-                 [lein-externs "0.1.6"]
+                 [lein-externs "0.1.7"]
                  [lein-shell "0.5.0"]
                  [lein-figwheel "0.5.19" :exclusions [org.clojure/core.cache]]]
   :profiles
@@ -67,8 +67,7 @@
    "uberapp-osx"   ["shell" "electron-packager" "./app/prod" "anh"
                     "--platform=darwin" "--arch=x64" "--electron-version=1.6.6"]
    "uberapp-linux" ["shell" "electron-packager" "./app/prod" "anh"
-                    "--platform=linux" "--arch=x64" "--electron-version=1.6.6"]
-   }
+                    "--platform=linux" "--arch=x64" "--electron-version=1.6.6"]}
 
   :cljsbuild
   {:builds
