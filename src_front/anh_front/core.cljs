@@ -57,3 +57,7 @@
 
 (defn ^:export speak []
   (println "hello from clojurescript"))
+
+(comment
+  (speak)
+  )

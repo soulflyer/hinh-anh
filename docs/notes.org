@@ -57,7 +57,7 @@ The name in the doc (hover) is set by the name of the app. or by changing CFBund
 ** re-frisk
 NOTE Using this stops the re-frame template from running, ie lein new re-frame throws an error.
 
-This seems to work. Added [lein-re-frisk "0.5.5"] to ~/.lein/profiles.clj in the :user :plugins section.
+ This seems to work. Added [lein-re-frisk "0.5.5"] to ~/.lein/profiles.clj in the :user :plugins section.
 Added [re-frisk-remote.core] to the requires in anh-front.core, and called (enable-re-frisk-remote!) in init! as below:
 #+BEGIN_SRC clojure
   (ns anh-front.core
@@ -123,25 +123,6 @@ ReferenceError: document is not defined
 Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.
 
 * Bugs
-** DONE [#A] Full size view not working
-   CLOSED: [2020-02-22 Sat 19:39]
-Just forgot the key to press...
-** DONE [#A] Tab doesn't switch to right pane
-   CLOSED: [2020-04-13 Mon 13:56]
-Wrong key. / switches from left to right.
-** DONE [#A] Return doesn't work when adding keyword
-   CLOSED: [2018-12-15 Sat 23:22]
-Seems to be because of the suggestions. Get rid of them and just have a textbox.
-** DONE [#A] return should only switch to single pic in details view
-   CLOSED: [2018-12-15 Sat 23:25]
-** DONE [#A] JSON export doesn't work. Switch to textbox.
-   CLOSED: [2018-12-25 Tue 15:23]
-** DONE [#A] Unable to open external
-   CLOSED: [2020-04-13 Mon 14:13]
-Use CMD O not O
-** DONE [#A] Unable to view all pics for a selected keyword
-   CLOSED: [2020-04-13 Mon 14:13]
-Use key b, but from the left panel.
 ** TODO [#A] Documentation is out of date
 a key is no longer used to show all pics and cmd-a to select all is missing. Also no mention of creating keyword sets.
 ** TODO [#B] Open external doesn't open fullsize
@@ -186,16 +167,11 @@ Only when doing a refresh and projects pane is not selected. I don't think this 
 Would be nice, but lots of work and not that important.
 *** TODO [#F] Filter by tags stored in keywords
 Could use this as a substitute for colour labels, even allocate a colour to each of t1 to t9
-** DONE [#A] Need some easily accessible docs of keypresses. I keep forgetting.
-Its in the readme....
-   CLOSED: [2020-07-17 Fri 23:47]
 ** TODO [#A] Save and restore sets of keywords
 *** add list of sets to db/local-storage :keyword-meta-sets
 *** add events to select sets from :keyword-meta-sets and move into :keyword-sets
 *** add interface element showing a dropdown list of all sets in keyword-meta-sets
 *** add API calls to save keyword-meta-sets and to reload it allowing external editing.
-** DONE [#B] Increase font size of filename in info display.
-   CLOSED: [2020-07-18 Sat 00:10]
 ** TODO [#B] Add a tool to view masters.
 ** TODO [#B] Add a tool to delete all versions of a pic
 Create thumbnails if they aren't already present. Perhaps a default thumbnail directory in the projects master directory.
@@ -238,9 +214,6 @@ One possible solution is to have calls to subscriptions that are defined outside
 ** TODO [#I] find out how to style the box around a button.
 It's generated automatically and only seems to allow the button to expand to full width when it's contained in an otherwise spurious v-box
 * Updates
-** DONE [#A] Update electron
-   CLOSED: [2018-12-15 Sat 23:22]
-Github is warning about a vulnerability in 2.0.4 so edited package-lock.json. Probably shouldn't have, also edited Gruntfile.js which is where the version of electron gets specified. Need to re-run the lein task get-electron to actually update electron.
 * Notes
 Don't forget the keys to press:
 /   Switch between left and right panels

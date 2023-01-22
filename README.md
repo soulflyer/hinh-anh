@@ -115,9 +115,14 @@ Odd things will happen if you have 2 keywords in the keyword tree with the same 
 
 Hình Ảnh means image in Vietnamese
  
+## Development
+
+    jack-in-clj&cljs
+    ./node-modules/.bin/electron app/dev 
+    
 ## License
 
-Copyright ©  FIXME
+Copyright Iain Wood ©2018-2023  FIXME
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.

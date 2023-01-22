@@ -1,0 +1,116 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/iain/Code/Clojure/hinh-anh/docs/notes.org
+
+
+
+Archived entries from file /Users/iain/Code/Clojure/hinh-anh/docs/notes.org
+
+
+* DONE [#A] Full size view not working
+   CLOSED: [2020-02-22 Sat 19:39]
+:PROPERTIES:
+:ARCHIVE_TIME: 2022-11-09 Wed 00:43
+:ARCHIVE_FILE: ~/Code/Clojure/hinh-anh/docs/notes.org
+:ARCHIVE_OLPATH: Bugs
+:ARCHIVE_CATEGORY: notes
+:ARCHIVE_TODO: DONE
+:END:
+Just forgot the key to press...
+
+* DONE [#A] Full size view not working
+   CLOSED: [2020-02-22 Sat 19:39]
+:PROPERTIES:
+:ARCHIVE_TIME: 2022-11-09 Wed 00:43
+:ARCHIVE_FILE: ~/Code/Clojure/hinh-anh/docs/notes.org
+:ARCHIVE_OLPATH: Bugs
+:ARCHIVE_CATEGORY: notes
+:ARCHIVE_TODO: DONE
+:END:
+Just forgot the key to press...
+
+* DONE [#A] Tab doesn't switch to right pane
+   CLOSED: [2020-04-13 Mon 13:56]
+:PROPERTIES:
+:ARCHIVE_TIME: 2022-11-09 Wed 00:43
+:ARCHIVE_FILE: ~/Code/Clojure/hinh-anh/docs/notes.org
+:ARCHIVE_OLPATH: Bugs
+:ARCHIVE_CATEGORY: notes
+:ARCHIVE_TODO: DONE
+:END:
+Wrong key. / switches from left to right.
+
+* DONE [#A] Return doesn't work when adding keyword
+   CLOSED: [2018-12-15 Sat 23:22]
+:PROPERTIES:
+:ARCHIVE_TIME: 2022-11-09 Wed 00:43
+:ARCHIVE_FILE: ~/Code/Clojure/hinh-anh/docs/notes.org
+:ARCHIVE_OLPATH: Bugs
+:ARCHIVE_CATEGORY: notes
+:ARCHIVE_TODO: DONE
+:END:
+Seems to be because of the suggestions. Get rid of them and just have a textbox.
+
+* DONE [#A] return should only switch to single pic in details view
+   CLOSED: [2018-12-15 Sat 23:25]
+:PROPERTIES:
+:ARCHIVE_TIME: 2022-11-09 Wed 00:43
+:ARCHIVE_FILE: ~/Code/Clojure/hinh-anh/docs/notes.org
+:ARCHIVE_OLPATH: Bugs
+:ARCHIVE_CATEGORY: notes
+:ARCHIVE_TODO: DONE
+:END:
+
+* DONE [#A] JSON export doesn't work. Switch to textbox.
+   CLOSED: [2018-12-25 Tue 15:23]
+:PROPERTIES:
+:ARCHIVE_TIME: 2022-11-09 Wed 00:43
+:ARCHIVE_FILE: ~/Code/Clojure/hinh-anh/docs/notes.org
+:ARCHIVE_OLPATH: Bugs
+:ARCHIVE_CATEGORY: notes
+:ARCHIVE_TODO: DONE
+:END:
+
+* DONE [#A] Unable to open external
+   CLOSED: [2020-04-13 Mon 14:13]
+:PROPERTIES:
+:ARCHIVE_TIME: 2022-11-09 Wed 00:43
+:ARCHIVE_FILE: ~/Code/Clojure/hinh-anh/docs/notes.org
+:ARCHIVE_OLPATH: Bugs
+:ARCHIVE_CATEGORY: notes
+:ARCHIVE_TODO: DONE
+:END:
+Use CMD O not O
+
+* DONE [#A] Unable to view all pics for a selected keyword
+   CLOSED: [2020-04-13 Mon 14:13]
+:PROPERTIES:
+:ARCHIVE_TIME: 2022-11-09 Wed 00:44
+:ARCHIVE_FILE: ~/Code/Clojure/hinh-anh/docs/notes.org
+:ARCHIVE_OLPATH: Improvements
+:ARCHIVE_CATEGORY: notes
+:ARCHIVE_TODO: DONE
+:END:
+Use key b, but from the left panel.
+
+* DONE [#A] Need some easily accessible docs of keypresses. I keep forgetting.
+:PROPERTIES:
+:ARCHIVE_TIME: 2022-11-09 Wed 00:44
+:ARCHIVE_FILE: ~/Code/Clojure/hinh-anh/docs/notes.org
+:ARCHIVE_OLPATH: Improvements
+:ARCHIVE_CATEGORY: notes
+:ARCHIVE_TODO: DONE
+:END:
+Its in the readme....
+   CLOSED: [2020-07-17 Fri 23:47]
+
+* DONE [#B] Increase font size of filename in info display.
+   CLOSED: [2020-07-18 Sat 00:10]
+:PROPERTIES:
+:ARCHIVE_TIME: 2022-11-09 Wed 00:44
+:ARCHIVE_FILE: ~/Code/Clojure/hinh-anh/docs/notes.org
+:ARCHIVE_OLPATH: Updates
+:ARCHIVE_CATEGORY: notes
+:ARCHIVE_TODO: DONE
+:END:

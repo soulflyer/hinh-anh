@@ -27,3 +27,4 @@ anh-darwin-arm64
 wtf
 .eastwood
 .clj-kondo
+log/
