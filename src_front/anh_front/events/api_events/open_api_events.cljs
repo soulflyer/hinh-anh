@@ -7,7 +7,7 @@
 
 (rf/reg-event-fx
   :open-project
-  (fn [{:keys [db]} [_ path]]
+  (fn [_ [_ path]]
     (let [api-root (rf/subscribe [:api-root])]
       {:http-xhrio {:method :get
                     :cross-origin true
@@ -19,7 +19,7 @@
 
 (rf/reg-event-fx
   :open-pictures
-  (fn [{:keys [db]} _]
+  (fn [_ _]
     (let [api-root      (rf/subscribe [:api-root])
           selected-pics (rf/subscribe [:selected-pics])
           pics          (url/url-encode (reduce str (interpose " " @selected-pics)))]

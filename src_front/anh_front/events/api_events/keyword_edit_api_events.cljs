@@ -6,7 +6,7 @@
 
 (rf/reg-event-fx
   :set-sample
-  (fn [{:keys [db]} [_ response]]
+  (fn [{:keys [db]} [_ _]]
     (let [api-root (rf/subscribe [:api-root])
           kw       (last @(rf/subscribe [:keyword-focus]))
           pic-path (rf/subscribe [:focused-pic-path])
@@ -27,7 +27,7 @@
 
 (rf/reg-event-fx
   :delete-focused-keyword
-  (fn [{:keys [db]} [_ response]]
+  (fn [{:keys [db]} [_ _]]
     (let [api-root (rf/subscribe [:api-root])
           kw       (rf/subscribe [:keyword-focus])]
       (println (str "%%%%%%%%%%  delete " kw))
@@ -118,7 +118,7 @@
   (fn [{:keys [db]} [_ merge-with]]
     (let [api-root   (rf/subscribe [:api-root])
           focus      (rf/subscribe [:keyword-focus])
-          depth      (count @focus)
+          ;;depth    (count @focus)
           kw         (last @focus)]
       (println (str "%%%%%%%%%% merge " kw " with " merge-with))
       {:http-xhrio
@@ -136,7 +136,7 @@
 
 (rf/reg-event-fx
   :add-missing-keywords
-  (fn [{:keys [db]} _]
+  (fn [_ _]
     (let [api-root (rf/subscribe [:api-root])]
       (println (str "%%%%%%%%%% add-missing keywords"))
       {:http-xhrio
@@ -151,7 +151,7 @@
 
 (rf/reg-event-fx
   :delete-unused-keywords
-  (fn [{:keys [db]} _]
+  (fn [_ _]
     (let [api-root (rf/subscribe [:api-root])]
       (println (str "%%%%%%%%%% delete unused keywords"))
       {:http-xhrio

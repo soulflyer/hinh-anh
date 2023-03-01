@@ -11,7 +11,7 @@
 
 (rf/reg-event-fx
   :write-json
-  (fn [{:keys [db]} [_ filename]]
+  (fn [_ [_ filename]]
     (let [api-root   (rf/subscribe [:api-root])
           divecentre (rf/subscribe [:dive-centre])
           selection  (rf/subscribe [:selected-jpegs])

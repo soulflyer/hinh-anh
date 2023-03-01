@@ -36,7 +36,7 @@
 
 (rf/reg-event-fx
   :write-rating
-  (fn [{:keys [db]} [_ [pic rating]]]
+  (fn [_ [_ [pic rating]]]
     {:dispatch [:write-iptc [pic "Rating" (str rating)]]}))
 
 (rf/reg-event-fx

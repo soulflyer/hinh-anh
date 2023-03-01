@@ -18,9 +18,9 @@
         selected      (rf/subscribe [:selected-pics])
         pic-sel-col   (rf/subscribe [:picture-selected-colour])
         panel-focus   (rf/subscribe [:panel-focus])
-        focused       (= :pictures @panel-focus)
+        ;;focused     (= :pictures @panel-focus)
         version       (get pic "Version")
-        id            (get pic "_id")
+        ;;id          (get pic "_id")
         path          (when pic (helpers/image-path pic))
         pic-path      (str (if @view-fullsize
                              @fullsize-path

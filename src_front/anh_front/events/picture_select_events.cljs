@@ -18,16 +18,15 @@
 
 (rf/reg-event-fx
   :toggle-select-focused-pic
-  (fn [{:keys [db]} _]
+  (fn [_ _]
     (let [path (rf/subscribe [:focused-pic-path])]
       {:dispatch [:toggle-select-picture @path]})))
 
 (rf/reg-event-fx
   :toggle-select-and-focus
   (fn [{:keys [db]} [_ pic]]
-    (let [a 1]
-      {:db (assoc-in db [:picture-list :focus] pic)
-       :dispatch [:toggle-select-picture pic]})))
+    {:db (assoc-in db [:picture-list :focus] pic)
+     :dispatch [:toggle-select-picture pic]}))
 
 (rf/reg-event-fx
   :select-all

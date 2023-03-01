@@ -114,3 +114,15 @@ Its in the readme....
 :ARCHIVE_CATEGORY: notes
 :ARCHIVE_TODO: DONE
 :END:
+
+
+
+* DONE [#D] find best is not working.
+CLOSED: [2023-03-01 Wed 22:28]
+:PROPERTIES:
+:ARCHIVE_TIME: 2023-03-01 Wed 22:28
+:ARCHIVE_FILE: ~/Code/Clojure/hinh-anh/docs/notes.org
+:ARCHIVE_OLPATH: Bugs
+:ARCHIVE_CATEGORY: notes
+:END:
+The API call works, but something is putting "///" into the sample: field. Deleting it fixes it. Probably something to do with the creation of new keywords.

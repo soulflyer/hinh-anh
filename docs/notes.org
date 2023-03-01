@@ -123,12 +123,8 @@ ReferenceError: document is not defined
 Updating to re-frame-10x 0.2.1-SNAPSHOT gets reid of the warnings but not the errors on electron startup.
 
 * Bugs
-** TODO [#A] Documentation is out of date
-a key is no longer used to show all pics and cmd-a to select all is missing. Also no mention of creating keyword sets.
 ** TODO [#B] Open external doesn't open fullsize
 Need to change this in the API first. Also add another option so pictures can be opened in a viewer or an editor.
-** TODO [#D] find best is not working.
-The API call works, but something is putting "///" into the sample: field. Deleting it fixes it. Probably something to do with the creation of new keywords.
 ** TODO [#C] Add orphans doesn't appear to be working
 ** TODO [#C] Open files doesn't sort the files.
 ** TODO [#D] Keywords are not always ordered
@@ -161,6 +157,13 @@ Need to see this on the production version before worrying about it. Probably wo
 ** TODO [#I] Broke the expand of nodes to the saved project.
 Only when doing a refresh and projects pane is not selected. I don't think this can happen in the production environment.
 
+** Archive                                                          :ARCHIVE:
+*** DONE [#A] Documentation is out of date
+CLOSED: [2023-03-01 Wed 21:49]
+:PROPERTIES:
+:ARCHIVE_TIME: 2023-03-01 Wed 21:50
+:END:
+a key is no longer used to show all pics and cmd-a to select all is missing. Also no mention of creating keyword sets.
 * Improvements
 ** Filters
 *** TODO [#G] Filter by colour label.

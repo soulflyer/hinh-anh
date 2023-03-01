@@ -10,14 +10,15 @@
         iptc-fields          (rf/subscribe [:iptc-fields])
         camera               (helper/camera (get @pic "Model"))
         copyright            (get @pic "Copyright-Notice")
-        [date time]          (helper/split-datetime (get @pic "Date-Time-Original"))
+        ;;[date time]        (helper/split-datetime (get @pic "Date-Time-Original"))
         f-stop               (get @pic "F-Number")
         iso                  (get @pic "ISO-Speed-Ratings")
-        keywords             (get @pic "Keywords")
-        keyword-string       (reduce str (interpose ", " keywords))
+        ;;keywords           (get @pic "Keywords")
+        ;;keyword-string     (reduce str (interpose ", " keywords))
         lens                 (get @pic "Lens")
         shutter              (get @pic "Exposure-Time")
-        version              (get @pic "Version")]
+        ;;version            (get @pic "Version")
+        ]
     (rc/v-box
       :attr {:on-click #(rf/dispatch [:set-panel-focus :left])}
       :style {:padding-left "5px"}

@@ -6,9 +6,8 @@
 (rf/reg-event-fx
   :set-panel-focus
   (fn [{:keys [db]} [_ new-panel]]
-    (let [a 1]
-      {:db (assoc db :panel-focus new-panel)
-       :dispatch [:set-keys-for new-panel]})))
+    {:db (assoc db :panel-focus new-panel)
+     :dispatch [:set-keys-for new-panel]}))
 
 (rf/reg-event-fx
   :next-panel
@@ -49,10 +48,10 @@
 
 (rf/reg-event-fx
   :rotate-left-panel
-  (fn [{:keys [db]} _]
+  (fn [_ _]
     (let [left-panel-map (rf/subscribe [:left-panel-map])
           left-display   (rf/subscribe [:left-panel-display])
-          panel-focus    (rf/subscribe [:panel-focus])
+          ;;panel-focus  (rf/subscribe [:panel-focus])
           invert-map     (set/map-invert @left-panel-map)
           focus-num      (invert-map @left-display)
           new-panel      (get @left-panel-map
@@ -70,7 +69,7 @@
 
 (rf/reg-event-fx
   :rotate-display
-  (fn [{:keys [db]} _]
+  (fn [_ _]
     (let [list  (rf/subscribe [:picture-display-list])
           index (rf/subscribe [:picture-display-index])
           len   (count @list)

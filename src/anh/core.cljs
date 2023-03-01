@@ -19,7 +19,7 @@
 
   ;; window all closed listener
   (.on app "window-all-closed"
-       (fn [] (if (not= (.-platform nodejs/process) "darwin")
+       (fn [] (when (not= (.-platform nodejs/process) "darwin")
                 (.quit app))))
 
   ;; ready listener

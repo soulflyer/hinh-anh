@@ -36,7 +36,7 @@
 
 (rf/reg-event-fx
   :add-keyword-to-photos
-  (fn [{:keys [db]} [_ kw]]
+  (fn [_ [_ kw]]
     (let [api-root    (rf/subscribe [:api-root])
           photo-paths (rf/subscribe [:selected-pics])
           photo-ids   (helpers/paths->ids @photo-paths)]
@@ -50,7 +50,7 @@
 
 (rf/reg-event-fx
   :delete-keyword-from-photos
-  (fn [{:keys [db]} [_ kw]]
+  (fn [_ [_ kw]]
     (let [photo-paths (rf/subscribe [:selected-pics])
           photo-ids   (helpers/paths->ids @photo-paths)
           api-root    (rf/subscribe [:api-root])]
@@ -63,7 +63,7 @@
 
 (rf/reg-event-fx
   :delete-keyword-from-photo
-  (fn [{:keys [db]} [_ [pic kw]]]
+  (fn [_ [_ [pic kw]]]
     (let [api-root (rf/subscribe [:api-root])]
       {:http-xhrio {:method :get
                     :uri (str @api-root "/photos/delete/keyword/" kw "/" pic)

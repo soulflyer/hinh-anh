@@ -60,28 +60,27 @@
 
 (defn button-set
   [button-map add remove on-click on-right-click show-edit name]
-  (let [shortcut-highlight (rf/subscribe [:shortcut-highlight])]
-    [rc/scroller
-     :h-scroll :off
-     :size "none"
-     :child
-     [rc/v-box
-      :children
-      [(let [edit @show-edit
-             buttons (sort (keys @button-map))]
-         (for [btn buttons]
-           ;;TODO buttons are sorted here to keep buttons in order. Can't rely on them
-           ;; staying sorted in button-map even though it works for less than 9 buttons
-           ;; need to change implementation so button-map is a vector of maps instead.
-           ^{:key (str "button-" name "-" btn)}
-           [rc/h-box
-            :children
-            [[shortcut (str (get @button-map btn))]
-             [kw-button btn on-click on-right-click]
-             (when edit
-               [delete-button remove btn])]]))
-       (when @show-edit
-         [add-input add (str "Add " name)])]]]))
+  [rc/scroller
+   :h-scroll :off
+   :size "none"
+   :child
+   [rc/v-box
+    :children
+    [(let [edit @show-edit
+           buttons (sort (keys @button-map))]
+       (for [btn buttons]
+         ;;TODO buttons are sorted here to keep buttons in order. Can't rely on them
+         ;; staying sorted in button-map even though it works for less than 9 buttons
+         ;; need to change implementation so button-map is a vector of maps instead.
+         ^{:key (str "button-" name "-" btn)}
+         [rc/h-box
+          :children
+          [[shortcut (str (get @button-map btn))]
+           [kw-button btn on-click on-right-click]
+           (when edit
+             [delete-button remove btn])]]))
+     (when @show-edit
+       [add-input add (str "Add " name)])]]])
 
 (defn footer-buttons []
   [rc/h-box

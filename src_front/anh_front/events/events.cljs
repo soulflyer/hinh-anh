@@ -12,7 +12,7 @@
 
 (rf/reg-event-fx
   :set-html-focus
-  (fn [{:keys [db]} [_ panel]]
+  (fn [_ [_ panel]]
     {:set-html-focus panel}))
 
 (store/reg-co-fx! :anh
@@ -23,7 +23,7 @@
   :store-preferences
   [(rf/inject-cofx :store)]
   (let [prefs (rf/subscribe [:preferences])]
-    (fn [{:keys [store db]} _]
+    (fn [{:keys [store _]} _]
       {:store (assoc store :preferences @prefs)})))
 
 (rf/reg-event-fx

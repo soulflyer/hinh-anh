@@ -2,18 +2,17 @@
   (:require
    [anh-front.ui-components.details.core     :as details]
    [anh-front.ui-components.footer           :as footer]
-   [anh-front.ui-components.header           :as header]
+   ;;[anh-front.ui-components.header         :as header]
    [anh-front.ui-components.keywording.core  :as keywording]
    [anh-front.ui-components.keywords         :as keywords]
    [anh-front.ui-components.pictures         :as pictures]
-   [anh-front.ui-components.pictures-header  :as pictures-header]
+   ;;[anh-front.ui-components.pictures-header  :as pictures-header]
    [anh-front.ui-components.preferences.core :as preferences]
    [anh-front.ui-components.projects         :as projects]
    [anh-front.ui-components.sidebar-header   :as sidebar-header]
    [anh-front.ui-components.styles           :as styles]
    [re-com.core                              :as rc]
-   [re-frame.core                            :as rf]
-   ))
+   [re-frame.core                            :as rf]))
 
 (defn panel []
   (let [focus        (rf/subscribe [:panel-focus])

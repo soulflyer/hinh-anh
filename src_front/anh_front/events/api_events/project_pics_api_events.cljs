@@ -29,7 +29,8 @@
     [db [_ response]]
     (let [reader    (transit/reader :json)
           resp      (transit/read reader response)
-          first-pic (helpers/image-path (first resp))]
+          ;;first-pic (helpers/image-path (first resp))
+          ]
       (-> db
           (assoc    :loading? false)
           (assoc    :error "")

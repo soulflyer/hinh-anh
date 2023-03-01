@@ -17,7 +17,7 @@
           gap          (rf/subscribe [:picture-grid-gap])
           display      (rf/subscribe [:picture-display])
           focused      (rf/subscribe [:focused-pic-path])
-          filter-stars (rf/subscribe [:picture-filter-stars])
+          ;;filter-stars (rf/subscribe [:picture-filter-stars])
           rows         (partition @columns @columns (repeat []) @pic-ids)]
       (case @display
         :grid   [rc/v-box

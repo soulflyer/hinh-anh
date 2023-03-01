@@ -1,5 +1,5 @@
 (ns anh-front.events.keyword-events
-  (:require [anh-front.tree :as tree]
+  (:require [anh-front.tree.tree :as tree]
             [re-frame.core :as rf]))
 
 (rf/reg-event-fx
@@ -34,17 +34,18 @@
 
 (rf/reg-event-fx
   :keyword-pics
-  (fn [{:keys [db]} [_ kw]]
+  (fn [_ [_ kw]]
     (println "++++++++ " kw)
     (let [all (rf/subscribe [:keyword-pic-display-all])
-          sub (rf/subscribe [:keyword-pic-display-sub])]
+          ;;sub (rf/subscribe [:keyword-pic-display-sub])
+          ]
       {:dispatch (if @all
                    [:load-all-keyword-pics kw]
                    [:load-best-picture kw])})))
 
 (rf/reg-event-fx
   :focused-keyword-pics
-  (fn [{:keys [db]} _]
+  (fn [_ _]
     (let [kw (rf/subscribe [:keyword-focus])]
       {:dispatch [:keyword-pics (last @kw)]})))
 

@@ -1,5 +1,5 @@
 (ns anh-front.tree.tree-test-data
-  (:require [anh-front.tree :as tree]
+  (:require [anh-front.tree.tree :as tree]
             [anh-front.keyword-tree :as kwt]
             [com.rpl.specter :as sp]))
 

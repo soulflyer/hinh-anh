@@ -32,8 +32,9 @@
   :add-to-keyword-set
   (fn [{:keys [db]} [_ new-keyword]]
     (let [current-set     (rf/subscribe [:keyword-set])
-          loaded-keywords (rf/subscribe [:loaded-keyword-set])]
-      (if (not (= "" new-keyword))
+          ;;loaded-keywords (rf/subscribe [:loaded-keyword-set])
+          ]
+      (when (not (= "" new-keyword))
         {:db (cond-> db
                true (assoc-in [:preferences :keyword-set]
                               (set (conj @current-set new-keyword))))
@@ -45,7 +46,7 @@
   :refresh-keyword-set
   (fn [_ _]
     (let [ loaded-keywords (rf/subscribe [:loaded-keyword-set])]
-      (if @loaded-keywords
+      (when @loaded-keywords
         {:dispatch-n [[:remove-keyword-set @loaded-keywords]
                       [:add-keyword-set @loaded-keywords]
                       [:load-keyword-list]]}))))
@@ -61,7 +62,7 @@
 (rf/reg-event-fx
   :add-keyword-set
   (fn [{:keys [db]} [_ new-name]]
-    (if (not (= "" new-name))
+    (when (not (= "" new-name))
       (let [keywords     (rf/subscribe [:keyword-set])
             keyword-sets (rf/subscribe [:keyword-sets])]
         {:db (assoc-in
@@ -82,6 +83,6 @@
 
 (rf/reg-event-fx
   :save-keyword-set
-  (fn [{:keys [db]} [_ kws]]
+  (fn [_ [_ kws]]
     {:dispatch-n [[:remove-keyword-set kws]
                   [:add-keyword-set kws]]}))

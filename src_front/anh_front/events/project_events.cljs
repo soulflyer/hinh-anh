@@ -1,5 +1,5 @@
 (ns anh-front.events.project-events
-  (:require [anh-front.tree :as tree]
+  (:require [anh-front.tree.tree :as tree]
             [re-frame.core :as rf]))
 
 (rf/reg-event-fx
@@ -46,13 +46,13 @@
 
 (rf/reg-event-fx
   :go-to-saved-project
-  (fn [{:keys [db]} _]
+  (fn [_ _]
     (let [saved-project (rf/subscribe [:last-project])]
       {:dispatch [:go-to-project @saved-project]})))
 
 (rf/reg-event-fx
   :open-last-visited-project
-  (fn [{:keys [db]} _]
+  (fn [_ _]
     ;; TODO this is only delayed because project_tree.cljs is returning the root level and
     ;; overwriting the :focus. Can be simplified when I get round to fixing that.
     {:dispatch-later [{:ms 500
@@ -60,7 +60,7 @@
 
 (rf/reg-event-fx
   :open-project-external
-  (fn [{:keys [db]} _]
+  (fn [_ _]
     (let [proj (rf/subscribe [:selected-project])
           path (reduce str (interpose "/" @proj))]
       {:dispatch [:open-project path]})))

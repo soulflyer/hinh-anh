@@ -1,6 +1,5 @@
 (ns anh-front.events.preference-events
-  (:require [anh-front.db  :as db]
-            [re-frame.core :as rf]))
+  (:require [re-frame.core :as rf]))
 
 (rf/reg-event-db
   :set-api-root

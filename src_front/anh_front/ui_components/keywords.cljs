@@ -1,11 +1,10 @@
 (ns anh-front.ui-components.keywords
   (:require [anh-front.helpers                        :as helpers]
-            [anh-front.tree                           :as tree]
+            [anh-front.tree.tree                      :as tree]
             [anh-front.ui-components.popover.core     :as pc]
             [anh-front.ui-components.popover.popovers :as popover]
             [re-com.core                              :as rc]
-            [re-frame.core                            :as rf]
-            [reagent.core                             :as reagent]))
+            [re-frame.core                            :as rf]))
 
 (defn panel []
   (let [tree-name :keyword-tree
@@ -17,7 +16,7 @@
      (let [focused       (last @(rf/subscribe [:keyword-focus]))
            focused-pic   (rf/subscribe [:focused-pic-path])
            project       (butlast (helpers/path->vector @focused-pic))
-           project-path  (helpers/vector->path project)
+           ;;project-path  (helpers/vector->path project)
            dive-centre   (rf/subscribe [:dive-centre])]
        [[rc/scroller
          :child
