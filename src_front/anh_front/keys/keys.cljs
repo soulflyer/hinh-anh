@@ -1,16 +1,8 @@
-(ns anh-front.keys
-  (:require [anh-front.atoms                :as atoms]
-            [anh-front.keys.key-codes       :refer [key-codes]]
-            [anh-front.keys.keywording-keys :refer [keywording-shortcut-keys
-                                                    keywording-set-shortcut-keys]]))
-
-(def prevent-keys
-  [;;{:which (key-codes "return")}
-   {:keyCode (key-codes "up")}
-   {:keyCode (key-codes "down")}
-   {:keyCode (key-codes "space")}
-   {:keyCode (key-codes "a")
-    :metaKey true}])
+(ns anh-front.keys.keys
+  (:require [anh-front.atoms           :as atoms]
+            [anh-front.keys.key-codes  :refer [key-codes]]
+            [anh-front.keys.keywording :refer [generate-keywording-shortcut-keys
+                                               generate-keywording-set-shortcut-keys]]))
 
 (def always-listen-keys
   [{:keyCode (key-codes "esc")}
@@ -200,7 +192,7 @@
 
 (def project-key-set
   {:event-keys (into common-keys project-keys)
-   :prevent-default-keys prevent-keys
+   ;;:prevent-default-keys prevent-keys
    :always-listen-keys always-listen-keys})
 
 (def keywords-key-set
@@ -210,22 +202,24 @@
 
 (def picture-key-set
   {:event-keys (into common-keys picture-keys)
-   :prevent-default-keys prevent-keys
+   ;;:prevent-default-keys prevent-keys
    :always-listen-keys always-listen-keys})
 
 (def details-key-set
   {:event-keys (into common-keys picture-keys)
-   :prevent-default-keys prevent-keys
+   ;;:prevent-default-keys prevent-keys
    :always-listen-keys [{:keyCode 13}]})
 
+;; TODO test this. Why does it throw errors in the console
 (defn keywording-key-set []
   {:event-keys (reduce into
                        [common-keys
    ;;                     picture-keys
                         keywording-keys
-                        (keywording-shortcut-keys)
-                        (keywording-set-shortcut-keys)])
-   :prevent-default-keys prevent-keys
+                        (generate-keywording-shortcut-keys)
+                        (generate-keywording-set-shortcut-keys)
+                        ])
+   ;;:prevent-default-keys prevent-keys
    :always-listen-keys always-listen-keys})
 
 (defn key-rules
@@ -237,3 +231,13 @@
     :keywords   keywords-key-set
     :keywording (keywording-key-set)
     project-key-set))
+
+(comment
+  (keywording-key-set)
+  (key-rules :projects)
+  (key-rules :pictures)
+  (key-rules :details)
+  (key-rules :keywords)
+  (key-rules :keywording)
+  (key-rules :default)
+  )

@@ -1,5 +1,5 @@
 (ns anh-front.keys.key-events
-  (:require [anh-front.keys :as ks]
+  (:require [anh-front.keys.keys :as ks]
             [re-frame.core :as rf]
             [re-pressed.core :as rp]))
 
@@ -11,7 +11,7 @@
 
 (rf/reg-event-fx
   :set-keys-for
-  (fn [{:keys [db]} [_ panel]]
+  (fn [_ [_ panel]]
     (let [left-panel-display (rf/subscribe [:left-panel-display])
           keys               (case panel
                                :left @left-panel-display

@@ -15,7 +15,7 @@
                  [prismatic/dommy "1.1.0"]
                  [re-com "2.7.0"]
                  [re-frame "0.11.0"]
-                 [re-pressed "0.3.1"]
+                 [re-pressed "0.3.2"]
                  [reagent "0.9.1"]]
   :plugins      [[lein-cljsbuild "1.1.7"]
                  [lein-externs "0.1.7"]
