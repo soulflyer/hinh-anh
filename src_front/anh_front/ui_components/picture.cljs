@@ -1,10 +1,9 @@
 (ns anh-front.ui-components.picture
-  (:require [anh-front.helpers              :as helpers]
-            [anh-front.ui-components.styles :as styles]
-            [cljs.reader                    :as reader]
-            [clojure.string                 :as string]
-            [re-frame.core                  :as rf]
-            [re-com.core                    :as rc]))
+  (:require [anh-front.helpers :as helpers]
+            [cljs.reader       :as reader]
+            [clojure.string    :as string]
+            [re-com.core       :as rc]
+            [re-frame.core     :as rf]))
 
 (defn panel [pic]
   (let [small-path    (rf/subscribe [:medium-directory])

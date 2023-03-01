@@ -1,8 +1,8 @@
 (ns anh-front.ui-components.keywording.components
-  (:require [re-frame.core :as rf]
-            [re-com.core   :as rc]
-            [anh-front.suggestions :as suggestions]
-            [anh-front.ui-components.popover.popovers :as popover]))
+  (:require [anh-front.suggestions                    :as suggestions]
+            [anh-front.ui-components.popover.popovers :as popover]
+            [re-com.core                              :as rc]
+            [re-frame.core                            :as rf]))
 
 (defn delete-button [on-click kw]
   [rc/md-icon-button
@@ -78,9 +78,9 @@
             :children
             [[shortcut (str (get @button-map btn))]
              [kw-button btn on-click on-right-click]
-             (if edit
+             (when edit
                [delete-button remove btn])]]))
-       (if @show-edit
+       (when @show-edit
          [add-input add (str "Add " name)])]]]))
 
 (defn footer-buttons []

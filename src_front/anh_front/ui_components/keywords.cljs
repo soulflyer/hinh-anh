@@ -3,12 +3,9 @@
             [anh-front.tree                           :as tree]
             [anh-front.ui-components.popover.core     :as pc]
             [anh-front.ui-components.popover.popovers :as popover]
-            [anh-front.ui-components.popover.wrapper  :as pw]
-            [anh-front.ui-components.styles           :as styles]
             [re-com.core                              :as rc]
             [re-frame.core                            :as rf]
-            [reagent.core                             :as reagent]
-            [anh-front.atoms                          :as atoms]))
+            [reagent.core                             :as reagent]))
 
 (defn panel []
   (let [tree-name :keyword-tree

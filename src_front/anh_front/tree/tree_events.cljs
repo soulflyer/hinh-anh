@@ -1,8 +1,7 @@
 (ns anh-front.tree.tree-events
   (:require [anh-front.tree :as tree]
             [com.rpl.specter :as sp]
-            [re-frame.core :as rf]
-            [day8.re-frame.tracing :refer [fn-traced]]))
+            [re-frame.core :as rf]))
 
 (rf/reg-fx
   :scroll
@@ -59,7 +58,7 @@
 
 (rf/reg-event-fx
   :up-or-close
-  (fn [{:keys [db]} [_ tree-name]]
+  (fn [_ [_ tree-name]]
     (let [tree (rf/subscribe [tree-name])
           focus (:focus @tree)
           children (tree/children @tree focus)]
@@ -82,7 +81,7 @@
 
 (rf/reg-event-fx
   :expand-path
-  (fn [{:keys [db]} [_ [tree-name path]]]
+  (fn [_ [_ [tree-name path]]]
     (println (str "Expand " tree-name " " path))
     {:dispatch-n (loop [i (rest (reverse path))
                         out []]

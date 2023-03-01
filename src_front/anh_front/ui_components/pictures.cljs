@@ -1,10 +1,10 @@
 (ns anh-front.ui-components.pictures
-  (:require [re-com.core                        :as rc]
-            [re-frame.core                      :as rf]
+  (:require [anh-front.helpers                  :as help]
             [anh-front.ui-components.picture    :as picture]
             [anh-front.ui-components.single-pic :as single]
             [anh-front.ui-components.styles     :as styles]
-            [anh-front.helpers                  :as help]))
+            [re-com.core                        :as rc]
+            [re-frame.core                      :as rf]))
 
 (defn panel []
   [rc/v-box

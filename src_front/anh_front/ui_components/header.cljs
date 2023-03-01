@@ -1,6 +1,6 @@
 (ns anh-front.ui-components.header
-  (:require [re-frame.core :as rf]
-            [re-com.core :as rc]))
+  (:require [re-com.core :as rc]
+            [re-frame.core :as rf]))
 
 (defn title []
   (let [name (rf/subscribe [:name])]

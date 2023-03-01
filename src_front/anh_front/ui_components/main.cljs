@@ -52,6 +52,6 @@
                            :size "auto"
                            :children [[pictures/panel]]]
                  :initial-split (str @screen-split "%")]
-                (if (not @hide-footer)
+                (when (not @hide-footer)
                   [rc/box
                    :child [footer/panel]])]]))

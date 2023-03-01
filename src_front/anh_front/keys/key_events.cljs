@@ -5,9 +5,8 @@
 
 (rf/reg-event-fx
   :set-keys
-  (fn [{:keys [db]} [_ panel]]
-    (let [key-rules ks/picture-keys]
-      {:dispatch [::rp/set-keydown-rules (ks/key-rules panel)]})))
+  (fn [_ [_ panel]]
+    {:dispatch [::rp/set-keydown-rules (ks/key-rules panel)]}))
 
 (rf/reg-event-fx
   :set-keys-for

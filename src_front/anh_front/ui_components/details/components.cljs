@@ -8,7 +8,7 @@
 (defn line
   [contents label]
   (let [show-empty (rf/subscribe [:show-empty-exif])]
-    (if (or @show-empty contents)
+    (when (or @show-empty contents)
       [rc/h-box
        :width "100%"
        :justify :start
@@ -51,7 +51,6 @@
   (let [textbox-background (rf/subscribe [:details-textbox-background])
         header-background  (rf/subscribe [:details-header-background])
         background         (rf/subscribe [:details-background])
-        new-keyword        (reagent/atom nil)
         keywords           (get pic "Keywords")
         pic-path           (helpers/image-path pic)]
     (rc/v-box

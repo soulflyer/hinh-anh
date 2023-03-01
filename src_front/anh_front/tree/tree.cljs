@@ -1,14 +1,12 @@
 (ns anh-front.tree
   "Incoming data needs to be rearranged to look something like the data defined
   in tree-test-data"
-  (:require [clojure.string         :as string]
+  (:require [anh-front.helpers      :as helpers]
             [clojure.zip            :as zip]
             [com.rpl.specter        :as sp]
             [com.rpl.specter.zipper :as sz]
-            [day8.re-frame.tracing  :refer [defn-traced]]
-            [re-frame.core          :as rf]
             [re-com.core            :as re-com]
-            [anh-front.helpers      :as helpers]))
+            [re-frame.core          :as rf]))
 
 (defn path-nav [path]
   (sp/path
@@ -19,7 +17,7 @@
   "Returns a zipper for tree elements given a root element"
   [root]
   (zip/zipper (complement string?)
-              (fn [node] (if (:expanded node)
+              (fn [node] (when (:expanded node)
                            (seq (:children node))))
               (fn [node children]
                 (assoc node :children (and children (apply vector children))))
@@ -134,7 +132,7 @@
                    [re-com/label
                     :label label
                     :on-click (toggle-expand tree-name path hook)]]]
-       (if (and expanded (< 0 (count ch)))
+       (when (and expanded (< 0 (count ch)))
          (into [:ul {:style {:padding-left "0.2em"}}]
                (for [child ch]
                  (node tree tree-name (conj path (:name child)) hook))))]]]))

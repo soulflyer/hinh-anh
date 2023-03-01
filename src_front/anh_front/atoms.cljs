@@ -20,7 +20,7 @@
   :toggle-button-show
   (fn [db [_ but]]
     (swap! but not)
-    (if @but (rf/dispatch [:set-html-focus "popover-"]))
+    (when @but (rf/dispatch [:set-html-focus "popover-"]))
     db))
 
 (rf/reg-event-db

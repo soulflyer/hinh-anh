@@ -31,8 +31,8 @@
           :children [[:p @pic-path]]]
          [rc/line]
          [:h3 {:style {:margin "5px 0px 3px"}} camera]
-         (if lens [:p lens])
-         (if iso [rc/h-box
+         (when lens [:p lens])
+         (when iso [rc/h-box
                   :justify :between
                   :children [[:p (str "iso-" iso)] [:p f-stop] [:p shutter]]])
          [rc/line]
