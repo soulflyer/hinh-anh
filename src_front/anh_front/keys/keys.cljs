@@ -180,9 +180,11 @@
 (def keywording-keys
   [[[:toggle-edit-keywords]
     [{:keyCode (key-codes "e")
-      :ctrlKey true}]]
+      :ctrlKey true
+      :shiftKey false}]]
    [[:toggle-edit-keyword-sets]
     [{:keyCode (key-codes "e")
+      :ctrlKey true
       :shiftKey true}]]
    [[:close-popovers]
     [{:keyCode (key-codes "return")}]]

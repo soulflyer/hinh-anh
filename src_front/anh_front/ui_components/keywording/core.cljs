@@ -1,5 +1,6 @@
 (ns anh-front.ui-components.keywording.core
-  (:require [anh-front.ui-components.keywording.components :as components]
+  (:require [anh-front.suggestions :as suggestions]
+            [anh-front.ui-components.keywording.components :as components]
             [re-com.core   :as rc]
             [re-frame.core :as rf]))
 
@@ -18,13 +19,14 @@
        [[rc/label
          :label @keyword-set]
         [components/button-set
-         keyword-map
-         :add-to-keyword-set
-         :remove-from-keyword-set
-         :add-keyword-to-photos
-         :delete-keyword-from-photos
-         (rf/subscribe [:show-edit-keywords])
-         "keyword"]]]
+         {:button-map     keyword-map
+          :add            :add-to-keyword-set
+          :remove         :remove-from-keyword-set
+          :on-click       :add-keyword-to-photos
+          :on-right-click :delete-keyword-from-photos
+          :suggestions    suggestions/keywords
+          :show-edit      (rf/subscribe [:show-edit-keywords])
+          :name           "keyword"}]]]
       [rc/v-box
        :style {:margin-bottom "5px"}
        :children
@@ -34,12 +36,12 @@
           [components/kw-button "Current Keywords"
            :fill-keyword-set nil]]]
         [components/button-set
-         keyword-sets-map
-         :add-keyword-set
-         :remove-keyword-set
-         :set-keyword-set-by-name
-         :set-keyword-set-by-name
-         (rf/subscribe [:show-edit-keyword-sets])nil
-         "keyword set"]
+         {:button-map     keyword-sets-map
+          :add            :add-keyword-set
+          :remove         :remove-keyword-set
+          :on-click       :set-keyword-set-by-name
+          :on-right-click :set-keyword-set-by-name
+          :show-edit      (rf/subscribe [:show-edit-keyword-sets])
+          :name           "keyword set"}]
         [rc/line :style {:margin "6px 0px 0px 6px"}]
         [components/footer-buttons]]]]]))

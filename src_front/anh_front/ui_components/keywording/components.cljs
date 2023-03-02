@@ -31,13 +31,13 @@
        :on-click #(rf/dispatch [on-click kw])]]]))
 
 (defn add-input
-  [add-function placeholder]
+  [{:keys [add-function placeholder suggestions]}]
   (let [header-background (rf/subscribe [:details-header-background])
         textbox-background (rf/subscribe [:details-textbox-background])]
     [rc/box
      :child
      [rc/typeahead
-      :data-source suggestions/keywords
+      :data-source suggestions
       :width "100%"
       :height "1.5em"
       :change-on-blur? true
@@ -50,6 +50,7 @@
               :border        (str "solid 1px " @header-background)
               :padding       "1px 3px 1px 3px"}]]))
 
+
 (defn shortcut [sk]
   (let [shortcut-highlight (rf/subscribe [:shortcut-highlight])]
     [rc/box
@@ -59,7 +60,7 @@
              :color   @shortcut-highlight}]))
 
 (defn button-set
-  [button-map add remove on-click on-right-click show-edit name]
+  [{:keys [button-map add remove on-click on-right-click show-edit suggestions name]}]
   [rc/scroller
    :h-scroll :off
    :size "none"
@@ -80,7 +81,9 @@
            (when edit
              [delete-button remove btn])]]))
      (when @show-edit
-       [add-input add (str "Add " name)])]]])
+       [add-input {:add-function add
+                   :placeholder (str "Add " name)
+                   :suggestions suggestions}])]]])
 
 (defn footer-buttons []
   [rc/h-box
