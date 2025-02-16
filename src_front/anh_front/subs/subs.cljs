@@ -44,10 +44,10 @@
   (fn [db _]
     (:keyword-pic-display-all db)))
 
-(rf/reg-sub
-  :keyword-pic-display-sub
-  (fn [db _]
-    (:keyword-pic-display-sub db)))
+;; (rf/reg-sub
+;;   :keyword-pic-display-sub
+;;   (fn [db _]
+;;     (:keyword-pic-display-sub db)))
 
 (rf/reg-sub
   :keyword-move-button-show

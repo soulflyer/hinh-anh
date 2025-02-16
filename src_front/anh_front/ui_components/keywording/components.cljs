@@ -1,6 +1,5 @@
 (ns anh-front.ui-components.keywording.components
-  (:require [anh-front.suggestions                    :as suggestions]
-            [anh-front.ui-components.popover.popovers :as popover]
+  (:require [anh-front.ui-components.popover.popovers :as popover]
             [re-com.core                              :as rc]
             [re-frame.core                            :as rf]))
 
@@ -14,9 +13,6 @@
   (let [header-background (rf/subscribe [:details-header-background])
         background        (rf/subscribe [:details-background])]
     [rc/v-box
-     ;; TODO find out how to style the box around a button. It's generated
-     ;; automatically and only seems to allow the button to expand to full
-     ;; width when it's contained in an otherwise spurious v-box
      :size "1 1 auto"
      :children
      [[rc/button
@@ -32,23 +28,31 @@
 
 (defn add-input
   [{:keys [add-function placeholder suggestions]}]
-  (let [header-background (rf/subscribe [:details-header-background])
-        textbox-background (rf/subscribe [:details-textbox-background])]
+  (let [header-background     (rf/subscribe [:details-header-background])
+        textbox-background    (rf/subscribe [:details-textbox-background])
+        style                 {:background    @textbox-background
+                               :border-radius "4px 4px 4px 4px"
+                               :border        (str "solid 1px " @header-background)
+                               :padding       "1px 3px 1px 3px"
+                               :height        "1.5em"
+                               :width         "100%"}]
     [rc/box
      :child
-     [rc/typeahead
-      :data-source suggestions
-      :width "100%"
-      :height "1.5em"
-      :change-on-blur? true
-      :model nil
-      :placeholder placeholder
-      :rigid? false
-      :on-change #(rf/dispatch [add-function %])
-      :style {:background    @textbox-background
-              :border-radius "4px 4px 4px 4px"
-              :border        (str "solid 1px " @header-background)
-              :padding       "1px 3px 1px 3px"}]]))
+     (if (nil? suggestions)
+       [rc/input-text
+        :change-on-blur? true
+        :model nil
+        :placeholder placeholder
+        :on-change #(rf/dispatch [add-function %])
+        :style style]
+       [rc/typeahead
+        :data-source suggestions
+        :change-on-blur? true
+        :model nil
+        :placeholder placeholder
+        :rigid? false
+        :on-change #(rf/dispatch [add-function %])
+        :style style])]))
 
 
 (defn shortcut [sk]
@@ -70,9 +74,6 @@
     [(let [edit @show-edit
            buttons (sort (keys @button-map))]
        (for [btn buttons]
-         ;;TODO buttons are sorted here to keep buttons in order. Can't rely on them
-         ;; staying sorted in button-map even though it works for less than 9 buttons
-         ;; need to change implementation so button-map is a vector of maps instead.
          ^{:key (str "button-" name "-" btn)}
          [rc/h-box
           :children

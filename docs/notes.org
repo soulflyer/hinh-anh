@@ -20,7 +20,7 @@ see https://github.com/rasom/lein-externs
 
 Removed grunt-download-electron after updating to electron 2.0.4 because npm was complaining about vulnerabilities and they were all in that or its dependancies. Can probably do without grunt altogether.
 
-[2019-15-28] Removed grunt and electron-download altogether now. Install electron with:
+[2019-05-28] Removed grunt and electron-download altogether now. Install electron with:
 #+BEGIN_SRC shell
 npm install electron --save-dev
 #+END_SRC
@@ -36,6 +36,10 @@ electron-packager app/prod --icon=resources/anh.icns --overwrite
 
 run lein rebuild first or it will build with an old version of prod.
 
+[2024-02-16] Use this:
+#+begin_src shell
+npx @electron/packager app/prod --icon=resources/anh.icns --overwrite
+#+end_src
 ** Electron Update
 To update I edited package.json, deleted package-lock.json and ran npm install.
 Installed electron download to replace the now unmaintained grunt-download-electron.
@@ -204,7 +208,8 @@ instead of storing changes directly to db
 ** TODO [#F] Add zoom function to single pic display.
    This will probably mean switching from displaying the pic as a background to and img tag.
 ** TODO [#G] Display best image even if it isn't up to the current Rating
-May not be worth doing. Maybe reset filter-stars if picture-list is empty? Or alter filter to include pictures tagged with red.** TODO [#G] Make api consistent
+May not be worth doing. Maybe reset filter-stars if picture-list is empty? Or alter filter to include pictures tagged with red.
+** TODO [#G] Make api consistent
 Parameter ordering is different when adding keywords and iptc data
 ** TODO [#G] Remove dependancy on css to colour the selected tree item.
 One possible solution is to have calls to subscriptions that are defined outside of tree.cljs. Idealy these would be conditional so that it would still work independantly of any external code.

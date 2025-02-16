@@ -57,13 +57,13 @@
       {:db       (assoc db :keyword-pic-display-all (not @disp))
        :dispatch [:keyword-pics (last @focus)]})))
 
-(rf/reg-event-fx
-  :toggle-keyword-sub-display
-  (fn [{:keys [db]} _]
-    (let [disp  (rf/subscribe [:keyword-pic-display-sub])
-          focus (rf/subscribe [:keyword-focus])]
-      {:db       (assoc db :keyword-pic-display-sub (not @disp))
-       :dispatch [:keyword-pics (last @focus)]})))
+;; (rf/reg-event-fx
+;;   :toggle-keyword-sub-display
+;;   (fn [{:keys [db]} _]
+;;     (let [disp  (rf/subscribe [:keyword-pic-display-sub])
+;;           focus (rf/subscribe [:keyword-focus])]
+;;       {:db       (assoc db :keyword-pic-display-sub (not @disp))
+;;        :dispatch [:keyword-pics (last @focus)]})))
 
 ;; Not used but should it be?
 (rf/reg-event-db

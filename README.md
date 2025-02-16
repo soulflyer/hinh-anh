@@ -9,25 +9,26 @@ Hinh Anh is designed to be used from the keyboard. By default there is very litt
 ### Projects Screen
 This is the project screen. Projects can be selected from the tree on the left. This is for browsing and rating a photo shoot.
 
-![Project Screen](docs/screenshots/projects.png?raw=true) 
+<img src=docs/screenshots/projects.png width=100%/>
 
 ### Details Screen
 The full details, EXIF and IPTC, for each picture are displayed here. Captions, Titles and keywords can be added here, although the dedicated keywording screen will allow much faster keywording.
 
-![Details Screen](docs/screenshots/details.png?raw=true) 
+<img src=docs/screenshots/details.png width=100%/>
 
 ### Keywording Screen
+
 The top half of the left panel is the keyword set currently in use. Down the left hand edge are the keyword shortcuts. Pressing one of these will add the keyword to all selected photos allowing for fast keywording of multiple shots.
 
 The bottom half of the left panel contains the stored keyword sets. These can be switched in and out with a single keypress.
 
-![Keywording Screen](docs/screenshots/keywording.png?raw=true) 
+<img src=docs/screenshots/keywording.png width=100%/>
 
 ### Keyword Screen
 
 This is where the keyword heirarchy is created and maintained. Any keywords applied to a photo that don't already appear in the keyword heirarchy will appear in `Orphaned Keywords` where they can be moved into the correct place. Alternatively they can be created here before applying to photos.
 
-![Keyword Screen](docs/screenshots/keywords.png?raw=true) 
+<img src=docs/screenshots/keywords.png width=100%/>
 
 ### Shortcut keys
 At the moment these are hardcoded, although it's fairly easy to change that if you are prepared to edit the source. They are all in `src_front/anh_front/keys/keys.cljs`. Making these configureable is on the to-do list.
@@ -125,3 +126,4 @@ Copyright Iain Wood ©2018-2023  FIXME
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
+˚

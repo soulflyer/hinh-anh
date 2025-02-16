@@ -18,7 +18,7 @@
    ;;:keyword-set             []
 
    :keyword-pic-display-all false
-   :keyword-pic-display-sub false
+   ;; :keyword-pic-display-sub false
 
    ;; re-com popover won't accept these so they are now defined in atoms.cljs
    ;; :keyword-add-button-show   false
