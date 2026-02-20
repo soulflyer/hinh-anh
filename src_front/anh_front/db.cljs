@@ -1,6 +1,7 @@
 (ns anh-front.db)
 
 (def default-db
+  "This is usually ignored, the values are read from local storage. Delete .config/anh/Local Storage to force a re-read"
   {:name                    "Projects"
    :picture-list            {:pictures [{}] :focus "" :selected []}
    :error                   "All is well."
@@ -28,13 +29,13 @@
    :picture-filter-stars   0
 
    :preferences
-   {:api-root              "http://localhost:31000/api"
+   {:api-root              "http://localhost:31001/api"
     :show-empty-exif       false
     :last-project          []
     :screen-split          20
-    :fullsize-directory    "/Users/iain/Pictures/Published/fullsize"
-    :medium-directory      "/Users/iain/Pictures/Published/medium"
-    :large-directory       "/Users/iain/Pictures/Published/large"
+    :fullsize-directory    "/home/iain/Pictures/Published/fullsize"
+    :medium-directory      "/home/iain/Pictures/Published/medium"
+    :large-directory       "/home/iain/Pictures/Published/large"
     :view-fullsize         false
     ;; This vector specifies the writeable fields in the details panel
     :iptc-fields           [[:Object-Name "Title" 1]

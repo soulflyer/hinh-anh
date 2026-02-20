@@ -28,3 +28,4 @@ wtf
 .eastwood
 .clj-kondo
 log/
+/.lsp/
