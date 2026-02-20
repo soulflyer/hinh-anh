@@ -3,8 +3,7 @@
 
 (rf/reg-event-db
   :load-fail
-  (fn
-    [db [_ error]]
+  (fn [db [_ error]]
     (let [error-message (str error " api call failed")]
       (println error-message)
       (-> db

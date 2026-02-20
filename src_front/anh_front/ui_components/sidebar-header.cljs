@@ -1,9 +1,10 @@
 (ns anh-front.ui-components.sidebar-header
-  (:require [re-com.core    :as rc]
-            [re-frame.core  :as rf]
-            [clojure.string :as string]))
+  (:require
+    [re-com.core    :as rc]
+    [re-frame.core  :as rf]))
 
-(defn panel []
+(defn panel
+  []
   (let [loading (rf/subscribe [:loading?])]
     [rc/h-box
      :height "0px"

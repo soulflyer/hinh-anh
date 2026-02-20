@@ -8,7 +8,7 @@
 
 (rf/reg-event-fx
   :add-keyword-local
-  (fn  [{:keys [db]} [_ [pic kw]]]
+  (fn [{:keys [db]} [_ [pic kw]]]
     (let [id (helpers/path->id pic)]
       (println (str "pic: " pic " _id: " id  " Keyword: " kw))
       {:db (-> (sp/transform

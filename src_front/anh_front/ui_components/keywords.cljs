@@ -6,11 +6,10 @@
             [anh-front.ui-components.popover.wrapper  :as pw]
             [anh-front.ui-components.styles           :as styles]
             [re-com.core                              :as rc]
-            [re-frame.core                            :as rf]
-            [reagent.core                             :as reagent]
-            [anh-front.atoms                          :as atoms]))
+            [re-frame.core                            :as rf]))
 
-(defn panel []
+(defn panel
+  []
   (let [tree-name :keyword-tree
         tree      (rf/subscribe [tree-name])]
     [rc/v-box

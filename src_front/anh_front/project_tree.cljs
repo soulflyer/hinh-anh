@@ -15,27 +15,34 @@
              "months" [{"month" "01"}
                        {"month" "02"}]}]})
 
-(defn years [tree]
+(defn years
+  [tree]
   (get tree "years"))
 
-(defn year-list [tree]
+(defn year-list
+  [tree]
   (vec (for [yr (years tree)]
          (yr "year"))))
 
-(defn year [tree year]
+(defn year
+  [tree year]
   (some #(when (= year (% "year")) %) (years tree)))
 
-(defn months [tree yr]
+(defn months
+  [tree yr]
   (get (year tree yr) "months"))
 
-(defn month-list [tree year]
+(defn month-list
+  [tree year]
   (vec (for [mn (months tree year)]
          (mn "month"))))
 
-(defn month [tree yr mon]
+(defn month
+  [tree yr mon]
   (some #(when (= mon (% "month")) %) (months tree yr)))
 
-(defn projects [yrs yr mon]
+(defn projects
+  [yrs yr mon]
   (get (month yrs yr mon) "projects"))
 
 (defn tree-data

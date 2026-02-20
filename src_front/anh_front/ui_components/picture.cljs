@@ -6,7 +6,8 @@
             [re-frame.core                  :as rf]
             [re-com.core                    :as rc]))
 
-(defn panel [pic]
+(defn panel
+  [pic]
   (let [small-path    (rf/subscribe [:medium-directory])
         fullsize-path (rf/subscribe [:fullsize-directory])
         view-fullsize (rf/subscribe [:view-fullsize])
@@ -32,7 +33,7 @@
         pic-width     (if (< height width)
                         "100%"
                         (str (int (* 100 (/ width height))) "%"))]
-    ;;^{:key (get pic "_id")}
+    ;; ^{:key (get pic "_id")}
     [rc/box
      :attr {:id       path
             :on-click #(rf/dispatch [:toggle-select-and-focus path])}

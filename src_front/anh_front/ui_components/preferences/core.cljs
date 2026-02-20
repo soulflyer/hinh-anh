@@ -1,8 +1,10 @@
 (ns anh-front.ui-components.preferences.core
-  (:require [anh-front.ui-components.preferences.components :as components]
-            [re-com.core :as rc]))
+  (:require
+    [anh-front.ui-components.preferences.components :as components]
+    [re-com.core :as rc]))
 
-(defn panel []
+(defn panel
+  []
   [rc/v-box
    :style {:padding-left "5px"}
    :children

@@ -6,9 +6,8 @@
 
 (def always-listen-keys
   [{:keyCode (key-codes "esc")}
-   ;;{:keyCode (key-codes "space")}
-   {:keyCode (key-codes "return")}
-   ])
+   ;; {:keyCode (key-codes "space")}
+   {:keyCode (key-codes "return")}])
 
 (def common-keys
   [[[:inc-picture-columns]
@@ -192,34 +191,34 @@
 
 (def project-key-set
   {:event-keys (into common-keys project-keys)
-   ;;:prevent-default-keys prevent-keys
+   ;; :prevent-default-keys prevent-keys
    :always-listen-keys always-listen-keys})
 
 (def keywords-key-set
   {:event-keys (into common-keys keyword-keys)
-   ;;:prevent-default-keys prevent-keys
+   ;; :prevent-default-keys prevent-keys
    :always-listen-keys always-listen-keys})
 
 (def picture-key-set
   {:event-keys (into common-keys picture-keys)
-   ;;:prevent-default-keys prevent-keys
+   ;; :prevent-default-keys prevent-keys
    :always-listen-keys always-listen-keys})
 
 (def details-key-set
   {:event-keys (into common-keys picture-keys)
-   ;;:prevent-default-keys prevent-keys
+   ;; :prevent-default-keys prevent-keys
    :always-listen-keys [{:keyCode 13}]})
 
 ;; TODO test this. Why does it throw errors in the console
-(defn keywording-key-set []
+(defn keywording-key-set
+  []
   {:event-keys (reduce into
                        [common-keys
-   ;;                     picture-keys
+                        ;;                     picture-keys
                         keywording-keys
                         (generate-keywording-shortcut-keys)
-                        (generate-keywording-set-shortcut-keys)
-                        ])
-   ;;:prevent-default-keys prevent-keys
+                        (generate-keywording-set-shortcut-keys)])
+   ;; :prevent-default-keys prevent-keys
    :always-listen-keys always-listen-keys})
 
 (defn key-rules

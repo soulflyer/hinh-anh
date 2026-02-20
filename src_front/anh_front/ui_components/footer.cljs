@@ -5,7 +5,8 @@
             [anh-front.ui-components.styles :as styles]
             [anh-front.helpers              :as helpers]))
 
-(defn panel []
+(defn panel
+  []
   (let [current (rf/subscribe [:displayed-project])
         error-message (rf/subscribe [:error])
         filter-stars (rf/subscribe [:picture-filter-stars])

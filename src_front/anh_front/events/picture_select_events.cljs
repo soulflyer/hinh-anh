@@ -5,7 +5,7 @@
 
 (rf/reg-event-fx
   :toggle-select-picture
-  (fn  [{:keys [db]} [_ pic]]
+  (fn [{:keys [db]} [_ pic]]
     {:db (assoc db :picture-list (sp/transform
                                    [:selected]
                                    #(if (some #{pic} %)

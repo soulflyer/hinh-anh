@@ -13,8 +13,9 @@
 
 (rf/reg-sub
   :picture-display
-  (fn [_ _] [(rf/subscribe [:picture-display-list])
-             (rf/subscribe [:picture-display-index])])
+  (fn [_ _]
+    [(rf/subscribe [:picture-display-list])
+     (rf/subscribe [:picture-display-index])])
   (fn [[picture-display-list picture-display-index] _]
     (nth picture-display-list picture-display-index)))
 
@@ -35,9 +36,10 @@
 ;; TODO test with different filters and sort fields
 (rf/reg-sub
   :sorted-pictures
-  (fn [_ _] [(rf/subscribe [:pictures])
-             (rf/subscribe [:picture-sort-field])
-             (rf/subscribe [:picture-filter-stars])])
+  (fn [_ _]
+    [(rf/subscribe [:pictures])
+     (rf/subscribe [:picture-sort-field])
+     (rf/subscribe [:picture-filter-stars])])
   (fn [[pictures sort-field filter-stars] _]
     (filter
       #(>= (get % "Rating") filter-stars)
@@ -91,15 +93,14 @@
 
 (rf/reg-sub
   :keyword-set-list
-  (fn [db _]
-    ))
+  (fn [db _]))
 
 (rf/reg-sub
   :keyword-set-by-name
   (fn [db [_ name]]
-    ;;name
+    ;; name
     (:keywords
-     (first
-       (filter
-         #(= name (:name %))
-         (get-in db [:preferences :keyword-sets]))))))
+      (first
+        (filter
+          #(= name (:name %))
+          (get-in db [:preferences :keyword-sets]))))))

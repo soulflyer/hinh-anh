@@ -1,25 +1,26 @@
 (ns anh-front.ui-components.single-pic
-  (:require [re-com.core       :as rc]
-            [re-frame.core     :as rf]
-            [cljs.reader       :as reader]
-            [anh-front.helpers :as help]))
+  (:require
+    [anh-front.helpers :as help]
+    [re-com.core       :as rc]
+    [re-frame.core     :as rf]))
 
-(defn panel [pic]
+(defn panel
+  [pic]
   (let [fullsize-path (rf/subscribe [:fullsize-directory])
-        ;;medium-path   (rf/subscribe [:medium-directory])
+        ;; medium-path   (rf/subscribe [:medium-directory])
         large-path    (rf/subscribe [:large-directory])
         focused-pic   (rf/subscribe [:focused-pic-path])
         view-fullsize (rf/subscribe [:view-fullsize])
         background    (rf/subscribe [:pictures-background])
-        ;;border        (rf/subscribe [:picture-border])
-        ;;border-width  (rf/subscribe [:picture-border-width])
+        ;; border        (rf/subscribe [:picture-border])
+        ;; border-width  (rf/subscribe [:picture-border-width])
         path          (when pic (help/image-path pic))
         pic-path      (str (if @view-fullsize
                              @fullsize-path
                              @large-path)
                            "/" path ".jpg")
-        ;;width         (reader/read-string (get pic "Image-Width"))
-        ;;height        (reader/read-string (get pic "Image-Height"))
+        ;; width         (reader/read-string (get pic "Image-Width"))
+        ;; height        (reader/read-string (get pic "Image-Height"))
         ]
     [rc/box
      :attr {:id path}

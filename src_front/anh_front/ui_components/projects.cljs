@@ -1,9 +1,9 @@
 (ns anh-front.ui-components.projects
-  (:require [anh-front.atoms                          :as atoms]
-            [re-com.core                              :as rc]
-            [re-frame.core                            :as rf]
-            [anh-front.tree                           :as tree]
-            [anh-front.ui-components.popover.popovers :as popover]))
+  (:require
+    [anh-front.tree                           :as tree]
+    [anh-front.ui-components.popover.popovers :as popover]
+    [re-com.core                              :as rc]
+    [re-frame.core                            :as rf]))
 
 (defn panel
   []
@@ -30,6 +30,7 @@
          :children
          [(popover/json-export @dive-centre)]]])]))
 
-(defn selected-project []
+(defn selected-project
+  []
   (let [sp (rf/subscribe [:selected-project])]
     [:p (str "selected: " @sp)]))

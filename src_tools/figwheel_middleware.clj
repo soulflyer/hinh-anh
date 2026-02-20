@@ -1,7 +1,8 @@
 (ns figwheel-middleware
   (:require [ring.middleware.resource :refer (wrap-resource)]))
 
-(defn handler [request]
+(defn handler
+  [request]
   {:status  404
    :headers {"Content-Type" "text/html"}
    :body    (str "Cannot find:" (:uri request))})

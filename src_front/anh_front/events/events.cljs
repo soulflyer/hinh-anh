@@ -34,7 +34,7 @@
 
 (rf/reg-event-db
   ::initialize-db
-  (fn  [_ _]
+  (fn [_ _]
     (println "Initialize db")
     (if (:preferences (store/<-store :anh))
       (assoc db/default-db :preferences (:preferences (store/<-store :anh)))
@@ -42,20 +42,19 @@
 
 (rf/reg-event-db
   :set-error-message
-  (fn  [db [_ message]]
+  (fn [db [_ message]]
     (assoc db :error message)))
 
 (rf/reg-event-db
   :say-hello
-  (fn
-    [db [_ who]]
-    ;;(js/alert (str "hello " who))
+  (fn [db [_ who]]
+    ;; (js/alert (str "hello " who))
     (println (str "hello " who))
     db))
 
 (rf/reg-event-db
   :print-sub
-  (fn  [db [_ sub]]
+  (fn [db [_ sub]]
     (let [sub-val (rf/subscribe [sub])]
       (println (str @sub-val)))
     db))

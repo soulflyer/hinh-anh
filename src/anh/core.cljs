@@ -1,5 +1,5 @@
 (ns anh.core
-    (:require [cljs.nodejs :as nodejs]))
+  (:require [cljs.nodejs :as nodejs]))
 
 (def path (nodejs/require "path"))
 (def Electron (nodejs/require "electron"))
@@ -9,7 +9,8 @@
 (def *win* (atom nil))
 (def app (.-app Electron))
 
-(defn -main []
+(defn -main
+  []
   (.start crash-reporter (clj->js {:companyName "Soulflyer"
                                    :submitURL   "https://github.com/soulflyer/hinh-anh"}))
 
@@ -19,8 +20,9 @@
 
   ;; window all closed listener
   (.on app "window-all-closed"
-       (fn [] (if (not= (.-platform nodejs/process) "darwin")
-                (.quit app))))
+       (fn []
+         (if (not= (.-platform nodejs/process) "darwin")
+           (.quit app))))
 
   ;; ready listener
   (.on app "ready"
@@ -36,7 +38,7 @@
 
 (nodejs/enable-util-print!)
 
-;;; "Linux" or "Darwin" or "Windows_NT"
+;; "Linux" or "Darwin" or "Windows_NT"
 (.log js/console (str "Start descjop application on " (.type Os) "."))
 
 (set! *main-cli-fn* -main)

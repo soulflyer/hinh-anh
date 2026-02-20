@@ -3,7 +3,7 @@
 
 (rf/reg-event-db
   :hide-footer
-  (fn  [db _]
+  (fn [db _]
     (assoc-in db [:preferences :hide-footer] true)))
 
 (rf/reg-event-fx

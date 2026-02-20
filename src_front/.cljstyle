@@ -1,0 +1,14 @@
+{:files {:ignore #{".clj-kondo"}}
+ :rules
+ {:whitespace   {:remove-surrounding? true
+                 :remove-trailing?    true
+                 :insert-missing?     true}
+  :blank-lines  {:padding-lines     1
+                 :max-consecutive   1
+                 :insert-padding    true
+                 :trim-consecutive? true}
+  :eof-new-line {:enabled? true}
+  :namespaces   {:enabled?    false
+                 :break-libs? true
+                 :import-break-width 80
+                 :indent-size 2}}}

@@ -1,30 +1,37 @@
 (ns anh-front.ui-components.styles
-  (:require [re-frame.core :as rf]))
+  (:require
+    [re-frame.core :as rf]))
 
-(defn pictures []
+(defn pictures
+  []
   (let [text-colour (rf/subscribe [:picture-text-colour])
         background  (rf/subscribe [:pictures-background])]
     {:color @text-colour
      :background @background
      :padding "0px 10px"}))
 
-(defn picture []
+(defn picture
+  []
   (let [background (rf/subscribe [:picture-background])]
     {:background @background}))
 
-(defn main []
+(defn main
+  []
   {:margin "0px"})
 
-(defn footer []
+(defn footer
+  []
   (let [bg (rf/subscribe [:footer-background])
         fg (rf/subscribe [:footer-colour])]
     {:background @bg
      :color @fg}))
 
-(defn button []
+(defn button
+  []
   (let [background (rf/subscribe [:button-background])]
     {:background @background
      :padding "0px 4px 0px 4px"}))
 
-(defn icon-button []
+(defn icon-button
+  []
   {:margin "2px 0px 2px 2px"})

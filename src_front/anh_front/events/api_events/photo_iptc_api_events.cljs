@@ -8,9 +8,9 @@
 
 (rf/reg-event-fx
   :write-iptc-local
-  (fn  [{:keys [db]} [_ [pic field text]]]
+  (fn [{:keys [db]} [_ [pic field text]]]
     (let [id (helpers/path->id pic)]
-      ;;(println (str "_id: " id " Field: " field " Title: " text))
+      ;; (println (str "_id: " id " Field: " field " Title: " text))
       {:db (-> (sp/setval
                  [:picture-list
                   :pictures
@@ -22,7 +22,7 @@
 (rf/reg-event-fx
   :write-iptc
   (fn [{:keys [db]} [_ [pic field text]]]
-    ;;(println (str "Path " pic))
+    ;; (println (str "Path " pic))
     (let [api-root (rf/subscribe [:api-root])]
       {:http-xhrio
        {:method          :get

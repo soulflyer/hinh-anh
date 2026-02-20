@@ -28,5 +28,5 @@
                     :uri             (str @api-root "/open/medium/" pics)
                     :format          (ajax/json-request-format)
                     :response-format (ajax/json-response-format {:keywords? true})
-                    :on-sucess       [:set-error-message (str "Opened selected pics")]
-                    :on-failure      [:load-fail (str "Open pictures")]}})))
+                    :on-sucess       [:set-error-message "Opened selected pics"]
+                    :on-failure      [:load-fail "Open pictures"]}})))

@@ -1,16 +1,19 @@
 (ns anh-front.ui-components.keywording.components
-  (:require [re-frame.core :as rf]
-            [re-com.core   :as rc]
-            [anh-front.suggestions :as suggestions]
-            [anh-front.ui-components.popover.popovers :as popover]))
+  (:require
+    [anh-front.suggestions :as suggestions]
+    [anh-front.ui-components.popover.popovers :as popover]
+    [re-com.core   :as rc]
+    [re-frame.core :as rf]))
 
-(defn delete-button [on-click kw]
+(defn delete-button
+  [on-click kw]
   [rc/md-icon-button
    :md-icon-name "zmdi-minus"
    :size :smaller
    :on-click #(rf/dispatch [on-click kw])])
 
-(defn kw-button [kw on-click on-right-click]
+(defn kw-button
+  [kw on-click on-right-click]
   (let [header-background (rf/subscribe [:details-header-background])
         background        (rf/subscribe [:details-background])]
     [rc/v-box
@@ -50,7 +53,8 @@
               :border        (str "solid 1px " @header-background)
               :padding       "1px 3px 1px 3px"}]]))
 
-(defn shortcut [sk]
+(defn shortcut
+  [sk]
   (let [shortcut-highlight (rf/subscribe [:shortcut-highlight])]
     [rc/box
      :child sk
@@ -70,7 +74,7 @@
       [(let [edit @show-edit
              buttons (sort (keys @button-map))]
          (for [btn buttons]
-           ;;TODO buttons are sorted here to keep buttons in order. Can't rely on them
+           ;; TODO buttons are sorted here to keep buttons in order. Can't rely on them
            ;; staying sorted in button-map even though it works for less than 9 buttons
            ;; need to change implementation so button-map is a vector of maps instead.
            ^{:key (str "button-" name "-" btn)}
@@ -83,7 +87,8 @@
        (if @show-edit
          [add-input add (str "Add " name)])]]]))
 
-(defn footer-buttons []
+(defn footer-buttons
+  []
   [rc/h-box
    :style {:padding "2px 0px 2px 0px"}
    :justify :between

@@ -5,7 +5,8 @@
             [anh-front.ui-components.popover.wrapper :as pw]
             [re-frame.core :as rf]))
 
-(defn json-export [dive-centre]
+(defn json-export
+  [dive-centre]
   (pw/popover-textbox-wrapper
     atoms/export-json-button-show
     "zmdi-language-javascript"
@@ -14,7 +15,8 @@
     nil
     #(rf/dispatch [:write-json %])))
 
-(defn find-keyword []
+(defn find-keyword
+  []
   (pw/popover-textbox-wrapper
     atoms/keyword-find-button-show
     "zmdi-search"
@@ -23,7 +25,8 @@
     suggestions/keywords
     #(rf/dispatch [:open-keyword %])))
 
-(defn add-keyword [parent]
+(defn add-keyword
+  [parent]
   (pw/popover-textbox-wrapper
     atoms/keyword-add-button-show
     "zmdi-plus"
@@ -32,15 +35,17 @@
     nil
     #(rf/dispatch [:add-to-focused-keyword %])))
 
-(defn delete-keyword [kw]
+(defn delete-keyword
+  [kw]
   (pw/popover-button-wrapper
     atoms/keyword-delete-button-show
     "zmdi-delete"
-    (str "Delete focused keyword")
+    "Delete focused keyword"
     (str "Delete keyword \"" kw "\"")
     #(rf/dispatch [:delete-focused-keyword])))
 
-(defn move-keyword [kw]
+(defn move-keyword
+  [kw]
   (pw/popover-textbox-wrapper
     atoms/keyword-move-button-show
     "zmdi-open-in-new"
@@ -49,7 +54,8 @@
     suggestions/keywords
     #(rf/dispatch [:move-focused-keyword %])))
 
-(defn rename-keyword [kw]
+(defn rename-keyword
+  [kw]
   (pw/popover-textbox-wrapper
     atoms/keyword-rename-button-show
     "zmdi-edit"
@@ -58,7 +64,8 @@
     suggestions/keywords
     #(rf/dispatch [:rename-focused-keyword %])))
 
-(defn merge-keywords [kw]
+(defn merge-keywords
+  [kw]
   (pw/popover-textbox-wrapper
     atoms/keyword-merge-button-show
     "zmdi-arrow-merge"
@@ -67,7 +74,8 @@
     suggestions/keywords
     #(rf/dispatch [:merge-focused-keyword %])))
 
-(defn set-best [pic kw]
+(defn set-best
+  [pic kw]
   (pw/popover-button-wrapper
     atoms/keyword-set-best-button-show
     "zmdi-image"
@@ -75,7 +83,8 @@
     (str "Set <" pic "> as best image for \"" kw "\"")
     #(rf/dispatch [:set-sample])))
 
-(defn add-orphans []
+(defn add-orphans
+  []
   (pw/popover-button-wrapper
     atoms/keyword-add-orphans-button-show
     "zmdi-collection-plus"
@@ -83,7 +92,8 @@
     (str "Add keywords from photos to keyword tree")
     #(rf/dispatch [:add-missing-keywords])))
 
-(defn purge-keywords []
+(defn purge-keywords
+  []
   (pw/popover-button-wrapper
     atoms/keyword-purge-unused-button-show
     "zmdi-flash"
@@ -91,7 +101,8 @@
     (str "DANGER: removes unused keywords from keyword tree.")
     #(rf/dispatch [:delete-unused-keywords])))
 
-(defn goto-project [project]
+(defn goto-project
+  [project]
   (let [project-path (helpers/vector->path project)]
     (pw/popover-button-wrapper
       atoms/go-to-project-button-show
@@ -100,7 +111,8 @@
       (str "Go to project <" project-path ">")
       #(rf/dispatch [:go-to-project project]))))
 
-(defn save-keyword-set []
+(defn save-keyword-set
+  []
   (pw/popover-textbox-wrapper
     atoms/save-keyword-set-show
     "zmdi-file-text"

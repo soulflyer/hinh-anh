@@ -21,6 +21,7 @@
          :label (if (vector? contents)
                   (interpose ", " contents)
                   contents)]]])))
+
 (defn keyword-box
   "re-com component to display the keywords"
   [keywords]
@@ -125,7 +126,7 @@
                 :border-color @header-background}
         :placeholder label
         :model contents
-        :on-change on-change ]]])))
+        :on-change on-change]]])))
 
 (defn all-exif
   [fields pic]

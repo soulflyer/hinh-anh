@@ -7,7 +7,7 @@
 
 (rf/reg-event-db
   :keyword-pics-response
-  (fn  [db [_ response]]
+  (fn [db [_ response]]
     (let [reader (transit/reader :json)
           resp   (transit/read reader response)]
       (-> db
@@ -20,7 +20,7 @@
 
 (rf/reg-event-db
   :keyword-pic-response
-  (fn  [db [_ response]]
+  (fn [db [_ response]]
     (let [reader (transit/reader :json)
           resp   (transit/read reader response)]
       (-> db

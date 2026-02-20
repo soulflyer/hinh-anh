@@ -2,7 +2,7 @@
   (:require [clojure.set :as set]
             [re-frame.core :as rf]))
 
-;;TODO write a set-panel event :next-panel can use it.
+;; TODO write a set-panel event :next-panel can use it.
 (rf/reg-event-fx
   :set-panel-focus
   (fn [{:keys [db]} [_ new-panel]]
@@ -24,7 +24,7 @@
           keys       (case new-panel
                        :left @left-panel-display
                        :pictures :pictures)
-          ;;TODO Clean this up
+          ;; TODO Clean this up
           html-focus (case keys
                        :pictures "panel-2"
                        ;; :details  "panel-1"
@@ -75,7 +75,7 @@
           index (rf/subscribe [:picture-display-index])
           len   (count @list)
           new-index (mod (inc @index) len)]
-      ;;TODO can I call scroll-into-view on :focused-pic-path here?
+      ;; TODO can I call scroll-into-view on :focused-pic-path here?
       {:dispatch-n [[:set-display new-index]
-                    ;;[:set-keys :pictures]
+                    ;; [:set-keys :pictures]
                     ]})))

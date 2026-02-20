@@ -1,12 +1,14 @@
 (ns anh-front.ui-components.pictures
-  (:require [re-com.core                        :as rc]
-            [re-frame.core                      :as rf]
-            [anh-front.ui-components.picture    :as picture]
-            [anh-front.ui-components.single-pic :as single]
-            [anh-front.ui-components.styles     :as styles]
-            [anh-front.helpers                  :as help]))
+  (:require
+    [anh-front.helpers                  :as help]
+    [anh-front.ui-components.picture    :as picture]
+    [anh-front.ui-components.single-pic :as single]
+    [anh-front.ui-components.styles     :as styles]
+    [re-com.core                        :as rc]
+    [re-frame.core                      :as rf]))
 
-(defn panel []
+(defn panel
+  []
   [rc/v-box
    :height "100%"
    :children
@@ -35,7 +37,7 @@
                       :gap @gap
                       :style {:margin-bottom @gap}
                       :children (for [pic row]
-                                  ;;^{:key (str "pic-" (get pic "_id"))}
+                                  ;; ^{:key (str "pic-" (get pic "_id"))}
                                   [picture/panel (first
                                                    (filter
                                                      #(= pic (get % "_id"))

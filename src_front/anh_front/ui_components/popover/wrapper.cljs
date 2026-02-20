@@ -1,7 +1,8 @@
 (ns anh-front.ui-components.popover.wrapper
-  (:require [anh-front.ui-components.popover.core :as pc]
-            [re-com.core :as rc]
-            [re-frame.core :as rf]))
+  (:require
+    [anh-front.ui-components.popover.core :as pc]
+    [re-com.core :as rc]
+    [re-frame.core :as rf]))
 
 (defn popover-button-wrapper
   [showing-atom icon title description on-click]
@@ -15,7 +16,7 @@
                :children
                [[:p description]
                 [rc/button
-                 :attr {:id (str "popover-")}
+                 :attr {:id "popover-"}
                  :label "ok"
                  :on-click on-click]]])])
 
@@ -44,5 +45,4 @@
                               [rc/input-text
                                :change-on-blur? true
                                :style input-style
-                               :on-change on-click
-                               ])]])]))
+                               :on-change on-click])]])]))

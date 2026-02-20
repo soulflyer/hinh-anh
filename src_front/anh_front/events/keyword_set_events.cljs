@@ -8,7 +8,7 @@
       {:db (-> db
                (assoc-in [:preferences :keyword-set] @current-keywords)
                (assoc :loaded-keyword-set "")
-               (assoc :error (str "Set keywords")))
+               (assoc :error "Set keywords"))
        :dispatch [:set-keys-for :left]})))
 
 (rf/reg-event-fx
@@ -33,18 +33,18 @@
   (fn [{:keys [db]} [_ new-keyword]]
     (let [current-set     (rf/subscribe [:keyword-set])
           loaded-keywords (rf/subscribe [:loaded-keyword-set])]
-      (if (not (= "" new-keyword))
+      (when (not (= "" new-keyword))
         {:db (cond-> db
                true (assoc-in [:preferences :keyword-set]
                               (set (conj @current-set new-keyword))))
-         :dispatch-n [;;TODO check if set-keys can take :keywords or only :left
+         :dispatch-n [;; TODO check if set-keys can take :keywords or only :left
                       [:set-keys :keywording]
                       [:refresh-keyword-set]]}))))
 
 (rf/reg-event-fx
   :refresh-keyword-set
   (fn [_ _]
-    (let [ loaded-keywords (rf/subscribe [:loaded-keyword-set])]
+    (let [loaded-keywords (rf/subscribe [:loaded-keyword-set])]
       (if @loaded-keywords
         {:dispatch-n [[:remove-keyword-set @loaded-keywords]
                       [:add-keyword-set @loaded-keywords]

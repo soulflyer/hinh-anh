@@ -7,7 +7,7 @@
 
 (rf/reg-event-db
   :keywords-response
-  (fn  [db [_ response]]
+  (fn [db [_ response]]
     (let [reader (transit/reader :json)
           resp   (transit/read reader response)]
       (-> db
@@ -32,17 +32,18 @@
 
 (rf/reg-event-db
   :keyword-list-response
-  (fn  [db [_ response]]
+  (fn [db [_ response]]
     (let [reader (transit/reader :json)
           resp   (transit/read reader response)]
       (-> db
           (assoc :keyword-list resp)
           (assoc :loading? false)
-          (assoc :error (str "Loaded keyword list for autocomplete."))))))
+          (assoc :error "Loaded keyword list for autocomplete.")))))
 
 (rf/reg-event-fx
   :load-keyword-list
-  (fn [{:keys [db]} [_ response]] ;; TODO don't think response is necessary here.
+  (fn [{:keys [db]} [_ response]]
+    ;; TODO don't think response is necessary here.
     (let [api-root (rf/subscribe [:api-root])]
       {:http-xhrio
        {:method          :get
@@ -52,9 +53,9 @@
         :response-format (ajax/json-response-format {:keywords? true})
         :on-success      [:keyword-list-response]
         :on-failure      [:load-fail "load-keyword-list"]}
-       :db ( -> db
-            (assoc :loading? true)
-            (assoc :error (str "Loading keyword list for autocomplete.")))})))
+       :db (-> db
+               (assoc :loading? true)
+               (assoc :error "Loading keyword list for autocomplete."))})))
 
 (rf/reg-event-fx
   :open-keyword-response
@@ -63,11 +64,10 @@
           resp   (transit/read reader response)]
       {:db (-> db
                (assoc :loading? false)
-               (assoc :error (str "Opened keyword "))
+               (assoc :error "Opened keyword ")
                (assoc-in [:keyword-tree :focus] resp))
        :dispatch-n [[:keyword-pics (last resp)]
-                    [:expand-path [:keyword-tree resp]]]}
-      )))
+                    [:expand-path [:keyword-tree resp]]]})))
 
 (rf/reg-event-fx
   :open-keyword
@@ -81,7 +81,7 @@
         :response-format (ajax/json-response-format {:keywords? true})
         :on-success      [:open-keyword-response]
         :on-failure      [:load-fail "open-keyword"]}
-       :db ( -> db
-            (assoc :loading? true)
-            (assoc :error (str "Opened keyword " kw)))
+       :db (-> db
+               (assoc :loading? true)
+               (assoc :error (str "Opened keyword " kw)))
        :dispatch [:close-popovers]})))

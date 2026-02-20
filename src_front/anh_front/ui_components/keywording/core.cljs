@@ -1,8 +1,8 @@
 (ns anh-front.ui-components.keywording.core
-  (:require [re-com.core   :as rc]
-            [re-frame.core :as rf]
-            [reagent.core  :as reagent]
-            [anh-front.ui-components.keywording.components :as components]))
+  (:require
+    [anh-front.ui-components.keywording.components :as components]
+    [re-com.core   :as rc]
+    [re-frame.core :as rf]))
 
 (defn panel
   []
@@ -40,7 +40,7 @@
          :remove-keyword-set
          :set-keyword-set-by-name
          :set-keyword-set-by-name
-         (rf/subscribe [:show-edit-keyword-sets])nil
+         (rf/subscribe [:show-edit-keyword-sets]) nil
          "keyword set"]
         [rc/line :style {:margin "6px 0px 0px 6px"}]
         [components/footer-buttons]]]]]))

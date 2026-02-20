@@ -7,8 +7,7 @@
 
 (rf/reg-event-fx
   :request-projects
-  (fn
-    [{db :db} _]
+  (fn [{db :db} _]
     (let [api-root (rf/subscribe [:api-root])]
       {:http-xhrio {:method          :get
                     :cross-origin    true
@@ -21,8 +20,7 @@
 
 (rf/reg-event-db
   :projects-response
-  (fn
-    [db [_ response]]
+  (fn [db [_ response]]
     (let [reader    (transit/reader :json)
           resp      (transit/read reader response)
           tree-data  (project-tree/tree-data resp)]

@@ -32,7 +32,7 @@
 
 (rf/reg-event-db
   :inc-picture-columns
-  (fn  [db _]
+  (fn [db _]
     (let [max-columns 12
           columns (rf/subscribe [:picture-columns])]
       (assoc-in
@@ -42,7 +42,7 @@
 
 (rf/reg-event-db
   :dec-picture-columns
-  (fn  [db _]
+  (fn [db _]
     (let [min-columns 1
           columns (rf/subscribe [:picture-columns])]
       (assoc-in

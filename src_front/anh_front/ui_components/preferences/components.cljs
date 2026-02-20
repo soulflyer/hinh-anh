@@ -1,8 +1,10 @@
 (ns anh-front.ui-components.preferences.components
-  (:require [re-com.core   :as rc]
-            [re-frame.core :as rf]))
+  (:require
+    [re-com.core   :as rc]
+    [re-frame.core :as rf]))
 
-(defn text-pref [label field on-change]
+(defn text-pref
+  [label field on-change]
   (let [textbox-background (rf/subscribe [:details-textbox-background])
         header-background  (rf/subscribe [:details-header-background])
         field-contents     (rf/subscribe [field])]
@@ -26,9 +28,10 @@
                :border-color @header-background}
        :placeholder @field-contents
        :model field-contents
-       :on-change #(rf/dispatch [on-change %]) ]]]))
+       :on-change #(rf/dispatch [on-change %])]]]))
 
-(defn boolean-pref [label field on-change]
+(defn boolean-pref
+  [label field on-change]
   (let [textbox-background (rf/subscribe [:details-textbox-background])
         header-background  (rf/subscribe [:details-header-background])
         field-contents     (rf/subscribe [field])]
@@ -48,13 +51,14 @@
        :model field-contents
        :on-change #(rf/dispatch [on-change %])]]]))
 
-(defn number-pref [label field on-change range & range-start]
+(defn number-pref
+  [label field on-change range & range-start]
   (let [start              (or range-start 0)
         textbox-background (rf/subscribe [:details-textbox-background])
         header-background  (rf/subscribe [:details-header-background])
         field-contents     (rf/subscribe [field])]
     [rc/h-box
-     ;;:size "auto"
+     ;; :size "auto"
      :style {:width "100%"
              :background @header-background
              :border-radius "4px"
@@ -68,7 +72,7 @@
        :label (str label ": " @field-contents)]
       [rc/slider
        :style {:width "100%"}
-       ;;:size "auto"
+       ;; :size "auto"
        :min start
        :max range
        :model field-contents

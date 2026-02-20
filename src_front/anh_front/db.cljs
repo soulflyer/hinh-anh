@@ -16,7 +16,7 @@
    ;; TODO change this to use the same technique as panel-focus.
    :picture-display-index   0
    :picture-display-list    [:grid :single]
-   ;;:keyword-set             []
+   ;; :keyword-set             []
 
    :keyword-pic-display-all false
    :keyword-pic-display-sub false

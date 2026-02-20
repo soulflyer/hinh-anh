@@ -1,14 +1,12 @@
 (ns anh-front.events.api-events.project-pics-api-events
   "Events used to load the pictures for a project."
   (:require [ajax.core :as ajax]
-            [anh-front.helpers :as helpers]
             [cognitect.transit :as transit]
             [re-frame.core :as rf]))
 
 (rf/reg-event-fx
   :load-pictures-for-project
-  (fn
-    [{db :db} [_ path]]
+  (fn [{db :db} [_ path]]
     (let [api-root     (rf/subscribe [:api-root])
           project-path (reduce str (interpose "/" path))]
       {:http-xhrio {:method          :get
@@ -25,11 +23,9 @@
 
 (rf/reg-event-db
   :pictures-response
-  (fn
-    [db [_ response]]
+  (fn [db [_ response]]
     (let [reader    (transit/reader :json)
-          resp      (transit/read reader response)
-          first-pic (helpers/image-path (first resp))]
+          resp      (transit/read reader response)]
       (-> db
           (assoc    :loading? false)
           (assoc    :error "")

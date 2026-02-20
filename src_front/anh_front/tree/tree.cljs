@@ -10,7 +10,8 @@
             [re-com.core            :as re-com]
             [anh-front.helpers      :as helpers]))
 
-(defn path-nav [path]
+(defn path-nav
+  [path]
   (sp/path
     (mapcat (fn [s] [:children sp/ALL #(= (:name %) s)])
             path)))
@@ -19,8 +20,9 @@
   "Returns a zipper for tree elements given a root element"
   [root]
   (zip/zipper (complement string?)
-              (fn [node] (if (:expanded node)
-                           (seq (:children node))))
+              (fn [node]
+                (if (:expanded node)
+                  (seq (:children node))))
               (fn [node children]
                 (assoc node :children (and children (apply vector children))))
               root))
@@ -31,7 +33,8 @@
   [name]
   (sz/find-first #(= (:name %) name)))
 
-(defn follow-path [path]
+(defn follow-path
+  [path]
   (for [p path]
     (find-name p)))
 
@@ -93,10 +96,12 @@
   [:ul.tree-root
    {:style {:padding "0px"}} &leaves])
 
-(defn expanded? [tree path]
+(defn expanded?
+  [tree path]
   (sp/select-one [(path-nav path) :expanded] tree))
 
-(defn toggle-expand [tree-name path hook]
+(defn toggle-expand
+  [tree-name path hook]
   (fn []
     (rf/dispatch [:toggle-expand tree-name path])
     (rf/dispatch [:save-selected tree-name path])

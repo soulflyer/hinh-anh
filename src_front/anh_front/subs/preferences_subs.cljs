@@ -126,7 +126,7 @@
 
 (rf/reg-sub
   :keyword-sets-map
-  ;;TODO This is returning name/keyword pairs in a fairly random order
+  ;; TODO This is returning name/keyword pairs in a fairly random order
   (fn [_ _]
     [(rf/subscribe [:keyword-set-names]) (rf/subscribe [:keyword-set-shortcuts])])
   (fn [[keyword-set-names shortcuts] _]

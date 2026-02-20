@@ -18,5 +18,5 @@
   "convert the keys from string to keyword"
   [tree]
   (let [kw-tree (walk/keywordize-keys tree)
-        tr      (sp/setval [HAS-CHILDREN :expanded] false kw-tree) ]
+        tr      (sp/setval [HAS-CHILDREN :expanded] false kw-tree)]
     (assoc tr :expanded true)))

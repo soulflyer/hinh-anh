@@ -12,10 +12,12 @@
          (image-map "Version"))
     nil))
 
-(defn stars [num]
+(defn stars
+  [num]
   (str/join (take (js/parseInt num) (repeat "★"))))
 
-(defn empty-stars [num]
+(defn empty-stars
+  [num]
   (str/join (take (js/parseInt num) (repeat "☆"))))
 
 (defn fraction-stars

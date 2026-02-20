@@ -33,7 +33,6 @@
        :dispatch-later [{:ms 200
                          :dispatch [:clear-focus]}]})))
 
-
 (rf/reg-event-fx
   :go-to-project
   (fn [{:keys [db]} [_ path]]
