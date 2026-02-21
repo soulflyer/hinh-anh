@@ -1,5 +1,5 @@
 (ns anh-front.events.keyword-events
-  (:require [anh-front.tree :as tree]
+  (:require [anh-front.tree.tree :as tree]
             [re-frame.core :as rf]))
 
 (rf/reg-event-fx

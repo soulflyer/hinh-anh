@@ -1,6 +1,6 @@
 (ns anh-front.ui-components.keywords
   (:require [anh-front.helpers                        :as helpers]
-            [anh-front.tree                           :as tree]
+            [anh-front.tree.tree                      :as tree]
             [anh-front.ui-components.popover.core     :as pc]
             [anh-front.ui-components.popover.popovers :as popover]
             [anh-front.ui-components.popover.wrapper  :as pw]

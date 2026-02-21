@@ -40,6 +40,7 @@
     (let [api-root    (rf/subscribe [:api-root])
           photo-paths (rf/subscribe [:selected-pics])
           photo-ids   (helpers/paths->ids @photo-paths)]
+      (println (str "add-keyword-to-photos " kw " " photo-ids))
       {:http-xhrio {:method          :get
                     :uri             (str @api-root
                                           "/photos/add/keyword/" kw "/" photo-ids)

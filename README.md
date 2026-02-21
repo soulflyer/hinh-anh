@@ -36,7 +36,7 @@ At the moment these are hardcoded, although it's fairly easy to change that if y
 key  | action
 ----:|:-----------
 /    | switch between left and right panels
-w    | switch left panel between the various screens
+q    | switch left panel between the various screens
 
 ### Pictures
 key         |  action
@@ -66,7 +66,7 @@ b       | show only best pic for a keyword
 \+      | add keyword
 m       | move keyword to a different parent
 M       | merge keyword
-r       |rename keyword
+r       | rename keyword
 s       | set focussed pic as best for that keyword
 o       | add orphan keywords (keywords found in pics but not in the keyword tree, or keywords in the tree but with no parents)
 p       | purge keywords that are not used in any pics (parent keywords excluded)

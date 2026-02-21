@@ -1,7 +1,8 @@
 (ns anh-front.tree.tree-events
-  (:require [anh-front.tree :as tree]
+  (:require [anh-front.tree.tree :as tree]
             [com.rpl.specter :as sp]
-            [re-frame.core :as rf]))
+            [re-frame.core :as rf]
+            [day8.re-frame.tracing :refer [fn-traced]]))
 
 (rf/reg-fx
   :scroll
@@ -18,7 +19,6 @@
                            [(tree/path-nav path) :expanded]
                            not
                            (tree-name db))))))
-
 (rf/reg-event-db
   :expand
   ;; check for :children first and only expand if there are some.
@@ -99,7 +99,8 @@
 
 (rf/reg-event-fx
   :next-node
-  (fn [{:keys [db]} [_ tree-name]]
+  (fn
+    [{:keys [db]} [_ tree-name]]
     {:db (assoc db tree-name (sp/transform
                                [:focus]
                                #(tree/next-node (tree-name db) %)
@@ -114,7 +115,8 @@
 
 (rf/reg-event-fx
   :prev-node
-  (fn [{:keys [db]} [_ tree-name]]
+  (fn
+    [{:keys [db]} [_ tree-name]]
     {:db (assoc db tree-name (sp/transform
                                [:focus]
                                #(tree/prev-node (tree-name db) %)

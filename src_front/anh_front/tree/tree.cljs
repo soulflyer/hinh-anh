@@ -1,4 +1,4 @@
-(ns anh-front.tree
+(ns anh-front.tree.tree
   "Incoming data needs to be rearranged to look something like the data defined
   in tree-test-data"
   (:require [clojure.string         :as string]

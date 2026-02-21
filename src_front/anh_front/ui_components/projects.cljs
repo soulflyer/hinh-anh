@@ -1,6 +1,6 @@
 (ns anh-front.ui-components.projects
   (:require
-    [anh-front.tree                           :as tree]
+    [anh-front.tree.tree                      :as tree]
     [anh-front.ui-components.popover.popovers :as popover]
     [re-com.core                              :as rc]
     [re-frame.core                            :as rf]))
