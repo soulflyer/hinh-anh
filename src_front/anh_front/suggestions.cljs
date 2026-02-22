@@ -20,3 +20,8 @@
           (take 10
                 (for [n @names :when (re-find (re-pattern (str "(?i)" s)) n)]
                   n)))))
+
+(comment
+  @(rf/subscribe [:keyword-set-names])
+  @(rf/subscribe [:keyword-sets])
+  )

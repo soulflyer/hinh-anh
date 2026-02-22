@@ -60,8 +60,7 @@ key     | action
 up/down | next/previous keyword
 right   | open parent keyword
 left    | close parent keyword or go up to parent
-a       | show all pics for a keyword
-b       | show only best pic for a keyword
+b       | toggle show all or only best pic for a keyword
 \-      | delete keyword
 \+      | add keyword
 m       | move keyword to a different parent

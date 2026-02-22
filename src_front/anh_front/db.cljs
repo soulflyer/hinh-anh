@@ -46,13 +46,29 @@
     :picture-border-width  "1px"
     :hide-footer           false
     :keyword-set           []
-    :keyword-sets          [{:name     "people"
-                             :keywords ["me" "Pen" "Nhâm"]}
-                            {:name     "surface"
+    :keyword-sets          [{:name "Tools"
+                             :keywords ["dovetail gauge" "kerfing plane"]}
+                            {:name "Wood"
+                             :keywords ["Plank" "dao" "rosewood"]}
+                            {:name "Paper"
+                             :keywords ["Blackboard" "disassembly" "origami-crane" "origami-millipede" "painting"]}
+                            {:name "Elements"
+                             :keywords ["rainbow"]}
+                            {:name "Saigon"
+                             :keywords ["Bui Vien" "Couroupita guianensis" "Nelumbo nucifera" "Plumeria obtusa" "Quang Duc" "Saigon" "Station" "TNR" "Train"]}
+                            {:name "Plants"
+                             :keywords ["Carica papaya" "Couroupita guianensis" "Mimosa pigra" "Nelumbo nucifera" "Passifloraceae" "Plumeria obtusa"]}
+                            {:name "Animals"
+                             :keywords ["Lizards" "gecko"]}
+                            {:name "people"
+                             :keywords ["Nhâm" "Pen" "me"]}
+                            {:name "Bugs"
+                             :keywords ["Unidentified Coleoptera" "Unidentified Hexapoda" "salticidae (jumping Spiders)" "unidentified Hymenoptera"]}
+                            {:name "surface"
                              :keywords ["entry" "under" "over" "under-over" "boat" "ladder" "rope"]}]
     :favorite-keywords     "people"
-    :keyword-shortcuts     "asdfgzxcvb"
-    :keyword-set-shortcuts "hjkl;nmiop"
+    :keyword-shortcuts     "asdfgzxcvbty"
+    :keyword-set-shortcuts "hjkl;nm,.iop"
     :dive-centre           "Sailing Club"
     :colours
     {:picture-text-colour        "#9e9e9e"
