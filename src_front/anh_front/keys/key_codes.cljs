@@ -1,4 +1,5 @@
-(ns anh-front.keys.key-codes)
+(ns anh-front.keys.key-codes
+  (:require [clojure.set :refer [map-invert]]))
 
 (def key-codes
   {"1" 49
@@ -51,3 +52,10 @@
    "return" 13
    "delete" 8
    "esc"    27})
+
+(def key-vals
+  (map-invert key-codes))
+
+(comment
+  key-vals
+  )

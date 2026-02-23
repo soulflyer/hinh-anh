@@ -122,3 +122,8 @@
   :show-edit-keywords
   (fn [db _]
     (:show-edit-keywords db)))
+
+(rf/reg-sub
+  :keydown
+  (fn [db]
+    (:re-pressed.core/keydown db)))

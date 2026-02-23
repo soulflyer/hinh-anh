@@ -1,8 +1,9 @@
 (ns anh-front.keys.keys
   (:require [anh-front.atoms           :as atoms]
-            [anh-front.keys.key-codes  :refer [key-codes]]
+            [anh-front.keys.key-codes  :refer [key-codes key-vals]]
             [anh-front.keys.keywording :refer [generate-keywording-shortcut-keys
-                                               generate-keywording-set-shortcut-keys]]))
+                                               generate-keywording-set-shortcut-keys]]
+            [re-frame.core :as rf]))
 
 (def always-listen-keys
   [{:keyCode (key-codes "esc")}
@@ -231,7 +232,35 @@
     :keywording (keywording-key-set)
     project-key-set))
 
+(defn shortcut-string
+  "Given an entry from keydown returns a string describing the key"
+  [shortcut]
+  (let [key-function (first (first shortcut))
+        key-number (:keyCode (first (second shortcut)))
+        key-name (get key-vals key-number)
+        ctrl-mod (if (:ctrlKey (first (second shortcut)))
+                   "C" "")
+        meta-mod (if (:metaKey (first (second shortcut)))
+                   "M" "")
+        shift-mod (if (:shiftKey (first (second shortcut)))
+                    "S" "")
+        key-modifiers (str ctrl-mod meta-mod shift-mod)
+        filler (if (> (count key-modifiers) 0)
+                 "-" "")]
+    (str key-modifiers filler key-name " " key-function)))
+
+;; TODO move this into a sub?
+(defn current-keys
+  []
+  (let [keydown @(rf/subscribe [:keydown])]
+    (map shortcut-string (:event-keys keydown)))
+  )
+
 (comment
+  (current-keys)
+  (get key-vals 65)
+  (:ctrlKey {:shiftKey true})
+  (shortcut-string [[:select-all][{:keyCode 65 :metaKey true}]])
   (keywording-key-set)
   (key-rules :projects)
   (key-rules :pictures)
