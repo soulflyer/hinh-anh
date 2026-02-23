@@ -1,5 +1,6 @@
 (ns anh-front.keys.keys
   (:require [anh-front.atoms           :as atoms]
+            [anh-front.helpers         :as helpers]
             [anh-front.keys.key-codes  :refer [key-codes key-vals]]
             [anh-front.keys.keywording :refer [generate-keywording-shortcut-keys
                                                generate-keywording-set-shortcut-keys]]
@@ -9,6 +10,10 @@
   [{:keyCode (key-codes "esc")}
    ;; {:keyCode (key-codes "space")}
    {:keyCode (key-codes "return")}])
+
+(def prevent-keys
+  [{:keyCode 65
+    :ctrlKey true}])
 
 (def common-keys
   [[[:inc-picture-columns]
@@ -25,13 +30,16 @@
     [{:keyCode (key-codes "delete")}]]
    [[:select-all]
     [{:keyCode (key-codes "a")
-      :metaKey true}]]
+      :ctrlKey true}]]
    [[:open-project-external]
     [{:keyCode (key-codes "p")
       :metaKey true}]]
    [[:open-pictures]
     [{:keyCode (key-codes "o")
       :metaKey true}]]
+   [[:toggle-help]
+    [{:keyCode (key-codes "/")
+      :shiftKey true}]]
    [[:next-panel]
     [{:keyCode (key-codes "/")}]]
    [[:toggle-footer]
@@ -54,40 +62,40 @@
     [{:keyCode (key-codes "u")}]]
    [[:picture-filter-stars 5]
     [{:keyCode (key-codes "5")
-      :metaKey true}]]
+      :ctrlKey true}]]
    [[:picture-filter-stars 4]
     [{:keyCode (key-codes "4")
-      :metaKey true}]]
+      :ctrlKey true}]]
    [[:picture-filter-stars 3]
     [{:keyCode (key-codes "3")
-      :metaKey true}]]
+      :ctrlKey true}]]
    [[:picture-filter-stars 2]
     [{:keyCode (key-codes "2")
-      :metaKey true}]]
+      :ctrlKey true}]]
    [[:picture-filter-stars 1]
     [{:keyCode (key-codes "1")
-      :metaKey true}]]
+      :ctrlKey true}]]
    [[:picture-filter-stars 0]
     [{:keyCode (key-codes "0")
-      :metaKey true}]]
+      :ctrlKey true}]]
    [[:rating 5]
     [{:keyCode (key-codes "5")
-      :metaKey false}]]
+      :ctrlKey false}]]
    [[:rating 4]
     [{:keyCode (key-codes "4")
-      :metaKey false}]]
+      :ctrlKey false}]]
    [[:rating 3]
     [{:keyCode (key-codes "3")
-      :metaKey false}]]
+      :ctrlKey false}]]
    [[:rating 2]
     [{:keyCode (key-codes "2")
-      :metaKey false}]]
+      :ctrlKey false}]]
    [[:rating 1]
     [{:keyCode (key-codes "1")
-      :metaKey false}]]
+      :ctrlKey false}]]
    [[:rating 0]
     [{:keyCode (key-codes "0")
-      :metaKey false}]]
+      :ctrlKey false}]]
    [[:close-popovers]
     [{:keyCode (key-codes "esc")}]]])
 
@@ -192,23 +200,24 @@
 
 (def project-key-set
   {:event-keys (into common-keys project-keys)
-   ;; :prevent-default-keys prevent-keys
+   :prevent-default-keys prevent-keys
    :always-listen-keys always-listen-keys})
 
 (def keywords-key-set
   {:event-keys (into common-keys keyword-keys)
-   ;; :prevent-default-keys prevent-keys
+   :prevent-default-keys prevent-keys
    :always-listen-keys always-listen-keys})
 
 (def picture-key-set
   {:event-keys (into common-keys picture-keys)
-   ;; :prevent-default-keys prevent-keys
+   :prevent-default-keys prevent-keys
    :always-listen-keys always-listen-keys})
 
 (def details-key-set
   {:event-keys (into common-keys picture-keys)
-   ;; :prevent-default-keys prevent-keys
+   :prevent-default-keys prevent-keys
    :always-listen-keys [{:keyCode 13}]})
+
 
 ;; TODO test this. Why does it throw errors in the console
 (defn keywording-key-set
@@ -219,7 +228,7 @@
                         keywording-keys
                         (generate-keywording-shortcut-keys)
                         (generate-keywording-set-shortcut-keys)])
-   ;; :prevent-default-keys prevent-keys
+   :prevent-default-keys prevent-keys
    :always-listen-keys always-listen-keys})
 
 (defn key-rules
@@ -232,35 +241,8 @@
     :keywording (keywording-key-set)
     project-key-set))
 
-(defn shortcut-string
-  "Given an entry from keydown returns a string describing the key"
-  [shortcut]
-  (let [key-function (first (first shortcut))
-        key-number (:keyCode (first (second shortcut)))
-        key-name (get key-vals key-number)
-        ctrl-mod (if (:ctrlKey (first (second shortcut)))
-                   "C" "")
-        meta-mod (if (:metaKey (first (second shortcut)))
-                   "M" "")
-        shift-mod (if (:shiftKey (first (second shortcut)))
-                    "S" "")
-        key-modifiers (str ctrl-mod meta-mod shift-mod)
-        filler (if (> (count key-modifiers) 0)
-                 "-" "")]
-    (str key-modifiers filler key-name " " key-function)))
-
-;; TODO move this into a sub?
-(defn current-keys
-  []
-  (let [keydown @(rf/subscribe [:keydown])]
-    (map shortcut-string (:event-keys keydown)))
-  )
-
 (comment
-  (current-keys)
-  (get key-vals 65)
-  (:ctrlKey {:shiftKey true})
-  (shortcut-string [[:select-all][{:keyCode 65 :metaKey true}]])
+  @(rf/subscribe [:current-keys])
   (keywording-key-set)
   (key-rules :projects)
   (key-rules :pictures)

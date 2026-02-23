@@ -1,6 +1,7 @@
 (ns anh-front.helpers
   (:require [clojure.string  :as str]
-            [com.rpl.specter :as sp]))
+            [com.rpl.specter :as sp]
+            [anh-front.keys.key-codes  :refer [key-vals]]))
 
 (defn image-path
   "return a string containing the year/month/project/version path of an image"

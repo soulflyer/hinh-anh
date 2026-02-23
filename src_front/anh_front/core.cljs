@@ -24,6 +24,7 @@
     [anh-front.keys.key-events                            :as key-events]
     [anh-front.keys.keywording                            :as keywording-keys]
     [anh-front.subs.colour-preferences-subs               :as colour-preferences-subs]
+    [anh-front.subs.key-subs                              :as key-subs]
     [anh-front.subs.layout-preferences-subs               :as layout-preferences-subs]
     [anh-front.subs.picture-subs                          :as picture-subs]
     [anh-front.subs.preferences-subs                      :as preference-subs]

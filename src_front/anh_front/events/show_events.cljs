@@ -2,6 +2,17 @@
   (:require [re-frame.core :as rf]))
 
 (rf/reg-event-db
+  :hide-help
+  (fn [db _]
+    (assoc-in db [:preferences :hide-help] true)))
+
+(rf/reg-event-fx
+  :toggle-help
+  (fn [{:keys [db]} _]
+    (let [hh (rf/subscribe [:hide-help])]
+      {:db (assoc-in db [:preferences :hide-help] (not @hh))})))
+
+(rf/reg-event-db
   :hide-footer
   (fn [db _]
     (assoc-in db [:preferences :hide-footer] true)))

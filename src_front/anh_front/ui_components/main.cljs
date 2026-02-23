@@ -2,7 +2,7 @@
   (:require
     [anh-front.ui-components.details.core     :as details]
     [anh-front.ui-components.footer           :as footer]
-    [anh-front.ui-components.header           :as header]
+    [anh-front.ui-components.help             :as help]
     [anh-front.ui-components.keywording.core  :as keywording]
     [anh-front.ui-components.keywords         :as keywords]
     [anh-front.ui-components.pictures         :as pictures]
@@ -18,8 +18,16 @@
   []
   (let [focus        (rf/subscribe [:panel-focus])
         hide-footer  (rf/subscribe [:hide-footer])
+        hide-help    (rf/subscribe [:hide-help])
         left-panel   (rf/subscribe [:left-panel-display])
-        screen-split (rf/subscribe [:screen-split])]
+        screen-split (rf/subscribe [:screen-split])
+        help-split   (rf/subscribe [:help-split])
+        pictures-panel [rc/v-box
+                             :attr {:id "panel-2"
+                                    ;; :tabIndex "0"
+                                    }
+                             :size "auto"
+                             :children [[pictures/panel]]]]
     [rc/v-box
      :height "100vh"
      :children [;; TODO make the splitter optional for a photo only display
@@ -45,12 +53,15 @@
                                         :keywords    [keywords/panel]
                                         :preferences [preferences/panel]
                                         [:p "Default panel"])]]
-                 :panel-2 [rc/v-box
-                           :attr {:id "panel-2"
-                                  ;; :tabIndex "0"
-                                  }
-                           :size "auto"
-                           :children [[pictures/panel]]]
+                 :panel-2 (if @hide-help
+                            pictures-panel
+                            [rc/h-split
+                             :panel-1 pictures-panel
+                             :panel-2 [rc/v-box
+                                       :attr {:id "panel-3"}
+                                       :size "auto"
+                                       :children [[help/panel]]]
+                             :initial-split (str @help-split "%")])
                  :initial-split (str @screen-split "%")]
                 (if (not @hide-footer)
                   [rc/box

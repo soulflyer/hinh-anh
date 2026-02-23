@@ -32,7 +32,9 @@
    {:api-root              "http://localhost:31001/api"
     :show-empty-exif       false
     :last-project          []
-    :screen-split          20
+    :screen-split          15
+    :help-split            90
+    :hide-help             true
     :fullsize-directory    "/home/iain/Pictures/Published/fullsize"
     :medium-directory      "/home/iain/Pictures/Published/medium"
     :large-directory       "/home/iain/Pictures/Published/large"

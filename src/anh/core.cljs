@@ -31,7 +31,7 @@
   (.on app "ready"
        (fn []
          ;; TODO check if autoHideMenuBar does anything. I think setMenuBarVisibility is what removes the menu
-         (reset! *win* (BrowserWindow. (clj->js {:width 1200 :height 800 :autoHideMenuBar true})))
+         (reset! *win* (BrowserWindow. (clj->js {:width 2400 :height 1400 :autoHideMenuBar true})))
 
          ;; when no optimize comment out
          (.loadURL @*win* (str "file://" (.resolve path (js* "__dirname") "../index.html")))

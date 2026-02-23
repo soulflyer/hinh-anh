@@ -35,6 +35,13 @@
     (:screen-split preferences)))
 
 (rf/reg-sub
+  :help-split
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:help-split preferences)))
+
+(rf/reg-sub
   :view-fullsize
   (fn [_ _]
     (rf/subscribe [:preferences]))
@@ -146,3 +153,10 @@
     (rf/subscribe [:preferences]))
   (fn [preferences _]
     (:hide-footer preferences)))
+
+(rf/reg-sub
+  :hide-help
+  (fn [_ _]
+    (rf/subscribe [:preferences]))
+  (fn [preferences _]
+    (:hide-help preferences)))
